@@ -1,0 +1,154 @@
+/* Base Styles  */
+.blog-format {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 20px;
+  line-height: 2;
+}
+
+.blog-format h1 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #333;
+  margin: 15px 0px;
+  text-decoration: underline;
+}
+.blog-format h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  margin: 15px 0px;
+  text-decoration: underline;
+}
+.blog-format h3 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: underline;
+}
+
+.blog-format p {
+  font-size: 1.222em;
+  line-height: 1.8;
+  color: #555;
+  text-align: justify;
+  margin: 10px 0px;
+}
+
+.blog-format img {
+  border-radius: 10px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.blog-format ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+.blog-format li {
+  list-style-type: disc;
+  margin-left: 20px;
+  font-size: 1.111em;
+}
+
+.blog-format a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog-format a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.blog-format table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.blog-format table,
+.blog-format th,
+.blog-format td {
+  border: 1px solid #e2e8f0; /* You can adjust the border color */
+}
+
+.blog-format th,
+.blog-format td {
+  padding: 8px;
+}
+
+iframe {
+  width: 100%;
+  height: 80vh; /* Set the height as needed */
+}
+@media screen and (max-width: 1200px) {
+  .blog-format {
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .blog-format {
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .blog-format {
+    border-radius: 0;
+    padding: 15px;
+  }
+
+  .blog-format img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .blog-format h1 {
+    font-size: 20px;
+  }
+
+  .blog-format h2 {
+    font-size: 18px;
+  }
+
+  .blog-format h3 {
+    font-size: 15px;
+  }
+
+  .blog-format p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .blog-format th,
+  .blog-format td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .blog-format td {
+    text-align: left;
+  }
+
+  .blog-format th,
+  .blog-format td:before {
+    display: none;
+  }
+
+  .blog-format tr {
+    margin-bottom: 16px;
+  }
+
+  .blog-format tbody tr:hover {
+    background: none;
+  }
+}

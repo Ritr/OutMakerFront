@@ -1,0 +1,265 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+* {
+  font-family: "Roboto" !important;
+  font-weight: 500;
+}
+
+html,
+body {
+  max-width: 100%;
+
+  overflow-x: hidden;
+}
+
+.about-bg {
+  background: url("./assets/about-section-images/Top.png");
+  background: url("./assets/about-section-images/design-min.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.img-gradient {
+  background: linear-gradient(
+    180deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0) 28.13%,
+    rgba(255, 255, 255, 0) 69.44%,
+    #fff 100%
+  );
+}
+
+.box-size {
+  @apply relative h-[300px] md:h-[400px];
+}
+
+.shipping-top {
+  background: url("../src/assets/shipping-page/image-1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.schedule-img-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(255, 255, 255, 0.8) 28.79%,
+    #fff 100%
+  );
+}
+.parcel-img-gradient {
+  background: linear-gradient(
+    180deg,
+    #fff 0%,
+    rgba(255, 255, 255, 0.75) 48.52%,
+    rgba(255, 255, 255, 0.5) 100%
+  );
+}
+
+.font-shadow {
+  text-shadow: 0px 1px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nav-shadow {
+  background: #fff;
+  box-shadow: 0px 7px 14px 0px rgb(255, 255, 255);
+}
+
+.card-hover {
+  @apply hover:bg-primary hover:text-white duration-500 transition-all;
+}
+
+.nav-text-style {
+  @apply text-lg font-semibold uppercase mb-5;
+}
+
+.divider:before {
+  background: #002b5b !important;
+}
+.divider:after {
+  background: #002b5b !important;
+}
+
+/* body {
+	margin: 0;
+	font-family: "Poppins", sans-serif;
+}
+
+code {
+	font-family: "Poppins", sans-serif;
+} */
+
+img {
+  width: 100%;
+}
+
+.zoomed {
+  transform: scale(1.1); /* You can adjust the scale factor as needed */
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+}
+
+@media only screen and (max-width: 680px) {
+  .iframe {
+    height: 300px !important;
+  }
+  .customerServer_container_mobile {
+    width: 70px !important;
+    height: 70px !important;
+    background: none !important;
+    z-index: 9999 !important;
+  }
+}
+
+.customerServer_container {
+  z-index: 99999 !important;
+  bottom: 3% !important;
+}
+
+.grid-container {
+  /* 移动端显示全宽 */
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr); /* 移动端两列布局 */
+  grid-gap: 16px; /* 设置间距 */
+}
+
+@media (max-width: 768px) {
+  /* 或者你的移动端断点 */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 创建两列 */
+    grid-gap: 16px; /* 设置间距 */
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .grid-container > div {
+    /* 假设每个过滤器选项都被一个div包裹 */
+    grid-column: span 1; /* 让每个选项占据一列 */
+  }
+
+  .filter-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 移动端两列布局 */
+    grid-gap: 16px; /* 设置间距 */
+  }
+}
+
+/* PC端样式 */
+@media (min-width: 768px) {
+  .filter-container {
+    /* 设定一个合适的宽度，防止过宽 */
+    width: 300px; /* 或者是合适的最大宽度 */
+    margin: 0 auto; /* 用于居中 */
+  }
+}
+
+.triangle-border::before {
+  content: "";
+  position: absolute;
+  top: -10px; /* Adjust this value to position the triangle above the div */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent; /* Adjust size accordingly */
+  border-right: 10px solid transparent; /* Adjust size accordingly */
+  border-bottom: 10px solid #002b5b; /* Color should match the div background */
+}
+.paymentMethodselected {
+  background-color: #d6eaff; /* 修改背景颜色 */
+  border-color: #007bff; /* 修改边框颜色 */
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+    transform 0.3s ease; /* 过渡动画 */
+}
+
+.h5pc-card-paid-list-amex-actived {
+  background: url(./assets/cashier.png) -250px -540px;
+}
+
+.h5pc-card-paid-list-amex-actived,
+.h5pc-card-paid-list-elo-actived {
+  width: 64px;
+  height: 44px;
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top;
+}
+
+.h5pc-card-paid-list-elo-actived {
+  background: url(./assets/cashier.png) -172px -663px;
+}
+
+.h5pc-card-paid-list-hipercard-actived {
+  background: url(./assets/cashier.png) -250px -724px;
+}
+
+.h5pc-card-paid-list-dinersclub-actived,
+.h5pc-card-paid-list-hipercard-actived {
+  width: 64px;
+  height: 44px;
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top;
+}
+
+.h5pc-card-paid-list-dinersclub-actived {
+  background: url(./assets/cashier.png) -332px -539px;
+}
+
+.h5pc-card-paid-list-discover-actived {
+  background: url(./assets/cashier.png) -251px -601px;
+}
+
+.h5pc-card-paid-list-discover-actived,
+.h5pc-card-paid-list-jcb-actived {
+  width: 64px;
+  height: 44px;
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top;
+}
+
+.h5pc-card-paid-list-jcb-actived {
+  background: url(./assets/cashier.png) -172px -663px;
+}
+
+.h5pc-card-paid-list-mastercard-actived {
+  width: 60px;
+  height: 44px;
+  background: url(./assets/cashier.png) -172px -602px;
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top;
+}
+
+.h5pc-card-paid-list-unionpay-actived {
+  width: 64px;
+  height: 44px;
+  background: url(./assets/cashier.png) -172px -723px;
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top;
+}
+
+.h5pc-card-paid-list-visa-actived {
+  width: 60px;
+  height: 44px;
+  background: url(./assets/cashier.png) -172px -540px;
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: top;
+}
+
+
+@layer utilities {
+  .shadow-custom {
+      box-shadow: 0px 5px 9px 2px rgba(48, 48, 48, 0.15);
+  }
+}

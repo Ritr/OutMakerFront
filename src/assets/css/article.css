@@ -1,0 +1,79 @@
+.articles .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+	background-color: #002b5b;
+	font-weight: 100;
+	width: 55px;
+	height: 55px;
+}
+
+.articles
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--right::before {
+	-webkit-filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
+}
+
+.articles .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+	background-color: #002b5b;
+	font-weight: 100;
+	width: 55px;
+	height: 55px;
+}
+
+.articles
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--left::before {
+	-webkit-filter: brightness(0) invert(1);
+	filter: brightness(0) invert(1);
+}
+
+.articles .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+	position: absolute !important;
+	top: 35%;
+	right: 1%;
+}
+
+.articles .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+	position: absolute !important;
+	top: 35%;
+	left: 1%;
+}
+
+@media only screen and (max-width: 1280px) {
+	.articles .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+		top: 27%;
+	}
+
+	.articles .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+		top: 27%;
+	}
+}
+
+@media only screen and (max-width: 780px) {
+	.articles .react-multiple-carousel__arrow::before {
+		font-size: 20px;
+	}
+
+	.articles .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+		width: 10px;
+		height: 10px;
+		right: 3%;
+		top: 30%;
+	}
+
+	.articles .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+		width: 10px;
+		height: 10px;
+		left: 3%;
+		top: 30%;
+	}
+}
+
+@media only screen and (max-width: 470px) {
+	.articles .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+		top: 26%;
+	}
+
+	.articles .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+		top: 26%;
+	}
+}

@@ -1,0 +1,112 @@
+.stylish .react-multi-carousel-list {
+	position: initial !important;
+}
+
+.stylish .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+	position: absolute !important;
+	top: 45%;
+	background-color: #002b5b;
+}
+
+.stylish
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--right::before {
+	filter: brightness(1) invert(1);
+	color: rosybrown;
+}
+
+.stylish
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--right:hover {
+	background-color: #002b5b;
+}
+
+.stylish
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--right:hover::before {
+	filter: brightness(0) invert(1);
+	color: rosybrown;
+}
+
+.stylish
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--left:hover {
+	background-color: #002b5b;
+}
+
+.stylish
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--left:hover::before {
+	filter: brightness(0) invert(1);
+	color: rosybrown;
+}
+
+.stylish .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+	position: absolute !important;
+	top: 90%;
+	left: 90%;
+	background-color: #fff;
+	color: #002b5b;
+}
+
+.stylish
+	.react-multi-carousel-list
+	.react-multiple-carousel__arrow--left::before {
+	filter: brightness(1) invert(1);
+	color: rosybrown;
+}
+
+.stylish .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+	top: 90%;
+	left: 90%;
+	height: 50px;
+	width: 50px;
+	border: 1px solid #002b5b;
+	margin-left: -50px;
+}
+
+.stylish .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+	top: 90%;
+	height: 50px;
+	width: 50px;
+	border: 1px solid #002b5b;
+	background-color: #fff;
+}
+
+.stylish .carousel-dots {
+	width: 100px !important;
+	position: absolute;
+	top: 88%;
+	left: 0;
+}
+
+.stylish .react-multi-carousel-dot-list {
+	bottom: 3% !important;
+	right: 75% !important;
+	
+}
+
+.stylish .react-multi-carousel-dot button {
+	border: 0;
+	background: #d9d9d9;
+}
+
+.stylish .react-multi-carousel-dot--active button {
+	background: #002b5b;
+}
+
+@media only screen and (max-width: 1040px) {
+	.stylish-devider {
+		display: none;
+	}
+	.stylish .react-multi-carousel-dot button {
+		display: none !important;
+	}
+
+	.stylish .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+		left: 55%;
+	}
+	.stylish .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+		left: 45%;
+	}
+}

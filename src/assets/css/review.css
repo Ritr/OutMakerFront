@@ -1,0 +1,106 @@
+.review {
+  position: relative;
+}
+
+.review .react-multi-carousel-list {
+  padding: 0px 0px !important;
+}
+
+.review .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+  position: absolute !important;
+  top: 45%;
+  background-color: #7e93ab;
+}
+
+.review
+  .react-multi-carousel-list
+  .react-multiple-carousel__arrow--right::before {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
+.review .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+  position: absolute !important;
+  top: 90%;
+  left: 90%;
+  background-color: #7e93ab;
+}
+
+.review .react-multi-carousel-list .react-multiple-carousel__arrow--left:hover {
+  background-color: #002b5b;
+  scale: 120%;
+}
+
+.review
+  .react-multi-carousel-list
+  .react-multiple-carousel__arrow--right:hover {
+  background-color: #002b5b;
+  scale: 120%;
+}
+
+.review
+  .react-multi-carousel-list
+  .react-multiple-carousel__arrow--left::before {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
+
+.review .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+  top: 1%;
+  left: 90%;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #7e93ab;
+  margin-left: -50px;
+}
+
+.review .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+  top: 1%;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #7e93ab;
+}
+
+@media only screen and (max-width: 1040px) {
+  .review .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+    top: 50% !important;
+  }
+  .review .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+    top: 50% !important;
+    left: 12% !important;
+  }
+}
+
+@media only screen and (max-width: 780px) {
+  .react-multiple-carousel__arrow::before {
+    font-size: 20px !important;
+  }
+
+  .review .react-multi-carousel-list .react-multiple-carousel__arrow--right {
+    width: 30px;
+    height: 30px;
+    right: 0;
+  }
+
+  .review .react-multi-carousel-list .react-multiple-carousel__arrow--left {
+    width: 30px;
+    height: 30px;
+    left: 14% !important;
+  }
+}
+
+.react-multi-carousel-item {
+  margin: 0px; /* Adjust this value as needed */
+}
+.review .react-multi-carousel-list .react-multi-carousel-item {
+  margin-right: 10px; /* Adjust the right margin to reduce gap */
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: space-between; /* Distribute space evenly */
+  height: 100%; /* Set a fixed height or use a percentage value */
+}
+
+/* For the last item in the carousel, you might want to reset the margin */
+.review .react-multi-carousel-list .react-multi-carousel-item:last-child {
+  margin-right: 0;
+}

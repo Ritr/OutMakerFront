@@ -1,0 +1,62 @@
+.furniture-slider .slide img {
+	width: 20rem;
+	margin: 0 auto;
+}
+
+.furniture-slider .slide {
+	transform: scale(0.8);
+	transition: transform 300ms;
+}
+
+.furniture-slider .activeSlide {
+	transform: scale(1.1);
+	opacity: 1;
+	border-radius: 100px;
+}
+
+.furniture-slider .activeSlide img {
+}
+
+.furniture-slider .arrow {
+	background-color: #8095ad;
+	padding: 10px;
+	border-radius: 100px;
+	position: absolute;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.furniture-slider .arrow:hover {
+	background-color: #002b5b;
+}
+
+.furniture-slider .arrow svg {
+	transition: color 300ms;
+}
+
+.furniture-slider .arrow svg {
+	color: #fff;
+}
+
+.furniture-slider .next {
+	right: 1%;
+	top: 50%;
+}
+
+.furniture-slider .prev {
+	left: 1%;
+	top: 50%;
+}
+
+.furniture-slider .slick-dots {
+	height: 5px;
+}
+
+.furniture-slider .slick-dots li.slick-active button:before {
+	color: #002b5b;
+	font-size: 11px;
+}
+
+.furniture-slider .slick-dots li button:before {
+	font-size: 8px;
+}
