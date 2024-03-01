@@ -45,7 +45,7 @@ const services = [
 
 const Stylish = () => {
   const { subCategories } = useSubCategories();
-  console.log(subCategories);
+  
   return (
     <section className="w-full mx-auto  pt-10 md:pb-20  relative stylish">
       <div className="text-center pb-4 mt-1">

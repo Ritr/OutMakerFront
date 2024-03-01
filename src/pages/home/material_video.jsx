@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
 import { FaPlay, FaPause } from "react-icons/fa";
-
+import useWowAnimation from "../../Hooks/useAnimate";
 const MV = ({ text_h2, text_p, videoSource }) => {
+  useWowAnimation();
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef(null);
 
@@ -13,8 +14,13 @@ const MV = ({ text_h2, text_p, videoSource }) => {
     }
     setIsPlaying(!isPlaying);
   };
+  const getRandomDuration = () => {
+    return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
+  };
   return (
-    <mv className="hero min-h-screen relative">
+    <mv
+      className="hero min-h-screen relative"
+    >
       <div className="video-wrapper w-full h-full">
         <video
           playsInline
@@ -22,7 +28,8 @@ const MV = ({ text_h2, text_p, videoSource }) => {
           muted
           loop
           poster="cake.jpg"
-          className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover"
+          className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover wow fadeInUp"
+          data-wow-duration={`${getRandomDuration()}s`}
           ref={videoRef}
         >
           <source src={videoSource} type="video/webm" />

@@ -32,12 +32,15 @@ const services = [
 ];
 
 const Services = () => {
+	const getRandomDuration = () => {
+		return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
+	  };
 	return (
-		<section className='bg-accent py-10'>
+		<section className='bg-accent py-10  fadeInUp'>
 			<div className='container mx-auto px-4'>
 				<div className='grid justify-between grid-cols-2 row-gap-8 md:grid-cols-4 md:divide-x-2 md:divide-dashed'>
 					{services.map(service => (
-						<div className='text-center p-2 md:p-0'>
+						<div className='text-center p-2 md:p-0 wow' data-wow-duration={`${getRandomDuration()}s`}>
 							<div className='flex items-center justify-center mx-auto mb-3 rounded-full'>
 								<img src={service.image} alt='' className='w-[90px] h-[90px]' />
 							</div>

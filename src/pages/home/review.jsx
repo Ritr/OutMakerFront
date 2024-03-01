@@ -69,6 +69,9 @@ const reviews = [
 ];
 
 const Review = () => {
+  const getRandomDuration = () => {
+    return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
+  };
   return (
     <section className="w-full pb-10 md:mt-10 overflow-hidden  pl-5 pr-5 ">
       <div className="flex justify-between items-center mb-1">
@@ -122,7 +125,8 @@ const Review = () => {
       >
         {reviews.map((review) => (
           <div
-            className="rounded-lg border-2 border-[#F2F2F2]  shadow hover:shadow-xl "
+            className="rounded-lg border-2 border-[#F2F2F2]  shadow hover:shadow-xl  wow slideInRight"
+            data-wow-duration={`${getRandomDuration()}s`}
             key={review.id}
           >
             <div className="flex flex-col  h-auto min-h-[350px] justify-between  p-4 md:p-8 max-w-sm hover:border-white">
@@ -131,8 +135,8 @@ const Review = () => {
                   <div className="flex text-white">
                     <AiFillStar className="bg-[#F1AB3E] p-1 me-1" size={24} />
                     <AiFillStar className="bg-[#F1AB3E] p-1 me-1" size={24} />
-                    <AiFillStar className="bg-[#F1AB3E] p-1 me-1" size={24} />
-                    <AiFillStar className="bg-[#F1AB3E] p-1 me-1" size={24} />
+                    <AiFillStar className="bg-[#F1AB3E] p-1 me-1"  size={24} />
+                    <AiFillStar className="bg-[#F1AB3E] p-1 me-1"  size={24} />
                     <AiFillStar className="bg-[#F1AB3E] p-1 me-1" size={24} />
                   </div>
                   <p className="text-base font-normal text-[#666666]">

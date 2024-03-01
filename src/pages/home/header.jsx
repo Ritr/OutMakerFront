@@ -5,11 +5,11 @@ import { FaPlay, FaPause } from "react-icons/fa";
 import headerImage from "../../assets/images/home-banner.png";
 import headerVideo from "../../assets/images/homePage-video.mp4";
 import { Link } from "react-router-dom";
-
+import useWowAnimation from "../../Hooks/useAnimate";
 const Header = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const videoRef = useRef(null);
-
+  useWowAnimation();
   const togglePlayPause = () => {
     if (videoRef.current.paused) {
       videoRef.current.play();
@@ -32,7 +32,8 @@ const Header = () => {
           poster="cake.jpg"
           webkit-playsinline="true"
           playsinline="true"
-          className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover"
+          className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover wow fadeInUp"
+          data-wow-duration="1s"
           ref={videoRef}
         >
           <source

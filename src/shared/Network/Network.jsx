@@ -13,7 +13,9 @@ import img11 from "../../assets/images/Network/11.jpg";
 
 const Network = () => {
   const networkImages = [img8, img7, img9, img10, img2, img11, img5, img6];
-
+  const getRandomDuration = () => {
+    return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
+  };
   return (
     <section className="w-full">
       <div className="text-left">
@@ -24,7 +26,11 @@ const Network = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-auto-fit gap-0 relative">
         {networkImages.map((imgSrc, index) => (
-          <div key={index} className="w-full">
+          <div
+            key={index}
+            className="w-full wow fadeInUp"
+            data-wow-duration={`${getRandomDuration()}s`}
+          >
             <img
               src={imgSrc}
               alt="Network Image"

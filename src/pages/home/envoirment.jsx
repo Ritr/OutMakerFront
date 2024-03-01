@@ -25,7 +25,7 @@ const Envoirment = () => {
             </Button>
           </Link>
         </div>
-        <div className="">
+        <div className="wow slideInRight">
           <img src={envoirmentImg} alt="" />
         </div>
       </div>

@@ -5,9 +5,14 @@ import Button from "../../shared/Button/Button";
 import { Link } from "react-router-dom";
 import useCollections from "../../Hooks/useCollections";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
+// import useWowAnimation from "../../Hooks/useAnimate";
 
 const Collection = () => {
+  // useWowAnimation();
   const { collections } = useCollections();
+  const getRandomDuration = () => {
+    return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
+  };
   return (
     <section className="w-full py-10 pl-5 pr-5 md:py-20">
       <div>
@@ -30,7 +35,8 @@ const Collection = () => {
           {collections?.slice(0, 6).map((collection) => (
             <div
               key={collection?.collection_id}
-              className="block group  items-center justify-between rounded-md my-2 lg:mt-[38px] hover:bg-[#303030] hover:bg-opacity-20 hover:p-6 hover:shadow-custom pb-6"
+              className="block group  items-center justify-between rounded-md my-2 lg:mt-[38px] hover:bg-[#303030] hover:bg-opacity-20 hover:p-6 hover:shadow-custom pb-6 wow fadeInUp"
+              data-wow-duration={`${getRandomDuration()}s`}
             >
               <img
                 className="img w-full h-full object-cover lg:h-[375px] mb-6 rounded-md group-hover:h-[351px]"

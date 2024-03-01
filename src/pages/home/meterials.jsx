@@ -41,7 +41,9 @@ const materials = [
 ];
 const Meterials = () => {
   // const {meterials} = useMeterials();
-
+  const getRandomDuration = () => {
+    return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
+  };
   return (
     <section className="py-10 md:py-20  pl-5 pr-5 ">
       <div className="w-full ">
@@ -50,7 +52,7 @@ const Meterials = () => {
             Our product designer
           </h2>
         </div>
-        <img src={img5} alt="" />
+        <img src={img5} alt=""  className="wow slideInLeft"/>
         <div className="text-center w-4/5 md:w-2/3 mx-auto mt-5">
           <h2 className="text-primary font-semibold mt-5 text-2xl md:text-4xl">
             Materials We Use
@@ -89,7 +91,8 @@ const Meterials = () => {
           {materials.slice(0, 4)?.map((material) => (
             <div
               key={material?.id}
-              className="container mx-auto px-2 pt-2 pb-4 border bg-white max-w-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 hover:scale-105"
+              className="container mx-auto px-2 pt-2 pb-4 border bg-white max-w-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 hover:scale-105 wow fadeInUp"
+              data-wow-duration={`${getRandomDuration()}s`}
             >
               <div className="h-[280px]">
                 <img
