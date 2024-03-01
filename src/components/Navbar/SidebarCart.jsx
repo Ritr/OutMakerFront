@@ -128,11 +128,9 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
             <div className="p-5 bg-white border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                  <h5 className="text-xl font-bold leading-none text-gray-900">
-                    Your Cart
-                  </h5>
+                  <h5 className="text-xl  leading-none ">Your Cart</h5>
                   <span className="text-sm font-medium ml-3">
-                    {cartData ? objectOnlyData.length : 0} Item{" "}
+                    ({cartData ? objectOnlyData.length : 0} Item)
                   </span>
                 </div>
 
@@ -149,21 +147,24 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                     <img
                       src={ImgBaseUrl(singleData?.product?.p_pic)}
                       alt="Product"
-                      className="w-20 h-20 object-fit object-center"
+                      className="w-[35%] object-contain"
                     />
-                    <div className="flex flex-col">
-                      <h6 className="text-md font-bold">
+
+                    <div className="w-[65%] flex flex-col">
+                      <h6 className="text-base  mb-2">
                         {singleData?.product?.p_name}
                       </h6>
-                      <p className="text-sm text-gray-600">Color: Glacier</p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-[#808080] mb-1">
+                        Color: Glacier
+                      </p>
+                      <p className="text-sm text-[#808080] mb-1">
                         Dimension: {singleData?.dimension}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-[#808080] mb-1">
                         Category: {singleData?.category}
                       </p>
                       <div className="card-actions flex justify-between items-center mt-4 mr-2">
-                        <div className="flex items-center gap-6 border-2 border-black p-0.5 rounded-full cursor-pointer">
+                        <div className="flex items-center gap-6 border border-[#BFBFBF] p-2 rounded-full cursor-pointer">
                           <p
                             onClick={() =>
                               handleDecreaseQuantity(singleData?.product?.p_id)
@@ -185,7 +186,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                           </p>
                         </div>
 
-                        <p className="text-xl">
+                        <p className="text-base">
                           Price: A${singleData?.cost?.product_sale_price}
                         </p>
                       </div>
@@ -196,23 +197,21 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
             </div>
             <div id="paymentRef" className="bg-gray-50 p-5 sticky bottom-0">
               <div className="flex justify-between items-center">
-                <h5 className="text-xl font-bold leading-none text-gray-900">
-                  Order Summary
-                </h5>
+                <h5 className="text-xl leading-none ">Order Summary</h5>
               </div>
-              <div className="mt-3">
+              <div className="mt-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-medium text-gray-500">
+                  <span className="text-base text-[#808080]">
                     Estimated Total
                   </span>
-                  <span className="text-lg font-bold text-gray-900">
+                  <span className="text-xl text-[#F31717]">
                     A${totalEstimatedPrice}
                   </span>
                 </div>
               </div>
               <button
                 onClick={handleCheckout}
-                className="w-full text-center border-2 border-primary rounded-full py-[14px] text-2xl font-medium mt-4 bg-primary text-white duration-500 transition-all ease-linear"
+                className="w-full text-center rounded-full py-[14px] text-base font-medium mt-3 bg-[#0091CD] text-white duration-500 transition-all ease-linear"
               >
                 CHECK OUT
               </button>
@@ -221,17 +220,17 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                   type="checkbox"
                   id="terms"
                   name="terms"
-                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"
+                  className="w-4 h-4 text-[#7F7F7F] rounded"
                   onChange={handleAgreementChange}
                 />
                 <label
                   htmlFor="terms"
-                  className="ml-2 text-xs font-medium text-black"
+                  className="ml-2 text-xs text-[#7F7F7F]"
                 >
                   I agree with the{" "}
                   <Link
                     to="/TermsOfService"
-                    class="text-blue-300 hover:text-blue-400"
+                    className="text-[#7F7F7F] hover:text-blue-400"
                   >
                     terms and conditions
                   </Link>

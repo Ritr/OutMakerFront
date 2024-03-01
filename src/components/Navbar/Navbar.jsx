@@ -31,13 +31,14 @@ const Navbar = () => {
 
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [navVisible, setNavVisible] = useState(false);
+  const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
   const [topPos, setTopPos] = useState(48);
   useEffect(() => {
     let top = document.querySelector("#tip").clientHeight;
     setTopPos(top);
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
+      setNavVisible(window.innerWidth > 768);
     };
 
     window.addEventListener("resize", handleResize);
@@ -179,7 +180,6 @@ const Navbar = () => {
       <li onClick={() => toggleNavButton("designHelp")}>
         <p>
           <span>Design Help</span>
-
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "designHelp" ? <FaTimes /> : <FaAngleDown />}
           </span>
@@ -202,7 +202,7 @@ const Navbar = () => {
       {/* navbar functonalities */}
       <div
         className="w-full z-50 fixed bg-white"
-        style={{ top: topPos + "px", zIndex: 99999 }}
+        style={{ top: topPos + "px", zIndex: 999 }}
       >
         <div className="navbar nav-shadow lg:h-[108px] lg:w-[1600px] mx-auto">
           <div className="navbar-start w-full">
@@ -317,58 +317,58 @@ const Navbar = () => {
         toggleSidebar={() => setIsSidebarCartOpen(false)}
       />
       {/* functionalities */}
-      {navVisible && (
-        <div ref={dropdownRef}>
-          {isDropdownOpen("productItem") && (
-            <div
-              className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-                navVisible ? "pt-52" : "pt-28"
-              }`}
-              onClick={() => {
-                cancelList();
-              }}
-            >
-              <ProductItems />
-            </div>
-          )}
-          {isDropdownOpen("collectionItem") && (
-            <div
-              className={`bg-white w-full z-10 duration-700 transition-all ease-in-out lg:pt-[138px]  ${
-                navVisible ? "pt-52" : "pt-28"
-              }`}
-              onClick={() => {
-                cancelList();
-              }}
-            >
-              <CollectionItem />
-            </div>
-          )}
-          {isDropdownOpen("learnItems") && (
-            <div
-              className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-                navVisible ? "pt-40" : "pt-16"
-              }`}
-              onClick={() => {
-                cancelList();
-              }}
-            >
-              <LearnItem />
-            </div>
-          )}
-          {isDropdownOpen("designHelp") && (
-            <div
-              className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-                navVisible ? "pt-56" : "pt-32"
-              }`}
-              onClick={() => {
-                cancelList();
-              }}
-            >
-              <DesignHelp />
-            </div>
-          )}
-        </div>
-      )}
+
+      <div ref={dropdownRef}>
+        {isDropdownOpen("productItem") && navVisible && (
+          <div
+            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
+              navVisible ? "pt-52" : "pt-28"
+            }`}
+            onClick={() => {
+              cancelList();
+            }}
+          >
+            <ProductItems />
+          </div>
+        )}
+        {isDropdownOpen("collectionItem") && navVisible && (
+          <div
+            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out lg:pt-[138px]  ${
+              navVisible ? "pt-52" : "pt-28"
+            }`}
+            onClick={() => {
+              cancelList();
+            }}
+          >
+            <CollectionItem />
+          </div>
+        )}
+        {isDropdownOpen("learnItems") && navVisible && (
+          <div
+            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
+              navVisible ? "pt-40" : "pt-16"
+            }`}
+            onClick={() => {
+              cancelList();
+            }}
+          >
+            <LearnItem />
+          </div>
+        )}
+        {isDropdownOpen("designHelp") && navVisible && (
+          <div
+            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
+              navVisible ? "pt-56" : "pt-32"
+            }`}
+            onClick={() => {
+              cancelList();
+            }}
+          >
+            <DesignHelp />
+          </div>
+        )}
+      </div>
+
       {/* <div
         className="w-full flex flex-col overflow-auto top-36 bg-white fixed z-10 left-0"
         style={{

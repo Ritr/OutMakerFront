@@ -9,11 +9,11 @@ import Teak from "../../assets/Navbar/product-item/Teak.svg";
 import "react-loading-skeleton/dist/skeleton.css";
 import { motion } from "framer-motion";
 import Skeleton from "react-loading-skeleton";
+import useImageLoader from "../../Hooks/imageLoader";
 
 const ProductItems = () => {
   const { categories } = useCategories();
-  const [loadedImages, setLoadedImages] = useState({});
-
+  
   // Material Buttons component for reuse
   const MaterialButtons = () => (
     <div className="grid grid-cols-3 gap-1 md:flex md:flex-wrap md:gap-1 items-center">
@@ -46,19 +46,18 @@ const ProductItems = () => {
   };
 
   const ImageWithSkeleton = ({ src, alt, width, height }) => {
-    const [loaded, setLoaded] = useState(false);
-
+    const imageLoaded = useImageLoader(ImgBaseUrl(src));
     return (
       <>
-        {!loaded && <Skeleton width={width} height={height} />}
-        <motion.img
-          src={src}
-          alt={alt}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: loaded ? 1 : 0 }}
-          onLoad={() => setLoaded(true)}
-          style={{ display: loaded ? "block" : "none", width, height }}
-        />
+        {!imageLoaded ? (
+          <Skeleton width={width} className="h-40" />
+        ) : (
+          <img
+            src={src}
+            style={{ display: "block", width }}
+            alt=""
+          />
+        )}
       </>
     );
   };
@@ -86,8 +85,8 @@ const ProductItems = () => {
                 initial="hidden"
                 animate="visible"
                 variants={variants}
-                transition={{ duration: 0.5 }}
-                className="rounded-lg shadow-lg p-2"
+                transition={{ duration: 0.7 }}
+                className="rounded-lg shadow-lg p-2 min-h-40"
               >
                 <ImageWithSkeleton
                   src={ImgBaseUrl(category?.category_pic)}
