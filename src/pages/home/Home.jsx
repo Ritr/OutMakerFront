@@ -106,7 +106,7 @@ const Home = () => {
   }`;
 
   return (
-    <main className="relative lg:w-[1600px] mx-auto">
+    <main className="relative  w-full lg:max-w-[1600px] mx-auto">
       <ScrollToTop />
       <Header />
       <Collection />

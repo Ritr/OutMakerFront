@@ -12,7 +12,7 @@ const LearnItem = () => {
               <h3 className="nav-text-style">About</h3>
               <div className="space-y-[15px] flex flex-col">
                 <Link to="/AboutUs">Our Story</Link>
-                <Link to="/sustainability">Sustainability</Link>
+                <Link to="/brand">Sustainability</Link>
                 <Link to="/ContactUs">Contact us</Link>
                 <Link to="/all-blogs">Blogs</Link>
                 <Link to="/Care">Care & Maintenance</Link>

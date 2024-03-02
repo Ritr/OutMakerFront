@@ -59,12 +59,14 @@ const ImageSlider = ({ images }) => {
               itemClass="carousel-item-padding-40-px"
               partialVisible={true}
               beforeChange={(nextSlide, { currentSlide }) => {
-                // alert(nextSlide)
                 // console.log(images);
 
                 let correctIndex = nextSlide - 2; // Get the correct index
                 if (correctIndex >= images.length) {
                   correctIndex = 0;
+                }
+                if(correctIndex < 0){
+                  correctIndex = images.length + correctIndex;
                 }
                 setCurrentImageIndex(correctIndex);
               }}

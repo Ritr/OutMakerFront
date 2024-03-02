@@ -35,7 +35,7 @@ const OutdoorDiningChairCard = ({
             <img
               src={imageUrl}
               alt={title}
-              className="w-full md:h-[375px] object-contain "
+              className="w-full md:h-[280px] object-contain "
             />
 
             <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">

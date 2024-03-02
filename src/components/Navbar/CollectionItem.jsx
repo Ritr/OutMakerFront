@@ -28,7 +28,7 @@ const CollectionItem = () => {
   return (
     <>
       <section className="lg:px-32 bg-white p-5 md:p-0">
-        <div className="pb-10 relative stylish">
+        <div className="pb-20 relative stylish">
           <h3 className="text-primary font-medium text-xl mb-7 uppercase">
             Outmaker Collection
           </h3>

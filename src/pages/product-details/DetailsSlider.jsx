@@ -22,10 +22,28 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
 
   const handleNext = () => {
     carouselRef.current.next();
+    let index = images.findIndex((item) => {
+      return ImgBaseUrl(item.image_url) === headerImage;
+    });
+    let nextIndex = index + 1;
+    if (nextIndex === images.length) {
+      nextIndex = 0;
+    }
+    let image = images[nextIndex];
+    setHeaderImage(ImgBaseUrl(image.image_url));
   };
 
   const handlePrev = () => {
     carouselRef.current.previous();
+    let index = images.findIndex((item) => {
+      return ImgBaseUrl(item.image_url) === headerImage;
+    });
+    let prevIndex = index - 1;
+    if (prevIndex < 0) {
+      prevIndex = images.length - 1;
+    }
+    let image = images[prevIndex];
+    setHeaderImage(ImgBaseUrl(image.image_url));
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -38,14 +56,14 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
           <div className="bg-[#EDEDEF] px-2 py-2 mb-2 text-xs text-center">
             THIS SET INCLUDES
           </div>
-          <div className="border border-color-[#E3E3E3] text-left  px-4 py-4 rounded-sm">
+          <div className="border border-color-[#E3E3E3] text-left px-3 py-3 pb-0 rounded-sm">
             {dimensions.map((item, index) => {
               return (
-                <div className="flex items-center mb-4 text-xs">
-                  <div className=" mr-4 justify-center items-center flex h-6 w-6 rounded-full border border-[#002B5B] bg-[#D8EDF5]">
+                <div className="flex items-center mb-3 text-xs">
+                  <div className="mr-2 justify-center items-center flex h-6 w-6 rounded-full border border-[#002B5B] bg-[#D8EDF5]">
                     {index + 1}
                   </div>
-                  <span>{item.dimension.dim_title}</span>
+                  <span  className="">{item.dimension.dim_title}</span>
                 </div>
               );
             })}
@@ -58,13 +76,13 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
             </h4>
           </div>
 
-          <div className="flex items-center justify-center mt-2">
+          {/* <div className="flex items-center justify-center mt-2">
             <Rating
               style={{ maxWidth: 100 }}
               value={product?.review ? product?.review?.[0]?.review : 4.5}
               readOnly
             />
-          </div>
+          </div> */}
           <div className="flex flex-wrap justify-start ml-14">
             <div className="flex gap-4 pt-2">
               {Product_Colors.map(({ color }) => (

@@ -33,8 +33,17 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
   const [topPos, setTopPos] = useState(48);
+  
+  const location = useLocation(); // Get the current location
   useEffect(() => {
     let top = document.querySelector("#tip").clientHeight;
+    // 如果是购物车页面，则top = 0
+    
+    // const location = useLocation(); // Get the current location
+    // alert(location.pathname);
+    if(location.pathname == "/checkout-info"){
+      top = 0;
+    }
     setTopPos(top);
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -98,7 +107,6 @@ const Navbar = () => {
   };
   useOutsideClick(dropdownRef, closeDropdown);
 
-  const location = useLocation(); // Get the current location
   useEffect(() => {
     // Close the navigation menu whenever the route changes
     setProductItem(false);
@@ -204,7 +212,7 @@ const Navbar = () => {
         className="w-full z-50 fixed bg-white"
         style={{ top: topPos + "px", zIndex: 999 }}
       >
-        <div className="navbar nav-shadow lg:h-[108px] lg:w-[1600px] mx-auto">
+        <div className="navbar nav-shadow lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
           <div className="navbar-start w-full">
             <details className="dropdown lg:hidden">
               <summary className="btn btn-ghost lg:hidden">

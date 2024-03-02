@@ -5,8 +5,6 @@ import img3 from "../../assets/images/Materials/Rattan.jpg";
 import img4 from "../../assets/images/Materials/Sunbrella.png";
 import img5 from "../../assets/stylish/1.jpg";
 
-import headerVideo from "../../assets/images/homePage-video.mp4";
-import video1 from "../../assets/1.mp4";
 import MV from "./material_video";
 
 const materials = [
@@ -87,7 +85,7 @@ const Meterials = () => {
           text_p="Where Durability Embraces the Elements"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10 mb-14">
           {materials.slice(0, 4)?.map((material) => (
             <div
               key={material?.id}
@@ -114,7 +112,7 @@ const Meterials = () => {
         </div>
 
         <MV
-          videoSource={video1}
+          videoSource="https://cdn.shopify.com/videos/c/o/v/72b9e518ac6e42bc846bbcac4122c7c7.mp4"
           text_h2="Sunbrella fabric easily handles various cold weather conditions."
         />
       </div>

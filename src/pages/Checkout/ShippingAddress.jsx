@@ -168,7 +168,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
   return (
     <div className="grid md:grid-cols-2 gap-4">
       <select
-        className="select select-bordered border-2 focus:outline-none col-span-2"
+        className="select select-bordered border-2 focus:outline-none col-span-2 text-sm"
         name="country"
         value={formData.country}
         onChange={handleInputChange}
@@ -178,7 +178,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
 
       <div className="col-span-2 flex flex-col lg:flex-row gap-4 w-full">
         <select
-          className="input input-bordered border-2 focus:outline-none w-full"
+          className="input input-bordered border-2 focus:outline-none w-full text-sm"
           value={selectedStateAbbrev}
           onChange={(e) => handleStateChange(e.target.value)}
           name="state"
@@ -208,7 +208,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
         />
 
         <input
-          className="input input-bordered border-2 focus:outline-none w-full"
+          className="input input-bordered border-2 focus:outline-none w-full text-sm"
           type="number"
           placeholder="postcode"
           name="zip"
@@ -219,7 +219,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       </div>
 
       <input
-        className="input input-bordered border-2 focus:outline-none w-full"
+        className="input input-bordered border-2 focus:outline-none w-full text-sm"
         type="text"
         placeholder="First Name"
         name="firstName"
@@ -229,7 +229,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       />
 
       <input
-        className="input input-bordered border-2 focus:outline-none w-full"
+        className="input input-bordered border-2 focus:outline-none w-full text-sm"
         type="text"
         placeholder="Last Name"
         name="lastName"
@@ -239,7 +239,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       />
 
       <input
-        className="input input-bordered border-2 focus:outline-none w-full md:col-span-2"
+        className="input input-bordered border-2 focus:outline-none w-full md:col-span-2 text-sm"
         type="text"
         placeholder="Street Address"
         name="address"
@@ -249,7 +249,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       />
 
       <input
-        className="input input-bordered border-2 focus:outline-none w-full md:col-span-2"
+        className="input input-bordered border-2 focus:outline-none w-full md:col-span-2 text-sm"
         type="number"
         placeholder="Phone"
         name="phone"

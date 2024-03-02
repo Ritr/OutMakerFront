@@ -492,35 +492,25 @@ const CheckoutInfo = () => {
 
   return (
     <>
-      <section className="absolute z-50 w-full h-full top-0 left-0 bg-[#F7F7F7]">
+      <section className="w-full h-full bg-[#F7F7F7]">
         {/* SidebarCart */}
         <SidebarCart
           isOpen={isSidebarCartOpen}
           toggleSidebar={() => setIsSidebarCartOpen(false)}
         />
-        <div className="relative bg-cover w-full h-16 md:h-[102px]">
-          {" "}
-          {/* 设置背景图像覆盖整个容器 */}
+        {/* <div className="relative bg-cover w-full h-16 md:h-[102px]">
           <img
             src={headerIMG}
             alt="Header"
             className="absolute w-full h-full object-cover" // 确保图像覆盖整个头部
-            
           />
           <div className="flex justify-between items-center px-4 md:px-8 h-full ">
-            {" "}
-            {/* 设置 flex 布局 */}
             <Link
               to={"/"}
               className="flex items-center justify-center w-12 h-12 md:w-20 md:h-20"
-              style={{marginLeft: "50%",
-              transform: "translateX(-50%)"
-            }}
+              style={{ marginLeft: "50%", transform: "translateX(-50%)" }}
             >
-              {" "}
-              {/* 设置 logo 容器大小 */}
-              <img src={logo} alt="Logo" className="object-contain z-50" />{" "}
-              {/* 确保 logo 的内容不会超出容器 */}
+              <img src={logo} alt="Logo" className="object-contain z-50" />
             </Link>
             <FaShoppingBag
               onClick={() => setIsSidebarCartOpen(true)}
@@ -529,7 +519,7 @@ const CheckoutInfo = () => {
               className="z-50 cursor-pointer"
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="w-full bg-white">
           <div className="grid grid-cols-1 lg:grid-cols-9">
@@ -543,7 +533,6 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between p-3">
                     <div className="flex justify-center items-center">
                       <p className="mr-1">
-                        {" "}
                         {!isOpen ? "Show" : "Hide"} order summary
                       </p>
                       {isOpen ? <FaChevronUp /> : <FaChevronDown />}
@@ -570,7 +559,6 @@ const CheckoutInfo = () => {
                               Glacier / {item?.dimension} / {item?.category}
                             </p>
                             <p className="text-sm text-gray-500">
-                              {" "}
                               A${item?.cost?.product_sale_price}
                             </p>
                           </div>
@@ -603,7 +591,6 @@ const CheckoutInfo = () => {
                       <div className="flex justify-between">
                         <span>Shipping</span>
                         <span>
-                          {" "}
                           {totalChargeFromShipping
                             ? `A$${totalChargeFromShipping.toFixed(2)}`
                             : "Enter shipping address"}
@@ -628,7 +615,7 @@ const CheckoutInfo = () => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="input input-bordered border-2 focus:outline-none w-full"
+                  className="input input-bordered border-2 focus:outline-none w-full text-sm"
                   value={formDataemail}
                   onChange={handleEmailChange}
                 />
@@ -757,7 +744,7 @@ const CheckoutInfo = () => {
               </div>
             </div>
             {/* Right Column for Order Summary */}
-            {/* <div className="col-span-1 lg:col-span-4 bg-white p-6 rounded-lg shadow-lg md:w-full md:pl-10 pt-10 md:pb-0">
+            <div className="col-span-1 lg:col-span-4 bg-white p-6 rounded-lg shadow-lg md:w-full md:pl-10 pt-10 md:pb-0">
               <div className="md:w-3/5">
                 {objectOnlyData && objectOnlyData.length > 0 ? (
                   objectOnlyData.map((item) => (
@@ -775,7 +762,7 @@ const CheckoutInfo = () => {
                           Glacier / {item?.dimension} / {item?.category}
                         </p>
                         <p className="text-sm text-gray-500">
-                          {" "}
+                          
                           A${item?.cost?.product_sale_price}
                         </p>
                       </div>
@@ -795,7 +782,7 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between">
                     <span>Shipping</span>
                     <span>
-                      {" "}
+                      
                       {totalChargeFromShipping
                         ? `A$${totalChargeFromShipping.toFixed(2)}`
                         : "Enter shipping address"}
@@ -807,7 +794,7 @@ const CheckoutInfo = () => {
                   </div>
                 </div>
               </div>
-            </div> */}
+            </div> 
           </div>
         </div>
 

@@ -18,7 +18,7 @@ const Collection = () => {
       <div>
         <div className="flex justify-between items-center">
           <div className="basis-2/3">
-            <h1 className="text-2xl md:text-4xl font-semibold">
+            <h1 className="text-2xl md:text-4xl font-semibold text-primary">
               Our Popular Collection
             </h1>
           </div>
@@ -33,31 +33,35 @@ const Collection = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           {collections?.slice(0, 6).map((collection) => (
-            <div
-              key={collection?.collection_id}
-              className="block group  items-center justify-between rounded-md my-2 lg:mt-[38px] hover:bg-[#303030] hover:bg-opacity-20 hover:p-6 hover:shadow-custom pb-6 wow fadeInUp"
-              data-wow-duration={`${getRandomDuration()}s`}
+            <Link
+              to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
             >
-              <img
-                className="img w-full h-full object-cover lg:h-[375px] mb-6 rounded-md group-hover:h-[351px]"
-                src={ImgBaseUrl(collection?.collection_pic)}
-                alt=""
-              />
-              <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
-                {collection?.collection_name}
-                <Link
-                  to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
-                >
-                  <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-3000 ease-in">
-                    Explore <BsArrowRight className="ms-2" />
-                  </span>
-                </Link>
-                {/* <Button className="btn btn-primary rounded-full text-white hover:text-primary hover:bg-white capitalize">
+              <div
+                key={collection?.collection_id}
+                className="block group  items-center justify-between rounded-md my-2 lg:mt-[38px] pb-6 wow fadeInUp"
+                data-wow-duration={`${getRandomDuration()}s`}
+              >
+                <img
+                  className="img w-full h-full object-cover lg:h-[375px] mb-6 rounded-md group-hover:scale-105  duration-300"
+                  src={ImgBaseUrl(collection?.collection_pic)}
+                  alt=""
+                />
+                <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
+                  {collection?.collection_name}
+                  <Link
+                    to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
+                  >
+                    <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
+                      Shop <BsArrowRight className="ms-2" />
+                    </span>
+                  </Link>
+                  {/* <Button className="btn btn-primary rounded-full text-white hover:text-primary hover:bg-white capitalize">
                     Explore <BsArrowRight className="ms-2" />
                   </Button> */}
-              </div>
-              <div className="text-sm">{collection?.collection_desc}</div>
-            </div>
+                </div>
+                <div className="text-sm">{collection?.collection_desc}</div>
+              </div>{" "}
+            </Link>
           ))}
         </div>
       </div>
