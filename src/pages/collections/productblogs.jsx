@@ -6,8 +6,18 @@ import useProducts from "../../Hooks/useProductAll.js";
 import OutdoorDiningChairCard from "./OutdoorDiningChairCard.jsx";
 import { FiFilter } from "react-icons/fi";
 import { throttle } from "lodash";
-
+import {
+  useFetchSeat,
+  useFetchCombination,
+  useFetchFrame,
+} from "../../Hooks/api/useFilters.js";
 const Blogs = () => {
+  const seatMutation = useFetchSeat();
+  const combinationMutation = useFetchCombination();
+  const frameMutation = useFetchFrame();
+  const [seat, setSeat] = useState([]);
+  const [combination, setCombination] = useState([]);
+  const [frame, setFrame] = useState([]);
   const { collections } = useCollections();
   const { products } = useProducts();
   const location = useLocation();
@@ -17,7 +27,31 @@ const Blogs = () => {
   const elementRef = useRef(null);
   const divRef = useRef(null);
   const [distanceFromRight, setDistanceFromRight] = useState(null);
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const fetchData = () => {
+      try {
+        seatMutation.mutate(null, {
+          onSuccess(res) {
+            setSeat(res.Types);
+          },
+        });
+        combinationMutation.mutate(null, {
+          onSuccess(res) {
+            setCombination(res.Types);
+          },
+        });
+        frameMutation.mutate(null, {
+          onSuccess(res) {
+            setFrame(res.Types);
+          },
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   useEffect(() => {
     const { top } = elementRef.current.getBoundingClientRect();
     setTopPos(top + 55);
@@ -96,45 +130,26 @@ const Blogs = () => {
     }
 
     if (activeFilters.productType) {
-      const typeMapping = {
-        "combination sofa": 1,
-        "single sofa": 2,
-        "sun lounge": 3,
-        "dining table&chair": 4,
-      };
       updatedProducts.map((product) => {
         console.log(product);
       });
       updatedProducts = updatedProducts.filter(
-        (product) =>
-          product.product.p_type2 === typeMapping[activeFilters.productType]
+        (product) => product.product.p_type2 === activeFilters.productType
       );
     }
 
     // Filtering logic for seat count (seat_type)
     if (activeFilters.seatCount) {
-      const seatMapping = {
-        "1-2": 1,
-        "3-4": 2,
-        "5-6": 3,
-      };
       updatedProducts = updatedProducts.filter(
-        (product) =>
-          product.product.seat_type === seatMapping[activeFilters.seatCount]
+        (product) => product.product.seat_type === activeFilters.seatCount
       );
     }
 
     // Filtering logic for frame type (frame_type)
     if (activeFilters.frameType) {
-      const frameMapping = {
-        sunbrella: 17,
-        aluminum: 18,
-        teak: 19,
-        rattan: 20,
-      };
       updatedProducts = updatedProducts.filter((product) => {
         let res = product.materials.find((material) => {
-          return material.material_id == frameMapping[activeFilters.frameType];
+          return material.material_id == activeFilters.frameType;
         });
         if (res) {
           return true;
@@ -311,57 +326,28 @@ const Blogs = () => {
               className="flex flex-col mb-1 text-sm"
               style={{ lineHeight: 2 }}
             >
-              <div className="flex items-center">
-                <input
-                  id="seatCount1-2"
-                  type="radio"
-                  name="seatCount"
-                  value="1-2"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.seatCount === "1-2"}
-                  onChange={() => handleSeatCountChange("1-2")}
-                />
-                <label
-                  htmlFor="seatCount1-2"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  1-2
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="seatCount3-4"
-                  type="radio"
-                  name="seatCount"
-                  value="3-4"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.seatCount === "3-4"}
-                  onChange={() => handleSeatCountChange("3-4")}
-                />
-                <label
-                  htmlFor="seatCount3-4"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  3-4
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="seatCount5-6"
-                  type="radio"
-                  name="seatCount"
-                  value="5-6"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.seatCount === "5-6"}
-                  onChange={() => handleSeatCountChange("5-6")}
-                />
-                <label
-                  htmlFor="seatCount5-6"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  5-6
-                </label>
-              </div>
+              {seat.map((item) => {
+                return (
+                  <div className="flex items-center">
+                    <input
+                      id={"seat" + item.type_id}
+                      type="radio"
+                      name="seatCount"
+                      value={item.type_id}
+                      className="w-4 h-4  radio checked:bg-blue-500"
+                      checked={activeFilters.seatCount === item.type_id}
+                      onChange={() => handleSeatCountChange(item.type_id)}
+                    />
+                    <label
+                      htmlFor={"seat" + item.type_id}
+                      className="ml-2 text-gray-700 cursor-pointer"
+                    >
+                      {item.type_name}
+                    </label>
+                  </div>
+                );
+              })}
+
               {/* Add more seat count options as needed */}
             </div>
           </div>
@@ -373,74 +359,27 @@ const Blogs = () => {
               className="flex flex-col mb-1 text-sm"
               style={{ lineHeight: 2 }}
             >
-              <div className="flex items-center">
-                <input
-                  id="productTypeCombinationSofa"
-                  type="radio"
-                  name="productType"
-                  value="combination sofa"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.productType === "combination sofa"}
-                  onChange={() => handleProductTypeChange("combination sofa")}
-                />
-                <label
-                  htmlFor="productTypeCombinationSofa"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Combination Sofa
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="productTypeSingleSofa"
-                  type="radio"
-                  name="productType"
-                  value="single sofa"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.productType === "single sofa"}
-                  onChange={() => handleProductTypeChange("single sofa")}
-                />
-                <label
-                  htmlFor="productTypeSingleSofa"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Single Sofa
-                </label>
-              </div>{" "}
-              <div className="flex items-center">
-                <input
-                  id="productTypeSunLounge"
-                  type="radio"
-                  name="productType"
-                  value="sun lounge"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.productType === "sun lounge"}
-                  onChange={() => handleProductTypeChange("sun lounge")}
-                />
-                <label
-                  htmlFor="productTypeSunLounge"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Sun lounge
-                </label>
-              </div>{" "}
-              <div className="flex items-center">
-                <input
-                  id="productTypeDiningTable&chair"
-                  type="radio"
-                  name="productType"
-                  value="dining table&chair"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.productType === "dining table&chair"}
-                  onChange={() => handleProductTypeChange("dining table&chair")}
-                />
-                <label
-                  htmlFor="productTypeDiningTable&chair"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Dining table&chair
-                </label>
-              </div>
+              {combination.map((item) => {
+                return (
+                  <div className="flex items-center">
+                    <input
+                      id={"product" + item.type_id}
+                      type="radio"
+                      name="productType"
+                      value={item.type_id}
+                      className="w-4 h-4  radio checked:bg-blue-500"
+                      checked={activeFilters.productType === item.type_id}
+                      onChange={() => handleProductTypeChange(item.type_id)}
+                    />
+                    <label
+                      htmlFor={"product" + item.type_id}
+                      className="ml-2 text-gray-700 cursor-pointer"
+                    >
+                      {item.type_name}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -451,74 +390,27 @@ const Blogs = () => {
               className="flex flex-col mb-1 text-sm"
               style={{ lineHeight: 2 }}
             >
-              <div className="flex items-center">
-                <input
-                  id="frameTypeSunbrella"
-                  type="radio"
-                  name="frameType"
-                  value="sunbrella"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.frameType === "sunbrella"}
-                  onChange={() => handleFrameTypeChange("sunbrella")}
-                />
-                <label
-                  htmlFor="frameTypeSunbrella"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Sunbrella
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="frameTypeTeak"
-                  type="radio"
-                  name="frameType"
-                  value="teak"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.frameType === "teak"}
-                  onChange={() => handleFrameTypeChange("teak")}
-                />
-                <label
-                  htmlFor="frameTypeTeak"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Teak
-                </label>
-              </div>
-              <div className="flex items-center">
-                <input
-                  id="frameTypeRattan"
-                  type="radio"
-                  name="frameType"
-                  value="rattan"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.frameType === "rattan"}
-                  onChange={() => handleFrameTypeChange("rattan")}
-                />
-                <label
-                  htmlFor="frameTypeRattan"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Rattan
-                </label>
-              </div>{" "}
-              <div className="flex items-center">
-                <input
-                  id="frameTypeAluminum"
-                  type="radio"
-                  name="frameType"
-                  value="aluminum"
-                  className="w-4 h-4  radio checked:bg-blue-500"
-                  checked={activeFilters.frameType === "aluminum"}
-                  onChange={() => handleFrameTypeChange("aluminum")}
-                />
-                <label
-                  htmlFor="frameTypeAluminum"
-                  className="ml-2 text-gray-700 cursor-pointer"
-                >
-                  Aluminum
-                </label>
-              </div>
+              {frame.map((item) => {
+                return (
+                  <div className="flex items-center">
+                    <input
+                      id={item.material_id}
+                      type="radio"
+                      name="frameType"
+                      value={item.material_id}
+                      className="w-4 h-4  radio checked:bg-blue-500"
+                      checked={activeFilters.frameType === item.material_id}
+                      onChange={() => handleFrameTypeChange(item.material_id)}
+                    />
+                    <label
+                      htmlFor={item.material_id}
+                      className="ml-2 text-gray-700 cursor-pointer"
+                    >
+                      {item.material_name}
+                    </label>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </aside>
