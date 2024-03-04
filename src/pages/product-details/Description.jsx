@@ -15,7 +15,7 @@ const Description = ({ data }) => {
         font-size:16px;
       }
       li{
-        font-size:12px;
+        font-size:16px;
       }
     </style>
   `;

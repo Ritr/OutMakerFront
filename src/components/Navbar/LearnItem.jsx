@@ -5,7 +5,7 @@ const LearnItem = () => {
   return (
     <>
       <div className="flex flex-col lg:flex-row p-5 lg:p-0 ">
-        <div className="lg:px-32 grid grid-cols-2 lg:grid-cols-3 gap-[100px] mt-10 mb-24">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-[100px] mt-10 mb-24">
           {/* first column */}
           <div className="flex flex-col w-full">
             <div className="grid">

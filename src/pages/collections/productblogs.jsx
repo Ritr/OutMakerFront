@@ -15,11 +15,12 @@ const Blogs = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [topPos, setTopPos] = useState(0);
   const elementRef = useRef(null);
-
+  const divRef = useRef(null);
+  const [distanceFromRight, setDistanceFromRight] = useState(null);
   useEffect(() => {}, []);
   useEffect(() => {
     const { top } = elementRef.current.getBoundingClientRect();
-    setTopPos(top + 50);
+    setTopPos(top + 55);
 
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -36,22 +37,22 @@ const Blogs = () => {
     //   console.log(window.scrollY);
     //   setTopPos(h);
     // };
-    const handleScroll = throttle(() => {
-      if (elementRef.current) {
-        const { top } = elementRef.current.getBoundingClientRect();
-        const y = window.scrollY;
-        let h = top + 50 - y;
-        if (h < 0) {
-          h = 0;
-        }
-        setTopPos(h);
-      }
-    }, 100); // 控制节流的时间间隔
+    // const handleScroll = throttle(() => {
+    //   if (elementRef.current) {
+    //     const { top } = elementRef.current.getBoundingClientRect();
+    //     const y = window.scrollY;
+    //     let h = top + 50 - y;
+    //     if (h < 0) {
+    //       h = 0;
+    //     }
+    //     setTopPos(h);
+    //   }
+    // }, 100); // 控制节流的时间间隔
 
-    window.addEventListener("scroll", handleScroll);
+    // window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      // window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -60,6 +61,14 @@ const Blogs = () => {
 
   const toggleFilters = () => {
     console.log(showFilters);
+    if (!showFilters) {
+      setTimeout(() => {
+        const divRect = divRef.current.getBoundingClientRect();
+        console.log(divRect);
+        const distance = divRect.width + window.innerWidth - divRect.right;
+        setDistanceFromRight(distance);
+      }, 100);
+    }
     setShowFilters(!showFilters);
   };
 
@@ -118,24 +127,22 @@ const Blogs = () => {
     // Filtering logic for frame type (frame_type)
     if (activeFilters.frameType) {
       const frameMapping = {
-        sunbrella:17,
+        sunbrella: 17,
         aluminum: 18,
         teak: 19,
         rattan: 20,
       };
-      updatedProducts = updatedProducts.filter(
-        (product) =>{
-         let res =  product.materials.find(material=>{
-            return material.material_id == frameMapping[activeFilters.frameType]
-          });
-          if(res){
-            return true;
-          }else{
-            return false;
-          }
+      updatedProducts = updatedProducts.filter((product) => {
+        let res = product.materials.find((material) => {
+          return material.material_id == frameMapping[activeFilters.frameType];
+        });
+        if (res) {
+          return true;
+        } else {
+          return false;
         }
-      );
-      
+      });
+
       console.log(updatedProducts);
     }
 
@@ -188,23 +195,28 @@ const Blogs = () => {
         </p>
       </div>
 
-      <button
+      <div
         className={`w-full items-center justify-end p-4 ${
           isProduct ? "flex" : "hidden"
         }`}
-        onClick={toggleFilters}
       >
-        <span ref={elementRef}>{showFilters ? "Hide" : "Show"} Filters</span>
+        <span
+          onClick={toggleFilters}
+          ref={elementRef}
+          className="cursor-pointer"
+        >
+          {showFilters ? "Hide" : "Show"} Filters
+        </span>
         <FiFilter className="ml-2" />
-      </button>
+      </div>
 
       {/* Main content */}
-      <div className="w-full flex flex-col lg:flex-row lg:justify-end">
+      <div className="w-full flex flex-col lg:flex-row justify-end">
         {/*Filter bar  Sorting options */}
         <aside
           className={`${
             showFilters ? "filter-container" : "hidden"
-          } p-4 border text-left transition-all duration-300 ease-in-out fixed  left-10 bg-base-100`}
+          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 lg:fixed`}
           style={{
             display: showFilters
               ? windowWidth <= 768
@@ -212,19 +224,27 @@ const Blogs = () => {
                 : "block"
               : "none",
             top: `${topPos}px`,
+            right: showFilters
+              ? windowWidth <= 768
+                ? 0
+                : distanceFromRight
+              : 0,
           }}
         >
           {/* Sort options with larger custom radio buttons */}
-          <div className="mb-2 w-full h-auto">
-            <h3 className="font-semibold mb-2">Sort By</h3>
-            <div className="flex flex-col mb-1">
+          <div className="mb-6 w-full h-auto">
+            <h3 className="text-[#181818]">Sort By</h3>
+            <div
+              className="flex flex-col mb-1 text-sm"
+              style={{ lineHeight: 2 }}
+            >
               <div className="flex items-center">
                 <input
                   id="recommended"
                   type="radio"
                   name="sort"
                   value="recommended"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.sort === "recommended"}
                   onChange={() =>
                     setActiveFilters({ ...activeFilters, sort: "recommended" })
@@ -243,7 +263,7 @@ const Blogs = () => {
                   type="radio"
                   name="sort"
                   value="priceLowToHigh"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.sort === "priceLowToHigh"}
                   onChange={() =>
                     setActiveFilters({
@@ -265,7 +285,7 @@ const Blogs = () => {
                   type="radio"
                   name="sort"
                   value="priceHighToLow"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.sort === "priceHighToLow"}
                   onChange={() =>
                     setActiveFilters({
@@ -285,16 +305,19 @@ const Blogs = () => {
           </div>
 
           {/* Seat Count options */}
-          <div className="mb-2 w-full h-auto">
-            <h3 className="font-semibold mb-2">Seat Count</h3>
-            <div className="flex flex-col mb-1">
+          <div className="mb-6 w-full h-auto">
+            <h3 className="text-[#181818]">Seat Count</h3>
+            <div
+              className="flex flex-col mb-1 text-sm"
+              style={{ lineHeight: 2 }}
+            >
               <div className="flex items-center">
                 <input
                   id="seatCount1-2"
                   type="radio"
                   name="seatCount"
                   value="1-2"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.seatCount === "1-2"}
                   onChange={() => handleSeatCountChange("1-2")}
                 />
@@ -311,7 +334,7 @@ const Blogs = () => {
                   type="radio"
                   name="seatCount"
                   value="3-4"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.seatCount === "3-4"}
                   onChange={() => handleSeatCountChange("3-4")}
                 />
@@ -328,7 +351,7 @@ const Blogs = () => {
                   type="radio"
                   name="seatCount"
                   value="5-6"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.seatCount === "5-6"}
                   onChange={() => handleSeatCountChange("5-6")}
                 />
@@ -344,16 +367,19 @@ const Blogs = () => {
           </div>
 
           {/* Product Type options */}
-          <div className="mb-2 w-full h-auto">
-            <h3 className="font-semibold mb-2">Product Type</h3>
-            <div className="flex flex-col mb-1">
+          <div className="mb-6 w-full h-auto">
+            <h3 className="text-[#181818]">Product Type</h3>
+            <div
+              className="flex flex-col mb-1 text-sm"
+              style={{ lineHeight: 2 }}
+            >
               <div className="flex items-center">
                 <input
                   id="productTypeCombinationSofa"
                   type="radio"
                   name="productType"
                   value="combination sofa"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.productType === "combination sofa"}
                   onChange={() => handleProductTypeChange("combination sofa")}
                 />
@@ -370,7 +396,7 @@ const Blogs = () => {
                   type="radio"
                   name="productType"
                   value="single sofa"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.productType === "single sofa"}
                   onChange={() => handleProductTypeChange("single sofa")}
                 />
@@ -387,7 +413,7 @@ const Blogs = () => {
                   type="radio"
                   name="productType"
                   value="sun lounge"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.productType === "sun lounge"}
                   onChange={() => handleProductTypeChange("sun lounge")}
                 />
@@ -404,7 +430,7 @@ const Blogs = () => {
                   type="radio"
                   name="productType"
                   value="dining table&chair"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.productType === "dining table&chair"}
                   onChange={() => handleProductTypeChange("dining table&chair")}
                 />
@@ -420,17 +446,20 @@ const Blogs = () => {
 
           {/* Frame Type options */}
           <div className="mb-2 w-full h-auto">
-            <h3 className="font-semibold mb-2">Frame Type</h3>
-            <div className="flex flex-col mb-1">
+            <h3 className="text-[#181818]">Frame Type</h3>
+            <div
+              className="flex flex-col mb-1 text-sm"
+              style={{ lineHeight: 2 }}
+            >
               <div className="flex items-center">
                 <input
-                  id="frameTypeTeak"
+                  id="frameTypeSunbrella"
                   type="radio"
                   name="frameType"
-                  value="teak"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  value="sunbrella"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.frameType === "sunbrella"}
-                  onChange={() => handleFrameTypeChange("teak")}
+                  onChange={() => handleFrameTypeChange("sunbrella")}
                 />
                 <label
                   htmlFor="frameTypeSunbrella"
@@ -445,7 +474,7 @@ const Blogs = () => {
                   type="radio"
                   name="frameType"
                   value="teak"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.frameType === "teak"}
                   onChange={() => handleFrameTypeChange("teak")}
                 />
@@ -462,7 +491,7 @@ const Blogs = () => {
                   type="radio"
                   name="frameType"
                   value="rattan"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.frameType === "rattan"}
                   onChange={() => handleFrameTypeChange("rattan")}
                 />
@@ -479,7 +508,7 @@ const Blogs = () => {
                   type="radio"
                   name="frameType"
                   value="aluminum"
-                  className="w-5 h-5 text-blue-600 border-gray-300 focus:ring-blue-500"
+                  className="w-4 h-4  radio checked:bg-blue-500"
                   checked={activeFilters.frameType === "aluminum"}
                   onChange={() => handleFrameTypeChange("aluminum")}
                 />
@@ -496,9 +525,12 @@ const Blogs = () => {
 
         {/* Products grid */}
         <div
+          ref={divRef}
           className={`w-full ${
-            showFilters ? "lg:w-3/4 lg:grid-cols-2" : "lg:w-full lg:grid-cols-3"
-          } grid grid-cols-1 sm:grid-cols-2  gap-2 p-4`}
+            showFilters
+              ? "lg:w-3/4 lg:grid-cols-2 gap-[37px]"
+              : "lg:w-full lg:grid-cols-3 gap-[43px]"
+          } grid grid-cols-1 sm:grid-cols-2  p-4`}
         >
           {filteredProducts.map(({ product, review, price }) => (
             <OutdoorDiningChairCard
@@ -519,13 +551,13 @@ const Blogs = () => {
                 },
                 {
                   key: "waterproof",
-                  text: "Waterproof/Anti fouling",
+                  text: "Waterproof",
                 },
                 {
                   key: "sunbrella",
                   text: "sunbrella washable",
                 },
-              ]}  // Set default or derive from category data
+              ]} // Set default or derive from category data
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
             />
           ))}

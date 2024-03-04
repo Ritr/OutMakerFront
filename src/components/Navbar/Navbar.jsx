@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import { FaAngleDown, FaTimes, FaUser } from "react-icons/fa";
 import { BsBag } from "react-icons/bs";
 import logo from "../../assets/Navbar/Frame.svg";
@@ -33,15 +39,14 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
   const [topPos, setTopPos] = useState(48);
-  
   const location = useLocation(); // Get the current location
   useEffect(() => {
     let top = document.querySelector("#tip").clientHeight;
     // 如果是购物车页面，则top = 0
-    
+
     // const location = useLocation(); // Get the current location
     // alert(location.pathname);
-    if(location.pathname == "/checkout-info"){
+    if (location.pathname == "/checkout-info") {
       top = 0;
     }
     setTopPos(top);
@@ -71,7 +76,6 @@ const Navbar = () => {
     }, 100); // 控制节流的时间间隔
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -113,7 +117,9 @@ const Navbar = () => {
     setLearnItem(false);
     setCollectionItem(false);
   }, [location.pathname]);
-
+  useEffect(() => {
+    cancelList();
+  }, [location]);
   useEffect(() => {}, [objectOnlyData]);
   const cancelList = () => {
     setActiveDropdown(null);
@@ -153,7 +159,6 @@ const Navbar = () => {
     //   }
     // }
   };
-
   const navItems = (
     <>
       <li onClick={() => toggleNavButton("collectionItem")}>
@@ -195,6 +200,78 @@ const Navbar = () => {
       </li>
     </>
   );
+  const pcItems = (
+    <>
+      <div
+        className="group"
+        onMouseOver={() => {
+          setActiveDropdown("collectionItem");
+        }}
+      >
+        <p className="flex items-center">
+          <span>Collection</span>
+          <span className="flex w-full justify-end md:justify-start">
+            <FaTimes className="group-hover:block hidden" />
+            <FaAngleDown className="group-hover:hidden block" />
+          </span>
+        </p>
+        <div className="absolute top-[65px] left-0 pt-6 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+          {activeDropdown === "collectionItem" && <CollectionItem />}
+        </div>
+      </div>
+      <div
+        className="group"
+        onMouseOver={() => {
+          setActiveDropdown("productItem");
+        }}
+      >
+        <p className="flex items-center">
+          <span>Products</span>
+          <span className="flex w-full justify-end md:justify-start">
+            <FaTimes className="group-hover:block hidden" />
+            <FaAngleDown className="group-hover:hidden block" />
+          </span>
+          <div className="absolute top-[65px] pt-6 left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+            {activeDropdown === "productItem" && <ProductItems></ProductItems>}
+          </div>
+        </p>
+      </div>
+      <div
+        className="group"
+        onMouseOver={() => {
+          setActiveDropdown("learnItems");
+        }}
+      >
+        <p className="flex items-center">
+          <span>Learn</span>
+          <span className="flex w-full justify-end md:justify-start">
+            <FaTimes className="group-hover:block hidden" />
+            <FaAngleDown className="group-hover:hidden block" />
+          </span>
+          <div className="absolute top-[65px] pt-6 left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+            {activeDropdown === "learnItems" && <LearnItem></LearnItem>}
+          </div>
+        </p>
+      </div>
+      <div
+        className="group"
+        onMouseOver={() => {
+          setActiveDropdown("designHelp");
+        }}
+      >
+        <p className="flex items-center whitespace-nowrap">
+          <span>Design Help</span>
+          <span className="flex w-full justify-end md:justify-start">
+            <FaTimes className="group-hover:block hidden" />
+            <FaAngleDown className="group-hover:hidden block" />
+          </span>
+          <div className="absolute  top-[65px] pt-6 px-4 left-0 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+            {activeDropdown === "designHelp" && <DesignHelp></DesignHelp>}
+          </div>
+        </p>
+      </div>
+    </>
+  );
   const isDropdownOpen = (dropdownName) => activeDropdown === dropdownName;
 
   const logout = () => {
@@ -209,11 +286,11 @@ const Navbar = () => {
       {/* <NavbarTop/> */}
       {/* navbar functonalities */}
       <div
-        className="w-full z-50 fixed bg-white"
+        className="w-full h-[108px] z-50 fixed bg-white"
         style={{ top: topPos + "px", zIndex: 999 }}
       >
-        <div className="navbar nav-shadow lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
-          <div className="navbar-start w-full">
+        <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
+          <div className="navbar-start w-full h-full z-10">
             <details className="dropdown lg:hidden">
               <summary className="btn btn-ghost lg:hidden">
                 {!navVisible && (
@@ -241,7 +318,9 @@ const Navbar = () => {
                 {navItems}
               </ul>
             </details>
-            <ul className="menu menu-horizontal  hidden lg:flex">{navItems}</ul>
+            <div className="hidden lg:flex gap-4 h-full items-center">
+              {pcItems}
+            </div>
           </div>
           <div className="navbar-center lg:flex">
             <Link to="/">
@@ -255,7 +334,7 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar-end w-full">
-            <div className="flex gap-0 flex-row md:items-center">
+            <div className="flex gap-0 flex-row md:items-center z-20 relative">
               {/* <div className="relative w-full hidden md:flex">
               <input
                 type="text"
@@ -326,7 +405,7 @@ const Navbar = () => {
       />
       {/* functionalities */}
 
-      <div ref={dropdownRef}>
+      <div ref={dropdownRef} className="block md:hidden">
         {isDropdownOpen("productItem") && navVisible && (
           <div
             className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${

@@ -13,7 +13,7 @@ import useImageLoader from "../../Hooks/imageLoader";
 
 const ProductItems = () => {
   const { categories } = useCategories();
-  
+
   // Material Buttons component for reuse
   const MaterialButtons = () => (
     <div className="grid grid-cols-3 gap-1 md:flex md:flex-wrap md:gap-1 items-center">
@@ -52,11 +52,7 @@ const ProductItems = () => {
         {!imageLoaded ? (
           <Skeleton width={width} className="h-40" />
         ) : (
-          <img
-            src={src}
-            style={{ display: "block", width }}
-            alt=""
-          />
+          <img src={src} style={{ display: "block", width }} alt="" />
         )}
       </>
     );
@@ -64,7 +60,7 @@ const ProductItems = () => {
 
   return (
     <>
-      <section className=" w-full lg:px-32 bg-white p-1 md:p-5 md:p-0">
+      <section className=" w-full bg-white py-5 p-1 md:p-0">
         {/* Material Buttons - shown at the top on mobile */}
         {/* <div className="block md:hidden mb-4">
           <MaterialButtons />

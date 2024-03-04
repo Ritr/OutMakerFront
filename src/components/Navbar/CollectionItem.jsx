@@ -27,13 +27,13 @@ const CollectionItem = () => {
 
   return (
     <>
-      <section className="lg:px-32 bg-white p-5 md:p-0">
+      <section className=" bg-white py-5 md:p-0">
         <div className="pb-20 relative stylish">
           <h3 className="text-primary font-medium text-xl mb-7 uppercase">
             Outmaker Collection
           </h3>
-
           <Carousel
+            key={collections.length}
             additionalTransfrom={0}
             arrows
             autoPlaySpeed={3000}
@@ -95,16 +95,12 @@ const CollectionItem = () => {
                         position: "relative",
                       }}
                     >
-                      {isDataLoaded ? (
-                        <img
-                          src={ImgBaseUrl(collection?.collection_pic)}
-                          alt="IMAGE"
-                          className="max-h-full h-full max-w-full rounded object-cover"
-                          style={{ position: "absolute", left: 0, top: 0 }}
-                        />
-                      ) : (
-                        <Skeleton height={192} />
-                      )}
+                      <img
+                        src={ImgBaseUrl(collection?.collection_pic)}
+                        alt="IMAGE"
+                        className="max-h-full h-full max-w-full rounded object-cover"
+                        style={{ position: "absolute", left: 0, top: 0 }}
+                      />
                     </div>
 
                     {collection?.collection_name}

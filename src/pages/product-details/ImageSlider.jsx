@@ -39,7 +39,7 @@ const ImageSlider = ({ images }) => {
             <img
               src={ImgBaseUrl(currentImage)}
               alt="Selected"
-              className="w-full rounded-md cursor-zoom-in object-cover h-[500px]"
+              className="w-full rounded-md cursor-zoom-in object-contain h-[725px]"
             />
           ) : (
             <Skeleton className=" w-full h-[500px]"></Skeleton>

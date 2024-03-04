@@ -249,7 +249,7 @@ const CategoryAllProducts = ({ category }) => {
                   },
                   {
                     key: "waterproof",
-                    text: "Waterproof/Anti fouling",
+                    text: "Waterproof",
                   },
                   {
                     key: "sunbrella",
@@ -278,7 +278,7 @@ const CategoryAllProducts = ({ category }) => {
                   },
                   {
                     key: "waterproof",
-                    text: "Waterproof/Anti fouling",
+                    text: "Waterproof",
                   },
                   {
                     key: "sunbrella",

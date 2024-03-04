@@ -14,7 +14,7 @@ const Collections = () => {
   const isProduct = location?.pathname === "/categories" ? true : false;
 
   return (
-    <main className="w-full relative">
+    <main className="w-full relative lg:max-w-[1600px] mx-auto">
       {/*<PageNav />*/}
       {isProduct ? <Blogs /> : <Blogs1 />}
 

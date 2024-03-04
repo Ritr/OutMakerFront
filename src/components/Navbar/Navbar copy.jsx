@@ -158,7 +158,7 @@ const Navbar = () => {
       {/* <NavbarTop/> */}
 
       {/* navbar functonalities */}
-      <div className="navbar nav-shadow lg:px-32 z-50">
+      <div className="navbar nav-shadow  z-50">
         <div className="navbar-start w-full">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

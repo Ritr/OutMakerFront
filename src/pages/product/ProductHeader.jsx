@@ -4,13 +4,27 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 const ProductHeader = ({ product, category }) => {
   console.log(product);
   return (
-    <header className="hero h-[50vh] lg:h-[66.666vw] relative overflow-hidden">
+    <header className="hero h-[50vh] lg:h-auto relative overflow-hidden">
+      <div
+        className="absolute left-0 top-0 right-0 bottom-0"
+        style={{
+          backgroundImage:
+            "url(" +
+            ImgBaseUrl(
+              category ? product?.collection_pic : product?.category_pic
+            ) +
+            ")",
+          backgroundSize: "contain",
+          filter: "blur(10px)",
+          zIndex:"-1"
+        }}
+      ></div>
       <img
         src={ImgBaseUrl(
           category ? product?.collection_pic : product?.category_pic
         )}
         alt="Background"
-        className="absolute inset-0 w-full h-full"
+        className="inset-0  object-contain w-[50%]"
       />
       <div className="hero-content text-center relative z-10">
         <div className="max-w-full">

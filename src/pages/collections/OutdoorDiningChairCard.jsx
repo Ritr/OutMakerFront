@@ -23,7 +23,7 @@ const OutdoorDiningChairCard = ({
     "sunbrella":img3,
   };
   return (
-    <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-gray-300 rounded-lg overflow-hidden relative">
+    <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative">
       {isNew && (
         <span className="bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded absolute z-10 m-2">
           NEW
@@ -35,12 +35,12 @@ const OutdoorDiningChairCard = ({
             <img
               src={imageUrl}
               alt={title}
-              className="w-full md:h-[280px] object-contain "
+              className="w-full md:h-[300px] object-contain "
             />
 
             <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">
-              <div className="absolute inset-1 z-10 flex justify-end items-center top-1/4 right-7 text-xs text-black font-normal p-1">
-                <p className="border-b-2 border-black flex font-bold">
+              <div className="absolute inset-1 z-10 flex justify-end items-center top-1/4 right-6 text-xs text-black font-normal p-1">
+                <p className="border-b-2 border-black flex font-bold ml-">
                   Shop <BsArrowRight />
                 </p>
               </div>
@@ -51,7 +51,7 @@ const OutdoorDiningChairCard = ({
           <Rating style={{ maxWidth: 100 }} value={review} readOnly />
         </div> */}
 
-          <div className="  bottom-0 p-4">
+          <div className="bottom-0 p-4 pb-14">
             <p className="text-lg font-bold text-black">{title}</p>
             <div className="flex items-center mt-2" style={{fontSize:"16px"}}>
               <del className="text-sm text-gray-500 mr-2" style={{color:"#ADACAC"}}>{originalPrice}</del>

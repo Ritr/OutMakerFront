@@ -338,13 +338,6 @@ const Info = ({
             </video> */}
             <ReactPlayer
               url={video}
-              config={{
-                file: {
-                  attributes: {
-                    poster: ImgBaseUrl(poster) ,
-                  },
-                },
-              }}
               playing={true}
               loop={true}
               volume={0}
