@@ -203,69 +203,72 @@ const Navbar = () => {
   const pcItems = (
     <>
       <div
-        className="group"
+        className="group h-full"
         onMouseOver={() => {
           setActiveDropdown("collectionItem");
         }}
       >
-        <p className="flex items-center">
+        <p className="flex items-center h-full">
           <span>Collection</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
             <FaAngleDown className="group-hover:hidden block" />
           </span>
         </p>
-        <div className="absolute top-[65px] left-0 pt-6 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+        <div className="absolute top-[90px] pt-2 left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
           {activeDropdown === "collectionItem" && <CollectionItem />}
         </div>
       </div>
       <div
-        className="group"
+        className="group h-full"
         onMouseOver={() => {
           setActiveDropdown("productItem");
         }}
       >
-        <p className="flex items-center">
+        <p className="flex items-center h-full">
           <span>Products</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
             <FaAngleDown className="group-hover:hidden block" />
           </span>
-          <div className="absolute top-[65px] pt-6 left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+          <div
+            onClick={cancelList}
+            className="absolute top-[90px] pt-2  left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden"
+          >
             {activeDropdown === "productItem" && <ProductItems></ProductItems>}
           </div>
         </p>
       </div>
       <div
-        className="group"
+        className="group h-full"
         onMouseOver={() => {
           setActiveDropdown("learnItems");
         }}
       >
-        <p className="flex items-center">
+        <p className="flex items-center h-full">
           <span>Learn</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
             <FaAngleDown className="group-hover:hidden block" />
           </span>
-          <div className="absolute top-[65px] pt-6 left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+          <div className="absolute top-[90px] pt-2  left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
             {activeDropdown === "learnItems" && <LearnItem></LearnItem>}
           </div>
         </p>
       </div>
       <div
-        className="group"
+        className="group h-full"
         onMouseOver={() => {
           setActiveDropdown("designHelp");
         }}
       >
-        <p className="flex items-center whitespace-nowrap">
+        <p className="flex items-center  h-full whitespace-nowrap">
           <span>Design Help</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
             <FaAngleDown className="group-hover:hidden block" />
           </span>
-          <div className="absolute  top-[65px] pt-6 px-4 left-0 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
+          <div className="absolute  top-[90px] pt-2  px-4 left-0 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
             {activeDropdown === "designHelp" && <DesignHelp></DesignHelp>}
           </div>
         </p>
@@ -287,37 +290,30 @@ const Navbar = () => {
       {/* navbar functonalities */}
       <div
         className="w-full h-[108px] z-50 fixed bg-white"
-        style={{ top: topPos + "px", zIndex: 999 }}
+        style={{ top: topPos + "px", zIndex: 99 }}
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
           <div className="navbar-start w-full h-full z-10">
-            <details className="dropdown lg:hidden">
-              <summary className="btn btn-ghost lg:hidden">
-                {!navVisible && (
-                  <FiMenu
-                    className="h-5 w-5"
-                    onClick={() => {
-                      setNavVisible(!navVisible);
-                    }}
-                  />
-                )}
-                {navVisible && (
-                  <FiX
-                    className="h-5 w-5"
-                    onClick={() => {
-                      setNavVisible(!navVisible);
-                    }}
-                  />
-                )}
-              </summary>
+            <div className="dropdown lg:hidden">
+              <div
+                className="btn btn-ghost lg:hidden"
+                tabindex="0"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                {!navVisible && <FiMenu className="h-5 w-5" />}
+                {navVisible && <FiX className="h-5 w-5" />}
+              </div>
 
               <ul
+                tabindex="0"
                 className="menu menu-sm dropdown-content left-0 right-0  mt-3 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw]"
                 style={{ position: "fixed" }}
               >
                 {navItems}
               </ul>
-            </details>
+            </div>
             <div className="hidden lg:flex gap-4 h-full items-center">
               {pcItems}
             </div>
@@ -406,7 +402,7 @@ const Navbar = () => {
       {/* functionalities */}
 
       <div ref={dropdownRef} className="block md:hidden">
-        {isDropdownOpen("productItem") && navVisible && (
+        {isDropdownOpen("productItem") && (
           <div
             className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
               navVisible ? "pt-52" : "pt-28"
@@ -418,7 +414,7 @@ const Navbar = () => {
             <ProductItems />
           </div>
         )}
-        {isDropdownOpen("collectionItem") && navVisible && (
+        {isDropdownOpen("collectionItem") && (
           <div
             className={`bg-white w-full z-10 duration-700 transition-all ease-in-out lg:pt-[138px]  ${
               navVisible ? "pt-52" : "pt-28"
@@ -430,7 +426,7 @@ const Navbar = () => {
             <CollectionItem />
           </div>
         )}
-        {isDropdownOpen("learnItems") && navVisible && (
+        {isDropdownOpen("learnItems") && (
           <div
             className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
               navVisible ? "pt-40" : "pt-16"
@@ -442,7 +438,7 @@ const Navbar = () => {
             <LearnItem />
           </div>
         )}
-        {isDropdownOpen("designHelp") && navVisible && (
+        {isDropdownOpen("designHelp") && (
           <div
             className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
               navVisible ? "pt-56" : "pt-32"

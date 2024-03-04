@@ -24,7 +24,7 @@ const LearnItem = () => {
             <h3 className="nav-text-style">Resources</h3>
             <div className="space-y-[15px] flex flex-col">
               {/* <Link to="/all-blogs">Our Blog</Link> */}
-              <Link to="/shipping">Shipping & Delivery</Link>
+              <Link to="/ShippingPolicy">Shipping & Delivery</Link>
               {/* <Link to="/Care">Care & Maintenance</Link> */}
               <Link to="/RefundPolicy">Return & Refunds</Link>
               <Link to="/FAQ">Frequently Asked Questions</Link>

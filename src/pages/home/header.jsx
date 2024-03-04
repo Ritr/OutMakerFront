@@ -35,6 +35,8 @@ const Header = () => {
           className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover wow fadeInUp"
           data-wow-duration="1s"
           ref={videoRef}
+          x-webkit-airplay="true" 
+
         >
           <source
             src="https://cdn.shopify.com/videos/c/o/v/c3ed803a059d415fbd4421870148771f.mp4"

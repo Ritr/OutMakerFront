@@ -261,33 +261,36 @@ const Info = ({
               </p>
             </div>
           </div>
-          <div className="flex p-3 w-full">
-            <div className="w-full flex  p-3 items-center border border-primary rounded-full cursor-pointer">
-              <p
-                className={`cursor-pointer ${
-                  quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
-                }`}
-                onClick={handleDecreaseQuantity}
+          <div className="flex w-full  items-center">
+            <div className="flex px-2  flex-1">
+              <div className="w-full flex  p-3 items-center border border-primary rounded-full cursor-pointer">
+                <p
+                  className={`cursor-pointer ${
+                    quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+                  }`}
+                  onClick={handleDecreaseQuantity}
+                >
+                  <FaMinus />
+                </p>
+                <span className="w-full text-center">{quantity}</span>
+                <p onClick={handleIncreaseQuantity} className="cursor-pointer">
+                  <FaPlus />
+                </p>
+              </div>
+            </div>
+            <div className="flex px-2 flex-3">
+              <button
+                onClick={handleAddToCart}
+                className="bg-primary  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-3 px-8 text-sm font-normal"
               >
-                <FaMinus />
-              </p>
-              <span className="w-full text-center">{quantity}</span>
-              <p onClick={handleIncreaseQuantity} className="cursor-pointer">
-                <FaPlus />
-              </p>
+                <p className="flex gap-2 items-center text-center">
+                  <BsHandbagFill className="" /> Add to cart- A$
+                  {cost?.product_sale_price}
+                </p>
+              </button>
             </div>
           </div>
-          <div className="flex p-3 w-full">
-            <button
-              onClick={handleAddToCart}
-              className="bg-primary w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-3 px-8 text-sm font-normal"
-            >
-              <p className="flex gap-2 items-center text-center">
-                <BsHandbagFill className="" /> Add to cart- A$
-                {cost?.product_sale_price}
-              </p>
-            </button>
-          </div>
+
           <div className="text-sm p-3 flex">
             <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
             <span>

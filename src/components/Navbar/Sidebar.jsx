@@ -236,7 +236,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                   <p className="text-red-500">{errors.user_password}</p>
                 )}
               </div>
-              <button type="submit" className="btn btn-primary w-full mt-4">
+              <button type="submit" className="bg-primary text-white py-2 px-4 rounded-lg">
                 Sign In
               </button>
             </form>

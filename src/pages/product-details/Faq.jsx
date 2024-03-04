@@ -45,7 +45,9 @@ const FAQ = () => {
       </div>
       <div className="text-center mt-6">
         <Link to="/FAQ">
-          <button className="btn btn-primary">View all FAQs</button>
+          <button className="bg-primary text-white py-2 px-4 rounded-lg">
+            View all FAQs
+          </button>
         </Link>
       </div>
     </div>

@@ -41,7 +41,7 @@ const AllProducts = ({ category }) => {
         product={category ? categoryItem?.Collection : categoryItem?.Category}
       />*/}
       <div className="w-full">
-        <nav className="py-8">
+        <nav className="sm:pt-16 md:py-8">
           <ul className="flex text-sm text-[#000000] font-normal">
             {/*<li className="me-6 pb-1 border-b-2 border-b-black">
               <Link to="/">Home</Link>

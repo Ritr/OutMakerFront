@@ -49,11 +49,11 @@ const ProductItems = () => {
     const imageLoaded = useImageLoader(ImgBaseUrl(src));
     return (
       <>
-        {!imageLoaded ? (
+        {/* {!imageLoaded ? (
           <Skeleton width={width} className="h-40" />
-        ) : (
-          <img src={src} style={{ display: "block", width }} alt="" />
-        )}
+        ) : ( */}
+        <img src={src} style={{ display: "block", width }} alt="" />
+        {/* )} */}
       </>
     );
   };
@@ -90,16 +90,12 @@ const ProductItems = () => {
                   width="100%"
                 />
 
-                <Link
-                  to={`category-product/${category?.category_id}/${category?.category_url}`}
-                >
-                  <p className="mt-2 text-sm py-2 md:text-lg text-gray-500 md:text-black">
-                    {category?.category_name}
-                  </p>
-                  <p className="text-sm text-gray-600 hidden md:block">
-                    {category?.category_desc}
-                  </p>
-                </Link>
+                <p className="mt-2 text-sm py-2 md:text-lg text-gray-500 md:text-black">
+                  {category?.category_name}
+                </p>
+                {/* <p className="text-sm text-gray-600 hidden md:block">
+                  {category?.category_desc}
+                </p> */}
               </motion.div>
             </Link>
           ))}

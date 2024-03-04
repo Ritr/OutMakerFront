@@ -27,6 +27,9 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
     });
     let nextIndex = index + 1;
     if (nextIndex === images.length) {
+      nextIndex = 1;
+    }
+    if (nextIndex >= images.length) {
       nextIndex = 0;
     }
     let image = images[nextIndex];
@@ -48,6 +51,12 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  useEffect(() => {
+    if (images && images.length) {
+      // console.log(images);
+      setHeaderImage(ImgBaseUrl(images[0].image_url));
+    }
+  }, images);
 
   return (
     <header>
@@ -63,7 +72,7 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
                   <div className="mr-2 justify-center items-center flex h-6 w-6 rounded-full border border-[#002B5B] bg-[#D8EDF5]">
                     {index + 1}
                   </div>
-                  <span  className="">{item.dimension.dim_title}</span>
+                  <span className="">{item.dimension.dim_title}</span>
                 </div>
               );
             })}

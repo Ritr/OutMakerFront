@@ -56,7 +56,7 @@ const ProductDetails = () => {
   // console.log(Comments_Replies);
 
   return (
-    <main className="relative w-full lg:max-w-[1600px] mx-auto">
+    <main className="relative w-full lg:max-w-[1600px] mx-auto pt-16 md:pt-0">
       <DetailsSlider
         product={Product}
         images={Images}
