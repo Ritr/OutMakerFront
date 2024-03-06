@@ -228,7 +228,7 @@ const Navbar = () => {
   const pcItems = (
     <>
       <div
-        className="group h-full"
+        className="group h-full cursor-pointer"
         onMouseOver={() => {
           setActiveDropdown("collectionItem");
         }}
@@ -245,7 +245,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className="group h-full"
+        className="group h-full cursor-pointer"
         onMouseOver={() => {
           setActiveDropdown("productItem");
         }}
@@ -265,7 +265,7 @@ const Navbar = () => {
         </p>
       </div>
       <div
-        className="group h-full"
+        className="group h-full cursor-pointer"
         onMouseOver={() => {
           setActiveDropdown("learnItems");
         }}
@@ -282,7 +282,7 @@ const Navbar = () => {
         </p>
       </div>
       <div
-        className="group h-full"
+        className="group h-full cursor-pointer"
         onMouseOver={() => {
           setActiveDropdown("designHelp");
         }}
@@ -319,7 +319,7 @@ const Navbar = () => {
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
           <div className="navbar-start w-full h-full z-10">
-            <label class="p-1 md:p-0 swap swap-rotate">
+            <label class="p-1 md:p-0 swap swap-rotate md:hidden">
               <input
                 type="checkbox"
                 onClick={() => {
