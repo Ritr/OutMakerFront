@@ -123,6 +123,7 @@ const Navbar = () => {
   }, [location]);
   useEffect(() => {}, [objectOnlyData]);
   const cancelList = () => {
+    setIsOpen(false);
     setActiveDropdown(null);
   };
   const toggleNavButton = (itemName) => {
@@ -162,8 +163,11 @@ const Navbar = () => {
   };
   const navItems = (
     <>
-      <li onClick={() => toggleNavButton("collectionItem")}>
-        <p>
+      <div>
+        <p
+          className="flex w-full items-center h-8"
+          onClick={() => toggleNavButton("collectionItem")}
+        >
           <span>Collection</span>
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "collectionItem" ? (
@@ -173,12 +177,15 @@ const Navbar = () => {
             )}
           </span>
         </p>
-        <div className="pt-2 w-full">
+        <div className="w-full">
           {activeDropdown === "collectionItem" && <CollectionItem />}
         </div>
-      </li>
-      <li onClick={() => toggleNavButton("productItem")}>
-        <p>
+      </div>
+      <div>
+        <p
+          className="flex w-full items-center h-8"
+          onClick={() => toggleNavButton("productItem")}
+        >
           <span>Products</span>
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "productItem" ? <FaTimes /> : <FaAngleDown />}
@@ -187,11 +194,13 @@ const Navbar = () => {
         <div className=" w-full duration-700 transition-all ease-in-out">
           {activeDropdown === "productItem" && <ProductItems />}
         </div>
-      </li>
-      <li onClick={() => toggleNavButton("learnItems")}>
-        <p>
+      </div>
+      <div>
+        <p
+          className="flex w-full items-center h-8"
+          onClick={() => toggleNavButton("learnItems")}
+        >
           <span>Learn</span>
-
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "learnItems" ? <FaTimes /> : <FaAngleDown />}
           </span>
@@ -199,9 +208,12 @@ const Navbar = () => {
         <div className=" w-full duration-700 transition-all ease-in-out">
           {activeDropdown === "learnItems" && <LearnItem />}
         </div>
-      </li>
-      <li onClick={() => toggleNavButton("designHelp")}>
-        <p>
+      </div>
+      <div>
+        <p
+          className="flex w-full items-center whitespace-nowrap h-8"
+          onClick={() => toggleNavButton("designHelp")}
+        >
           <span>Design Help</span>
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "designHelp" ? <FaTimes /> : <FaAngleDown />}
@@ -210,7 +222,7 @@ const Navbar = () => {
         <div className="w-full duration-700 transition-all ease-in-out justify-center">
           {activeDropdown === "designHelp" && <DesignHelp />}
         </div>
-      </li>
+      </div>
     </>
   );
   const pcItems = (
@@ -307,32 +319,40 @@ const Navbar = () => {
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
           <div className="navbar-start w-full h-full z-10">
-            <details
-              className="dropdown lg:hidden"
-              onToggle={() => {
-                setIsOpen(!isOpen);
-              }}
-            >
-              <summary class="btn bg-white border-0 p-0 w-0 pl-6">
-                <div
-                  className="btn btn-ghost lg:hidden"
-                  tabindex="0"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
-                  {!isOpen && <FiMenu className="h-5 w-5" />}
-                  {isOpen && <FiX className="h-5 w-5" />}
-                </div>
-              </summary>
-              <ul
-                tabindex="0"
-                className="menu menu-sm dropdown-content left-0 right-0  mt-3 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw]"
-                style={{ position: "fixed" }}
+            <label class="p-1 md:p-0 swap swap-rotate">
+              <input
+                type="checkbox"
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                }}
+              />
+              <svg
+                class="swap-off fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
               >
-                {navItems}
-              </ul>
-            </details>
+                <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+              </svg>
+
+              <svg
+                class="swap-on fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+              >
+                <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+              </svg>
+            </label>
+            <div
+              className={` px-4 mt-3 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 top-28 ${
+                isOpen ? "" : " hidden"
+              }`}
+            >
+              {navItems}
+            </div>
             <div className="hidden lg:flex gap-4 h-full items-center">
               {pcItems}
             </div>
@@ -420,7 +440,7 @@ const Navbar = () => {
       />
       {/* functionalities */}
 
-      <div ref={dropdownRef} className="block md:hidden">
+      {/* <div ref={dropdownRef} className="block md:hidden">
         {isDropdownOpen("productItem") && (
           <div
             className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
@@ -469,7 +489,7 @@ const Navbar = () => {
             <DesignHelp />
           </div>
         )}
-      </div>
+      </div> */}
 
       {/* <div
         className="w-full flex flex-col overflow-auto top-36 bg-white fixed z-10 left-0"
