@@ -26,7 +26,7 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
       return ImgBaseUrl(item.image_url) === headerImage;
     });
     let nextIndex = index + 1;
-    if (nextIndex === images.length) {
+    if (nextIndex <= 0) {
       nextIndex = 1;
     }
     if (nextIndex >= images.length) {

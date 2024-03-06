@@ -40,6 +40,7 @@ const Navbar = () => {
   const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
   const [topPos, setTopPos] = useState(48);
   const location = useLocation(); // Get the current location
+  const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     let top = document.querySelector("#tip").clientHeight;
     // 如果是购物车页面，则top = 0
@@ -172,6 +173,9 @@ const Navbar = () => {
             )}
           </span>
         </p>
+        <div className="pt-2 w-full">
+          {activeDropdown === "collectionItem" && <CollectionItem />}
+        </div>
       </li>
       <li onClick={() => toggleNavButton("productItem")}>
         <p>
@@ -180,6 +184,9 @@ const Navbar = () => {
             {activeDropdown === "productItem" ? <FaTimes /> : <FaAngleDown />}
           </span>
         </p>
+        <div className=" w-full duration-700 transition-all ease-in-out">
+          {activeDropdown === "productItem" && <ProductItems />}
+        </div>
       </li>
       <li onClick={() => toggleNavButton("learnItems")}>
         <p>
@@ -189,6 +196,9 @@ const Navbar = () => {
             {activeDropdown === "learnItems" ? <FaTimes /> : <FaAngleDown />}
           </span>
         </p>
+        <div className=" w-full duration-700 transition-all ease-in-out">
+          {activeDropdown === "learnItems" && <LearnItem />}
+        </div>
       </li>
       <li onClick={() => toggleNavButton("designHelp")}>
         <p>
@@ -197,6 +207,9 @@ const Navbar = () => {
             {activeDropdown === "designHelp" ? <FaTimes /> : <FaAngleDown />}
           </span>
         </p>
+        <div className="w-full duration-700 transition-all ease-in-out justify-center">
+          {activeDropdown === "designHelp" && <DesignHelp />}
+        </div>
       </li>
     </>
   );
@@ -294,18 +307,24 @@ const Navbar = () => {
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
           <div className="navbar-start w-full h-full z-10">
-            <div className="dropdown lg:hidden">
-              <div
-                className="btn btn-ghost lg:hidden"
-                tabindex="0"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                {!navVisible && <FiMenu className="h-5 w-5" />}
-                {navVisible && <FiX className="h-5 w-5" />}
-              </div>
-
+            <details
+              className="dropdown lg:hidden"
+              onToggle={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              <summary class="btn bg-white border-0 p-0 w-0 pl-6">
+                <div
+                  className="btn btn-ghost lg:hidden"
+                  tabindex="0"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  {!isOpen && <FiMenu className="h-5 w-5" />}
+                  {isOpen && <FiX className="h-5 w-5" />}
+                </div>
+              </summary>
               <ul
                 tabindex="0"
                 className="menu menu-sm dropdown-content left-0 right-0  mt-3 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw]"
@@ -313,14 +332,14 @@ const Navbar = () => {
               >
                 {navItems}
               </ul>
-            </div>
+            </details>
             <div className="hidden lg:flex gap-4 h-full items-center">
               {pcItems}
             </div>
           </div>
           <div className="navbar-center lg:flex">
             <Link to="/">
-              <div className="rounded-full bg-white py-6 px-5  z-50  nav-shadow">
+              <div className="rounded-full bg-white py-6 px-5  z-50 ">
                 <img
                   src={logo}
                   alt="our-company-logo"
