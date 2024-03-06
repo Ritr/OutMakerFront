@@ -20,9 +20,8 @@ import SidebarCart from "./SidebarCart";
 import useOutsideClick from "../../Hooks/useOutsideClick";
 import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
-import { FiMenu, FiX } from "react-icons/fi";
-import Accordion from "./Accordion";
 import { throttle } from "lodash";
+import navb from "../../assets/navb.webp";
 
 AOS.init();
 const Navbar = () => {
@@ -347,11 +346,13 @@ const Navbar = () => {
               </svg>
             </label>
             <div
-              className={` px-4 mt-3 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 top-28 ${
+              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${
                 isOpen ? "" : " hidden"
               }`}
+              style={{ top: topPos + "px" }}
             >
               {navItems}
+              <img src={navb} alt="" className="my-10" />
             </div>
             <div className="hidden lg:flex gap-4 h-full items-center">
               {pcItems}
