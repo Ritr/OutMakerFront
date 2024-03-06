@@ -2,7 +2,7 @@ import React from "react";
 import img from "../../assets/images/blog-section.png";
 import Post from "./Post";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
-import './posts.css';
+import './Posts.css';
 
 const Posts = (data) => {
   return (
