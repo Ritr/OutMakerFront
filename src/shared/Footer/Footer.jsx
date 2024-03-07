@@ -283,7 +283,7 @@ const Footer = () => {
         <div className="pb-10 ">
           <div className="flex gap-4 flex-col md:flex-row justify-between items-center bg-[#222A36] p-2 rounded">
             <div className="basis-1/2">
-              <p className="text-xs">© 2023, OutMaker all right Reserved</p>
+              <p className="text-xs">@ 2023, OUTMAKER All Right Reserved</p>
             </div>
             <div className="flex gap-1 basis-1/2 justify-end items-center">
               <span className="text-xs">Payment Methods</span>

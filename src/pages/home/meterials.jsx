@@ -47,10 +47,10 @@ const Meterials = () => {
       <div className="w-full ">
         <div className="text-left pb-4 mt-1">
           <h2 className="text-primary font-semibold text-2xl md:text-4xl">
-            Our product designer
+            Our Product Designer
           </h2>
         </div>
-        <img src={img5} alt=""  className="wow slideInLeft"/>
+        <img src={img5} alt="" className="wow slideInLeft" />
         <div className="text-center w-4/5 md:w-2/3 mx-auto mt-5">
           <h2 className="text-primary font-semibold mt-5 text-2xl md:text-4xl">
             Materials We Use
