@@ -206,9 +206,8 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       style={{
         zIndex: "1001",
       }}
-      className={`fixed inset-y-0 right-0 md:w-3/12  bg-base-100 shadow-xl transition-transform duration-300 ease-in-out ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed inset-y-0 right-0 md:w-3/12  bg-base-100 shadow-xl transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
     >
       <section
         style={{
@@ -331,7 +330,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                       I agree with the{" "}
                       <Link
                         to="/TermsOfService"
-                        class="text-blue-300 hover:text-blue-400"
+                        className="text-blue-300 hover:text-blue-400"
                       >
                         terms and conditions
                       </Link>

@@ -120,7 +120,7 @@ const Navbar = () => {
   useEffect(() => {
     cancelList();
   }, [location]);
-  useEffect(() => {}, [objectOnlyData]);
+  useEffect(() => { }, [objectOnlyData]);
   const cancelList = () => {
     setIsOpen(false);
     setActiveDropdown(null);
@@ -318,7 +318,7 @@ const Navbar = () => {
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
           <div className="navbar-start w-full h-full z-10">
-            <label class="p-1 md:p-0 swap swap-rotate md:hidden">
+            <label className="p-1 md:p-0 swap swap-rotate md:hidden">
               <input
                 type="checkbox"
                 onClick={() => {
@@ -326,7 +326,7 @@ const Navbar = () => {
                 }}
               />
               <svg
-                class="swap-off fill-current"
+                className="swap-off fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
@@ -336,7 +336,7 @@ const Navbar = () => {
               </svg>
 
               <svg
-                class="swap-on fill-current"
+                className="swap-on fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
@@ -346,9 +346,8 @@ const Navbar = () => {
               </svg>
             </label>
             <div
-              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${
-                isOpen ? "" : " hidden"
-              }`}
+              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${isOpen ? "" : " hidden"
+                }`}
               style={{ top: topPos + "px" }}
             >
               {navItems}
@@ -395,9 +394,8 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div
-                  className={`dropdown ${
-                    isMobile ? "dropdown-left dropdown-bottom" : ""
-                  } `}
+                  className={`dropdown ${isMobile ? "dropdown-left dropdown-bottom" : ""
+                    } `}
                 >
                   <button
                     onClick={toggleUserDropdown}

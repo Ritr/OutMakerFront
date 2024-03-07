@@ -14,10 +14,10 @@ const OrderConfirm = () => {
                 
      </div>
      <div className='pb-10'>
-     <div class="flex justify-between mb-1">
-        <span class="text-sm font-medium text-blue-900 dark:text-white text-right">45%</span>
+     <div className="flex justify-between mb-1">
+        <span className="text-sm font-medium text-blue-900 dark:text-white text-right">45%</span>
     </div>
-    <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+    <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
     <div className="bg-blue-900 h-2.5 rounded-full" style={{ width: "45%" }}></div>
 
 </div>
@@ -58,23 +58,23 @@ const OrderConfirm = () => {
             </div>
         </section>
         <section>
-        <div class="w-full">
-  <table class="min-w-full divide-y divide-gray-100">
+        <div className="w-full">
+  <table className="min-w-full divide-y divide-gray-100">
     <thead >
       <tr >
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Commodity</th>
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Quantity</th>
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  first-line:uppercase tracking-wider">Unit Price</th>
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Discounts</th>
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium uppercase tracking-wider">Payment Method</th>
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Distributi0on Mode</th>
-        <th class="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Goods Status</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Commodity</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Quantity</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  first-line:uppercase tracking-wider">Unit Price</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Discounts</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium uppercase tracking-wider">Payment Method</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Distributi0on Mode</th>
+        <th className="px-6 py-3 text-blue-900 bg-gray-100 text-left text-xs leading-4 font-medium  uppercase tracking-wider">Goods Status</th>
       </tr>
     </thead>
-    <tbody class="bg-white ">
+    <tbody className="bg-white ">
       <tr className=''>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm text-gray-900 leading-8">
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm text-gray-900 leading-8">
             <p>Product Name: Product name</p>
             <p>Commodity Name</p>
             <p> <span>Commodity Name</span></p>
@@ -85,23 +85,23 @@ const OrderConfirm = () => {
             </div>
           </div>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm leading-5 text-gray-900">6</div>
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm leading-5 text-gray-900">6</div>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm leading-5 text-gray-900">$299</div>
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm leading-5 text-gray-900">$299</div>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm leading-5 text-gray-900">$30</div>
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm leading-5 text-gray-900">$30</div>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm leading-5 text-gray-900">WeChat Pay</div>
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm leading-5 text-gray-900">WeChat Pay</div>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm leading-5 text-gray-900">Expressage</div>
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm leading-5 text-gray-900">Expressage</div>
         </td>
-        <td class="px-6 py-4 whitespace-no-wrap">
-          <div class="text-sm leading-5 text-gray-900">Not Yet Shipped</div>
+        <td className="px-6 py-4 whitespace-no-wrap">
+          <div className="text-sm leading-5 text-gray-900">Not Yet Shipped</div>
         </td>
       </tr>
     </tbody>

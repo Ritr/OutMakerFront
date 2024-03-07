@@ -180,7 +180,7 @@ const Footer = () => {
                     I agree with the{" "}
                     <Link
                       to="/TermsOfService"
-                      class="text-blue-300 hover:text-blue-400"
+                      className="text-blue-300 hover:text-blue-400"
                     >
                       terms and conditions
                     </Link>
@@ -267,7 +267,7 @@ const Footer = () => {
                 <ul className="space-y-1 text-sm font-light  leading-loose">
                   <li>
                     <a>
-                      +88 01605764503
+                      +61483966676
                       {/*<br /> (208) 555-0112*/}
                     </a>
                   </li>
