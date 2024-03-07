@@ -639,11 +639,10 @@ const CheckoutInfo = () => {
                   <div className="bg-white ">
                     <div className="form-control">
                       <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${
-                          paymentMethod === "paypal"
-                            ? "paymentMethodselected"
-                            : ""
-                        }`}
+                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "paypal"
+                          ? "paymentMethodselected"
+                          : ""
+                          }`}
                       >
                         <div className="flex items-center">
                           <input
@@ -672,11 +671,10 @@ const CheckoutInfo = () => {
 
                     <div className="form-control">
                       <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${
-                          paymentMethod === "card"
-                            ? "paymentMethodselected"
-                            : ""
-                        }`}
+                        className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${paymentMethod === "card"
+                          ? "paymentMethodselected"
+                          : ""
+                          }`}
                       >
                         <div className="flex items-center">
                           <input
@@ -720,7 +718,7 @@ const CheckoutInfo = () => {
 
                   <ul className="p-3 flex flex-wrap">
                     <li>
-                      <Link to="/RefundPolicy" className="underline text-xs">
+                      <Link to="/ReturnPolicy" className="underline text-xs">
                         Refund policy
                       </Link>
                     </li>
@@ -762,7 +760,7 @@ const CheckoutInfo = () => {
                           Glacier / {item?.dimension} / {item?.category}
                         </p>
                         <p className="text-sm text-gray-500">
-                          
+
                           A${item?.cost?.product_sale_price}
                         </p>
                       </div>
@@ -773,7 +771,7 @@ const CheckoutInfo = () => {
                     <p>No items in the cart.</p>
                   </div>
                 )}
-               
+
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
@@ -782,7 +780,7 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between">
                     <span>Shipping</span>
                     <span>
-                      
+
                       {totalChargeFromShipping
                         ? `A$${totalChargeFromShipping.toFixed(2)}`
                         : "Enter shipping address"}
@@ -794,7 +792,7 @@ const CheckoutInfo = () => {
                   </div>
                 </div>
               </div>
-            </div> 
+            </div>
           </div>
         </div>
 

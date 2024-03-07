@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const RefundPolicy = () => {
+const ReturnPolicy = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -16,7 +16,7 @@ const RefundPolicy = () => {
             textAlign: "center",
           }}
         >
-          <h1 className="text-2xl">Refund Policy</h1>
+          <h1 className="text-2xl">Return and Refund Policy</h1>
         </h1>
         <p
           style={{
@@ -60,7 +60,7 @@ const RefundPolicy = () => {
             marginBottom: "0pt",
             lineHeight: "115%",
             fontSize: "13pt",
-            
+
           }}
         >
           <span className="text-xl">
@@ -84,7 +84,8 @@ const RefundPolicy = () => {
             marginBottom: "0pt",
             lineHeight: "115%",
             fontSize: "11pt",
-            textAlign: "justify",          }}
+            textAlign: "justify",
+          }}
         >
           <span className="text-sm">
             We want you to be satisfied with your purchase. If you change your
@@ -807,4 +808,4 @@ const RefundPolicy = () => {
     </section>
   );
 };
-export default RefundPolicy;
+export default ReturnPolicy;

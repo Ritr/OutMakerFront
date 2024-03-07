@@ -26,7 +26,7 @@ const LearnItem = () => {
               {/* <Link to="/all-blogs">Our Blog</Link> */}
               <Link to="/ShippingPolicy">Shipping & Delivery</Link>
               {/* <Link to="/Care">Care & Maintenance</Link> */}
-              <Link to="/RefundPolicy">Return & Refunds</Link>
+              <Link to="/ReturnPolicy">Return & Refunds</Link>
               <Link to="/FAQ">Frequently Asked Questions</Link>
             </div>
           </div>

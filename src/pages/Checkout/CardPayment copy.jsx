@@ -363,7 +363,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
         </div>
         <ul className="p-3 flex flex-wrap">
           <li>
-            <Link to="/RefundPolicy" style={{ textDecoration: "underline" }}>
+            <Link to="/ReturnPolicy" style={{ textDecoration: "underline" }}>
               Refund policy
             </Link>
           </li>
