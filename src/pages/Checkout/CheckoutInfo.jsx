@@ -66,8 +66,8 @@ const CheckoutInfo = () => {
     console.log(`totalCharge：${totalCharge}`);
     console.log(`discountedTotalCharge：${discountedTotalCharge}`);
     // 更新总费用为折扣后的费用
-    setTotalChargeFromShipping(0);
-    // setTotalChargeFromShipping(discountedTotalCharge);
+    // setTotalChargeFromShipping(0);
+    setTotalChargeFromShipping(discountedTotalCharge);
   };
 
   // Calculate the tax price
