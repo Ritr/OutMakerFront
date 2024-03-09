@@ -85,14 +85,14 @@ const Meterials = () => {
           text_p="Where Durability Embraces the Elements"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-5 pt-10 mb-14">
           {materials.slice(0, 4)?.map((material) => (
             <div
               key={material?.id}
-              className="container mx-auto px-2 pt-2 pb-4 border bg-white max-w-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 hover:scale-105 wow fadeInUp"
+              className="container mx-auto px-2 pt-2 md:pb-4 md:border bg-white max-w-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 hover:scale-105 wow fadeInUp"
               data-wow-duration={`${getRandomDuration()}s`}
             >
-              <div className="h-[280px]">
+              <div className="h-auto md:h-[280px]">
                 <img
                   className="rounded-lg object-fill w-full h-full"
                   src={material?.image}
@@ -101,10 +101,10 @@ const Meterials = () => {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl py-1 text-primary font-semibold">
+                  <h2 className="text-base md:text-xl py-1 text-primary font-semibold">
                     {material?.title}
                   </h2>
-                  <p className="text-xs font-normal">{material?.description}</p>
+                  <p className="hidden md:block text-xs font-normal">{material?.description}</p>
                 </div>
               </div>
             </div>
