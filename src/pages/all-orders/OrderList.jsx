@@ -15,12 +15,12 @@ const OrderList = () => {
 
   useEffect(() => {
     // Fetch user code from localStorage when the component mounts
-    const storedUserCode = localStorage.getItem("usercode");
+    // const storedUserCode = localStorage.getItem("usercode");
 
-    if (storedUserCode) {
-      setUserCode(storedUserCode);
-      fetchOrders(storedUserCode);
-    }
+    // if (storedUserCode) {
+    //   setUserCode(storedUserCode);
+    //   fetchOrders(storedUserCode);
+    // }
   }, []);
 
   // Function to handle search input changes

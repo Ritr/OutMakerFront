@@ -40,6 +40,9 @@ const Navbar = () => {
   const [topPos, setTopPos] = useState(48);
   const location = useLocation(); // Get the current location
   const [isOpen, setIsOpen] = useState(false);
+  const scrollY = useRef(0);
+  //判断页面滚动方向
+
   useEffect(() => {
     let top = document.querySelector("#tip").clientHeight;
     // 如果是购物车页面，则top = 0
@@ -57,24 +60,20 @@ const Navbar = () => {
 
     window.addEventListener("resize", handleResize);
 
-    // const handleScroll = () => {
-    //   // const h = Math.min(0, window.scrollY);
-    //   const y = window.scrollY;
-    //   let h = top + 50 - y;
-    //   if(h<0){
-    //     h = 0;
-    //   }
-    //   console.log(window.scrollY);
-    //   setTopPos(h);
-    // };
     const handleScroll = throttle(() => {
+      // console.log(scrollY.current);
       let h = top - window.scrollY;
-      if (h < 0) {
-        h = 0;
+      let direction = window.scrollY - scrollY.current > 0 ? true : false;
+      if (direction) {
+        h = -200;
+      } else {
+        if (h < 0) {
+          h = 0;
+        }
       }
       setTopPos(h);
-    }, 100); // 控制节流的时间间隔
-
+      scrollY.current = window.scrollY;
+    }, 50); // 控制节流的时间间隔
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -313,7 +312,7 @@ const Navbar = () => {
       {/* <NavbarTop/> */}
       {/* navbar functonalities */}
       <div
-        className="w-full h-[108px] z-50 fixed bg-white"
+        className="w-full h-[108px] z-50 fixed bg-white transition-all  duration-300 ease-in-out "
         style={{ top: topPos + "px", zIndex: 99 }}
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
@@ -495,7 +494,7 @@ const Navbar = () => {
       {/* <div
         className="w-full flex flex-col overflow-auto top-36 bg-white fixed z-10 left-0"
         style={{
-          height: "calc(var(--vh, 1vh) * 100 - 5rem)",
+          height: "calc(let(--vh, 1vh) * 100 - 5rem)",
           transform: "translate(0, 0)",
         }}
       >

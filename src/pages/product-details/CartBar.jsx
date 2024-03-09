@@ -45,7 +45,7 @@ const CartBar = ({ product, cost }) => {
   };
 
   return (
-    <div className="cart-bar w-full md:right-4 md:left-1 fixed bottom-4 z-9999 md:p-3 bg-white flex items-center justify-between rounded-full shadow-lg md:h-16 justify-center">
+    <div className="cart-bar w-full md:right-4 md:left-1 fixed bottom-4 z-10 md:p-3 bg-white flex items-center justify-between rounded-full shadow-lg md:h-16 justify-center">
       <div className="hidden md:flex flex items-center">
         <div
           className="ar-wrapper thumb-wrapper"
