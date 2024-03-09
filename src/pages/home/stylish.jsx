@@ -52,7 +52,7 @@ const Stylish = () => {
           Modular splicing design makes outdoor space more flexible
         </h2>
       </div>
-      <MV videoSource="https://cdn.shopify.com/videos/c/o/v/69c88cb1e5824cc8bf9ce3ffc31c9ef2.mp4" />
+      {/* <MV videoSource="https://cdn.shopify.com/videos/c/o/v/69c88cb1e5824cc8bf9ce3ffc31c9ef2.mp4" /> */}
       {/* <div className="text-center pb-4 mt-5">
         <h2 className="text-primary font-semibold text-2xl md:text-4xl mt-4">
           Transform Your Space with Outmaker Style
