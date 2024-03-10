@@ -65,7 +65,7 @@ const Navbar = () => {
       let h = top - window.scrollY;
       let direction = window.scrollY - scrollY.current > 0 ? true : false;
       if (direction) {
-        h = -200;
+        h = -window.scrollY;
       } else {
         if (h < 0) {
           h = 0;

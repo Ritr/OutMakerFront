@@ -4,8 +4,13 @@ import img2 from "../../assets/images/Materials/Aluminum.jpg";
 import img3 from "../../assets/images/Materials/Rattan.jpg";
 import img4 from "../../assets/images/Materials/Sunbrella.png";
 import img5 from "../../assets/stylish/1.jpg";
+import imgs2 from "../../assets/stylish/2.jpg";
+import imgs3 from "../../assets/stylish/3.jpg";
+import imgs4 from "../../assets/stylish/4.jpg";
 
 import MV from "./material_video";
+import { Link } from "react-router-dom";
+import { BsChevronRight } from "react-icons/bs";
 
 const materials = [
   {
@@ -50,7 +55,62 @@ const Meterials = () => {
             Our product designer
           </h2>
         </div>
-        <img src={img5} alt=""  className="wow slideInLeft"/>
+        <img
+          src={img5}
+          alt=""
+          className="hidden md:inline-block wow slideInLeft"
+        />
+        <img
+          src={imgs2}
+          alt=""
+          className="inline-block md:hidden wow slideInLeft"
+        />
+        <div className="flex mt-3 md:hidden justify-between gap-3  wow slideInLeft">
+          <div className="flex-1 bg-[#F5F5F5]">
+            <img src={imgs3} alt="" className="w-full h-30 object-cover" />
+            <div className="p-3">
+              <div className="text-center text-base font-semibold mb-3">
+                Furniture designer
+              </div>
+              <div className="text-xs mb-4">
+                He is a renowned designer, artist, and creative directorin
+                Mexico, leading the design industry. He has servedas the founder
+                and CEO of PANOR Á MICA, the creativedirector of NONO, and the
+                CEO and founder of joelEscalona Studio.
+              </div>
+              <div className="flex justify-center">
+                <Link>
+                  <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
+                    View more
+                    <BsChevronRight className="ml-1"></BsChevronRight>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="flex-1 bg-[#F5F5F5]">
+            <img src={imgs4} alt="" className="w-full h-30 object-cover" />
+            <div className="p-3">
+              <div className="text-center text-base font-semibold mb-3">
+                Furniture designer
+              </div>
+              <div className="text-xs mb-4">
+                He is a renowned designer, artist, and creative directorin
+                Mexico, leading the design industry. He has servedas the founder
+                and CEO of PANOR Á MICA, the creativedirector of NONO, and the
+                CEO and founder of joelEscalona Studio.
+              </div>
+              <div className="flex justify-center">
+                <Link>
+                  <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
+                    View more
+                    <BsChevronRight className="ml-1"></BsChevronRight>
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="text-center w-4/5 md:w-2/3 mx-auto mt-5">
           <h2 className="text-primary font-semibold mt-5 text-2xl md:text-4xl">
             Materials We Use
@@ -104,7 +164,9 @@ const Meterials = () => {
                   <h2 className="text-base md:text-xl py-1 text-primary font-semibold">
                     {material?.title}
                   </h2>
-                  <p className="hidden md:block text-xs font-normal">{material?.description}</p>
+                  <p className="hidden md:block text-xs font-normal">
+                    {material?.description}
+                  </p>
                 </div>
               </div>
             </div>
