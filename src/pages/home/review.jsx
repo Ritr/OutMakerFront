@@ -9,6 +9,7 @@ import img4 from "../../assets/images/review4.png";
 import img5 from "../../assets/images/review5.png";
 import img6 from "../../assets/images/review6.png";
 import "../../assets/css/review.css";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 
 const reviews = [
   {
@@ -67,8 +68,16 @@ const reviews = [
     post: "Home Decor Enthusiast",
   },
 ];
-
 const Review = () => {
+  const carouselRef = React.useRef(null);
+
+  const handleNext = () => {
+    carouselRef.current.next();
+  };
+
+  const handlePrev = () => {
+    carouselRef.current.previous();
+  };
   const getRandomDuration = () => {
     return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
   };
@@ -82,11 +91,18 @@ const Review = () => {
         </div>
       </div>
       <div className="flex items-center">
-        <div>Left</div>
+        <div>
+          <button
+            onClick={handlePrev}
+            className="flex items-center justify-center w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-semibold"
+          >
+            <SlArrowLeft />
+          </button>
+        </div>
         <Carousel
+          arrows={false}
           className="h-[354px] flex-1"
           additionalTransfrom={0}
-          arrows
           autoPlaySpeed={3000}
           centerMode={false}
           containerclassName="container-with-dots"
@@ -102,6 +118,7 @@ const Review = () => {
           renderArrowsWhenDisabled={false}
           renderButtonGroupOutside={false}
           renderDotsOutside={false}
+          ref={carouselRef}
           responsive={{
             desktop: {
               breakpoint: { max: 5000, min: 1024 },
@@ -125,13 +142,13 @@ const Review = () => {
           swipeable
         >
           {reviews.map((review) => (
-            <div className="flex mx-8">
+            <div className="flex  mx-2 md:mx-8">
               <div
                 className="rounded-lg border-2  border-[#F2F2F2]  shadow hover:shadow-xl  wow slideInRight"
                 data-wow-duration={`${getRandomDuration()}s`}
                 key={review.id}
               >
-                <div className="flex flex-col w-full h-auto min-h-[350px] justify-between  p-0 md:p-8  hover:border-white">
+                <div className="flex flex-col w-full h-auto min-h-[350px] justify-between p-2 md:p-8  hover:border-white">
                   <div className="flex  w-full flex-col justify-between items-center">
                     <div className="flex w-full justify-between">
                       <div className="flex text-white">
@@ -195,7 +212,14 @@ const Review = () => {
             </div>
           ))}
         </Carousel>
-        <div>Right</div>
+        <div>
+          <button
+            onClick={handleNext}
+            className="flex items-center justify-center w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-semibold"
+          >
+            <SlArrowRight />
+          </button>
+        </div>
       </div>
     </section>
   );

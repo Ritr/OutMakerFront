@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
+import ImageScale from "../../components/ImageScale";
 import useImageLoader from "../../Hooks/imageLoader";
 import Skeleton from "react-loading-skeleton";
 
@@ -37,7 +38,7 @@ const ImageSlider = ({ images }) => {
         <div className="w-full md:w-3/4">
           {imageLoaded ? (
             <img
-              src={ImgBaseUrl(currentImage)}
+              src={ImageScale(currentImage, 1000)}
               alt="Selected"
               className="w-full rounded-md cursor-zoom-in object-contain h-[725px]"
             />
@@ -65,7 +66,7 @@ const ImageSlider = ({ images }) => {
                 if (correctIndex >= images.length) {
                   correctIndex = 0;
                 }
-                if(correctIndex < 0){
+                if (correctIndex < 0) {
                   correctIndex = images.length + correctIndex;
                 }
                 setCurrentImageIndex(correctIndex);
@@ -78,7 +79,7 @@ const ImageSlider = ({ images }) => {
                   onClick={() => setCurrentImageIndex(index)}
                 >
                   <img
-                    src={ImgBaseUrl(image?.image_url)}
+                    src={ImageScale(image?.image_url, 400)}
                     alt={`slider-image-${index}`}
                     className={`object-cover rounded-2xl drop-shadow-xl ${
                       currentImageIndex === index
@@ -89,7 +90,9 @@ const ImageSlider = ({ images }) => {
                 </div>
               ))}
             </Carousel>
-          ): <Skeleton className=" w-full md:h-[200px]"></Skeleton>}
+          ) : (
+            <Skeleton className=" w-full md:h-[200px]"></Skeleton>
+          )}
         </div>
       </section>
     </>

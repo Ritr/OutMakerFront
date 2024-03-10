@@ -12,7 +12,7 @@ import SidebarCart from "../../components/Navbar/SidebarCart";
 import ReactPlayer from "react-player";
 
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
-
+import * as dayjs from "dayjs";
 const Info = ({
   category,
   changeCategory,
@@ -29,7 +29,8 @@ const Info = ({
   const { fetchCartData } = useContext(CartContext);
   const userCode = localStorage.getItem("usercode");
   const { mutate: addToCart } = useAddToCart(userCode);
-
+  const day1 = dayjs().add(30, "day");
+  const day2 = dayjs().add(40, "day");
   // toggle video play pause
   const togglePlayPause = () => {
     // 如果视频正在播放，暂停它；如果视频暂停，播放它
@@ -186,7 +187,10 @@ const Info = ({
                 <span>
                   {product?.quantity > 0
                     ? "In stock - Ship from Melbourne warehouse.Received within 5-7days"
-                    : "pre-order - Ship from Melbourne warehouse.Received within 40-50 days"}
+                    : "pre-order - Ship from Melbourne warehouse.Received between " +
+                      day1.format("YYYY/MM/DD") +
+                      " and " +
+                      day2.format("YYYY/MM/DD")}
                 </span>
               </div>
             </div>
@@ -263,7 +267,7 @@ const Info = ({
           </div>
           <div className="flex w-full  items-center">
             <div className="flex px-2  flex-1">
-              <div className="w-full flex  p-3 items-center border border-primary rounded-full cursor-pointer">
+              <div className="flex items-center gap-6 border-2 border-primary p-2 mr-1 rounded-full cursor-pointer">
                 <p
                   className={`cursor-pointer ${
                     quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
@@ -295,8 +299,11 @@ const Info = ({
             <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
             <span>
               {product?.quantity > 0
-                ? "In stock - Ship from Melbourne warehouse.Received within 5-7days"
-                : "pre-order - Ship from Melbourne warehouse.Received within 40-50 days"}
+                ? "In stock - Ship from Melbourne warehouse.Received within 5-7days1111"
+                : "pre-order - Ship from Melbourne warehouse.Received " +
+                  day1.format("YYYY/MM/DD") +
+                  " and " +
+                  day2.format("YYYY/MM/DD")}
             </span>
           </div>
         </div>

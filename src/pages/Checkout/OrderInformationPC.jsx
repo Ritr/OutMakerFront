@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { getApiBaseUrl } from "../../utils/api/index";
 import toast from "react-hot-toast";
-
+import ProductQuantity from "./productQuantity";
 const CustomOrderInformationPC = () => {
   const { number } = useParams();
   const [filteredData, setFilteredData] = useState([]);
@@ -444,9 +444,11 @@ const CustomOrderInformationPC = () => {
                           Color: Beige
                         </div>
                         <div className="flex space-x-2 mt-2">
-                          <span className="text-[#002B5B] text-[10px] font-semibold px-3 py-1 rounded-full border border-[#002B5B]">
-                            Ship within 48 hours
-                          </span>
+                          {/* product?.quantity >0 现货，否则预售*/}
+                          {/* {JSON.stringify(order)} */}
+                          <ProductQuantity
+                            product={order.product}
+                          ></ProductQuantity>
                           <span className="text-[#002B5B] text-[10px] font-semibold px-3 py-1 rounded-full border border-[#002B5B]">
                             Fast money back
                           </span>
