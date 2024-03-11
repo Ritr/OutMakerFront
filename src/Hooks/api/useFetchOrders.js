@@ -20,5 +20,7 @@ export const useFetchOrders = (searchType, searchParam) => {
     return useQuery(['orders', { searchType, searchParam }], fetchOrders, {
         enabled: !!searchParam, // 只有当 searchParam 非空时才执行查询
         onError: (error) => console.error("Error fetching orders:", error),
+        cacheTime: 60000, // 设置缓存时间为 60 秒
+        staleTime: 30000, // 设置数据过期时间为 30 秒
     });
 };
