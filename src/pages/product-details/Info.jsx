@@ -12,7 +12,7 @@ import SidebarCart from "../../components/Navbar/SidebarCart";
 import ReactPlayer from "react-player";
 
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 const Info = ({
   category,
   changeCategory,
