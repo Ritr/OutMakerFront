@@ -599,7 +599,7 @@ const CheckoutInfo = () => {
                       <div className="flex justify-between">
                         <span>
                           Estimated Tax
-                          <div class="tooltip" data-tip="hello">
+                          <div className="tooltip" data-tip="hello">
                             <FaQuestionCircle></FaQuestionCircle>
                           </div>
                         </span>
@@ -794,7 +794,7 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between">
                     <span className="flex items-center cursor-pointer">
                       Estimated Tax
-                      <div class="tooltip" data-tip="Price already includes tax">
+                      <div className="tooltip" data-tip="Price already includes tax">
                         <FaQuestionCircle className="ml-1"></FaQuestionCircle>
                       </div>
                     </span>

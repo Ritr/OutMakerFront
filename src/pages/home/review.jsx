@@ -142,11 +142,10 @@ const Review = () => {
           swipeable
         >
           {reviews.map((review) => (
-            <div className="flex  mx-2 md:mx-8">
+            <div className="flex  mx-2 md:mx-8" key={review.id}>
               <div
                 className="rounded-lg border-2  border-[#F2F2F2]  shadow hover:shadow-xl  wow slideInRight"
                 data-wow-duration={`${getRandomDuration()}s`}
-                key={review.id}
               >
                 <div className="flex flex-col w-full h-auto min-h-[350px] justify-between p-2 md:p-8  hover:border-white">
                   <div className="flex  w-full flex-col justify-between items-center">

@@ -331,7 +331,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                       I agree with the{" "}
                       <Link
                         to="/TermsOfService"
-                        class="text-blue-300 hover:text-blue-400"
+                        className="text-blue-300 hover:text-blue-400"
                       >
                         terms and conditions
                       </Link>

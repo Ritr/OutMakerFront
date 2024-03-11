@@ -55,12 +55,8 @@ const Blogs = () => {
   useEffect(() => {
     const { top } = elementRef.current.getBoundingClientRect();
     setTopPos(top + 55);
+    setWindowWidth(window.innerWidth);
 
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
     // const handleScroll = () => {
     //   // const h = Math.min(0, window.scrollY);
     //   const y = window.scrollY;
@@ -84,11 +80,6 @@ const Blogs = () => {
     // }, 100); // 控制节流的时间间隔
 
     // window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      // window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
   }, []);
 
   const isProduct = location?.pathname === "/categories" ? true : false;
