@@ -12,7 +12,7 @@ import SidebarCart from "../../components/Navbar/SidebarCart";
 import ReactPlayer from "react-player";
 
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
-import dayjs from 'dayjs/esm/index.js'
+import dayjs from "dayjs/esm/index.js";
 const Info = ({
   category,
   changeCategory,
@@ -188,9 +188,9 @@ const Info = ({
                   {product?.quantity > 0
                     ? "In stock - Ship from Melbourne warehouse.Received within 5-7days"
                     : "pre-order - Ship from Melbourne warehouse.Received between " +
-                      day1.format("YYYY/MM/DD") +
+                      day1.format("DD/MM") +
                       " and " +
-                      day2.format("YYYY/MM/DD")}
+                      day2.format("DD/MM")}
                 </span>
               </div>
             </div>
@@ -266,8 +266,8 @@ const Info = ({
             </div>
           </div>
           <div className="flex w-full  items-center">
-            <div className="flex px-2  flex-1">
-              <div className="flex items-center gap-6 border-2 border-primary p-2 mr-1 rounded-full cursor-pointer">
+            <div className="flex px-1 md:px-2  md:flex-1">
+              <div className="flex items-center gap-6 border-2 border-primary p-2 md:mr-1 rounded-full cursor-pointer">
                 <p
                   className={`cursor-pointer ${
                     quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
@@ -282,10 +282,10 @@ const Info = ({
                 </p>
               </div>
             </div>
-            <div className="flex px-2 flex-3">
+            <div className="flex px-1 md:px-2 flex-1 md:flex-3">
               <button
                 onClick={handleAddToCart}
-                className="bg-primary  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-3 px-8 text-sm font-normal"
+                className="bg-primary  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  md:p-3 md:px-8 text-sm font-normal"
               >
                 <p className="flex gap-2 items-center text-center">
                   <BsHandbagFill className="" /> Add to cart- A$
@@ -299,11 +299,11 @@ const Info = ({
             <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
             <span>
               {product?.quantity > 0
-                ? "In stock - Ship from Melbourne warehouse.Received within 5-7days1111"
+                ? "In stock - Ship from Melbourne warehouse.Received within 5-7days"
                 : "pre-order - Ship from Melbourne warehouse.Received " +
-                  day1.format("YYYY/MM/DD") +
+                  day1.format("DD/MM") +
                   " and " +
-                  day2.format("YYYY/MM/DD")}
+                  day2.format("DD/MM")}
             </span>
           </div>
         </div>

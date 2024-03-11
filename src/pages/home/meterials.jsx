@@ -78,14 +78,14 @@ const Meterials = () => {
                 and CEO of PANOR Á MICA, the creativedirector of NONO, and the
                 CEO and founder of joelEscalona Studio.
               </div>
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <Link>
                   <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
                     View more
                     <BsChevronRight className="ml-1"></BsChevronRight>
                   </button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="flex-1 bg-[#F5F5F5]">
@@ -100,14 +100,14 @@ const Meterials = () => {
                 and CEO of PANOR Á MICA, the creativedirector of NONO, and the
                 CEO and founder of joelEscalona Studio.
               </div>
-              <div className="flex justify-center">
+              {/* <div className="flex justify-center">
                 <Link>
                   <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
                     View more
                     <BsChevronRight className="ml-1"></BsChevronRight>
                   </button>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

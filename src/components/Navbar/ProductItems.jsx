@@ -52,7 +52,7 @@ const ProductItems = () => {
         {/* {!imageLoaded ? (
           <Skeleton width={width} className="h-40" />
         ) : ( */}
-        <img src={src} style={{ display: "block", height: "120px" }} alt="" />
+        <img src={src} style={{ display: "block" }} className="md:h-[120px] h-auto object-contain" alt="" />
         {/* )} */}
       </>
     );
