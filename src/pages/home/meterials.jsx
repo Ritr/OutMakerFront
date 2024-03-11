@@ -139,7 +139,7 @@ const Meterials = () => {
 
         <MV
           videoSource={
-            "https://cdn.shopify.com/videos/c/o/v/90e18854ef244ab687d191956a77b44d.mp4"
+            "https://cdn.shopify.com/videos/c/o/v/418c216f38744437bdc0bce21ac5410b.mp4"
           }
           text_h2="Built to withstand everything life throws at us."
           text_p="Where Durability Embraces the Elements"
@@ -174,7 +174,7 @@ const Meterials = () => {
         </div>
 
         <MV
-          videoSource="https://cdn.shopify.com/videos/c/o/v/72b9e518ac6e42bc846bbcac4122c7c7.mp4"
+          videoSource="https://cdn.shopify.com/videos/c/o/v/36bb127a7fd34c8db6c7edce78a3ed46.mp4"
           text_h2="Sunbrella fabric easily handles various cold weather conditions."
         />
       </div>
