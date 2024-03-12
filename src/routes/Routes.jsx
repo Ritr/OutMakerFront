@@ -1,52 +1,30 @@
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-const Main = React.lazy(() => import("../layouts/Main"));
-const About = React.lazy(() => import("../pages/About/About/About"));
-const CareGuide = React.lazy(() =>
-  import("../pages/CareGuide/CareGuide/CareGuide")
-);
-const Shipping = React.lazy(() =>
-  import("../pages/Shipping/Shipping/Shipping")
-);
-const Sustainability = React.lazy(() =>
-  import("../pages/Sustainability/Sustainability/Sustainability")
-);
-const Home = React.lazy(() => import("../pages/home/Home"));
-const AllBlogs = React.lazy(() => import("../pages/all-blogs/AllBlogs"));
-const CategoryBlogs = React.lazy(() =>
-  import("../pages/CategoryBlogs/CategoryBlogs")
-);
-const Blog = React.lazy(() => import("../pages/blog/Blog"));
-const Product = React.lazy(() => import("../pages/product/product"));
-const ProductCategory = React.lazy(() =>
-  import("../pages/product/product_category")
-);
-const ProductCollection = React.lazy(() =>
-  import("../pages/product/product_collection")
-);
-const ProductDetails = React.lazy(() =>
-  import("../pages/product-details/ProductDetails")
-);
-const Contact = React.lazy(() => import("../pages/contact/Contact"));
-const Collections = React.lazy(() =>
-  import("../pages/collections/collections")
-);
-const Checkout = React.lazy(() => import("../pages/Checkout/Checkout"));
-const CheckoutInfo = React.lazy(() => import("../pages/Checkout/CheckoutInfo"));
-const PayStatus = React.lazy(() => import("../pages/Checkout/PayStatus"));
-const PayStatusPaypal = React.lazy(() =>
-  import("../pages/Checkout/PayStatusPaypal")
-);
-const ShippingInfo = React.lazy(() => import("../pages/Checkout/ShippingInfo"));
-const PaymentInfo = React.lazy(() => import("../pages/Checkout/PaymentInfo"));
-// const TestPayement = React.lazy(() => import("../pages/Checkout/TestPayement"));
-const BuyerReview = React.lazy(() =>
-  import("../pages/product-details/BuyerReview")
-);
-const OrderInformation = React.lazy(() =>
-  import("../pages/Checkout/OrderInformation")
-);
-const OrderConfirm = React.lazy(() => import("../pages/Checkout/OrderConfirm"));
+import Main from "../layouts/Main";
+import About from "../pages/About/About/About";
+import CareGuide from "../pages/CareGuide/CareGuide/CareGuide";
+import Shipping from "../pages/Shipping/Shipping/Shipping";
+import Sustainability from "../pages/Sustainability/Sustainability/Sustainability";
+import Home from "../pages/home/Home";
+
+import AllBlogs from "../pages/all-blogs/AllBlogs";
+import CategoryBlogs from "../pages/CategoryBlogs/CategoryBlogs";
+import Blog from "../pages/blog/Blog";
+import Product from "../pages/product/product";
+import ProductCategory from "../pages/product/product_category";
+import ProductCollection from "../pages/product/product_collection";
+import ProductDetails from "../pages/product-details/ProductDetails";
+import Contact from "../pages/contact/Contact";
+import Collections from "../pages/collections/collections";
+import Checkout from "../pages/Checkout/Checkout";
+import CheckoutInfo from "../pages/Checkout/CheckoutInfo";
+import PayStatus from "../pages/Checkout/PayStatus";
+import PayStatusPaypal from "../pages/Checkout/PayStatusPaypal";
+import ShippingInfo from "../pages/Checkout/ShippingInfo";
+import PaymentInfo from "../pages/Checkout/PaymentInfo";
+import TestPayement from "../pages/Checkout/TestPayement";
+import BuyerReview from "../pages/product-details/BuyerReview";
+import OrderInformation from "../pages/Checkout/OrderInformation";
+import OrderConfirm from "../pages/Checkout/OrderConfirm";
 /*
 <Route path='/' element={<Home />} />
 				<Route path='/collections' element={<Collections />} />
@@ -58,22 +36,20 @@ const OrderConfirm = React.lazy(() => import("../pages/Checkout/OrderConfirm"));
 
 */
 
-const TermsOfService = React.lazy(() =>
-  import("../pages/policy/TermsOfService")
-);
-const Privacypolicy = React.lazy(() => import("../pages/policy/Privacypolicy"));
-const AboutUs = React.lazy(() => import("../pages/policy/AboutUs"));
-const ContactUs = React.lazy(() => import("../pages/policy/ContactUs"));
-const RefundPolicy = React.lazy(() => import("../pages/policy/RefundPolicy"));
-const ShippingPolicy = React.lazy(() =>
-  import("../pages/policy/ShippingPolicy")
-);
-const Brand = React.lazy(() => import("../pages/Brand/Brand"));
-const Care = React.lazy(() => import("../pages/Care/Care"));
-const FAQPage = React.lazy(() => import("../pages/all-faqs/FAQPage"));
-const OrderList = React.lazy(() => import("../pages/all-orders/OrderList"));
-const Account = React.lazy(() => import("../pages/account/account"));
-const NotFound = React.lazy(() => import("../NotFound"));
+import TermsOfService from "../pages/policy/TermsOfService";
+import Privacypolicy from "../pages/policy/Privacypolicy";
+import AboutUs from "../pages/policy/AboutUs";
+import ContactUs from "../pages/policy/ContactUs";
+import RefundPolicy from "../pages/policy/RefundPolicy";
+import ShippingPolicy from "../pages/policy/ShippingPolicy";
+import Brand from "../pages/Brand/Brand";
+import Care from "../pages/Care/Care";
+
+import FAQPage from "../pages/all-faqs/FAQPage";
+import OrderList from "../pages/all-orders/OrderList";
+
+import Account from "../pages/account/account";
+import NotFound from "../NotFound";
 
 const router = createBrowserRouter([
   {
