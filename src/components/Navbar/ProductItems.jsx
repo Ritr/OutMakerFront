@@ -71,7 +71,7 @@ const ProductItems = () => {
         </h3>
 
         {/* Grid layout for products */}
-        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           {categories?.map((category) => (
             <Link
               to={`category-product/${category?.category_id}/${category?.category_url}`}

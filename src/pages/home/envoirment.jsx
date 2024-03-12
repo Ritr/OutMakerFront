@@ -1,5 +1,5 @@
 import React from "react";
-import envoirmentImg from "../../assets/images/envoirment.png";
+import envoirmentImg from "../../assets/images/envoirment.webp";
 import Button from "../../shared/Button/Button";
 import { BsArrowRight } from "react-icons/bs";
 import { Link } from "react-router-dom";
