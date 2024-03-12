@@ -24,6 +24,10 @@ export default {
         primary: "#002B5B",
         '15': 'rgba(0, 0, 0, 0.15)'
       },
+      fontSize: {
+        '2xs': '0.725rem',
+        '3xs': '0.7rem',
+      },
     },
   },
   plugins: [require("daisyui"), function ({ addUtilities }) {
