@@ -20,7 +20,7 @@ return (
       {categoryBlogs.map((blog, index) => (
         <section key={blog?.category?.category_id}>
           <Link to={`/category-blogs/${blog?.category?.category_id}/${blog?.category?.category_name}`} key={blog?.category?.category_id}>
-          <h4 className="text-2xl md:text-3xl font-bold text-primary border-b-4 border-primary">
+          <h4 className="text-xl md:text-3xl font-bold md:text-primary border-b-4 border-primary">
             {blog?.category?.category_name}
           </h4>
           </Link>

@@ -38,7 +38,7 @@ const AllBlogs = () => {
   return (
     <main>
       <AllBlogsHeader />
-      <div className="mx-10">
+      <div className="md:mx-10 px-4 md:px-0">
         
         <PageNav blogCategories={blogCategories} />
 

@@ -39,7 +39,7 @@ const FeatureArticle = (data) => {
       </div>
 
       <div className="basis-1/2 pt-8 md:pt-0">
-        <h4 className="text-2xl md:text-3xl font-bold text-primary border-b-4 border-primary">
+        <h4 className="text-xl md:text-3xl md:font-bold md:text-primary border-b-4 border-primary">
           Featured Articles
         </h4>
         {data.data.map((article) => (
