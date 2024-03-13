@@ -188,7 +188,7 @@ const Blogs = () => {
   };
 
   return (
-    <section className="w-full">
+    <section className="w-full mt-16 md:mt-0">
       <div className="text-center p-4">
         <h2 className="text-2xl font-bold text-black mb-2">
           {isProduct ? "CATEGORIES" : "COLLECTIONS"}

@@ -147,7 +147,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                     <img
                       src={ImgBaseUrl(singleData?.product?.p_pic)}
                       alt="Product"
-                      className="w-[35%] object-contain"
+                      className="w-[35%] object-contain -mt-12"
                     />
 
                     <div className="w-[65%] flex flex-col">
@@ -164,7 +164,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                         Category: {singleData?.category}
                       </p>
                       <div className="card-actions flex justify-between items-center mt-4 mr-2">
-                        <div className="flex items-center gap-6 border border-[#BFBFBF] p-2 rounded-full cursor-pointer">
+                        <div className="flex items-center gap-6 border border-[#BFBFBF] p-2 py-1 rounded-full cursor-pointer">
                           <p
                             onClick={() =>
                               handleDecreaseQuantity(singleData?.product?.p_id)

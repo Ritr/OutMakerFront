@@ -35,7 +35,7 @@ const ImageSlider = ({ images }) => {
   return (
     <>
       <section className="mt-2 flex flex-col md:flex-row items-center gap-5 md:gap-10">
-        <div className="w-full md:w-3/4">
+        <div className="hidden md:block w-full md:w-3/4">
           {imageLoaded ? (
             <img
               src={ImageScale(currentImage, 1000)}
