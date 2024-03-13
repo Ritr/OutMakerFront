@@ -61,26 +61,23 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
-      let body =  document.querySelector("body");
-      
-      // console.log(scrollY.current);
-      let h = top - body.scrollTop;
-      let direction = body.scrollTop - scrollY.current > 0 ? true : false;
+
+      let h = top - window.scrollY;
+      console.log(h);
+      let direction = window.scrollY - scrollY.current > 0 ? true : false;
       if (direction) {
-        h = -body.scrollTop;
+        h = -window.scrollY;
       } else {
         if (h < 0) {
           h = 0;
         }
       }
       setTopPos(h);
-      scrollY.current = body.scrollTop;
+      scrollY.current = window.scrollY;
     }, 50); // 控制节流的时间间隔
-    document.querySelector("body").addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      document
-        .querySelector("body")
-        .removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
       // window.removeEventListener("resize", handleResize);
     };
   }, []);

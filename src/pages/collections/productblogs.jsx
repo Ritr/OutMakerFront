@@ -67,7 +67,7 @@ const Blogs = () => {
         if (top < 0) {
           h = 0;
         }
-        let direction = body.scrollTop - scrollY.current > 0 ? true : false;
+        let direction = window.scrollY - scrollY.current > 0 ? true : false;
         console.log(direction);
         if (direction) {
           // h += 108;
@@ -75,15 +75,13 @@ const Blogs = () => {
           h = 120;
         }
         setTopPos(h);
-        scrollY.current = body.scrollTop;
+        scrollY.current = window.scrollY;
       }
     }, 40); // 控制节流的时间间隔
 
-    document.querySelector("body").addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      document
-        .querySelector("body")
-        .removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
