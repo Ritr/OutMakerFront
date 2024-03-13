@@ -699,14 +699,14 @@ const CustomOrderInformationPC = () => {
             >
               Cancell Order
             </button>
-            <div>
+            {/* <div>
               <button
                 onClick={() => handlePayPalPayment(order_no)}
                 className="ml-7 btn normal-case btn-primary"
               >
                 Pay of Order
               </button>
-            </div>
+            </div> */}
           </div>
         );
         break;
