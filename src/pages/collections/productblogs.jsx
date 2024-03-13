@@ -26,6 +26,7 @@ const Blogs = () => {
   const [topPos, setTopPos] = useState(0);
   const elementRef = useRef(null);
   const divRef = useRef(null);
+  const scrollY = useRef(0);
   const [distanceFromRight, setDistanceFromRight] = useState(null);
   useEffect(() => {
     const fetchData = () => {
@@ -57,35 +58,38 @@ const Blogs = () => {
     setTopPos(top + 55);
     setWindowWidth(window.innerWidth);
 
-    // const handleScroll = () => {
-    //   // const h = Math.min(0, window.scrollY);
-    //   const y = window.scrollY;
-    //   let h = top + 50 - y;
-    //   if(h<0){
-    //     h = 0;
-    //   }
-    //   console.log(window.scrollY);
-    //   setTopPos(h);
-    // };
-    // const handleScroll = throttle(() => {
-    //   if (elementRef.current) {
-    //     const { top } = elementRef.current.getBoundingClientRect();
-    //     const y = window.scrollY;
-    //     let h = top + 50 - y;
-    //     if (h < 0) {
-    //       h = 0;
-    //     }
-    //     setTopPos(h);
-    //   }
-    // }, 100); // 控制节流的时间间隔
+    const handleScroll = throttle(() => {
+      const body = document.querySelector("body");
+      if (elementRef.current) {
+        const { top } = elementRef.current.getBoundingClientRect();
+        // const y = body.scrollTop;
+        let h = top + 55;
+        if (top < 0) {
+          h = 0;
+        }
+        let direction = body.scrollTop - scrollY.current > 0 ? true : false;
+        console.log(direction);
+        if (direction) {
+          // h += 108;
+        } else if (h < 120) {
+          h = 120;
+        }
+        setTopPos(h);
+        scrollY.current = body.scrollTop;
+      }
+    }, 40); // 控制节流的时间间隔
 
-    // window.addEventListener("scroll", handleScroll);
+    document.querySelector("body").addEventListener("scroll", handleScroll);
+    return () => {
+      document
+        .querySelector("body")
+        .removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   const isProduct = location?.pathname === "/categories" ? true : false;
 
   const toggleFilters = () => {
-    console.log(showFilters);
     if (!showFilters) {
       setTimeout(() => {
         const divRect = divRef.current.getBoundingClientRect();
@@ -186,7 +190,11 @@ const Blogs = () => {
       frameType: frameType,
     }));
   };
-
+  const clear = () => {
+    setActiveFilters({
+      sort: "recommended",
+    });
+  };
   return (
     <section className="w-full mt-16 md:mt-0">
       <div className="text-center p-4">
@@ -217,7 +225,7 @@ const Blogs = () => {
       </div>
 
       {/* Main content */}
-      <div className="w-full flex flex-col lg:flex-row justify-end">
+      <div className="w-full flex flex-col lg:flex-row justify-end  md:min-h-[820px]">
         {/*Filter bar  Sorting options */}
         <aside
           className={`${
@@ -403,6 +411,14 @@ const Blogs = () => {
                 );
               })}
             </div>
+          </div>
+          <div className="mb-2">
+            <button
+              onClick={clear}
+              className="w-full button border text-xs px-4 py-2 rounded-sm shadow-md"
+            >
+              Clear All
+            </button>
           </div>
         </aside>
 

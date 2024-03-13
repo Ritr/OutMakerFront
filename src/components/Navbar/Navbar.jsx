@@ -61,22 +61,26 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
+      let body =  document.querySelector("body");
+      
       // console.log(scrollY.current);
-      let h = top - window.scrollY;
-      let direction = window.scrollY - scrollY.current > 0 ? true : false;
+      let h = top - body.scrollTop;
+      let direction = body.scrollTop - scrollY.current > 0 ? true : false;
       if (direction) {
-        h = -window.scrollY;
+        h = -body.scrollTop;
       } else {
         if (h < 0) {
           h = 0;
         }
       }
       setTopPos(h);
-      scrollY.current = window.scrollY;
+      scrollY.current = body.scrollTop;
     }, 50); // 控制节流的时间间隔
-    window.addEventListener("scroll", handleScroll);
+    document.querySelector("body").addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document
+        .querySelector("body")
+        .removeEventListener("scroll", handleScroll);
       // window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -323,7 +327,9 @@ const Navbar = () => {
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
+                checked={isOpen}
               />
+
               <svg
                 className="swap-off fill-current"
                 xmlns="http://www.w3.org/2000/svg"
@@ -348,7 +354,7 @@ const Navbar = () => {
               className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${
                 isOpen ? "" : " hidden"
               }`}
-              style={{ top: topPos + "px" }}
+              style={{ top: topPos + "px", overscrollBehavior: "contain" }}
             >
               {navItems}
               <img src={navb} alt="" className="my-10" />
