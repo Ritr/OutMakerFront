@@ -38,16 +38,16 @@ const Header = () => {
           x-webkit-airplay="true"
 
         >
-          {/* <source
+          <source
             src="https://cdn.shopify.com/videos/c/o/v/c3ed803a059d415fbd4421870148771f.mp4"
             type="video/mp4"
-          /> */}
+          />
           Your browser does not support the video tag.
         </video>
       </div>
       <div className="hero-content text-center">
         <div className="max-w-full pb-32">
-          <h1 className="text-4xl md:text-5xl text-white font-semibold uppercase">
+          <h1 className="text-4xl md:text-5xl text-white font-semibold">
             Nature's Touch for Your Outdoors
           </h1>
           <p className="py-6 text-white">
