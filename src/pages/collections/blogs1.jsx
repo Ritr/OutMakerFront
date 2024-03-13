@@ -8,6 +8,7 @@ import useCollections from "../../Hooks/useCollections";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import useCategories from "../../Hooks/useCategories";
 import { useLocation } from "react-router-dom";
+import { BiSolidQuoteLeft, BiSolidQuoteRight } from "react-icons/bi";
 
 const Blogs = () => {
   const { collections } = useCollections();
@@ -17,44 +18,64 @@ const Blogs = () => {
   console.log(location?.pathname);
 
   return (
-    <section className="w-full">
-      <div className="text-center pt-5 md:pt-10">
-        <h2 className="text-4xl font-semibold text-black">
-          {location?.pathname === "/categories" ? "CATEGORIES" : "COLLECTIONS"}
-        </h2>
-        <h4 className="text-2xl font-medium text-[#002B5B] pt-2">OUTMAKER</h4>
-        <p className="py-4 md:py-10 text-base font-light">
-          Outmaker offers {collections?.length}{" "}
-          {location?.pathname === "/categories" ? "categories" : "collections"}{" "}
-          of outdoor furniture with unic designs which will meet your special
-          needs
-        </p>
+    <section className="w-full pt-28">
+      <div className="md:hidden bg-primary text-white text-center text-3xl font-bold uppercase py-6">
+        COLLECTIONS.
       </div>
-      {location?.pathname === "/categories"
-        ? categories?.map((category, index) => (
-            <SingleBlog
-              key={category?.category_id}
-              contactPage={false}
-              image={ImgBaseUrl(category?.category_pic)}
-              name={category?.category_name}
-              description={category?.category_desc}
-              id={category?.category_id}
-              category={true}
-              className={index % 2 === 1 ? "order-last" : ""}
-            />
-          ))
-        : collections?.map((collection, index) => (
-            <SingleBlog
-              key={collection?.collection_id}
-              contactPage={false}
-              image={ImgBaseUrl(collection?.collection_pic)}
-              name={collection?.collection_name}
-              description={collection?.collection_desc}
-              id={collection?.collection_id}
-              className={index % 2 === 1 ? "order-last" : ""}
-            />
-          ))}
-
+      <div className="px-4">
+        <div className="md:hidden bg-[#FAFAFA] mt-4 mb-6 p-4">
+          <div>
+            <BiSolidQuoteLeft className="xl" />
+          </div>
+          <div className="text-sm px-4">
+            Outmaker offers 9 collections of outdoor furniture with unic designs
+            which will meet your special needs
+          </div>
+          <div className="flex justify-end">
+            <BiSolidQuoteRight className="xl" />
+          </div>
+        </div>
+        <div className="text-center pt-5 md:pt-10">
+          {/* <h2 className="text-4xl font-semibold text-black">
+            {location?.pathname === "/categories"
+              ? "CATEGORIES"
+              : "COLLECTIONS"}
+          </h2> */}
+          {/* <h4 className="text-2xl font-medium text-[#002B5B] pt-2">OUTMAKER</h4> */}
+          {/* <p className="py-4 md:py-10 text-base font-light">
+            Outmaker offers {collections?.length}
+            {location?.pathname === "/categories"
+              ? "categories"
+              : "collections"}
+            of outdoor furniture with unic designs which will meet your special
+            needs
+          </p> */}
+        </div>
+        {location?.pathname === "/categories"
+          ? categories?.map((category, index) => (
+              <SingleBlog
+                key={category?.category_id}
+                contactPage={false}
+                image={ImgBaseUrl(category?.category_pic)}
+                name={category?.category_name}
+                description={category?.category_desc}
+                id={category?.category_id}
+                category={true}
+                className={index % 2 === 1 ? "order-last" : ""}
+              />
+            ))
+          : collections?.map((collection, index) => (
+              <SingleBlog
+                key={collection?.collection_id}
+                contactPage={false}
+                image={ImgBaseUrl(collection?.collection_pic)}
+                name={collection?.collection_name}
+                description={collection?.collection_desc}
+                id={collection?.collection_id}
+                className={index % 2 === 1 ? "order-last" : ""}
+              />
+            ))}
+      </div>
       {/* <SingleBlog
         contactPage={false}
         image={img1}
