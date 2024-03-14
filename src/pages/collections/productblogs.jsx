@@ -433,7 +433,7 @@ const Blogs = () => {
             <OutdoorDiningChairCard
               key={product.p_id}
               id={product?.p_id}
-              imageUrl={`https://www.theoutmaker.com/${product.p_pic}`} // Adjust the path as needed
+              imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
               title={product.p_name}
               review={product?.review?.[0]?.review}
               price={`A$${price[0].product_sale_price}`} // Display sale price

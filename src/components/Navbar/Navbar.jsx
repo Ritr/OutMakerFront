@@ -63,7 +63,6 @@ const Navbar = () => {
     const handleScroll = throttle(() => {
 
       let h = top - window.scrollY;
-      console.log(h);
       let direction = window.scrollY - scrollY.current > 0 ? true : false;
       if (direction) {
         h = -window.scrollY;

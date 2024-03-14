@@ -2,10 +2,13 @@ import React from "react";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import feateImageLg from "../../assets/images/article-lg.png";
 import { Link, useNavigate } from "react-router-dom";
+import { LuArrowLeft } from "react-icons/lu";
 
 function formatDateTime(isoDateString) {
   const options = { day: "numeric", month: "short", year: "numeric" };
-  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(new Date(isoDateString));
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+    new Date(isoDateString)
+  );
   return formattedDate;
 }
 
@@ -39,46 +42,52 @@ const FeatureArticle = (data) => {
       </div>
 
       <div className="basis-1/2 pt-8 md:pt-0">
-        <h4 className="text-xl md:text-3xl md:font-bold md:text-primary border-b-4 border-primary">
+        <h4 className="text-xl md:text-3xl md:font-bold md:text-primary pb-1 md:pb-0 border-b-4 border-primary">
           Featured Articles
         </h4>
         {data.data.map((article) => (
-          <div
-            key={article.post_id}
-            className="flex justify-between border-b-4 border-[#B8B8B8] py-4"
-          >
-            <div className="basis-2/3">
-            <Link to={`/blog/${article.post_id}/${article.post_url}`} key={article.post_id}>
-            <h5
-                className="text-xl lg:text-xl font-semibold text-black hover:text-blue-700 underline hover:underline"
-                style={{
-                  height: "110px",
-                  wordBreak: "break-all",
-                  overflow: "hidden",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
-                {article.post_title}
-              </h5>
-              </Link>
-              <div className="flex items-center justify-between md:justify-normal gap-[6px] md:gap-3 text-xs md:text-base text-[#213343] font-normal md:pt-3">
-                <div className="divider bg-[#213343] w-[2px] h-4"></div>
-                <span>{formatDateTime(article.updated_at)}</span>
+          <>
+            <div
+              key={article.post_id}
+              className="flex justify-between md:border-b-4 border-[#B8B8B8] py-4"
+            >
+              <div className="basis-2/3">
+                <Link
+                  to={`/blog/${article.post_id}/${article.post_url}`}
+                  key={article.post_id}
+                >
+                  <h5 className="text-xl lg:text-xl font-semibold text-black hover:text-blue-700 md:underline hover:underline">
+                    {article.post_title}
+                  </h5>
+                </Link>
+                <div className="flex items-center justify-between md:justify-normal gap-[6px] md:gap-3 text-xs md:text-base text-[#213343] font-normal md:pt-3">
+                  <div className="hidden md:block divider bg-[#213343] w-[2px] h-4"></div>
+                  <span className="hidden md:block">
+                    {formatDateTime(article.updated_at)}
+                  </span>
+                  <Link to={`/blog/${article.post_id}/${article.post_url}`}>
+                    <span className="md:hidden flex gap-1 items-center text-md">
+                      <LuArrowLeft></LuArrowLeft> LEARN MORE
+                    </span>
+                  </Link>
+                </div>
+              </div>
+
+              <div className="basis-1/3 pl-2 md:pl-0">
+                <Link
+                  to={`/blog/${article.post_id}/${article.post_url}`}
+                  key={article.post_id}
+                >
+                  <img
+                    src={ImgBaseUrl(article.post_pic)}
+                    alt=""
+                    className="w-full h-full"
+                  />
+                </Link>
               </div>
             </div>
-
-            <div className="basis-1/3 pl-2 md:pl-0">
-              <Link to={`/blog/${article.post_id}/${article.post_url}`} key={article.post_id}>
-                <img
-                  src={ImgBaseUrl(article.post_pic)}
-                  alt=""
-                  className="w-full h-full"
-                />
-              </Link>
-            </div>
-          </div>
+            <div class="md:hidden h-[1px] bg-black w-full"></div>
+          </>
         ))}
       </div>
     </section>

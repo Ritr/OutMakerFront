@@ -1,6 +1,8 @@
 import React from "react";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { Link } from "react-router-dom";
+import { LuArrowRight } from "react-icons/lu";
+
 function formatDateTime(isoDateString) {
   const options = { day: "numeric", month: "short", year: "numeric" };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
@@ -46,8 +48,15 @@ const LatestArticle = (latestBlogs) => {
                   </h3>
                 </Link>
 
-                <div className="flex items-center justify-between gap-[6px] md:gap-3 text-xs lg:text-base text-[#213343] font-normal pb-1">
-                  <span>{formatDateTime(article.updated_at)}</span>
+                <div className="flex items-center justify-end md:justify-between gap-[6px] md:gap-3 text-xs lg:text-base text-[#213343] font-normal pb-1">
+                  <span className="hidden md:block">
+                    {formatDateTime(article.updated_at)}
+                  </span>
+                  <Link to={`/blog/${article.post_id}/${article.post_url}`}>
+                    <span className="md:hidden flex gap-1 items-center text-md">
+                      LEARN MORE<LuArrowRight></LuArrowRight>
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>
