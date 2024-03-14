@@ -522,7 +522,7 @@ const CheckoutInfo = () => {
         </div> */}
 
         <div className="w-full bg-white">
-          <div className="grid grid-cols-1 lg:grid-cols-9">
+          <div className="grid grid-cols-1 lg:grid-cols-9 md:max-h-[830px]">
             {/* mobile order summary */}
             <aside className="sm:hidden bg-[#FFFAEE]">
               <div className="">
@@ -612,7 +612,7 @@ const CheckoutInfo = () => {
             </aside>
 
             {/* Left Column for Forms */}
-            <div className="col-span-1 lg:col-span-5 bg-[#FFFAEE] rounded-lg shadow-lg p-3 pt-10 md:pt-10 md:pr-10 md:pb-0">
+            <div className="col-span-1 lg:col-span-5  p-3 pt-10 md:pt-10 md:pr-10 md:pb-0 md:max-h-[830px] md:overflow-auto">
               <div className="md:w-2/3 ml-auto">
                 <h2 className="text-2xl font-semibold mb-4 text-gray-700">
                   Contact
@@ -620,7 +620,7 @@ const CheckoutInfo = () => {
                 <input
                   type="email"
                   placeholder="Email"
-                  className="input input-bordered border-2 focus:outline-none w-full text-sm"
+                  className="input input-bordered focus:outline-none w-full text-sm"
                   value={formDataemail}
                   onChange={handleEmailChange}
                 />
@@ -644,10 +644,11 @@ const CheckoutInfo = () => {
                   <div className="bg-white ">
                     <div className="form-control">
                       <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "paypal"
-                          ? "paymentMethodselected"
-                          : ""
-                          }`}
+                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${
+                          paymentMethod === "paypal"
+                            ? "paymentMethodselected"
+                            : ""
+                        }`}
                       >
                         <div className="flex items-center">
                           <input
@@ -676,10 +677,11 @@ const CheckoutInfo = () => {
 
                     <div className="form-control">
                       <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${paymentMethod === "card"
-                          ? "paymentMethodselected"
-                          : ""
-                          }`}
+                        className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${
+                          paymentMethod === "card"
+                            ? "paymentMethodselected"
+                            : ""
+                        }`}
                       >
                         <div className="flex items-center">
                           <input
@@ -747,26 +749,29 @@ const CheckoutInfo = () => {
               </div>
             </div>
             {/* Right Column for Order Summary */}
-            <div className="col-span-1 lg:col-span-4 bg-white p-6 rounded-lg shadow-lg md:w-full md:pl-10 pt-10 md:pb-0">
-              <div className="md:w-3/5">
+            <div className="col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  md:w-full md:pl-10 pt-10 md:pb-0">
+              <div>
                 {objectOnlyData && objectOnlyData.length > 0 ? (
                   objectOnlyData.map((item) => (
-                    <div key={item?.product?.p_id} className="flex mb-6">
+                    <div key={item?.product?.p_id} className="flex mb-6 w-full relative">
+                      <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">{item.qunatity}</span>
                       <img
                         src={ImgBaseUrl(item?.product?.p_pic)}
                         alt="Product"
-                        className="object-contain rounded w-20 h-20  mr-4"
+                        className="object-contain rounded w-20 h-20  mr-4 bg-white"
                       />
-                      <div>
+                      <div className="flex-1">
                         <h4 className="text-lg font-medium">
                           {item?.product?.p_name.slice(0, 30)}
                         </h4>
                         <p className="text-sm text-gray-500">
                           Glacier / {item?.dimension} / {item?.category}
                         </p>
-                        <p className="text-sm text-gray-500">
-                          A${item?.cost?.product_sale_price}
-                        </p>
+                      </div>
+                      <div className="w-16 text-left flex flex-col justify-center items-center">
+                        <span className="text-sm text-gray-500">
+                          A${item?.cost?.product_sale_price * item.qunatity}
+                        </span>
                       </div>
                     </div>
                   ))
@@ -792,7 +797,10 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between">
                     <span className="flex items-center cursor-pointer">
                       Estimated Tax
-                      <div className="tooltip" data-tip="Price already includes tax">
+                      <div
+                        className="tooltip"
+                        data-tip="Price already includes tax"
+                      >
                         <FaQuestionCircle className="ml-1"></FaQuestionCircle>
                       </div>
                     </span>
