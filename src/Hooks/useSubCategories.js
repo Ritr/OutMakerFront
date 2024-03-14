@@ -1,13 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 const useSubCategories = () => {
-    const [subCategories, setSubCategories] = useState([]);
-    useEffect(() => {
-      fetch("https://www.theoutmaker.com/public/api/get/subcategory/all")
-        .then((res) => res.json())
-        .then((data) => setSubCategories(data.Subcategories));
-    }, []);
-    return {subCategories}
+
+  const { data } = useQuery(["subcategory"], () =>
+    fetch("https://www.theoutmaker.com/api/get/subcategory/all").then(
+      (res) => res.json(),
+    ),
+    {
+      cacheTime: 60000, // 设置缓存时间为 60 秒
+      staleTime: 30000, // 设置数据过期时间为 30 秒
+    }
+  );
+
+  return { subCategories: data ? data.Subcategories : [] };
+
 };
 
 export default useSubCategories;

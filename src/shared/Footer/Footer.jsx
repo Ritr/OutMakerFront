@@ -1,5 +1,9 @@
 import React from "react";
 import logo from "../../assets/icons/footerIcon.png";
+import logo2 from "../../assets/icons/footerIcon2.png";
+import facebook from "../../assets/icons/facebook.png";
+import x from "../../assets/icons/x.png";
+import ins from "../../assets/icons/ins.png";
 import visa from "../../assets/icons/visa.svg";
 import paypal from "../../assets/icons/paypal1.svg";
 import express from "../../assets/icons/express.svg";
@@ -90,10 +94,10 @@ const Footer = () => {
   };
   return (
     <footer className=" bg-[#262F3C] text-white">
-      <div className="container mx-auto px-10 pt-20">
-        <div className="flex flex-col lg:flex-row justify-between space-y-8 lg:space-y-0 pb-10">
-          <div className="lg:w-2/5 flex flex-col lg:flex-row justify-between ">
-            <div>
+      <div className="container mx-auto px-4 pt-10 md:px-10 md:pt-20">
+        <div className="flex flex-col lg:flex-row justify-between  lg:space-y-0 pb-10">
+          <div className="w-3/5 lg:w-2/5 flex flex-col lg:flex-row justify-between ">
+            <div className="hidden md:block">
               <Link to="/">
                 <div>
                   <img src={logo} alt="" className="w-20 p-2 ms-6" />
@@ -101,7 +105,8 @@ const Footer = () => {
               </Link>
 
 
-              <div className="flex justify-start space-x-3 pb-28">
+              <div className="md:flex justify-start space-x-3 md:pb-28">
+
                 <a
                   rel="noopener noreferrer"
                   href="https://www.facebook.com/theoutmaker/"
@@ -128,7 +133,6 @@ const Footer = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     className="w-8 h-8 bg-[#222A36] rounded-full p-2 fill-current"
                   >
-
                     <path d="M13.37 2.094A10.003 10.003 0 0 0 8.002 21.17a7.757 7.757 0 0 1 .163-2.293c.185-.839 1.296-5.463 1.296-5.463a3.739 3.739 0 0 1-.324-1.577c0-1.485.857-2.593 1.923-2.593a1.334 1.334 0 0 1 1.342 1.508c0 .9-.578 2.262-.88 3.54a1.544 1.544 0 0 0 1.575 1.923c1.898 0 3.17-2.431 3.17-5.301 0-2.2-1.457-3.848-4.143-3.848a4.746 4.746 0 0 0-4.93 4.794 2.96 2.96 0 0 0 .648 1.97.48.48 0 0 1 .162.554c-.046.184-.162.623-.208.784a.354.354 0 0 1-.51.254c-1.384-.554-2.036-2.077-2.036-3.816 0-2.847 2.384-6.255 7.154-6.255 3.796 0 6.32 2.777 6.32 5.747 0 3.909-2.177 6.848-5.394 6.848a2.861 2.861 0 0 1-2.454-1.246s-.578 2.316-.692 2.754a8.026 8.026 0 0 1-1.019 2.131c.923.28 1.882.42 2.846.416a9.988 9.988 0 0 0 9.996-10.003 10.002 10.002 0 0 0-8.635-9.903z"></path>
                   </svg>
                 </a>
@@ -150,12 +154,20 @@ const Footer = () => {
                 </a>
               </div>
             </div>
+            <div className="md:hidden mb-6">
+              <Link to="/">
+                <div className="flex items-center">
+                  <img src={logo2} alt="" className="w-10 mr-3" />
+                  <span className="text-lg font-semibold">OUTMAKER</span>
+                </div>
+              </Link>
+            </div>
 
             <div className="w-full lg:w-3/5 text-white rounded-lg">
-              <h3 className="text-lg font-semibold text-left mb-4">
+              <h3 className="text-md md:text-lg md:font-semibold text-left mb-4">
                 Newsletter Signup
               </h3>
-              <p className="text-sm text-left mb-4">
+              <p className="text-xs md:text-sm text-left mb-4">
                 Subscribe to our newsletter and get 10% off your first purchase
               </p>
               <form
@@ -166,30 +178,28 @@ const Footer = () => {
                   type="text"
                   name="ns_email"
                   placeholder="Your email address"
-                  className="pl-2 pr-8 py-2 w-full rounded-md text-gray-700 text-left"
+                  className="pl-2 pr-8 py-2 w-full rounded-md text-gray-700 text-left text-sm md:text-base"
                 />
-                <input type="text" name="discount_per" value="34" hidden />
 
-                <label className="inline-flex items-center m-3">
+                <label className="inline-flex items-center my-3">
                   <input
                     type="checkbox"
                     name="agreement"
-                    className="form-checkbox h-5 w-5 text-blue-600 "
+                    className="form-checkbox h-3 w-3 md:h-5 md:w-5 text-blue-600 "
                   />
-                  <span className="ml-2 text-xs">
-                    I agree with the{" "}
+                  <span className="ml-2 text-2xs md:text-base">
+                    I agree with the &nbsp;
                     <Link
                       to="/TermsOfService"
                       className="text-blue-300 hover:text-blue-400"
                     >
                       terms and conditions
                     </Link>
-                    .
                   </span>
                 </label>
                 <button
                   type="submit"
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-full"
+                  className="bg-blue-500 hover:bg-blue-600 text-white text-sm md:text-base md:font-bold py-2 px-8 rounded-full mt-4 md:mt-0"
                 >
                   Subscribe
                 </button>
@@ -197,8 +207,8 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col lg:flex-row justify-end lg:space-y-0 pb-10">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-x-3 gap-y-8 lg:w-full pb-10">
+          <div className="flex flex-col lg:flex-row justify-end lg:space-y-0 pb-10 mt-12 md:mt-0">
+            <div className="grid grid-cols-3  lg:grid lg:grid-cols-4 lg:gap-x-3 lg:gap-y-8 lg:w-full pb-10">
               {/* <div className="space-y-3" style={styleToApply}>
               <h3 className="tracki font-semibold text-base">Product</h3>
               <ul className="space-y-1 text-sm font-light leading-loose">
@@ -224,48 +234,53 @@ const Footer = () => {
             </div> */}
 
               <div className="space-y-3">
-                <h3 className="tracki font-semibold text-base">Quick Link</h3>
-                <ul className="space-y-1 text-sm font-light  leading-loose">
-                  <li>
+                <h3 className="tracki font-semibold  text-sm md:text-base">
+                  Quick Link
+                </h3>
+                <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">
+                  <li className="">
                     <Link to="/AboutUs">About us</Link>
                   </li>
-                  <li>
+                  <li className="">
                     <Link to="/ContactUs">Contact us</Link>
                   </li>
-                  <li>
+                  <li className="">
                     <Link to="/all-blogs">Blogs</Link>
                   </li>
-                  <li>
+                  <li className="">
                     <Link to="/Care">Care & Maintenance</Link>
                   </li>
                 </ul>
               </div>
               <div className="space-y-3">
-                <h3 className="tracki font-semibold text-base">Our Policies</h3>
-                <ul className="space-y-1 text-sm font-light  leading-loose">
-                  <li>
+                <h3 className="trackifont-semibold text-sm  md:text-base">
+                  Our Policies
+                </h3>
+                <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">
+                  <li className="">
                     <Link to="/TermsOfService">Terms of Service</Link>
                   </li>
-                  <li>
+                  <li className="">
                     <Link to="/Privacypolicy">Privacy Policy</Link>
                   </li>
-                  <li>
+                  <li className="">
                     <Link to="/ShippingPolicy">Shipping and Delivery</Link>
                   </li>
-                  <li>
-                    <Link to="/ReturnPolicy">Refund Policy</Link>
+
+                  <li className="">
+                    <Link to="/RefundPolicy">Refund Policy</Link>
                   </li>
-                  <li>
+                  <li className="">
                     <Link to="/FAQ">Frequently Asked Questions</Link>
                   </li>
                 </ul>
               </div>
               <div className="space-y-3">
-                <h3 className="tracki font-semibold text-base">
+                <h3 className="tracki font-semibold  text-sm md:text-base">
                   Contact Info.
                 </h3>
-                <ul className="space-y-1 text-sm font-light  leading-loose">
-                  <li>
+                <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">
+                  <li className="">
                     <a>
                       +61483966676
                       {/*<br /> (208) 555-0112*/}
@@ -276,6 +291,30 @@ const Footer = () => {
                   </li>
                 </ul>
               </div>
+            </div>
+            <div className="md:hidden flex items-center gap-3">
+              <a
+                rel="noopener noreferrer"
+                href="https://www.instagram.com/outmaker_furniture/"
+                title="Instagram"
+              >
+                <img src={ins} className="w-6" alt="" />
+              </a>
+
+              <a
+                rel="noopener noreferrer"
+                href="https://www.pinterest.com.au/outmakerau/"
+                title="Pinterest"
+              >
+                <img src={x} className="w-6" alt="" />
+              </a>
+              <a
+                rel="noopener noreferrer"
+                href="https://www.facebook.com/theoutmaker/"
+                title="Facebook"
+              >
+                <img src={facebook} className="w-6" alt="" />
+              </a>
             </div>
           </div>
         </div>

@@ -35,6 +35,7 @@ const Collection = () => {
           {collections?.slice(0, 6).map((collection) => (
             <Link
               to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
+              key={collection?.collection_id}
             >
               <div
                 key={collection?.collection_id}
@@ -48,19 +49,16 @@ const Collection = () => {
                 />
                 <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
                   {collection?.collection_name}
-                  <Link
-                    to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
-                  >
-                    <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
-                      Shop <BsArrowRight className="ms-2" />
-                    </span>
-                  </Link>
+
+                  <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
+                    Shop <BsArrowRight className="ms-2" />
+                  </span>
                   {/* <Button className="btn btn-primary rounded-full text-white hover:text-primary hover:bg-white capitalize">
                     Explore <BsArrowRight className="ms-2" />
                   </Button> */}
                 </div>
                 <div className="text-sm">{collection?.collection_desc}</div>
-              </div>{" "}
+              </div>
             </Link>
           ))}
         </div>

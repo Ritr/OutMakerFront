@@ -11,7 +11,7 @@ import logo from "../../assets/icons/navIcon.png";
 import SidebarCart from "../../components/Navbar/SidebarCart";
 
 import ShippingAddress from "./ShippingAddress";
-import { FaShoppingBag } from "react-icons/fa";
+import { FaShoppingBag, FaQuestionCircle } from "react-icons/fa";
 
 import {
   useCreatePaypalOrder,
@@ -66,8 +66,8 @@ const CheckoutInfo = () => {
     console.log(`totalCharge：${totalCharge}`);
     console.log(`discountedTotalCharge：${discountedTotalCharge}`);
     // 更新总费用为折扣后的费用
-    setTotalChargeFromShipping(0);
-    // setTotalChargeFromShipping(discountedTotalCharge);
+    // setTotalChargeFromShipping(0);
+    setTotalChargeFromShipping(discountedTotalCharge);
   };
 
   // Calculate the tax price
@@ -597,7 +597,12 @@ const CheckoutInfo = () => {
                         </span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Estimated Tax</span>
+                        <span>
+                          Estimated Tax
+                          <div className="tooltip" data-tip="hello">
+                            <FaQuestionCircle></FaQuestionCircle>
+                          </div>
+                        </span>
                         <span>A${tax}</span>
                       </div>
                     </div>
@@ -760,7 +765,6 @@ const CheckoutInfo = () => {
                           Glacier / {item?.dimension} / {item?.category}
                         </p>
                         <p className="text-sm text-gray-500">
-
                           A${item?.cost?.product_sale_price}
                         </p>
                       </div>
@@ -780,14 +784,18 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between">
                     <span>Shipping</span>
                     <span>
-
                       {totalChargeFromShipping
                         ? `A$${totalChargeFromShipping.toFixed(2)}`
                         : "Enter shipping address"}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Estimated Tax</span>
+                    <span className="flex items-center cursor-pointer">
+                      Estimated Tax
+                      <div className="tooltip" data-tip="Price already includes tax">
+                        <FaQuestionCircle className="ml-1"></FaQuestionCircle>
+                      </div>
+                    </span>
                     <span>A${tax}</span>
                   </div>
                 </div>

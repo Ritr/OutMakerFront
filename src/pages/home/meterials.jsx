@@ -1,11 +1,16 @@
 import React from "react";
-import img1 from "../../assets/images/Materials/Teak.png";
-import img2 from "../../assets/images/Materials/Aluminum.jpg";
-import img3 from "../../assets/images/Materials/Rattan.jpg";
-import img4 from "../../assets/images/Materials/Sunbrella.png";
+import img1 from "../../assets/images/Materials/Teak.webp";
+import img2 from "../../assets/images/Materials/Aluminum.webp";
+import img3 from "../../assets/images/Materials/Rattan.webp";
+import img4 from "../../assets/images/Materials/Sunbrella.webp";
 import img5 from "../../assets/stylish/1.jpg";
+import imgs2 from "../../assets/stylish/2.jpg";
+import imgs3 from "../../assets/stylish/3.jpg";
+import imgs4 from "../../assets/stylish/4.jpg";
 
 import MV from "./material_video";
+import { Link } from "react-router-dom";
+import { BsChevronRight } from "react-icons/bs";
 
 const materials = [
   {
@@ -50,7 +55,63 @@ const Meterials = () => {
             Our Product Designer
           </h2>
         </div>
-        <img src={img5} alt="" className="wow slideInLeft" />
+
+        <img
+          src={img5}
+          alt=""
+          className="hidden md:inline-block wow slideInLeft"
+        />
+        <img
+          src={imgs2}
+          alt=""
+          className="inline-block md:hidden wow slideInLeft"
+        />
+        <div className="flex mt-3 md:hidden justify-between gap-3  wow slideInLeft">
+          <div className="flex-1 bg-[#F5F5F5]">
+            <img src={imgs3} alt="" className="w-full h-30 object-cover" />
+            <div className="p-3">
+              <div className="text-center text-base font-semibold mb-3">
+                Furniture designer
+              </div>
+              <div className="text-xs mb-4">
+                He is a renowned designer, artist, and creative directorin
+                Mexico, leading the design industry. He has servedas the founder
+                and CEO of PANOR Á MICA, the creativedirector of NONO, and the
+                CEO and founder of joelEscalona Studio.
+              </div>
+              {/* <div className="flex justify-center">
+                <Link>
+                  <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
+                    View more
+                    <BsChevronRight className="ml-1"></BsChevronRight>
+                  </button>
+                </Link>
+              </div> */}
+            </div>
+          </div>
+          <div className="flex-1 bg-[#F5F5F5]">
+            <img src={imgs4} alt="" className="w-full h-30 object-cover" />
+            <div className="p-3">
+              <div className="text-center text-base font-semibold mb-3">
+                Furniture designer
+              </div>
+              <div className="text-xs mb-4">
+                He is a renowned designer, artist, and creative directorin
+                Mexico, leading the design industry. He has servedas the founder
+                and CEO of PANOR Á MICA, the creativedirector of NONO, and the
+                CEO and founder of joelEscalona Studio.
+              </div>
+              {/* <div className="flex justify-center">
+                <Link>
+                  <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
+                    View more
+                    <BsChevronRight className="ml-1"></BsChevronRight>
+                  </button>
+                </Link>
+              </div> */}
+            </div>
+          </div>
+        </div>
         <div className="text-center w-4/5 md:w-2/3 mx-auto mt-5">
           <h2 className="text-primary font-semibold mt-5 text-2xl md:text-4xl">
             Materials We Use
@@ -79,20 +140,20 @@ const Meterials = () => {
 
         {/* <MV
           videoSource={
-            "https://cdn.shopify.com/videos/c/o/v/90e18854ef244ab687d191956a77b44d.mp4"
+            "https://cdn.shopify.com/videos/c/o/v/418c216f38744437bdc0bce21ac5410b.mp4"
           }
           text_h2="Built to withstand everything life throws at us."
           text_p="Where Durability Embraces the Elements"
         /> */}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 pt-10 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-5 pt-10 mb-14">
           {materials.slice(0, 4)?.map((material) => (
             <div
               key={material?.id}
-              className="container mx-auto px-2 pt-2 pb-4 border bg-white max-w-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 hover:scale-105 wow fadeInUp"
+              className="container mx-auto px-2 pt-2 md:pb-4 md:border bg-white max-w-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition duration-300 hover:scale-105 wow fadeInUp"
               data-wow-duration={`${getRandomDuration()}s`}
             >
-              <div className="h-[280px]">
+              <div className="h-auto md:h-[280px]">
                 <img
                   className="rounded-lg object-fill w-full h-full"
                   src={material?.image}
@@ -101,18 +162,22 @@ const Meterials = () => {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl py-1 text-primary font-semibold">
+                  <h2 className="text-base md:text-xl py-1 text-primary font-semibold">
                     {material?.title}
                   </h2>
-                  <p className="text-xs font-normal">{material?.description}</p>
+                  <p className="hidden md:block text-xs font-normal">
+                    {material?.description}
+                  </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* <MV
-          videoSource="https://cdn.shopify.com/videos/c/o/v/72b9e518ac6e42bc846bbcac4122c7c7.mp4"
+        {/* 
+        <MV
+          videoSource="https://cdn.shopify.com/videos/c/o/v/36bb127a7fd34c8db6c7edce78a3ed46.mp4"
+
           text_h2="Sunbrella fabric easily handles various cold weather conditions."
         /> */}
       </div>

@@ -114,7 +114,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
         style={{
           zIndex: "1001",
         }}
-        className={`fixed inset-y-0 right-0 w-full md:w-3/12  bg-base-100 shadow-xl transition-transform duration-300 ease-in-out ${
+        className={`fixed inset-y-0 right-0 left-10 md:left-auto md:w-3/12  bg-base-100 shadow-xl transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -147,7 +147,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                     <img
                       src={ImgBaseUrl(singleData?.product?.p_pic)}
                       alt="Product"
-                      className="w-[35%] object-contain"
+                      className="w-[35%] object-contain -mt-12"
                     />
 
                     <div className="w-[65%] flex flex-col">
@@ -164,7 +164,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                         Category: {singleData?.category}
                       </p>
                       <div className="card-actions flex justify-between items-center mt-4 mr-2">
-                        <div className="flex items-center gap-6 border border-[#BFBFBF] p-2 rounded-full cursor-pointer">
+                        <div className="flex items-center gap-6 border border-[#BFBFBF] p-2 py-1 rounded-full cursor-pointer">
                           <p
                             onClick={() =>
                               handleDecreaseQuantity(singleData?.product?.p_id)

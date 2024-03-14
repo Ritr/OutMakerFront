@@ -1802,7 +1802,7 @@ const TermsOfService = () => {
             fontSize: "13pt",
           }}
         >
-          <h2 className="text-xl">Applicable Law</h2>
+          <h2 className="text-xl">GOVERNING LAW</h2>
         </h2>
         <hr /> <br />
         <p
@@ -1815,9 +1815,7 @@ const TermsOfService = () => {
           }}
         >
           <span className="text-sm">
-            These Terms of Service and any separate agreements where we provide
-            you Services shall be governed by and enforced in accordance with
-            the laws of Cyprus
+          These Terms of Service and any separate agreements whereby we provide you Services shall be governed by and construed in accordance with the laws of UK
           </span>
         </p>
         <p

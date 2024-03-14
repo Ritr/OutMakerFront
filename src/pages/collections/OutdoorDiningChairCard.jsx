@@ -23,7 +23,7 @@ const OutdoorDiningChairCard = ({
     "sunbrella":img3,
   };
   return (
-    <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative">
+    <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px]">
       {isNew && (
         <span className="bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded absolute z-10 m-2">
           NEW

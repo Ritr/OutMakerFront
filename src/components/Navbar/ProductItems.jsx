@@ -52,7 +52,7 @@ const ProductItems = () => {
         {/* {!imageLoaded ? (
           <Skeleton width={width} className="h-40" />
         ) : ( */}
-        <img src={src} style={{ display: "block", width }} alt="" />
+        <img src={src} style={{ display: "block" }} className="md:h-[120px] h-auto object-contain" alt="" />
         {/* )} */}
       </>
     );
@@ -82,7 +82,7 @@ const ProductItems = () => {
                 animate="visible"
                 variants={variants}
                 transition={{ duration: 0.7 }}
-                className="rounded-lg shadow-lg p-2 min-h-40"
+                className="p-2 min-h-40"
               >
                 <ImageWithSkeleton
                   src={ImgBaseUrl(category?.category_pic)}
@@ -90,7 +90,7 @@ const ProductItems = () => {
                   width="100%"
                 />
 
-                <p className="mt-2 text-sm py-2 md:text-lg text-gray-500 md:text-black">
+                <p className="mt-2 text-sm py-2 text-center md:text-lg text-gray-500 md:text-black">
                   {category?.category_name}
                 </p>
                 {/* <p className="text-sm text-gray-600 hidden md:block">

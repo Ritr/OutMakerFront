@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../shared/Button/Button";
 import { PiMapPinLineFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
 
@@ -19,10 +18,10 @@ const SingleBlog = ({
 				<img src={image} alt='' className="md:h-[500px] w-full object-cover" />
 			</div>
 			<div className='basis-1/2 text-center py-10 px-10 flex flex-col items-center'>
-				<h4 className='text-xl lg:text-2xl font-medium text-black tracking-wider'>
+				<h4 className='hidden md:block text-xl lg:text-2xl font-medium text-black tracking-wider'>
 					{contactPage ? title : "COLLECTION"}
 				</h4>
-				<h2 className='text-3xl lg:text-5xl font-semibold text-black'>{name}</h2>
+				<h2 className='text-2xl uppercase md:normal-case md:text-3xl lg:text-5xl font-semibold text-black'>{name}</h2>
 
 				{contactPage ? (
 					<div className='py-8 font-light text-lg'>
@@ -56,9 +55,12 @@ const SingleBlog = ({
 					</p>
 				) : (
 					<Link to={`/${!category ? "collection-product" : "category-product"}/${id}/${name}`}>
-					<Button className='btn border-primary text-primary hover:text-white hover:bg-primary btn-outline rounded-full border-2 capitalize'>
+					<button className='hidden md:block btn border-primary text-primary hover:text-white hover:bg-primary btn-outline rounded-full border-2 capitalize'>
 						DISCOVER
-					</Button>
+					</button>
+					<button className='bg-[#ffffff] text-black md:hidden px-8 py-2 border border-black rounded-full '>
+						DISCOVER
+					</button>
 					</Link>
 					
 				)}

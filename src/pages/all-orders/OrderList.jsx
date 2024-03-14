@@ -15,12 +15,12 @@ const OrderList = () => {
 
   useEffect(() => {
     // Fetch user code from localStorage when the component mounts
-    const storedUserCode = localStorage.getItem("usercode");
+    // const storedUserCode = localStorage.getItem("usercode");
 
-    if (storedUserCode) {
-      setUserCode(storedUserCode);
-      fetchOrders(storedUserCode);
-    }
+    // if (storedUserCode) {
+    //   setUserCode(storedUserCode);
+    //   fetchOrders(storedUserCode);
+    // }
   }, []);
 
   // Function to handle search input changes
@@ -431,7 +431,7 @@ const OrderListMB = () => {
   }, [orders, activeTab, searchTerm]);
 
   return (
-    <div className="container mx-auto p-4 pt-0">
+    <div className="container mx-auto p-4 pt-16 md:pt-0">
       <div className="sticky top-0 z-10 bg-white">
         <div className="flex justify-between items-center mt-4 p-2">
           <input

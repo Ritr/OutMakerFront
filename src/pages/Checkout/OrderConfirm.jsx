@@ -1,8 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const OrderConfirm = () => {
   return (
     <div className="container main_order_confirm mx-auto ml-24">
+
         
         <div className='flex 	justify-content'>
                 <ul className='flex py-4'>
@@ -108,28 +109,37 @@ const OrderConfirm = () => {
   </table>
 </div>
 
-    <div>
-        <p className='text-right'><span>Freight Insurance </span> Claims can be settled if the good are return before receipt <span>Apply for Claim</span></p>
-        <p className='text-right'><span>Delivery Commitment </span> Order promise delivery within a limited time, delay can be compenteed <span>Apply for Claim</span></p>
-    </div>
-    <div className='flex justify-between font-bold leading-8'>
-        <div className='text-blue-900'>
+        <div>
+          <p className="text-right">
+            <span>Freight Insurance </span> Claims can be settled if the good
+            are return before receipt <span>Apply for Claim</span>
+          </p>
+          <p className="text-right">
+            <span>Delivery Commitment </span> Order promise delivery within a
+            limited time, delay can be compenteed <span>Apply for Claim</span>
+          </p>
+        </div>
+        <div className="flex justify-between font-bold leading-8">
+          <div className="text-blue-900">
             <p>Total Cost</p>
             <p>Freight</p>
-            <p className='text-blue-900'>Customer Service Tel: 0371-88886666</p>
-        </div>
-        <div className='text-right text-blue-900'>
+            <p className="text-blue-900">Customer Service Tel: 0371-88886666</p>
+          </div>
+          <div className="text-right text-blue-900">
             <p>$269</p>
             <p>$0</p>
             <p>Actual Payment: $269</p>
+          </div>
         </div>
-    </div>
-    <div className='text-right py-5'>
-    <button className="border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white rounded-md px-4 py-2 mr-4">Cancellation of Order</button> 
-    <button className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-full">Confirm an Order</button>
-    </div>
-
-        </section>
+        <div className="text-right py-5">
+          <button className="border border-blue-700 text-blue-700 hover:bg-blue-700 hover:text-white rounded-md px-4 py-2 mr-4">
+            Cancellation of Order
+          </button>
+          <button className="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-full">
+            Confirm an Order
+          </button>
+        </div>
+      </section>
     </div>
   );
 };

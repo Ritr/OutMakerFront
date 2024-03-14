@@ -45,8 +45,8 @@ const CartBar = ({ product, cost }) => {
   };
 
   return (
-    <div className="cart-bar w-full md:right-4 md:left-1 fixed bottom-4 z-9999 md:p-3 bg-white flex items-center justify-between rounded-full shadow-lg md:h-16 justify-center">
-      <div className="hidden md:flex flex items-center">
+    <div className="cart-bar w-full md:right-4 md:left-1 fixed bottom-4 z-10 md:p-3 bg-white flex items-center justify-between rounded-full shadow-lg md:h-16 justify-center">
+      <div className="hidden md:flex  items-center">
         <div
           className="ar-wrapper thumb-wrapper"
           style={{ paddingBottom: "1.0" }}
@@ -66,7 +66,7 @@ const CartBar = ({ product, cost }) => {
         </span>
       </div>
 
-      <div className="content-wrapper flex items-center justify-between">
+      <div className="content-wrapper flex items-center justify-between w-full md:w-auto p-1 md:p-0">
         <div className="hidden md:block price-info mr-2 text-right">
           <p className="price">
             <del>A${cost?.product_regular_price}</del>{" "}
@@ -83,7 +83,7 @@ const CartBar = ({ product, cost }) => {
           </p>
         </div>
 
-        <div className="flex items-center gap-6 border-2 border-primary p-2 m-1 rounded-full cursor-pointer">
+        <div className="flex items-center gap-6 border-2 border-primary p-2 mr-1 rounded-full cursor-pointer">
           <p
             className={`cursor-pointer ${
               quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
@@ -100,7 +100,7 @@ const CartBar = ({ product, cost }) => {
 
         <button
           onClick={handleAddToCart}
-          className="bg-primary hover:bg-white text-white text-center hover:text-primary rounded-full w-[270px] md:w-[400px] btn btn-outline text-sm font-normal"
+          className="flex-1 bg-primary hover:bg-white text-white text-center hover:text-primary rounded-full w-[270px] md:w-[400px] btn btn-outline text-sm font-normal"
         >
           <p className="flex gap-2 items-center text-center">
             <BsHandbagFill className="" /> Add to cart- A$

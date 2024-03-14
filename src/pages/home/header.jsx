@@ -29,9 +29,8 @@ const Header = () => {
           autoPlay={true}
           muted
           loop
-          poster="cake.jpg"
           webkit-playsinline="true"
-          playsinline="true"
+          playsInline
           className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover wow fadeInUp"
           data-wow-duration="1s"
           ref={videoRef}

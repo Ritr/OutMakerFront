@@ -12,6 +12,8 @@ export const fetchCartData = async (userId) => {
 
 export const useFetchCartData = (userId) => {
     return useQuery(['cartData', userId], () => fetchCartData(userId), {
+        cacheTime: 60000, // 设置缓存时间为 60 秒
+        staleTime: 30000, // 设置数据过期时间为 30 秒
         onError: (error) => {
             console.error("Error fetching cart data:", error);
         },
@@ -20,6 +22,6 @@ export const useFetchCartData = (userId) => {
                 return null;
             }
             return Object.values(data);
-        }
+        },
     });
 };

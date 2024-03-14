@@ -36,10 +36,13 @@ const Navbar = () => {
 
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
-  const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
+  // const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
   const [topPos, setTopPos] = useState(48);
   const location = useLocation(); // Get the current location
   const [isOpen, setIsOpen] = useState(false);
+  const scrollY = useRef(0);
+  //判断页面滚动方向
+
   useEffect(() => {
     let top = document.querySelector("#tip").clientHeight;
     // 如果是购物车页面，则top = 0
@@ -50,35 +53,32 @@ const Navbar = () => {
       top = 0;
     }
     setTopPos(top);
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setNavVisible(window.innerWidth > 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    // const handleScroll = () => {
-    //   // const h = Math.min(0, window.scrollY);
-    //   const y = window.scrollY;
-    //   let h = top + 50 - y;
-    //   if(h<0){
-    //     h = 0;
-    //   }
-    //   console.log(window.scrollY);
-    //   setTopPos(h);
+    // const handleResize = () => {
+    setIsMobile(window.innerWidth < 768);
+    // setNavVisible(window.innerWidth > 768);
     // };
+
+    // window.addEventListener("resize", handleResize);
+
     const handleScroll = throttle(() => {
+
       let h = top - window.scrollY;
-      if (h < 0) {
-        h = 0;
+      console.log(h);
+      let direction = window.scrollY - scrollY.current > 0 ? true : false;
+      if (direction) {
+        h = -window.scrollY;
+      } else {
+        if (h < 0) {
+          h = 0;
+        }
       }
       setTopPos(h);
-    }, 100); // 控制节流的时间间隔
-
+      scrollY.current = window.scrollY;
+    }, 50); // 控制节流的时间间隔
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
+      // window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -163,7 +163,7 @@ const Navbar = () => {
   const navItems = (
     <>
       <div>
-        <p
+        <div
           className="flex w-full items-center h-8"
           onClick={() => toggleNavButton("collectionItem")}
         >
@@ -175,13 +175,13 @@ const Navbar = () => {
               <FaAngleDown />
             )}
           </span>
-        </p>
+        </div>
         <div className="w-full">
           {activeDropdown === "collectionItem" && <CollectionItem />}
         </div>
       </div>
       <div>
-        <p
+        <div
           className="flex w-full items-center h-8"
           onClick={() => toggleNavButton("productItem")}
         >
@@ -189,13 +189,13 @@ const Navbar = () => {
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "productItem" ? <FaTimes /> : <FaAngleDown />}
           </span>
-        </p>
+        </div>
         <div className=" w-full duration-700 transition-all ease-in-out">
           {activeDropdown === "productItem" && <ProductItems />}
         </div>
       </div>
       <div>
-        <p
+        <div
           className="flex w-full items-center h-8"
           onClick={() => toggleNavButton("learnItems")}
         >
@@ -203,13 +203,13 @@ const Navbar = () => {
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "learnItems" ? <FaTimes /> : <FaAngleDown />}
           </span>
-        </p>
+        </div>
         <div className=" w-full duration-700 transition-all ease-in-out">
           {activeDropdown === "learnItems" && <LearnItem />}
         </div>
       </div>
       <div>
-        <p
+        <div
           className="flex w-full items-center whitespace-nowrap h-8"
           onClick={() => toggleNavButton("designHelp")}
         >
@@ -217,7 +217,7 @@ const Navbar = () => {
           <span className="flex w-full justify-end md:justify-start">
             {activeDropdown === "designHelp" ? <FaTimes /> : <FaAngleDown />}
           </span>
-        </p>
+        </div>
         <div className="w-full duration-700 transition-all ease-in-out justify-center">
           {activeDropdown === "designHelp" && <DesignHelp />}
         </div>
@@ -232,13 +232,13 @@ const Navbar = () => {
           setActiveDropdown("collectionItem");
         }}
       >
-        <p className="flex items-center h-full">
+        <div className="flex items-center h-full">
           <span>Collection</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
             <FaAngleDown className="group-hover:hidden block" />
           </span>
-        </p>
+        </div>
         <div className="absolute top-[90px] pt-2 left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
           {activeDropdown === "collectionItem" && <CollectionItem />}
         </div>
@@ -249,7 +249,7 @@ const Navbar = () => {
           setActiveDropdown("productItem");
         }}
       >
-        <p className="flex items-center h-full">
+        <div className="flex items-center h-full">
           <span>Products</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
@@ -261,7 +261,7 @@ const Navbar = () => {
           >
             {activeDropdown === "productItem" && <ProductItems></ProductItems>}
           </div>
-        </p>
+        </div>
       </div>
       <div
         className="group h-full cursor-pointer"
@@ -269,7 +269,7 @@ const Navbar = () => {
           setActiveDropdown("learnItems");
         }}
       >
-        <p className="flex items-center h-full">
+        <div className="flex items-center h-full">
           <span>Learn</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
@@ -278,7 +278,7 @@ const Navbar = () => {
           <div className="absolute top-[90px] pt-2  left-0 px-4 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
             {activeDropdown === "learnItems" && <LearnItem></LearnItem>}
           </div>
-        </p>
+        </div>
       </div>
       <div
         className="group h-full cursor-pointer"
@@ -286,7 +286,7 @@ const Navbar = () => {
           setActiveDropdown("designHelp");
         }}
       >
-        <p className="flex items-center  h-full whitespace-nowrap">
+        <div className="flex items-center  h-full whitespace-nowrap">
           <span>Design Help</span>
           <span className="flex w-full justify-end md:justify-start">
             <FaTimes className="group-hover:block hidden" />
@@ -295,7 +295,7 @@ const Navbar = () => {
           <div className="absolute  top-[90px] pt-2  px-4 left-0 bg-white w-full z-10 duration-700 transition-all ease-in-out group-hover:block hidden">
             {activeDropdown === "designHelp" && <DesignHelp></DesignHelp>}
           </div>
-        </p>
+        </div>
       </div>
     </>
   );
@@ -313,7 +313,7 @@ const Navbar = () => {
       {/* <NavbarTop/> */}
       {/* navbar functonalities */}
       <div
-        className="w-full h-[108px] z-50 fixed bg-white"
+        className="w-full h-[108px] z-50 fixed bg-white transition-all  duration-300 ease-in-out "
         style={{ top: topPos + "px", zIndex: 99 }}
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
@@ -324,7 +324,9 @@ const Navbar = () => {
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}
+                checked={isOpen}
               />
+
               <svg
                 className="swap-off fill-current"
                 xmlns="http://www.w3.org/2000/svg"
@@ -346,9 +348,10 @@ const Navbar = () => {
               </svg>
             </label>
             <div
-              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${isOpen ? "" : " hidden"
-                }`}
-              style={{ top: topPos + "px" }}
+              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${
+                isOpen ? "" : " hidden"
+              }`}
+              style={{ top: topPos + "px", overscrollBehavior: "contain" }}
             >
               {navItems}
               <img src={navb} alt="" className="my-10" />
@@ -493,7 +496,7 @@ const Navbar = () => {
       {/* <div
         className="w-full flex flex-col overflow-auto top-36 bg-white fixed z-10 left-0"
         style={{
-          height: "calc(var(--vh, 1vh) * 100 - 5rem)",
+          height: "calc(let(--vh, 1vh) * 100 - 5rem)",
           transform: "translate(0, 0)",
         }}
       >

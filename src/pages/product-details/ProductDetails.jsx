@@ -7,7 +7,7 @@ import Warranty from "./Warranty";
 import CareGuide from "./CareGuide";
 import Shipping from "./Shipping";
 import mic from "../../assets/images/mic.png";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useParams, Link } from "react-router-dom";
 import BuyerReview from "./BuyerReview";
 import CartBar from "./CartBar";
 import useCart from "../../Hooks/useCart";
@@ -16,12 +16,24 @@ import ImageSlider from "./ImageSlider";
 import UserInitialization from "../../components/UserInitialization/UserInitialization";
 import NetWork from "../../shared/Network/Network";
 import Faq from "./Faq";
+import useCollections from "../../Hooks/useCollections";
 
 const ProductDetails = () => {
   const [category, setCategory] = useState("dimension");
   const changeCategory = (payload) => setCategory(payload);
   const [showCartBar, setShowCartBar] = useState(false);
-
+  const { collections } = useCollections();
+  const [collectionId, setCollectionId] = useState();
+  const [collectionName, setCollectionName] = useState();
+  const exploreRange = () => {
+    let collectionId = Product.p_collection;
+    let collection = collections.find((item) => {
+      return item.collection_id === collectionId;
+    });
+    let collectionName = collection.collection_name;
+    setCollectionId(collectionId);
+    setCollectionName(collectionName);
+  };
   useEffect(() => {
     const handleScroll = () => {
       // 设置当用户向下滚动超过一定像素（例如 300px）时显示 CartBar
@@ -52,11 +64,16 @@ const ProductDetails = () => {
     Comments_Replies,
     Product_Colors,
   } = receivedData;
+  useEffect(() => {
+    if (collections.length && Product) {
+      exploreRange();
+    }
+  }, [collections, Product]);
 
   // console.log(Comments_Replies);
 
   return (
-    <main className="relative w-full lg:max-w-[1600px] mx-auto pt-16 md:pt-0">
+    <main className="relative w-full lg:max-w-[1600px] mx-auto pt-32 md:pt-0">
       <DetailsSlider
         product={Product}
         images={Images}
@@ -100,6 +117,13 @@ const ProductDetails = () => {
       <Meterials />
       <NetWork />
       <BuyerReview reviews={Comments_Replies} product={Product} />
+      <div className="p-4 md:p-10">
+        <Link to={`/collection-product/${collectionId}/${collectionName}`}>
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-lg">
+            Explore The Range
+          </button>
+        </Link>
+      </div>
       <Faq />
       {/* to generate a rnadom number when user will land on this page */}
       <UserInitialization />
