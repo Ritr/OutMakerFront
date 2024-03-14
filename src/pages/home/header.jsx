@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <header
       className="hero min-h-screen relative"
-      // style={{ backgroundImage: `url(${headerImage})` }}
+    // style={{ backgroundImage: `url(${headerImage})` }}
     >
       <div className="video-wrapper w-full h-full">
         <video
@@ -35,6 +35,7 @@ const Header = () => {
           data-wow-duration="1s"
           ref={videoRef}
           x-webkit-airplay="true"
+
         >
           <source
             src="https://cdn.shopify.com/videos/c/o/v/c3ed803a059d415fbd4421870148771f.mp4"
@@ -45,7 +46,7 @@ const Header = () => {
       </div>
       <div className="hero-content text-center">
         <div className="max-w-full pb-32">
-          <h1 className="text-4xl md:text-5xl text-white font-semibold uppercase">
+          <h1 className="text-4xl md:text-5xl text-white font-semibold">
             Nature's Touch for Your Outdoors
           </h1>
           <p className="py-6 text-white">

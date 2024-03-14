@@ -120,7 +120,7 @@ const Navbar = () => {
   useEffect(() => {
     cancelList();
   }, [location]);
-  useEffect(() => {}, [objectOnlyData]);
+  useEffect(() => { }, [objectOnlyData]);
   const cancelList = () => {
     setIsOpen(false);
     setActiveDropdown(null);
@@ -397,9 +397,8 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div
-                  className={`dropdown ${
-                    isMobile ? "dropdown-left dropdown-bottom" : ""
-                  } `}
+                  className={`dropdown ${isMobile ? "dropdown-left dropdown-bottom" : ""
+                    } `}
                 >
                   <button
                     onClick={toggleUserDropdown}

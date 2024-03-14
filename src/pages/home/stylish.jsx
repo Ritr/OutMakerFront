@@ -44,7 +44,7 @@ const services = [
 
 const Stylish = () => {
   const { subCategories } = useSubCategories();
-  
+
   return (
     <section className="w-full mx-auto  pt-10 md:pb-20  relative stylish">
       <div className="text-center pb-4 mt-1">
@@ -52,6 +52,7 @@ const Stylish = () => {
           Modular splicing design makes outdoor space more flexible
         </h2>
       </div>
+
       <MV videoSource="https://cdn.shopify.com/videos/c/o/v/2d814871cb4d47b1b00c1945ddcbc38b.mp4" />
       {/* <div className="text-center pb-4 mt-5">
         <h2 className="text-primary font-semibold text-2xl md:text-4xl mt-4">

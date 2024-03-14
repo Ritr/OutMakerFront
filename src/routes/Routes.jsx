@@ -27,12 +27,12 @@ import OrderInformation from "../pages/Checkout/OrderInformation";
 import OrderConfirm from "../pages/Checkout/OrderConfirm";
 /*
 <Route path='/' element={<Home />} />
-				<Route path='/collections' element={<Collections />} />
-				<Route path='/all-blogs' element={<AllBlogs />} />
-				<Route path='/blog' element={<Blog />} />
-				<Route path='/product' element={<Product />} />
-				<Route path='/product-details' element={<ProductDetails />} />
-				<Route path='/contact' element={<Contact />} />
+        <Route path='/collections' element={<Collections />} />
+        <Route path='/all-blogs' element={<AllBlogs />} />
+        <Route path='/blog' element={<Blog />} />
+        <Route path='/product' element={<Product />} />
+        <Route path='/product-details' element={<ProductDetails />} />
+        <Route path='/contact' element={<Contact />} />
 
 */
 
@@ -40,7 +40,7 @@ import TermsOfService from "../pages/policy/TermsOfService";
 import Privacypolicy from "../pages/policy/Privacypolicy";
 import AboutUs from "../pages/policy/AboutUs";
 import ContactUs from "../pages/policy/ContactUs";
-import RefundPolicy from "../pages/policy/RefundPolicy";
+import ReturnPolicy from "../pages/policy/ReturnPolicy";
 import ShippingPolicy from "../pages/policy/ShippingPolicy";
 import Brand from "../pages/Brand/Brand";
 import Care from "../pages/Care/Care";
@@ -188,8 +188,8 @@ const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/RefundPolicy",
-        element: <RefundPolicy />,
+        path: "/ReturnPolicy",
+        element: <ReturnPolicy />,
       },
       {
         path: "/ShippingPolicy",

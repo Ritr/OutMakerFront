@@ -26,7 +26,7 @@ const LearnItem = () => {
               {/* <Link to="/all-blogs">Our Blog</Link> */}
               <Link to="/ShippingPolicy">Shipping & Delivery</Link>
               {/* <Link to="/Care">Care & Maintenance</Link> */}
-              <Link to="/RefundPolicy">Return & Refunds</Link>
+              <Link to="/ReturnPolicy">Return & Refunds</Link>
               <Link to="/FAQ">Frequently Asked Questions</Link>
             </div>
           </div>
@@ -34,8 +34,8 @@ const LearnItem = () => {
           <div>
             <h3 className="nav-text-style">Contact Info.</h3>
             <div className="">
-              <a href="tel:+8801605764503" className="mb-4 block">
-                +88 01605764503
+              <a href="tel:+61483966676" className="mb-4 block">
+                +61483966676
               </a>
               {/*<a href="tel:+1234567890" className="block mb-6">
                 +1 (234) 567-890

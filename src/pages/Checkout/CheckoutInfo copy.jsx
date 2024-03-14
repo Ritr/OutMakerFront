@@ -477,7 +477,7 @@ const CheckoutInfo = () => {
                 <ul className="p-3 flex flex-wrap">
                   <li>
                     <Link
-                      to="/RefundPolicy"
+                      to="/ReturnPolicy"
                       style={{ textDecoration: "underline" }}
                     >
                       Refund policy

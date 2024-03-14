@@ -104,7 +104,9 @@ const Footer = () => {
                 </div>
               </Link>
 
+
               <div className="md:flex justify-start space-x-3 md:pb-28">
+
                 <a
                   rel="noopener noreferrer"
                   href="https://www.facebook.com/theoutmaker/"
@@ -264,6 +266,7 @@ const Footer = () => {
                   <li className="">
                     <Link to="/ShippingPolicy">Shipping and Delivery</Link>
                   </li>
+
                   <li className="">
                     <Link to="/RefundPolicy">Refund Policy</Link>
                   </li>
@@ -279,7 +282,7 @@ const Footer = () => {
                 <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">
                   <li className="">
                     <a>
-                      +88 01605764503
+                      +61483966676
                       {/*<br /> (208) 555-0112*/}
                     </a>
                   </li>
@@ -319,7 +322,7 @@ const Footer = () => {
         <div className="pb-10 ">
           <div className="flex gap-4 flex-col md:flex-row justify-between items-center bg-[#222A36] p-2 rounded">
             <div className="basis-1/2">
-              <p className="text-xs">© 2023, OutMaker all right Reserved</p>
+              <p className="text-xs">@ 2023, OUTMAKER All Right Reserved</p>
             </div>
             <div className="flex gap-1 basis-1/2 justify-end items-center">
               <span className="text-xs">Payment Methods</span>
