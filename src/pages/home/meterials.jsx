@@ -138,13 +138,13 @@ const Meterials = () => {
 
 				</div> */}
 
-        {/* <MV
+        <MV
           videoSource={
             "https://cdn.shopify.com/videos/c/o/v/418c216f38744437bdc0bce21ac5410b.mp4"
           }
           text_h2="Built to withstand everything life throws at us."
           text_p="Where Durability Embraces the Elements"
-        /> */}
+        />
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-1 md:gap-5 pt-10 mb-14">
           {materials.slice(0, 4)?.map((material) => (
@@ -174,12 +174,11 @@ const Meterials = () => {
           ))}
         </div>
 
-        {/* 
+        
         <MV
           videoSource="https://cdn.shopify.com/videos/c/o/v/36bb127a7fd34c8db6c7edce78a3ed46.mp4"
-
           text_h2="Sunbrella fabric easily handles various cold weather conditions."
-        /> */}
+        />
       </div>
     </section>
   );

@@ -14,9 +14,9 @@ const Dimensions = ({ dimensions }) => {
         {dimensions?.map((dimension) => (
           <div
             key={dimension?.dimension?.dim_id}
-            className="block md:flex gap-4 py-4"
+            className="flex gap-4 py-4"
           >
-            <div className="h-full border-2 border-gray-200 rounded-lg text-black font-normal text-base md:w-1/3 p-4 mb-4 md:mb-0">
+            <div className="h-full border-2 border-gray-200 rounded-lg text-black font-normal text-base w-1/2 md:w-1/3 p-4 mb-4 md:mb-0">
               <p>
                 {dimension?.dimension?.dim_title}
                 <span className="px-2">WIDTH</span>
@@ -26,7 +26,7 @@ const Dimensions = ({ dimensions }) => {
               </p>
               <p>Weight: {dimension?.dimension?.dim_weight}</p>
             </div>
-            <div className="md:w-2/3">
+            <div className="w-1/2 md:w-2/3">
               <img
                 src={ImgBaseUrl(dimension?.dimension?.dim_pic)}
                 alt={dimension?.dimension?.dim_title}

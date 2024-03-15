@@ -10,7 +10,12 @@ import ImageSlider from "./ImageSlider";
 import { FaMinus, FaPlus, FaBoxOpen } from "react-icons/fa";
 import SidebarCart from "../../components/Navbar/SidebarCart";
 import ReactPlayer from "react-player";
-
+import img1 from "../../assets/detail/1.png";
+import img2 from "../../assets/detail/2.png";
+import img3 from "../../assets/detail/3.png";
+import img4 from "../../assets/detail/4.png";
+import img5 from "../../assets/detail/5.png";
+import img6 from "../../assets/detail/6.png";
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
 const Info = ({
@@ -264,9 +269,25 @@ const Info = ({
                 and 10 Year Warranty
               </p>
             </div>
+            <div className="md:hidden">
+              <div className="flex items-center gap-4 p-2 ">
+                <p
+                  className={`cursor-pointer ${
+                    quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+                  }`}
+                  onClick={handleDecreaseQuantity}
+                >
+                  <FaMinus />
+                </p>
+                <span className="w-full text-center">{quantity}</span>
+                <p onClick={handleIncreaseQuantity} className="cursor-pointer">
+                  <FaPlus />
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex w-full  items-center">
-            <div className="flex px-1 md:px-2  md:flex-1">
+          <div className="hidden md:flex w-full  items-center">
+            <div className="flex px-2 flex-1">
               <div className="flex items-center gap-6 border-2 border-primary p-2 md:mr-1 rounded-full cursor-pointer">
                 <p
                   className={`cursor-pointer ${
@@ -282,7 +303,7 @@ const Info = ({
                 </p>
               </div>
             </div>
-            <div className="flex px-1 md:px-2 flex-1 md:flex-3">
+            <div className="flex px-2 flex-3">
               <button
                 onClick={handleAddToCart}
                 className="bg-primary  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  md:p-3 md:px-8 text-sm font-normal"
@@ -294,6 +315,16 @@ const Info = ({
               </button>
             </div>
           </div>
+
+          <button
+            onClick={handleAddToCart}
+            className="bg-primary md:hidden  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  text-sm "
+          >
+            <p className="flex gap-2 items-center text-center">
+              <BsHandbagFill className="" /> Add to cart- A$
+              {cost?.product_sale_price}
+            </p>
+          </button>
 
           <div className="text-sm p-3 flex">
             <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
@@ -307,11 +338,44 @@ const Info = ({
             </span>
           </div>
         </div>
-        <div className="py-6">
-          <h4 className="text-2xl font-medium leading-loose">MEET LUDLOW</h4>
-          <p className="text-base font-light  leading-loose">
-            {product?.p_s_description}
-          </p>
+        <div className="px-4 pt-4 md:border rounded-lg md:flex justify-between flex-row-reverse mt-4 md:mt-6">
+          <div>
+            <div className="font-bold mb-3 flex gap-2 items-center">
+              <img src={img1} className="w-4 h-4 object-contain" alt="" />
+              30 Days Free Returns
+            </div>
+            <div className="font-bold mb-3 flex gap-2 items-center">
+              <img src={img2} className="w-4 h-4 object-contain" alt="" />
+              Quick refund
+            </div>
+          </div>
+          <div>
+            <div className="md:flex gap-4 md:mb-3">
+              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img3} className="w-4 h-4 object-contain" alt="" />
+                Furniture Assemble yes/no
+              </div>
+              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img4} className="w-4 h-4 object-contain" alt="" />
+                Freight calculated based on the shipping address
+              </div>
+            </div>
+            <div className="md:flex gap-4">
+              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img5} className="w-4 h-4 object-contain" alt="" />
+                Furniturep Provided for installation yes/no
+              </div>
+              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img6} className="w-4 h-4 object-contain" alt="" />
+                Modular splicing design yes/no
+              </div>
+            </div>{" "}
+          </div>
+        </div>
+
+        <div className="py-6 text-center">
+          <h4 className="text-2xl font-font leading-loose">MEET LUDLOW</h4>
+          <p className="text-sm font-light">{product?.p_s_description}</p>
         </div>
         {/* <div className="pt-8 pb-0 md:pb-8">
           <button className="btn btn-outline bg-white hover:bg-primary text-primary rounded-full hover:text-white w-[300px] md:w-[400px] text-sm font-normal">
@@ -384,46 +448,45 @@ const Info = ({
         </div>
         <ImageSlider images={images} />
         <div className="block lg:flex items-center gap-8 md:pt-4">
-          <nav className="md:pt-4">
-            <ul className="block md:border md:rounded-full overflow-hidden md:flex justify-between text-sm md:text-base font-normal text-center">
+          <nav className="pt-4">
+            <ul className="flex px-2 md:gap-4 md:rounded-full overflow-hidden justify-between text-sm md:text-base font-normal text-center">
               <li
                 onClick={() => changeCategory("dimension")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
                   category === "dimension" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Dimensions
               </li>
               <li
                 onClick={() => changeCategory("details")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
                   category === "details" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Product details
               </li>
-
               <li
                 onClick={() => changeCategory("warranty")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
                   category === "warranty" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Warranty
               </li>
               <li
                 onClick={() => changeCategory("CareGuide")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
                   category === "CareGuide" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Care Guide
               </li>
               <li
                 onClick={() => changeCategory("Shipping")}
-                className={`cursor-pointer border-l ${
+                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
                   category === "Shipping" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Shipping
               </li>
