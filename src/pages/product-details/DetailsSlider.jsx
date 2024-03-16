@@ -212,7 +212,7 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
                     </div>
                   ) : (
                     <img
-                      src={ImgBaseUrl(image?.image_url)}
+                      src={ImgBaseUrl(image?.image_url)+"?width=300"}
                       alt=""
                       className="object-cover md:object-contain w-full h-full"
                     />

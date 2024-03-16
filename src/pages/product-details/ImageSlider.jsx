@@ -79,7 +79,7 @@ const ImageSlider = ({ images }) => {
                   onClick={() => setCurrentImageIndex(index)}
                 >
                   <img
-                    src={ImageScale(image?.image_url, 400)}
+                    src={ImgBaseUrl(image?.image_url) + "?width=500"}
                     alt={`slider-image-${index}`}
                     className={`object-cover rounded-2xl drop-shadow-xl ${
                       currentImageIndex === index
