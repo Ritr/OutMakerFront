@@ -80,7 +80,7 @@ const Collection = () => {
               >
                 <img
                   className="img w-full h-full object-cover lg:h-[375px] mb-6 rounded-md group-hover:scale-105  duration-300"
-                  src={ImgBaseUrl(collection?.collection_pic)}
+                  src={ImgBaseUrl(collection?.collection_pic)+"?width=600"}
                   alt=""
                 />
                 <div className=" flex justify-between items-center mb-5 text-xl font-semibold">

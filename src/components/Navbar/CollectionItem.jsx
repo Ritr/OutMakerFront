@@ -73,7 +73,7 @@ const CollectionItem = () => {
                         }}
                       >
                         <img
-                          src={ImgBaseUrl(collection?.collection_pic)}
+                          src={ImgBaseUrl(collection?.collection_pic)+"?width=600"}
                           alt="IMAGE"
                           className="max-h-full h-full max-w-full rounded object-cover"
                           style={{ position: "absolute", left: 0, top: 0 }}

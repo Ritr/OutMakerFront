@@ -85,7 +85,7 @@ const ProductItems = () => {
                 className="p-2 min-h-40"
               >
                 <ImageWithSkeleton
-                  src={ImgBaseUrl(category?.category_pic)}
+                  src={ImgBaseUrl(category?.category_pic)+"?width=300"}
                   alt={category?.category_name}
                   width="100%"
                 />

@@ -152,7 +152,7 @@ const ProductDetails = () => {
                   >
                     <div className=" w-full flex items-center justify-center">
                       <img
-                        src={ImgBaseUrl(collection?.collection_pic)}
+                        src={ImgBaseUrl(collection?.collection_pic)+"?width=600"}
                         alt="IMAGE"
                         className="max-h-full h-32 md:h-[248px] max-w-full rounded object-cover"
                       />

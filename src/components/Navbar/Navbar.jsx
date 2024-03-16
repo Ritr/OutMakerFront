@@ -52,9 +52,6 @@ const Navbar = () => {
     // alert(location.pathname);
     if (location.pathname == "/checkout-info") {
       top = 0;
-      setHidden(true);
-    } else {
-      setHidden(false);
     }
     setTopPos(top);
     // const handleResize = () => {
@@ -118,6 +115,11 @@ const Navbar = () => {
     setProductItem(false);
     setLearnItem(false);
     setCollectionItem(false);
+    if (location.pathname == "/checkout-info") {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
   }, [location.pathname]);
   useEffect(() => {
     cancelList();
