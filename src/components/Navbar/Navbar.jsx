@@ -62,7 +62,6 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
-      console.log(window.scrollY);
       let h = top -  document.querySelector("#root").scrollTop;
       let direction =document.querySelector("#root").scrollTop - scrollY.current > 0 ? true : false;
       if (direction) {

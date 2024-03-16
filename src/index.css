@@ -15,12 +15,15 @@ body {
 }
 body{
   height: 100vh;
-  /* overflow: auto; */
+  overflow: auto;
 }
 #root{
   height: 100vh;
   overflow: auto;
 }
+/* .wow {
+  visibility: hidden;
+} */
 
 .about-bg {
   background: url("./assets/about-section-images/Top.png");
