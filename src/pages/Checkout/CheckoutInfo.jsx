@@ -541,26 +541,34 @@ const CheckoutInfo = () => {
                     <p>A$ {totalEstimatedPrice}</p>
                   </div>
                 </button>
-                <div className={isOpen ? "px-4 pb-4 bg-white" : "hidden"}>
-                  <div className="md:w-96">
+                <div className={isOpen ? "pb-4 bg-white" : "hidden"}>
+                  <div className="md:w-96 col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  pt-10 ">
                     {objectOnlyData && objectOnlyData.length > 0 ? (
                       objectOnlyData.map((item) => (
-                        <div key={item?.product?.p_id} className="flex mb-6">
+                        <div
+                          key={item?.product?.p_id}
+                          className="flex mb-6 w-full relative"
+                        >
+                          <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
+                            {item.qunatity}
+                          </span>
                           <img
                             src={ImgBaseUrl(item?.product?.p_pic)}
                             alt="Product"
-                            className="object-contain rounded w-20 h-20  mr-4"
+                            className="object-contain rounded w-20 h-20  mr-4 bg-white"
                           />
-                          <div>
+                          <div className="flex-1">
                             <h4 className="text-lg font-medium">
                               {item?.product?.p_name.slice(0, 30)}
                             </h4>
                             <p className="text-sm text-gray-500">
                               Glacier / {item?.dimension} / {item?.category}
                             </p>
-                            <p className="text-sm text-gray-500">
-                              A${item?.cost?.product_sale_price}
-                            </p>
+                          </div>
+                          <div className="w-16 text-left flex flex-col justify-center items-center">
+                            <span className="text-sm text-gray-500">
+                              A${item?.cost?.product_sale_price * item.qunatity}
+                            </span>
                           </div>
                         </div>
                       ))
@@ -749,12 +757,17 @@ const CheckoutInfo = () => {
               </div>
             </div>
             {/* Right Column for Order Summary */}
-            <div className="col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  md:w-full md:pl-10 pt-10 md:pb-0">
+            <div className="hidden md:block col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  md:w-full md:pl-10 pt-10 md:pb-0">
               <div>
                 {objectOnlyData && objectOnlyData.length > 0 ? (
                   objectOnlyData.map((item) => (
-                    <div key={item?.product?.p_id} className="flex mb-6 w-full relative">
-                      <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">{item.qunatity}</span>
+                    <div
+                      key={item?.product?.p_id}
+                      className="flex mb-6 w-full relative"
+                    >
+                      <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
+                        {item.qunatity}
+                      </span>
                       <img
                         src={ImgBaseUrl(item?.product?.p_pic)}
                         alt="Product"

@@ -41,6 +41,7 @@ const Navbar = () => {
   const location = useLocation(); // Get the current location
   const [isOpen, setIsOpen] = useState(false);
   const scrollY = useRef(0);
+  const [hidden, setHidden] = useState(false);
   //判断页面滚动方向
 
   useEffect(() => {
@@ -51,6 +52,9 @@ const Navbar = () => {
     // alert(location.pathname);
     if (location.pathname == "/checkout-info") {
       top = 0;
+      setHidden(true);
+    } else {
+      setHidden(false);
     }
     setTopPos(top);
     // const handleResize = () => {
@@ -61,7 +65,6 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
-
       let h = top - window.scrollY;
       let direction = window.scrollY - scrollY.current > 0 ? true : false;
       if (direction) {
@@ -119,7 +122,7 @@ const Navbar = () => {
   useEffect(() => {
     cancelList();
   }, [location]);
-  useEffect(() => { }, [objectOnlyData]);
+  useEffect(() => {}, [objectOnlyData]);
   const cancelList = () => {
     setIsOpen(false);
     setActiveDropdown(null);
@@ -312,7 +315,9 @@ const Navbar = () => {
       {/* <NavbarTop/> */}
       {/* navbar functonalities */}
       <div
-        className="w-full h-[108px] z-50 fixed bg-white transition-all  duration-300 ease-in-out "
+        className={`w-full h-[108px] z-50 fixed bg-white transition-all  duration-300 ease-in-out ${
+          hidden ? "hidden" : ""
+        }`}
         style={{ top: topPos + "px", zIndex: 99 }}
       >
         <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
@@ -396,8 +401,9 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div
-                  className={`dropdown ${isMobile ? "dropdown-left dropdown-bottom" : ""
-                    } `}
+                  className={`dropdown ${
+                    isMobile ? "dropdown-left dropdown-bottom" : ""
+                  } `}
                 >
                   <button
                     onClick={toggleUserDropdown}
