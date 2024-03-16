@@ -397,7 +397,7 @@ const Info = ({
         </div>  */}
         {/* video */}
         <div className="relative">
-          <div className=" w-full h-full">
+          <div className=" w-full h-full [&>div>video]:object-cover">
             {/* <video
               playsInline
               autoPlay
@@ -417,9 +417,8 @@ const Info = ({
               volume={0}
               muted={true}
               width="100%"
-              height="100%"
               playsinline={true}
-              className="w-full md:h-[100vh] h-[300px] object-cover lg:object-cover"
+              className="w-full md:h-[100vh] h-[600px]"
             />
           </div>
           {/* video button */}

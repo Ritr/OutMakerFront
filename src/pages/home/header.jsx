@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header
-      className="hero min-h-screen relative"
+      className="hero h-[50vh]  md:h-[100vh] relative mt-28"
     // style={{ backgroundImage: `url(${headerImage})` }}
     >
       <div className="video-wrapper w-full h-full">
@@ -31,7 +31,7 @@ const Header = () => {
           loop
           webkit-playsinline="true"
           playsInline
-          className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover wow fadeInUp"
+          className="absolute top-0 left-0 w-full  h-full object-cover wow fadeInUp"
           data-wow-duration="1s"
           ref={videoRef}
           x-webkit-airplay="true"

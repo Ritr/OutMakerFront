@@ -17,7 +17,9 @@ import UserInitialization from "../../components/UserInitialization/UserInitiali
 import NetWork from "../../shared/Network/Network";
 import Faq from "./Faq";
 import useCollections from "../../Hooks/useCollections";
-
+import SwiperWrapper from "../../components/SwiperWrapper";
+import { SwiperSlide } from "swiper/react";
+import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 const ProductDetails = () => {
   const [category, setCategory] = useState("dimension");
   const changeCategory = (payload) => setCategory(payload);
@@ -117,6 +119,54 @@ const ProductDetails = () => {
       <Meterials />
       <NetWork />
       <BuyerReview reviews={Comments_Replies} product={Product} />
+      <div className="">
+        <div className="mb-2 md:mb-4 text-center md:text-left color-[#181818] text-2xl font-semibold">
+        Other Collections
+        </div>
+        <SwiperWrapper
+          showNavigation={true}
+          swiperProps={{
+            loop: false,
+            spaceBetween: 10,
+            breakpoints: {
+              375: {
+                slidesPerView: 2,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
+              1024: {
+                slidesPerView: 4,
+              },
+            },
+          }}
+        >
+          {collections.map((collection) => {
+            return (
+              <SwiperSlide className="h-full">
+                <div className="relative">
+                  <Link
+                    to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
+                    className="text-xl md:text-2xl lg:text-3xl"
+                  >
+                    <div className=" w-full flex items-center justify-center">
+                      <img
+                        src={ImgBaseUrl(collection?.collection_pic)}
+                        alt="IMAGE"
+                        className="max-h-full h-32 md:h-[248px] max-w-full rounded object-cover"
+                      />
+                    </div>
+                    <div className=" font-semibold md:text-md absolute z-10 text-white top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+                      {collection?.collection_name}
+                    </div>
+                  </Link>
+                </div>
+              </SwiperSlide>
+            );
+          })}
+        </SwiperWrapper>
+      </div>
       <div className="p-4 md:p-10">
         <Link to={`/collection-product/${collectionId}/${collectionName}`}>
           <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-lg">

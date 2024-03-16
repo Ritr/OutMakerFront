@@ -4,6 +4,7 @@ import { BsArrowRight } from "react-icons/bs";
 import img1 from "../../assets/images/10.png";
 import img2 from "../../assets/images/waterproof.png";
 import img3 from "../../assets/images/washable.png";
+import { MdOutlineDiscount } from "react-icons/md";
 
 const OutdoorDiningChairCard = ({
   id,purl,
@@ -52,7 +53,15 @@ const OutdoorDiningChairCard = ({
         </div> */}
 
           <div className="bottom-0 p-4 pb-14">
-            <p className="text-lg font-bold text-black">{title}</p>
+            <p className="text-lg font-bold text-black inline-block md:min-w-[220px] relative">
+              <div className="md:inline">
+                {title}
+              </div>
+              <div className="inline-flex md:flex gap-1 text-sm md:text-md text-white bg-[#dc2626] rounded-md items-center justify-center md:px-5 py-1 px-1 md:py-2 md:absolute top-0 left-[100%] md:ml-2">
+                <MdOutlineDiscount className="text-sm md:text-xl font-semibold"></MdOutlineDiscount>
+                30%OFF
+              </div>  
+            </p>
             <div className="flex items-center mt-2" style={{fontSize:"16px"}}>
               <del className="text-sm text-gray-500 mr-2" style={{color:"#ADACAC"}}>{originalPrice}</del>
               <p className="text-xl text-red-600 font-bold" style={{color:"#DC2626"}}>{price}</p>
