@@ -17,6 +17,10 @@ body{
   height: 100vh;
   /* overflow: auto; */
 }
+#root{
+  height: 100vh;
+  overflow: auto;
+}
 
 .about-bg {
   background: url("./assets/about-section-images/Top.png");
