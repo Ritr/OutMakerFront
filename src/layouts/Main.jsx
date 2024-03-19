@@ -10,7 +10,7 @@ const Main = () => {
     <div>
       <NavbarTop />
       <Navbar />
-      <div className="lg:pt-[108px] w-full relative lg:max-w-[1600px] mx-auto">
+      <div className="w-full relative ">
         <Outlet />
       </div>
       <Footer />

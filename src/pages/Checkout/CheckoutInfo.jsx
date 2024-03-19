@@ -493,7 +493,23 @@ const CheckoutInfo = () => {
   return (
     <>
       <section className="w-full h-full bg-[#F7F7F7]">
-        {/* SidebarCart */}
+        <div className="bg-primary py-6">
+          <div className="lg:max-w-[1600px] mx-auto flex justify-between">
+            <div className="flex-1 flex">
+              <Link to={"/"}>
+                <img src={logo} alt="Logo" className="object-contain z-50 h-12 w-12 md:h-16 md:w-16" />
+              </Link>
+            </div>
+            <div className="flex-1 flex justify-center items-center">
+              <FaShoppingBag
+                onClick={() => setIsSidebarCartOpen(true)}
+                size="1.5em"
+                color="white"
+                className="cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
         <SidebarCart
           isOpen={isSidebarCartOpen}
           toggleSidebar={() => setIsSidebarCartOpen(false)}
@@ -521,7 +537,7 @@ const CheckoutInfo = () => {
           </div>
         </div> */}
 
-        <div className="w-full bg-white">
+        <div className="w-full bg-white lg:max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-9 md:max-h-[830px]">
             {/* mobile order summary */}
             <aside className="sm:hidden bg-[#FFFAEE]">

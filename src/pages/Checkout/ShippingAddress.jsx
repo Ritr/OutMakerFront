@@ -176,7 +176,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
         <option value="Australia">Australia</option>
       </select>
 
-      <div className="col-span-2 flex flex-col lg:flex-row gap-4 w-full">
+      <div className="col-span-2 flex flex-col  gap-4 w-full">
         <select
           className="input input-bordered h-10 focus:outline-none w-full text-sm"
           value={selectedStateAbbrev}

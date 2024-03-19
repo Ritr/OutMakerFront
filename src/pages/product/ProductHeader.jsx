@@ -2,9 +2,8 @@ import React from "react";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 
 const ProductHeader = ({ product, category }) => {
-  console.log(product);
   return (
-    <header className="hero md:mb-0 lg:h-auto relative overflow-hidden pt-24 md:pt-0 ">
+    <header className="hero md:mb-0 lg:h-auto relative overflow-hidden md:pt-0 ">
       <div
         className="absolute left-0 top-0 right-0 bottom-0"
         style={{

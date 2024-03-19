@@ -20,6 +20,7 @@ body{
 #root{
   height: 100vh;
   overflow: auto;
+  position: relative;
 }
 /* .wow {
   visibility: hidden;

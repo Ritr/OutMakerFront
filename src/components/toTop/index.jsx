@@ -9,20 +9,18 @@ const Top = () => {
 
   useEffect(() => {
     function handleScroll() {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
-      const distanceToBottom = scrollHeight - (scrollTop + clientHeight);
+      const { scrollTop } = document.querySelector("#root");
 
-      if (distanceToBottom < 1200) {
+      if (scrollTop > 1200) {
         setShowDiv(true);
       } else {
         setShowDiv(false);
       }
     }
 
-    window.addEventListener("scroll", handleScroll);
+    document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      // document.querySelector("#root").window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   return (

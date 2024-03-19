@@ -49,7 +49,7 @@ const CategoryBlogs = () => {
 
 
   return (
-    <main>
+    <main className="lg:max-w-[1600px] mx-auto">
       <AllBlogsHeader Category={Category} />
       <div className="w-full">
         <br></br>

@@ -39,7 +39,8 @@ const ProductDetails = () => {
   useEffect(() => {
     const handleScroll = () => {
       // 设置当用户向下滚动超过一定像素（例如 300px）时显示 CartBar
-      if (window.scrollY > 1880) {
+      
+      if (document.querySelector("#root").scrollTop > 1880) {
         setShowCartBar(true);
       } else {
         setShowCartBar(false);
@@ -47,10 +48,11 @@ const ProductDetails = () => {
     };
 
     // 添加滚动监听器
-    window.addEventListener("scroll", handleScroll);
+   
+    document.querySelector("#root").addEventListener("scroll", handleScroll);
 
     // 清除监听器
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => document.querySelector("#root").removeEventListener("scroll", handleScroll);
   }, []);
 
   //single product data
@@ -75,12 +77,14 @@ const ProductDetails = () => {
   // console.log(Comments_Replies);
 
   return (
-    <main className="relative w-full lg:max-w-[1600px] mx-auto pt-32 md:pt-0">
+    <main className="relative w-full lg:max-w-[1600px] mx-auto mt-28 md:mt-20">
       <DetailsSlider
         product={Product}
         images={Images}
         dimensions={data}
         Product_Colors={Product_Colors}
+        collectionId={collectionId}
+        collectionName={collectionName}
       />
       <Info
         category={category}

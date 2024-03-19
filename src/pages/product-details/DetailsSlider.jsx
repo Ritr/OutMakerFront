@@ -5,13 +5,22 @@ import slider1 from "../../assets/images/details-slider1.png";
 import slider2 from "../../assets/images/details-slider2.png";
 import slider3 from "../../assets/images/details-slider3.png";
 import slider4 from "../../assets/images/video.mp4";
+import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "../../assets/css/details.css";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { FaPlay } from "react-icons/fa";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
-const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
+import { GoSearch } from "react-icons/go";
+const DetailsSlider = ({
+  product,
+  images,
+  Product_Colors,
+  dimensions,
+  collectionId,
+  collectionName,
+}) => {
   const [headerImage, setHeaderImage] = useState(null);
 
   // handler for image change
@@ -78,6 +87,11 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
             })}
           </div>
         </div>
+        <Link to={`/collection-product/${collectionId}/${collectionName}`}>
+          <div className=" hidden md:flex p-6 py-2 w-52 md:absolute top-[500px] right-0 border rounded-full  items-center justify-center">
+            <GoSearch className="mr-2"></GoSearch> Explore collection
+          </div>
+        </Link>
         <div>
           <div className="block md:flex items-center justify-center">
             <h4 className="uppercase text-xl md:text-3xl font-semibold">
@@ -130,6 +144,14 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
             />
           </div>
         )}
+        <div className="flex justify-end">
+          <Link to={`/collection-product/${collectionId}/${collectionName}`}>
+            <div className="flex mt-4 mb-2 mr-4 p-6 py-2 w-52 border rounded-full  items-center justify-center">
+              <GoSearch className="mr-2"></GoSearch> Explore collection
+            </div>
+          </Link>
+        </div>
+
         <div className="bg-[#f3f3f3] rounded-md px-4 py-4 md:px-[57px] md:py-[24px] flex items-center justify-center">
           {/* {JSON.stringify(images)} */}
           {/* <img
@@ -212,7 +234,7 @@ const DetailsSlider = ({ product, images, Product_Colors, dimensions }) => {
                     </div>
                   ) : (
                     <img
-                      src={ImgBaseUrl(image?.image_url)+"?width=300"}
+                      src={ImgBaseUrl(image?.image_url) + "?width=300"}
                       alt=""
                       className="object-cover md:object-contain w-full h-full"
                     />

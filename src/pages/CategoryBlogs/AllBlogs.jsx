@@ -11,7 +11,7 @@ import UserInitialization from "../../components/UserInitialization/UserInitiali
 
 const AllBlogs = () => {
 	return (
-		<main>
+		<main className="lg:max-w-[1600px]">
 			<AllBlogsHeader />
 			<div className='w-full'>
 				<PageNav />

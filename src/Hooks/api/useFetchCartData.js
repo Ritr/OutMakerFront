@@ -12,10 +12,11 @@ export const fetchCartData = async (userId) => {
 
 export const useFetchCartData = (userId) => {
     return useQuery(['cartData', userId], () => fetchCartData(userId), {
-        cacheTime: 60000, // 设置缓存时间为 60 秒
-        staleTime: 30000, // 设置数据过期时间为 30 秒
         onError: (error) => {
             console.error("Error fetching cart data:", error);
+            // 过期重新刷新
+            localStorage.clear();
+            location.reload();
         },
         select: (data) => {
             if (!data || data.length === 0) {

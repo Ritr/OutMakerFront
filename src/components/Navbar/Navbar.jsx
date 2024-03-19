@@ -62,8 +62,11 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
-      let h = top -  document.querySelector("#root").scrollTop;
-      let direction =document.querySelector("#root").scrollTop - scrollY.current > 0 ? true : false;
+      let h = top - document.querySelector("#root").scrollTop;
+      let direction =
+        document.querySelector("#root").scrollTop - scrollY.current > 0
+          ? true
+          : false;
       if (direction) {
         h = -document.querySelector("#root").scrollTop;
       } else {
@@ -76,7 +79,9 @@ const Navbar = () => {
     }, 50); // 控制节流的时间间隔
     document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      document.querySelector("#root").removeEventListener("scroll", handleScroll);
+      document
+        .querySelector("#root")
+        .removeEventListener("scroll", handleScroll);
       // window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -120,6 +125,9 @@ const Navbar = () => {
     } else {
       setHidden(false);
     }
+
+    // todo
+    document.querySelector("#root").scrollTo(0, 0);
   }, [location.pathname]);
   useEffect(() => {
     cancelList();
@@ -317,12 +325,12 @@ const Navbar = () => {
       {/* <NavbarTop/> */}
       {/* navbar functonalities */}
       <div
-        className={`w-full h-[108px] z-50 fixed bg-white transition-all  duration-300 ease-in-out ${
+        className={`w-full h-[108px] z-50 fixed bg-white  transition-all  duration-300 ease-in-out ${
           hidden ? "hidden" : ""
         }`}
         style={{ top: topPos + "px", zIndex: 99 }}
       >
-        <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
+        <div className="relative navbar lg:h-[108px] w-full lg:w-[1700px] mx-auto bg-white">
           <div className="navbar-start w-full h-full z-10">
             <label className="p-1 md:p-0 swap swap-rotate md:hidden">
               <input

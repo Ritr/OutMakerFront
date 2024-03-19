@@ -11,13 +11,13 @@ import Network from "../../shared/Network/Network";
 import { Link } from "react-router-dom";
 
 import { getApiBaseUrl } from "../../utils/api/index";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [location.pathname]);
 
   return null;
 }

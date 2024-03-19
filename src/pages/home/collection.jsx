@@ -33,7 +33,7 @@ const Collection = () => {
           </Link>
         </div>
         <div className="md:hidden pt-4">
-          <SwiperWrapper showNavigation={false} swiperProps={{ slidesPerView: 2.3, spaceBetween: 10,loop:false }}>
+          <SwiperWrapper showNavigation={false} swiperProps={{ slidesPerView: 2, loop:false }}>
             {collections?.slice(0, 9).map((collection) => (
               <SwiperSlide>
                 <Link
@@ -52,7 +52,6 @@ const Collection = () => {
                     />
                     <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
                       {collection?.collection_name}
-
                       <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
                         Shop <BsArrowRight className="ms-2" />
                       </span>
@@ -60,7 +59,7 @@ const Collection = () => {
                     Explore <BsArrowRight className="ms-2" />
                   </Button> */}
                     </div>
-                    <div className="text-sm">{collection?.collection_desc}</div>
+                    <div className="text-sm hidden md:block">{collection?.collection_desc}</div>
                   </div>
                 </Link>
               </SwiperSlide>

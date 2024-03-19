@@ -21,8 +21,8 @@ const Header = () => {
 
   return (
     <header
-      className="hero h-[50vh]  md:h-[100vh] relative mt-28"
-    // style={{ backgroundImage: `url(${headerImage})` }}
+      className="hero h-[50vh]  md:h-[100vh] relative mt-28 "
+      // style={{ backgroundImage: `url(${headerImage})` }}
     >
       <div className="video-wrapper w-full h-full">
         <video
@@ -35,7 +35,6 @@ const Header = () => {
           data-wow-duration="1s"
           ref={videoRef}
           x-webkit-airplay="true"
-
         >
           <source
             src="https://cdn.shopify.com/videos/c/o/v/c3ed803a059d415fbd4421870148771f.mp4"

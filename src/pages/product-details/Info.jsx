@@ -16,6 +16,7 @@ import img3 from "../../assets/detail/3.png";
 import img4 from "../../assets/detail/4.png";
 import img5 from "../../assets/detail/5.png";
 import img6 from "../../assets/detail/6.png";
+import img7 from "../../assets/detail/7.png";
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
 const Info = ({
@@ -181,7 +182,8 @@ const Info = ({
               </div>
             </div> */}
             <div className="">
-              <div className="flex items-end">
+              <div className="flex items-center">
+                <img src={img7} alt="" className="md:w-[128px] mr-2" />
                 <p className="text-2xl font-semibold">{product.p_name}</p>
                 <span className="ml-2 text-sm text-right text-gray-400">
                   (in stock ship within 72hours)
@@ -250,13 +252,14 @@ const Info = ({
         <div className="md:hidden">
           <div className="flex justify-between p-3 w-full">
             <div>
-              <p className="price">
+              <p className="price flex items-center">
                 <del className="text-[#ADACAC]">
                   A${cost?.product_regular_price}
                 </del>
                 <span className="text-[#DC2626] pl-[5px] font-semibold">
                   A${cost?.product_sale_price}
                 </span>
+                <img src={img7} className="w-28 ml-2" alt="" />
               </p>
               <p
                 className="affirm-as-low-as text-base"
@@ -353,7 +356,7 @@ const Info = ({
             <div className="md:flex gap-4 md:mb-3">
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img3} className="w-4 h-4 object-contain" alt="" />
-                Furniture Assemble yes/no
+                Furniture Assemble: {product?.assemble ? "yes" : "no"}
               </div>
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img4} className="w-4 h-4 object-contain" alt="" />
@@ -363,11 +366,11 @@ const Info = ({
             <div className="md:flex gap-4">
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img5} className="w-4 h-4 object-contain" alt="" />
-                Furniturep Provided for installation yes/no
+                Furniturep Provided for installation
               </div>
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img6} className="w-4 h-4 object-contain" alt="" />
-                Modular splicing design yes/no
+                Modular splicing design: {product?.modular ? "yes" : "no"}
               </div>
             </div>{" "}
           </div>
@@ -417,8 +420,9 @@ const Info = ({
               volume={0}
               muted={true}
               width="100%"
+              height="100%"
               playsinline={true}
-              className="w-full md:h-[100vh] h-[600px]"
+              className="w-full  h-[600px] md:h-[100vh]"
             />
           </div>
           {/* video button */}
