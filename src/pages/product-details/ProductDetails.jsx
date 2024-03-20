@@ -176,13 +176,13 @@ const ProductDetails = () => {
           })}
         </SwiperWrapper>
       </div>
-      <div className="p-4 md:p-10">
+      {/* <div className="p-4 md:p-10">
         <Link to={`/collection-product/${collectionId}/${collectionName}`}>
           <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-8 rounded-lg">
             Explore The Range
           </button>
         </Link>
-      </div>
+      </div> */}
       <Faq />
       {/* to generate a rnadom number when user will land on this page */}
       <UserInitialization />

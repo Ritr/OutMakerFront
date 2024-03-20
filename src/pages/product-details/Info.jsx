@@ -419,10 +419,8 @@ const Info = ({
               loop={true}
               volume={0}
               muted={true}
-              width="100%"
-              height="100%"
               playsinline={true}
-              className="w-full  h-[600px] md:h-[100vh]"
+              className="w-full  h-[50vh] md:h-[100vh]"
             />
           </div>
           {/* video button */}
@@ -452,10 +450,10 @@ const Info = ({
         <ImageSlider images={images} />
         <div className="block lg:flex items-center gap-8 md:pt-4">
           <nav className="pt-4">
-            <ul className="flex px-2 md:gap-4 md:rounded-full overflow-hidden justify-between text-sm md:text-base font-normal text-center">
+            <ul className="flex flex-wrap px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0">
               <li
                 onClick={() => changeCategory("dimension")}
-                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "dimension" ? "bg-primary text-white" : ""
                 } hover:text-white  hover:bg-primary`}
               >
@@ -463,7 +461,7 @@ const Info = ({
               </li>
               <li
                 onClick={() => changeCategory("details")}
-                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "details" ? "bg-primary text-white" : ""
                 } hover:text-white  hover:bg-primary`}
               >
@@ -471,7 +469,7 @@ const Info = ({
               </li>
               <li
                 onClick={() => changeCategory("warranty")}
-                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "warranty" ? "bg-primary text-white" : ""
                 } hover:text-white  hover:bg-primary`}
               >
@@ -479,7 +477,7 @@ const Info = ({
               </li>
               <li
                 onClick={() => changeCategory("CareGuide")}
-                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "CareGuide" ? "bg-primary text-white" : ""
                 } hover:text-white  hover:bg-primary`}
               >
@@ -487,7 +485,7 @@ const Info = ({
               </li>
               <li
                 onClick={() => changeCategory("Shipping")}
-                className={`cursor-pointer px-2 py-1 rounded-full text-xs md:text-base border border-primary ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "Shipping" ? "bg-primary text-white" : ""
                 } hover:text-white  hover:bg-primary`}
               >

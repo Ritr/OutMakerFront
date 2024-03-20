@@ -7,7 +7,7 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import bPaypal from "../../assets/icons/bPaypal.svg";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import headerIMG from "../../assets/checkinfo.png";
-import logo from "../../assets/icons/navIcon.png";
+import logo from "../../assets/icons/navIcon2.jpg";
 import SidebarCart from "../../components/Navbar/SidebarCart";
 
 import ShippingAddress from "./ShippingAddress";
@@ -495,7 +495,7 @@ const CheckoutInfo = () => {
       <section className="w-full h-full bg-[#F7F7F7]">
         <div className="bg-primary py-6">
           <div className="lg:max-w-[1600px] mx-auto flex justify-between">
-            <div className="flex-1 flex">
+            <div className="flex-1 flex justify-center md:justify-start">
               <Link to={"/"}>
                 <img src={logo} alt="Logo" className="object-contain z-50 h-12 w-12 md:h-16 md:w-16" />
               </Link>

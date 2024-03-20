@@ -18,14 +18,14 @@ const MV = ({ text_h2, text_p, videoSource }) => {
     return (Math.random() * (1.5 - 0.3) + 0.3).toFixed(2); // 生成介于 0.3 到 1.2 之间的随机数
   };
   return (
-    <div className="hero min-h-screen relative">
+    <div className="hero relative">
       <div className="video-wrapper w-full h-full">
         <video
           playsInline
           autoPlay
           muted
           loop
-          className="absolute top-0 left-0 w-full h-[100vh] object-cover lg:object-cover wow fadeInUp"
+          className="w-full h-[50vh] md:h-[100vh] object-cover lg:object-cover wow fadeInUp"
           data-wow-duration={`${getRandomDuration()}s`}
           ref={videoRef}
         >

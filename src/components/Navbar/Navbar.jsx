@@ -36,7 +36,7 @@ const Navbar = () => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   // const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
-  const [topPos, setTopPos] = useState(48);
+  const [topPos, setTopPos] = useState(124);
   const location = useLocation(); // Get the current location
   const [isOpen, setIsOpen] = useState(false);
   const scrollY = useRef(0);
@@ -76,11 +76,13 @@ const Navbar = () => {
       setDirection(direction);
       scrollY.current = document.querySelector("#root").scrollTop;
       let tip = document.querySelector("#tip").getBoundingClientRect();
-      let top = tip.clientHeight;
-      if (tip.top < 0) {
+      let top = tip.height;
+      if (tip.top < -10) {
         top = 0;
       }
+
       let top2 = document.querySelector("#tip2").clientHeight;
+      setTopPos(top + top2 - 4);
     }, 50); // 控制节流的时间间隔
     document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {

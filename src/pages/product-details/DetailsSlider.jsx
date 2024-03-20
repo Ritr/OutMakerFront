@@ -144,7 +144,7 @@ const DetailsSlider = ({
             />
           </div>
         )}
-        <div className="flex justify-end">
+        <div className="flex justify-end md:hidden">
           <Link to={`/collection-product/${collectionId}/${collectionName}`}>
             <div className="flex mt-4 mb-2 mr-4 p-6 py-2 w-52 border rounded-full  items-center justify-center">
               <GoSearch className="mr-2"></GoSearch> Explore collection

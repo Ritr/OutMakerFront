@@ -32,7 +32,7 @@ const Collection = () => {
             <BsArrowRight className="ms-2" />
           </Link>
         </div>
-        <div className="md:hidden pt-4">
+        {/* <div className="md:hidden pt-4">
           <SwiperWrapper showNavigation={false} swiperProps={{ slidesPerView: 2,spaceBetween: 10, loop:false }}>
             {collections?.slice(0, 9).map((collection) => (
               <SwiperSlide>
@@ -55,9 +55,6 @@ const Collection = () => {
                       <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
                         Shop <BsArrowRight className="ms-2" />
                       </span>
-                      {/* <Button className="btn btn-primary rounded-full text-white hover:text-primary hover:bg-white capitalize">
-                    Explore <BsArrowRight className="ms-2" />
-                  </Button> */}
                     </div>
                     <div className="text-sm hidden md:block">{collection?.collection_desc}</div>
                   </div>
@@ -65,6 +62,35 @@ const Collection = () => {
               </SwiperSlide>
             ))}
           </SwiperWrapper>
+        </div> */}
+        <div className="grid md:hidden grid-cols-2 gap-x-4 mt-2">
+          {collections?.slice(0, 8).map((collection) => (
+            <Link
+              to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
+              key={collection?.collection_id}
+            >
+              <div
+                key={collection?.collection_id}
+                className="block group items-center justify-between rounded-md my-2 lg:mt-[38px] md:pb-6"
+                data-wow-duration={`${getRandomDuration()}s`}
+              >
+                <img
+                  className="img w-full h-full object-cover lg:h-[375px] md:mb-6 rounded-md group-hover:scale-105  duration-300"
+                  src={ImgBaseUrl(collection?.collection_pic)}
+                  alt=""
+                />
+                <div className="flex justify-between items-center text-xl font-semibold">
+                  {collection?.collection_name}
+                  <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
+                    Shop <BsArrowRight className="ms-2" />
+                  </span>
+                </div>
+                <div className="text-sm hidden md:block">
+                  {collection?.collection_desc}
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
         <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-4">
           {collections?.slice(0, 9).map((collection) => (
@@ -79,7 +105,7 @@ const Collection = () => {
               >
                 <img
                   className="img w-full h-full object-cover lg:h-[375px] mb-6 rounded-md group-hover:scale-105  duration-300"
-                  src={ImgBaseUrl(collection?.collection_pic)+"?width=600"}
+                  src={ImgBaseUrl(collection?.collection_pic) + "?width=600"}
                   alt=""
                 />
                 <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
