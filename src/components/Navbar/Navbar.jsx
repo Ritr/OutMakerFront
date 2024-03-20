@@ -20,9 +20,9 @@ import SidebarCart from "./SidebarCart";
 import useOutsideClick from "../../Hooks/useOutsideClick";
 import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
-import { throttle } from "lodash";
+import { throttle,debounce  } from "lodash";
 import navb from "../../assets/navb.webp";
-
+import { Navbar as NextNavbar } from "@nextui-org/react";
 AOS.init();
 const Navbar = () => {
   const { objectOnlyData } = useContext(CartContext);
@@ -42,6 +42,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const scrollY = useRef(0);
   const [hidden, setHidden] = useState(false);
+  const [direction, setDirection] = useState(false);
   //判断页面滚动方向
 
   useEffect(() => {
@@ -61,21 +62,14 @@ const Navbar = () => {
 
     // window.addEventListener("resize", handleResize);
 
-    const handleScroll = throttle(() => {
-      let h = top - document.querySelector("#root").scrollTop;
+    const handleScroll = debounce(() => {
       let direction =
         document.querySelector("#root").scrollTop - scrollY.current > 0
           ? true
           : false;
-      if (direction) {
-        h = -document.querySelector("#root").scrollTop;
-      } else {
-        if (h < 0) {
-          h = 0;
-        }
-      }
-      setTopPos(h);
-      scrollY.current = document.querySelector("#root").scrollTop;
+          console.log(direction);
+      setDirection(direction);
+      scrollY.current =  document.querySelector("#root").scrollTop;
     }, 50); // 控制节流的时间间隔
     document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
@@ -321,14 +315,14 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      {/* <NavbarTop/> */}
-      {/* navbar functonalities */}
+    // 根据滚动方向决定是否隐藏 transition-all  duration-300 ease-in-out
+    <div
+      className={`z-40 w-full sticky top-0 inset-x-0 transition-all  duration-300 ease-in-out ${
+        direction ? "-translate-y-full" : ""
+      }`}
+    >
       <div
-        className={`w-full h-[108px] z-50 fixed bg-white  transition-all  duration-300 ease-in-out ${
-          hidden ? "hidden" : ""
-        }`}
-        style={{ top: topPos + "px", zIndex: 99 }}
+        className={`w-full h-[108px] z-50  bg-white  ${hidden ? "hidden" : ""}`}
       >
         <div className="relative navbar lg:h-[108px] w-full lg:w-[1700px] mx-auto bg-white">
           <div className="navbar-start w-full h-full z-10">
@@ -387,16 +381,6 @@ const Navbar = () => {
           </div>
           <div className="navbar-end w-full">
             <div className="flex gap-0 flex-row md:items-center z-20 relative">
-              {/* <div className="relative w-full hidden md:flex">
-              <input
-                type="text"
-                placeholder="Search Products"
-                className="input input-bordered rounded-3xl w-full max-h-9 placeholder:text-sm"
-              />
-              <div className="absolute right-3 top-2">
-                <PiMagnifyingGlassThin className="text-lg" />
-              </div>
-            </div> */}
               <div className="flex ml-5 md:ml-16">
                 <div className="relative mr-3">
                   <p className="absolute -top-3 right-0 text-black font-bold">
@@ -455,100 +439,7 @@ const Navbar = () => {
         isOpen={isSidebarCartOpen}
         toggleSidebar={() => setIsSidebarCartOpen(false)}
       />
-      {/* functionalities */}
-
-      {/* <div ref={dropdownRef} className="block md:hidden">
-        {isDropdownOpen("productItem") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-              navVisible ? "pt-52" : "pt-28"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <ProductItems />
-          </div>
-        )}
-        {isDropdownOpen("collectionItem") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out lg:pt-[138px]  ${
-              navVisible ? "pt-52" : "pt-28"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <CollectionItem />
-          </div>
-        )}
-        {isDropdownOpen("learnItems") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-              navVisible ? "pt-40" : "pt-16"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <LearnItem />
-          </div>
-        )}
-        {isDropdownOpen("designHelp") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-              navVisible ? "pt-56" : "pt-32"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <DesignHelp />
-          </div>
-        )}
-      </div> */}
-
-      {/* <div
-        className="w-full flex flex-col overflow-auto top-36 bg-white fixed z-10 left-0"
-        style={{
-          height: "calc(let(--vh, 1vh) * 100 - 5rem)",
-          transform: "translate(0, 0)",
-        }}
-      >
-        {/* Content here */}
-      {/* <Accordion title="ProductItems">
-          <div className="bg-white w-full z-10 duration-700 transition-all ease-in-out">
-            <ProductItems />
-          </div>
-        </Accordion>
-        <Accordion title="CollectionItem">
-          <div className="bg-white w-full z-10 duration-700 transition-all ease-in-out">
-            <CollectionItem />
-          </div>
-        </Accordion>
-        <Accordion title="LearnItem">
-          <div className="bg-white w-full z-10 duration-700 transition-all ease-in-out">
-            <LearnItem />
-          </div>
-        </Accordion>
-        <div className="space-y-3 text-center">
-          <h3 className="tracki font-semibold text-base">Quick Link</h3>
-          <ul className="space-y-1 text-sm font-light  leading-loose">
-            <li>
-              <Link to="/AboutUs">About us</Link>
-            </li>
-            <li>
-              <Link to="/ContactUs">Contact us</Link>
-            </li>
-            <li>
-              <Link to="/all-blogs">Blogs</Link>
-            </li>
-            <li>
-              <Link to="/care-guide">Care & Maintenance</Link>
-            </li>
-          </ul>
-        </div> </div> */}
-    </>
+    </div>
   );
 };
 export default Navbar;

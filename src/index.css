@@ -11,11 +11,11 @@
 html,
 body {
   max-width: 100%;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 }
 body{
-  height: 100vh;
-  overflow: auto;
+  /* height: 100vh; */
+  /* overflow: auto; */
 }
 #root{
   height: 100vh;

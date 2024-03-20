@@ -39,7 +39,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const handleScroll = () => {
       // 设置当用户向下滚动超过一定像素（例如 300px）时显示 CartBar
-      
+
       if (document.querySelector("#root").scrollTop > 1880) {
         setShowCartBar(true);
       } else {
@@ -48,11 +48,14 @@ const ProductDetails = () => {
     };
 
     // 添加滚动监听器
-   
+
     document.querySelector("#root").addEventListener("scroll", handleScroll);
 
     // 清除监听器
-    return () => document.querySelector("#root").removeEventListener("scroll", handleScroll);
+    return () =>
+      document
+        .querySelector("#root")
+        .removeEventListener("scroll", handleScroll);
   }, []);
 
   //single product data
@@ -77,7 +80,7 @@ const ProductDetails = () => {
   // console.log(Comments_Replies);
 
   return (
-    <main className="relative w-full lg:max-w-[1600px] mx-auto mt-28 md:mt-20">
+    <main className="relative w-full lg:max-w-[1600px] mx-auto ">
       <DetailsSlider
         product={Product}
         images={Images}
@@ -125,7 +128,7 @@ const ProductDetails = () => {
       <BuyerReview reviews={Comments_Replies} product={Product} />
       <div className="">
         <div className="mb-2 md:mb-4 text-center md:text-left color-[#181818] text-2xl font-semibold">
-        Other Collections
+          Other Collections
         </div>
         <SwiperWrapper
           showNavigation={true}
@@ -156,7 +159,9 @@ const ProductDetails = () => {
                   >
                     <div className=" w-full flex items-center justify-center">
                       <img
-                        src={ImgBaseUrl(collection?.collection_pic)+"?width=600"}
+                        src={
+                          ImgBaseUrl(collection?.collection_pic) + "?width=600"
+                        }
                         alt="IMAGE"
                         className="max-h-full h-32 md:h-[248px] max-w-full rounded object-cover"
                       />

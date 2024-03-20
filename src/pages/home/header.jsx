@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <header
-      className="hero h-[50vh]  md:h-[100vh] relative mt-28 "
+      className="hero h-[50vh]  md:h-[100vh] relative  "
       // style={{ backgroundImage: `url(${headerImage})` }}
     >
       <div className="video-wrapper w-full h-full">
