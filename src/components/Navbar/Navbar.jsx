@@ -20,7 +20,7 @@ import SidebarCart from "./SidebarCart";
 import useOutsideClick from "../../Hooks/useOutsideClick";
 import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
-import { throttle,debounce  } from "lodash";
+import { throttle, debounce } from "lodash";
 import navb from "../../assets/navb.webp";
 import { Navbar as NextNavbar } from "@nextui-org/react";
 AOS.init();
@@ -46,15 +46,22 @@ const Navbar = () => {
   //判断页面滚动方向
 
   useEffect(() => {
-    let top = document.querySelector("#tip").clientHeight;
+    let tip = document.querySelector("#tip").getBoundingClientRect();
+    let top = tip.clientHeight;
+    if (tip.top < 0) {
+      top = 0;
+    }
+    let top2 = document.querySelector("#tip2").clientHeight;
     // 如果是购物车页面，则top = 0
 
     // const location = useLocation(); // Get the current location
     // alert(location.pathname);
     if (location.pathname == "/checkout-info") {
-      top = 0;
+      setTopPos(0);
+    } else {
+      setTopPos(top + top2);
     }
-    setTopPos(top);
+
     // const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
     // setNavVisible(window.innerWidth > 768);
@@ -62,14 +69,19 @@ const Navbar = () => {
 
     // window.addEventListener("resize", handleResize);
 
-    const handleScroll = debounce(() => {
+    const handleScroll = throttle(() => {
       let direction =
         document.querySelector("#root").scrollTop - scrollY.current > 0
           ? true
           : false;
-          console.log(direction);
       setDirection(direction);
-      scrollY.current =  document.querySelector("#root").scrollTop;
+      scrollY.current = document.querySelector("#root").scrollTop;
+      let tip = document.querySelector("#tip").getBoundingClientRect();
+      let top = tip.clientHeight;
+      if (tip.top < 0) {
+        top = 0;
+      }
+      let top2 = document.querySelector("#tip2").clientHeight;
     }, 50); // 控制节流的时间间隔
     document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
@@ -324,7 +336,10 @@ const Navbar = () => {
       <div
         className={`w-full h-[108px] z-50  bg-white  ${hidden ? "hidden" : ""}`}
       >
-        <div className="relative navbar lg:h-[108px] w-full lg:w-[1700px] mx-auto bg-white">
+        <div
+          id="tip2"
+          className="relative navbar lg:h-[108px] w-full lg:w-[1700px] mx-auto bg-white"
+        >
           <div className="navbar-start w-full h-full z-10">
             <label className="p-1 md:p-0 swap swap-rotate md:hidden">
               <input
@@ -356,7 +371,7 @@ const Navbar = () => {
               </svg>
             </label>
             <div
-              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${
+              className={`overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0  ${
                 isOpen ? "" : " hidden"
               }`}
               style={{ top: topPos + "px", overscrollBehavior: "contain" }}
