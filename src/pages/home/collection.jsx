@@ -33,7 +33,7 @@ const Collection = () => {
           </Link>
         </div>
         <div className="md:hidden pt-4">
-          <SwiperWrapper showNavigation={false} swiperProps={{ slidesPerView: 2, loop:false }}>
+          <SwiperWrapper showNavigation={false} swiperProps={{ slidesPerView: 2,spaceBetween: 10, loop:false }}>
             {collections?.slice(0, 9).map((collection) => (
               <SwiperSlide>
                 <Link
@@ -46,11 +46,11 @@ const Collection = () => {
                     data-wow-duration={`${getRandomDuration()}s`}
                   >
                     <img
-                      className="img w-full h-full object-cover lg:h-[375px] mb-6 rounded-md group-hover:scale-105  duration-300"
+                      className="img w-full h-full object-cover lg:h-[375px] md:mb-6 rounded-md group-hover:scale-105  duration-300"
                       src={ImgBaseUrl(collection?.collection_pic)}
                       alt=""
                     />
-                    <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
+                    <div className="flex justify-between items-center mb-5 text-xl font-semibold">
                       {collection?.collection_name}
                       <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
                         Shop <BsArrowRight className="ms-2" />

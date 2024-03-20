@@ -3,7 +3,7 @@ import { BiArrowToTop } from "react-icons/bi";
 
 const Top = () => {
   const handle = () => {
-    window.scrollTo(0, 0);
+    document.querySelector("#root").scrollTo(0, 0);
   };
   const [showDiv, setShowDiv] = useState(false);
 
