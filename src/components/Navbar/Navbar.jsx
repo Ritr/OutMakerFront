@@ -22,7 +22,6 @@ import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
 import { throttle, debounce } from "lodash";
 import navb from "../../assets/navb.webp";
-import { Navbar as NextNavbar } from "@nextui-org/react";
 AOS.init();
 const Navbar = () => {
   const { objectOnlyData } = useContext(CartContext);
