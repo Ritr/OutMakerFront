@@ -22,7 +22,7 @@ const DetailsSlider = ({
   collectionName,
 }) => {
   const [headerImage, setHeaderImage] = useState(null);
-
+  const images2 = [{ image_url: product.p_pic }, ...images];
   // handler for image change
   const handleImageClick = (image) => {
     setHeaderImage(image);
@@ -31,30 +31,30 @@ const DetailsSlider = ({
 
   const handleNext = () => {
     carouselRef.current.next();
-    let index = images.findIndex((item) => {
+    let index = images2.findIndex((item) => {
       return ImgBaseUrl(item.image_url) === headerImage;
     });
     let nextIndex = index + 1;
     if (nextIndex <= 0) {
       nextIndex = 1;
     }
-    if (nextIndex >= images.length) {
+    if (nextIndex >= images2.length) {
       nextIndex = 0;
     }
-    let image = images[nextIndex];
+    let image = images2[nextIndex];
     setHeaderImage(ImgBaseUrl(image.image_url));
   };
 
   const handlePrev = () => {
     carouselRef.current.previous();
-    let index = images.findIndex((item) => {
+    let index = images2.findIndex((item) => {
       return ImgBaseUrl(item.image_url) === headerImage;
     });
     let prevIndex = index - 1;
     if (prevIndex < 0) {
-      prevIndex = images.length - 1;
+      prevIndex = images2.length - 1;
     }
-    let image = images[prevIndex];
+    let image = images2[prevIndex];
     setHeaderImage(ImgBaseUrl(image.image_url));
   };
   useEffect(() => {
@@ -63,7 +63,7 @@ const DetailsSlider = ({
   useEffect(() => {
     if (images && images.length) {
       // console.log(images);
-      setHeaderImage(ImgBaseUrl(images[0].image_url));
+      // setHeaderImage(ImgBaseUrl(images[0].image_url));
     }
   }, images);
 
@@ -159,7 +159,7 @@ const DetailsSlider = ({
                       alt=""
                       className="object-cover md:object-contain w-full h-full"
                     /> */}
-          {images.length && (
+          {images2.length && (
             <div>
               <button
                 onClick={handlePrev}
@@ -211,7 +211,7 @@ const DetailsSlider = ({
             swipeable
             ref={carouselRef}
           >
-            {images?.map((image, index) => (
+            {images2?.map((image, index) => (
               <div
                 key={index}
                 onClick={() => handleImageClick(ImgBaseUrl(image?.image_url))}
@@ -224,7 +224,7 @@ const DetailsSlider = ({
                       : ""
                   }`}
                 >
-                  {image?.image_url.endsWith(".mp4") ? (
+                  {image?.image_url?.endsWith(".mp4") ? (
                     <div className="relative w-full h-full">
                       <video
                         src={ImgBaseUrl(image?.image_url)}
@@ -243,7 +243,7 @@ const DetailsSlider = ({
               </div>
             ))}
           </Carousel>
-          {images.length && (
+          {images2.length && (
             <div>
               <button
                 onClick={handleNext}

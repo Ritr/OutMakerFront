@@ -10,13 +10,23 @@ import express from "../../assets/icons/express.svg";
 import mastercard from "../../assets/icons/mastercard.svg";
 import JCB from "../../assets/icons/JCB.svg";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Footer = () => {
+  const location = useLocation();
+  const [hidden, setHidden] = useState(false);
   const hiddenStyle = {
     display: "none", // 在小屏幕上隐藏元素
   };
-
+  useEffect(() => {
+    console.log(location.pathname);
+    if (location.pathname === "/checkout-info") {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  }, [location]);
   const responsiveHiddenStyle = {
     visibility: "hidden",
   };
@@ -92,7 +102,7 @@ const Footer = () => {
       console.error("An error occurred", error);
     }
   };
-  return (
+  return hidden ? null : (
     <footer className=" bg-[#262F3C] text-white">
       <div className="container mx-auto px-4 pt-10 md:px-10 md:pt-20">
         <div className="flex flex-col lg:flex-row justify-between  lg:space-y-0 pb-10">
@@ -104,9 +114,7 @@ const Footer = () => {
                 </div>
               </Link>
 
-
               <div className="md:flex justify-start space-x-3 md:pb-28">
-
                 <a
                   rel="noopener noreferrer"
                   href="https://www.facebook.com/theoutmaker/"

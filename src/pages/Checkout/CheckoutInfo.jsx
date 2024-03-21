@@ -497,7 +497,11 @@ const CheckoutInfo = () => {
           <div className="lg:max-w-[1600px] mx-auto flex justify-between">
             <div className="flex-1 flex justify-center md:justify-start">
               <Link to={"/"}>
-                <img src={logo} alt="Logo" className="object-contain z-50 h-12 w-12 md:h-16 md:w-16" />
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="object-contain z-50 h-12 w-12 md:h-16 md:w-16"
+                />
               </Link>
             </div>
             <div className="flex-1 flex justify-center items-center">
@@ -538,7 +542,7 @@ const CheckoutInfo = () => {
         </div> */}
 
         <div className="w-full bg-white lg:max-w-[1600px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-9 md:max-h-[830px]">
+          <div className="grid grid-cols-1 lg:grid-cols-9 ">
             {/* mobile order summary */}
             <aside className="sm:hidden bg-[#FFFAEE]">
               <div className="">
@@ -636,7 +640,7 @@ const CheckoutInfo = () => {
             </aside>
 
             {/* Left Column for Forms */}
-            <div className="col-span-1 lg:col-span-5  p-3 pt-10 md:pt-10 md:pr-10 md:pb-0 md:max-h-[830px] md:overflow-auto">
+            <div className="col-span-1 lg:col-span-5  p-3 pt-10 md:pt-10 md:pr-10 md:pb-0  md:overflow-auto">
               <div className="md:w-2/3 ml-auto">
                 <h2 className="text-2xl font-semibold mb-4 text-gray-700">
                   Contact
@@ -774,7 +778,7 @@ const CheckoutInfo = () => {
             </div>
             {/* Right Column for Order Summary */}
             <div className="hidden md:block col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  md:w-full md:pl-10 pt-10 md:pb-0">
-              <div>
+              <div className="sticky top-6">
                 {objectOnlyData && objectOnlyData.length > 0 ? (
                   objectOnlyData.map((item) => (
                     <div
