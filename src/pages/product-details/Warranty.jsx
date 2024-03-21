@@ -8,7 +8,7 @@ const Warranty = () => {
       <h4 className=" text-xl font-semibold uppercase">
         Warranty
       </h4>
-      <p className="text-xs  py-4 leading-loose">
+      <p className=" py-4">
         At Outmaker, your outdoor furniture comes with professional warranty
         services, so you can fully enjoy outdoor life.we promise a 5-year
         sunbrella fabric warranty，frame with 10-year warranty for all product

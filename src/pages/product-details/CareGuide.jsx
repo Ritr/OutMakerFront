@@ -13,7 +13,7 @@ const CareGuide = () => {
       </p>
 
       {/* <h5 className="text-xl font-semibold text-primary pt-6">Care Guide</h5> */}
-      <ul className="list-disc text-xs pl-4">
+      <ul className="list-disc pl-4">
         <li>Brush off floating dust.</li>
         <li>
           Prepare cleaning solution and mild soapy water, such as Woolite or

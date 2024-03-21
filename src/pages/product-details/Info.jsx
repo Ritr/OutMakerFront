@@ -400,19 +400,20 @@ const Info = ({
         </div>  */}
         {/* video */}
         <div className="relative">
-          <div className=" w-full h-full [&>div>video]:object-cover">
-            {/* <video
-              playsInline
-              autoPlay
-              muted
-              loop
-              poster="cake.jpg"
-              className="w-full md:h-[100vh] h-[300px] object-cover lg:object-cover"
-              ref={videoRef}
-            >
-              <source src={video} type="video/webm" />
-              Your browser does not support the video tag.
-            </video> */}
+          <div className="hidden md:block w-full h-full [&>div>video]:object-cover">
+            <ReactPlayer
+              url={video}
+              playing={true}
+              loop={true}
+              volume={0}
+              muted={true}
+              playsinline={true}
+              width="100%"
+              height="100%"
+              className="w-full  h-[50vh] md:h-[100vh]"
+            />
+          </div>
+          <div className=" md:hidden w-full h-full [&>div>video]:object-cover">
             <ReactPlayer
               url={video}
               playing={true}
@@ -423,6 +424,7 @@ const Info = ({
               className="w-full  h-[50vh] md:h-[100vh]"
             />
           </div>
+
           {/* video button */}
           <div className="absolute z-10 right-8 bottom-8">
             <button

@@ -21,7 +21,7 @@ const Shipping = () => {
       </Button> */}
 
       {/* <h5 className="text-xl font-semibold text-primary pt-6">Shipping:</h5> */}
-      <ul className="list-disc text-xs pl-4">
+      <ul className="list-disc  pl-4">
         <li>
           We will use the large bulk logistics transportation service to deliver
           your goods to the address you specify. Please ensure that the shipping
@@ -51,7 +51,7 @@ const Shipping = () => {
       {/* <h5 className="text-xl font-semibold text-primary pt-6">Return:</h5> */}
 
       <h4 className="text-xl font-semibold uppercase">Return</h4>
-      <ul className="list-disc text-xs pl-4">
+      <ul className="list-disc  pl-4">
         <li>
           If the goods you receive have quality issues or do not match the
           order, please contact us within 7 days after receiving them, and we
