@@ -5,6 +5,8 @@ import React, {
   useState,
   useLayoutEffect,
 } from "react";
+// import { Navbar as NextNavbar } from "@nextui-org/navbar";
+
 import { FaAngleDown, FaTimes, FaUser } from "react-icons/fa";
 import { BsBag } from "react-icons/bs";
 import logo from "../../assets/Navbar/Frame.svg";
@@ -42,6 +44,7 @@ const Navbar = () => {
   const scrollY = useRef(0);
   const [hidden, setHidden] = useState(false);
   const [direction, setDirection] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
   //判断页面滚动方向
 
   useEffect(() => {
@@ -69,10 +72,12 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
-      let direction =
-        document.querySelector("#root").scrollTop - scrollY.current > 0
-          ? true
-          : false;
+      let scrollTop = document.querySelector("#root").scrollTop;
+      setScrollTop(scrollTop);
+      let direction = scrollTop - scrollY.current > 0 ? true : false;
+      if (scrollY.current < 0) {
+        direction = false;
+      }
       setDirection(direction);
       scrollY.current = document.querySelector("#root").scrollTop;
       let tip = document.querySelector("#tip").getBoundingClientRect();
@@ -330,8 +335,8 @@ const Navbar = () => {
   return (
     // 根据滚动方向决定是否隐藏 transition-all  duration-300 ease-in-out
     <div
-      className={`z-[9999] w-full sticky top-0 inset-x-0 transition-all  duration-300 ease-in-out ${
-        direction ? "-translate-y-full" : ""
+      className={`z-[9999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
+        direction && scrollTop > 50 ? "-translate-y-full" : ""
       }`}
     >
       <div
