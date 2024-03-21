@@ -217,7 +217,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       </div>
 
       <input
-        className="input input-bordered h-10 focus:outline-none w-full text-sm"
+        className="input input-bordered h-10 focus:outline-none col-span-2 w-full text-sm"
         type="text"
         placeholder="First Name"
         name="firstName"
@@ -227,7 +227,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       />
 
       <input
-        className="input input-bordered h-10 focus:outline-none w-full text-sm"
+        className="input input-bordered h-10 focus:outline-none col-span-2 w-full text-sm"
         type="text"
         placeholder="Last Name"
         name="lastName"
@@ -237,7 +237,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       />
 
       <input
-        className="input input-bordered h-10 focus:outline-none w-full md:col-span-2 text-sm"
+        className="input input-bordered h-10 focus:outline-none w-full col-span-2 text-sm"
         type="text"
         placeholder="Street Address"
         name="address"
@@ -247,7 +247,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       />
 
       <input
-        className="input input-bordered h-10 focus:outline-none w-full md:col-span-2 text-sm"
+        className="input input-bordered h-10 focus:outline-none w-full col-span-2 text-sm"
         type="number"
         placeholder="Phone"
         name="phone"

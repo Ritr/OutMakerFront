@@ -7,7 +7,8 @@ import img3 from "../../assets/images/washable.png";
 import { MdOutlineDiscount } from "react-icons/md";
 
 const OutdoorDiningChairCard = ({
-  id,purl,
+  id,
+  purl,
   imageUrl,
   title,
   price,
@@ -19,9 +20,9 @@ const OutdoorDiningChairCard = ({
   isNew, // assuming this is a new prop to indicate if the item is new                <Link to={`/product-details/${p_id}`}></Link>
 }) => {
   const imgs = {
-    "10":img1,
-    "waterproof":img2,
-    "sunbrella":img3,
+    10: img1,
+    waterproof: img2,
+    sunbrella: img3,
   };
   return (
     <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px]">
@@ -31,6 +32,10 @@ const OutdoorDiningChairCard = ({
         </span>
       )}
       <Link to={`/product-details/${id}/${title}`}>
+        <div className="md:hidden ml-4 mt-4 inline-flex gap-1 text-sm  text-white bg-[#dc2626] rounded-md items-center justify-center  py-1 px-1 ">
+          <MdOutlineDiscount className="text-sm md:text-xl font-semibold"></MdOutlineDiscount>
+          30%OFF
+        </div>
         <div className="flex flex-col relative">
           <div className="w-full sm:p-1  transform transition duration-300 hover:scale-105">
             <img
@@ -54,18 +59,34 @@ const OutdoorDiningChairCard = ({
 
           <div className="bottom-0 p-4 pb-14">
             <p className="text-lg font-bold text-black inline-block md:min-w-[220px] relative">
-              <div className="md:inline">
-                {title}
-              </div>
-              <div className="inline-flex md:flex gap-1 text-sm md:text-md text-white bg-[#dc2626] rounded-md items-center justify-center md:px-5 py-1 px-1 md:py-2 md:absolute top-0 left-[100%] md:ml-2">
+              <div className="md:inline">{title}</div>
+              <div className="hidden md:flex gap-1 text-sm md:text-md text-white bg-[#dc2626] rounded-md items-center justify-center md:px-5 py-1 px-1 md:py-2 md:absolute top-0 left-[100%] md:ml-2">
                 <MdOutlineDiscount className="text-sm md:text-xl font-semibold"></MdOutlineDiscount>
                 30%OFF
-              </div>  
+              </div>
             </p>
-            <div className="flex items-center mt-2" style={{fontSize:"16px"}}>
-              <del className="text-sm text-gray-500 mr-2" style={{color:"#ADACAC"}}>{originalPrice}</del>
-              <p className="text-xl text-red-600 font-bold" style={{color:"#DC2626"}}>{price}</p>
-              <p className="text-sm text-red-600 ml-2" style={{color:"#DC2626"}}>{discountMessage}</p>
+            <div
+              className="flex items-center mt-2"
+              style={{ fontSize: "16px" }}
+            >
+              <del
+                className="text-sm text-gray-500 mr-2"
+                style={{ color: "#ADACAC" }}
+              >
+                {originalPrice}
+              </del>
+              <p
+                className="text-xl text-red-600 font-bold"
+                style={{ color: "#DC2626" }}
+              >
+                {price}
+              </p>
+              <p
+                className="text-sm text-red-600 ml-2"
+                style={{ color: "#DC2626" }}
+              >
+                {discountMessage}
+              </p>
             </div>
 
             <div className="flex flex-wrap justify-between">
@@ -73,10 +94,21 @@ const OutdoorDiningChairCard = ({
                 {warrantyOptions.map((warranty, index) => (
                   <div
                     key={index}
-                    style={{borderColor:"#4F5574",color:"#002B5B",height:"31px",lineHeight:"31px",fontSize:"12px"}}
+                    style={{
+                      borderColor: "#4F5574",
+                      color: "#002B5B",
+                      height: "31px",
+                      lineHeight: "31px",
+                      fontSize: "12px",
+                    }}
                     className="text-xs border rounded-md px-3 mr-2 mb-2 flex items-center"
                   >
-                    <img src={imgs[warranty.key]} style={{width:"17px"}} className="mr-2" alt="" />
+                    <img
+                      src={imgs[warranty.key]}
+                      style={{ width: "17px" }}
+                      className="mr-2"
+                      alt=""
+                    />
                     {warranty.text}
                   </div>
                 ))}
