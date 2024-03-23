@@ -122,7 +122,7 @@ const Home = () => {
           onClick={openModal}
           className="fixed bottom-5 left-5 z-50 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-md"
         >
-          Open Menu
+          Track Order
         </button>
       )}
 

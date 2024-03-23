@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getApiBaseUrl } from "../../utils/api/index";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { Link } from "react-router-dom";
+import { RxHome } from "react-icons/rx";
 
 const AccountPage = () => {
   // 定义一个状态变量来跟踪当前选中的菜单项
@@ -26,8 +27,8 @@ const AccountPage = () => {
     return statusDescriptions[statusCode] || "Unknown";
   };
   const fetchOrders = async () => {
-    // let url = `${baseUrl}/user/all/order/a492754459@outlook.com`;
-    let url = `${baseUrl}/user/all/order/${user_email}`;
+    let url = `${baseUrl}/user/all/order/a492754459@outlook.com`;
+    // let url = `${baseUrl}/user/all/order/${user_email}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -75,139 +76,68 @@ const AccountPage = () => {
     }
   }, []);
   return (
-    <div className="mx-auto w-full lg:max-w-[1600px]">
+    <div className="mx-auto w-full lg:max-w-[1600px] mb-4">
       <h2 className="text-2xl font-bold mb-5">MY ACCOUNT</h2>
       <div className="container mx-auto mt-10 w-full lg:max-w-[1600px] bg-white md:flex gap-4">
         <div className="md:min-h-16 border border-[#E6E6E6]">
-          <div>Dashboard</div>
+          <div className="bg-[#D8EDF5] bg-opacity-50 px-6 py-3 text-primary md:w-[300px] flex gap-2 items-center">
+            <RxHome className="text-xl"></RxHome> Dashboard
+          </div>
         </div>
         <div className="flex-1 bg-[#F3F4F6] p-4">
           <h3 className="text-lg font-semibold mb-2">Account Info</h3>
-          <div className="bg-white p-4 border rounded-sm mb-4">
-            <div className="grid grid-cols-1 gap-2">
-              <div className="flex justify-between">
-                <span className="">Name</span>
+          <div className="bg-white px-4 border rounded-sm mb-4 md:min-h-[200px]">
+            <div className="py-2">
+              <div className="py-2 flex gap-4  border-b border-[#e6e6e6e]">
+                <span className="md:w-32 text-right font-semibold">Name</span>
                 <span className="">{user_name}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="">Email</span>
+              <div className="py-2 flex gap-4 border-b border-[#e6e6e6e]">
+                <span className="md:w-32 text-right font-semibold">Email</span>
                 <span className="">{user_email}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="">Membership</span>
+              <div className="py-2 flex gap-4 border-b border-[#e6e6e6e]">
+                <span className="md:w-32 text-right font-semibold">
+                  Membership
+                </span>
                 <span className="">Premium</span>
               </div>
             </div>
           </div>
           <h3 className="text-lg font-semibold mb-2">Recent Orders</h3>
           <div className="bg-white p-4 border rounded-sm  ">
-            <div className="grid grid-cols-1 gap-2 max-h-40 overflow-auto">
+            <div className="grid grid-cols-1 gap-2 max-h-96 overflow-auto">
               {/* 这里可以循环渲染最近的订单信息 */}
               {filteredOrders.map((item) => {
                 return (
                   <Link to={`/OrderInformation/${item[0].orderNumber}`}>
-                    <div className="flex justify-between gap-2">
+                    <div className="flex justify-around items-center gap-2 border-b">
                       <div className=" flex-1 whitespace-nowrap overflow-hidden  overflow-ellipsis">
                         {item[0].orderNumber}
+                        <div className="flex items-center">
+                          <img
+                            className="w-20 h-20 object-contain rounded-md mr-4"
+                            src={item[0].image}
+                            alt=""
+                          />
+                          <div className="font-semibold  hidden md:block">
+                            {item[0].name}
+                          </div>
+                        </div>
                       </div>
-                      <div className=" flex-1 text-right">
+                      <div className="flex-1 hidden md:block">
                         {getStatusDescription(item[0].status)}
                       </div>
-                    </div>{" "}
+                      <div className="text-right pr-4 md:pr-8">
+                        <div class="bg-primary rounded-full text-white text-xs px-4 py-2 md:text-base md:px-8">
+                          Detail
+                        </div>
+                      </div>
+                    </div>
                   </Link>
                 );
               })}
             </div>
-          </div>
-        </div>
-        <div className="flex flex-wrap -mx-3 mb-6">
-          <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <ul className="list-none">
-              <li
-                className={`text-gray-700 text-base px-4 py-2 ${
-                  activeTab === "dashboard" ? "border-l-4 border-green-500" : ""
-                }`}
-                onClick={() => setActiveTab("dashboard")}
-              >
-                Dashboard
-              </li>
-              {/* <li
-              className={`text-gray-700 text-base px-4 py-2 ${
-                activeTab === "addresses" ? "border-l-4 border-green-500" : ""
-              }`}
-              onClick={() => setActiveTab("addresses")}
-            >
-              Addresses (0)
-            </li>
-            <li
-              className="text-gray-700 text-base px-4 py-2"
-              onClick={() => setActiveTab("wishlist")}
-            >
-              Wishlist (0)
-            </li>
-            <li
-              className="text-gray-700 text-base px-4 py-2"
-              onClick={() => setActiveTab("logout")}
-            >
-              Logout
-            </li> */}
-            </ul>
-          </div>
-          <div className="w-full md:w-2/3 px-3">
-            {activeTab === "dashboard" && (
-              <div className="p-5 border-l border-t border-b border-gray-300 bg-gray-100">
-                {/* 仪表盘的内容 */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-white p-4 shadow rounded-lg">
-                    <h3 className="text-lg font-semibold mb-2">Account Info</h3>
-                    <div className="grid grid-cols-1 gap-2">
-                      <div className="flex justify-between">
-                        <span className="">Name:</span>
-                        <span className="">{user_name}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="">Email:</span>
-                        <span className="">{user_email}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="">Membership:</span>
-                        <span className="">Premium</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-white p-4 shadow rounded-lg">
-                    <h3 className="text-lg font-semibold mb-2">
-                      Recent Orders
-                    </h3>
-                    <div className="grid grid-cols-1 gap-2 max-h-40 overflow-auto">
-                      {/* 这里可以循环渲染最近的订单信息 */}
-                      {filteredOrders.map((item) => {
-                        return (
-                          <Link to={`/OrderInformation/${item[0].orderNumber}`}>
-                            <div className="flex justify-between gap-2">
-                              <div className=" flex-1 whitespace-nowrap overflow-hidden  overflow-ellipsis">
-                                {item[0].orderNumber}
-                              </div>
-                              <div className=" flex-1 text-right">
-                                {getStatusDescription(item[0].status)}
-                              </div>
-                            </div>{" "}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-            {activeTab === "addresses" && (
-              <div className="mt-5">
-                {/* 地址的内容 */}
-                <h3 className="text-lg font-semibold mb-2">Addresses:</h3>
-                {/* 这里应该展示地址列表 */}
-              </div>
-            )}
-            {/* 你可以继续为wishlist和logout添加内容 */}
           </div>
         </div>
       </div>
