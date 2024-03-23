@@ -490,12 +490,12 @@ const CustomOrderInformationPC = () => {
     return (
       <div className="p-10 bg-white ">
         <div className="flex justify-end mb-4">
-          <p className="text-lg font-bold text-black pr-1">
-            30 days no reason to return{" "}
-          </p>
+          {/* <p className="text-lg font-bold text-black pr-1">
+            30 days no reason to return
+          </p> */}
           <Link to="/ShippingPolicy">
             <p className="text-lg font-bold text-[#002B5B]">
-              shipping delivey{" "}
+              shipping delivey
             </p>
           </Link>
         </div>

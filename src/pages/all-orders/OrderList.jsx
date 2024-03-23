@@ -6,7 +6,7 @@ import { getApiBaseUrl } from "../../utils/api/index";
 const OrderList = () => {
   const [filteredOrders, setFilteredOrders] = useState([]); // State for displaying orders
   const [searchEmail, setSearchEmail] = useState("");
-  const [searchType, setSearchType] = useState("code");
+  const [searchType, setSearchType] = useState("email");
 
   // const userCode = localStorage.getItem("usercode");
   const [userCode, setUserCode] = useState("");

@@ -8,6 +8,8 @@ import "../../assets/css/product.css";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { Link } from "react-router-dom";
 
+import SwiperWrapper from "../../components/SwiperWrapper";
+import { SwiperSlide } from "swiper/react";
 const collections = [
   {
     id: 1,
@@ -34,79 +36,59 @@ const CollectionSlider = ({ filteredCollection }) => {
           Other Collections
         </h2>
       </div>
-
-      <Carousel
-        additionalTransfrom={0}
-        arrows
-        autoPlaySpeed={3000}
-        centerMode={false}
-        className=""
-        containerclassName="container-with-dots"
-        dotListclassName=""
-        draggable
-        focusOnSelect={false}
-        infinite
-        itemclassName=""
-        keyBoardControl
-        minimumTouchDrag={80}
-        pauseOnHover
-        renderArrowsWhenDisabled={false}
-        renderButtonGroupOutside={false}
-        renderDotsOutside={false}
-        responsive={{
-          desktop: {
-            breakpoint: { max: 5000, min: 1024 },
-            items: 2,
-          },
-          tablet: {
-            breakpoint: { max: 1024, min: 780 },
-            items: 2,
-          },
-          mobile: {
-            breakpoint: { max: 780, min: 0 },
-            items: 1,
+      <SwiperWrapper
+        showNavigation={true}
+        swiperProps={{
+          loop: false,
+          spaceBetween: 10,
+          breakpoints: {
+            375: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
           },
         }}
-        rewind={false}
-        rewindWithAnimation={false}
-        rtl={false}
-        shouldResetAutoplay
-        sliderclassName=""
-        slidesToSlide={1}
-        swipeable
       >
         {filteredCollection?.map((collection) => (
-          <Link
-            key={collection?.collection_id}
-            to={`/collection-product/${collection?.collection_id}/${collection.collection_name}`}
-          >
-            <div className="py-6 md:py-10 mx-6">
-              <div className="relative text-center overflow-hidden h-[300px]">
-                <img
-                  src={ImgBaseUrl(collection?.collection_pic)}
-                  alt=""
-                  className="hover:scale-125 transition ease-in-out duration-1000 object-cover w-full h-full"
-                />
-                <div
-                  className="flex flex-col absolute"
-                  style={{
-                    top: "40%",
-                    transform: "translate(-50%, 0)",
-                    left: "50%",
-                  }}
-                >
-                  <p className="text-lg md:text-xl font-light text-white">
-                    COLLECTION
-                  </p>
-                  <h4 className="text-4xl md:text-5xl text-white font-medium">
-                    {collection?.collection_name}
-                  </h4>
+          <SwiperSlide className="h-full">
+            <Link
+              key={collection?.collection_id}
+              to={`/collection-product/${collection?.collection_id}/${collection.collection_name}`}
+            >
+              <div className="py-6 md:py-10 ">
+                <div className="relative text-center overflow-hidden h-[300px]">
+                  <img
+                    src={ImgBaseUrl(collection?.collection_pic)}
+                    alt=""
+                    className="hover:scale-125 transition ease-in-out duration-1000 object-cover w-full h-full"
+                  />
+                  <div
+                    className="flex flex-col absolute"
+                    style={{
+                      top: "40%",
+                      transform: "translate(-50%, 0)",
+                      left: "50%",
+                    }}
+                  >
+                    <p className="text-lg md:text-xl font-light text-white">
+                      COLLECTION
+                    </p>
+                    <h4 className="text-4xl md:text-5xl text-white font-medium">
+                      {collection?.collection_name}
+                    </h4>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
+            </Link>
+          </SwiperSlide>
         ))}
-      </Carousel>
+      </SwiperWrapper>
 
       <Network />
     </section>

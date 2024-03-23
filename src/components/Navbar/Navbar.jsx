@@ -344,7 +344,7 @@ const Navbar = () => {
       >
         <div
           id="tip2"
-          className="relative navbar lg:h-[108px] w-full lg:w-[1700px] mx-auto bg-white"
+          className="relative navbar lg:h-[108px] w-full lg:w-[1600px] mx-auto bg-white"
         >
           <div className="navbar-start w-full h-full z-10">
             <label className="p-1 md:p-0 swap swap-rotate md:hidden">

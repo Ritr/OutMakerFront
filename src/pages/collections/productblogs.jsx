@@ -6,6 +6,8 @@ import useProducts from "../../Hooks/useProductAll.js";
 import OutdoorDiningChairCard from "./OutdoorDiningChairCard.jsx";
 import { FiFilter } from "react-icons/fi";
 import { throttle } from "lodash";
+import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl.jsx";
+
 import {
   useFetchSeat,
   useFetchCombination,
