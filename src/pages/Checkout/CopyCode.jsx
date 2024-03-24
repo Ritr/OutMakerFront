@@ -160,7 +160,7 @@ const handleMethodSelection = (name) => {
             {/* paypal form */}
             <form onSubmit={handleForm} className="text-primary">
               <div>
-                <h3 className="text-2xl font-semibold mb-4">
+                <h3 className="text-2xl font-medium mb-4">
                   Contact Information
                 </h3>
                 <div className="space-y-[20px]">
@@ -195,7 +195,7 @@ const handleMethodSelection = (name) => {
               </div>
               {/* for shipping address */}
               <div>
-                <h3 className="text-2xl font-semibold mb-4 mt-14">
+                <h3 className="text-2xl font-medium mb-4 mt-14">
                   Shipping Address
                 </h3>
                 <div className="grid grid-cols-2 gap-4">

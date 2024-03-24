@@ -5,7 +5,7 @@ import Button from "../../shared/Button/Button";
 const Shipping = () => {
   return (
     <section className="container mx-auto p-4 md:p-10">
-      <h4 className=" text-xl font-semibold uppercase">
+      <h4 className=" text-xl font-medium uppercase">
         Shipping
       </h4>
       {/* <p className="text-base font-normal text-[#666666] py-4 leading-loose">
@@ -20,7 +20,7 @@ const Shipping = () => {
         Cleaning Instructions <BsArrowRight className="ms-2" />
       </Button> */}
 
-      {/* <h5 className="text-xl font-semibold text-primary pt-6">Shipping:</h5> */}
+      {/* <h5 className="text-xl font-medium text-primary pt-6">Shipping:</h5> */}
       <ul className="list-disc  pl-4">
         <li>
           We will use the large bulk logistics transportation service to deliver
@@ -48,9 +48,9 @@ const Shipping = () => {
       </ul>
       <br></br>
 
-      {/* <h5 className="text-xl font-semibold text-primary pt-6">Return:</h5> */}
+      {/* <h5 className="text-xl font-medium text-primary pt-6">Return:</h5> */}
 
-      <h4 className="text-xl font-semibold uppercase">Return</h4>
+      <h4 className="text-xl font-medium uppercase">Return</h4>
       <ul className="list-disc  pl-4">
         <li>
           If the goods you receive have quality issues or do not match the

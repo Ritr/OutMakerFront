@@ -216,7 +216,7 @@ const OrderList = () => {
                           <div className="text-gray-900">
                             {group[0].date} Order number: {group[0].orderNumber}
                           </div>
-                          <div className="bg-primary text-white flex px-3 py-1 text-center items-center justify-center font-semibold leading-tight rounded-full w-32 h-8">
+                          <div className="bg-primary text-white flex px-3 py-1 text-center items-center justify-center font-medium leading-tight rounded-full w-32 h-8">
                             <Link
                               to={`/OrderInformation/${group[0].orderNumber}`}
                             >

@@ -101,7 +101,7 @@ const CustomOrderInformation = () => {
           className="border flex flex-col bg-[#E7F1FD] p-4 mt-4 bottom-0 left-1/2 rounded absolute triangle-border"
           style={{ transform: "translateX(-50%)" }}
         >
-          <p className="font-semibold">
+          <p className="font-medium">
             Current Order Status: {stepsData[currentStepIndex].contentBelow}
           </p>
           <ol className="list-decimal list-inside">

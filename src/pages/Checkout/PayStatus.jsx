@@ -88,7 +88,7 @@ const PaymentSuccess = () => {
                 alt="Payment Successful"
                 className="mx-auto h-24" // Icon size adjusted for responsiveness
               />
-              <h1 className="text-2xl font-semibold text-gray-900 mt-4">
+              <h1 className="text-2xl font-medium text-gray-900 mt-4">
                 Payment successful
               </h1>
               <p className="text-xl mt-7" style={{ color: "#707070" }}>
@@ -166,7 +166,7 @@ const PaymentSuccess = () => {
                 alt="Payment Error"
                 className="mx-auto h-24" // Icon size adjusted for responsiveness
               />
-              <h1 className="text-2xl font-semibold text-gray-900 mt-4">
+              <h1 className="text-2xl font-medium text-gray-900 mt-4">
                 Payment failed
               </h1>
               <p className="text-xl mt-7" style={{ color: "#CF0000" }}>

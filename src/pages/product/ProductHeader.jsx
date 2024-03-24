@@ -30,7 +30,7 @@ const ProductHeader = ({ product, category }) => {
           <p className="pb-4 text-white">
             {category ? "CATEGORY" : "COLLECTION"}
           </p>
-          <h1 className="text-3xl md:text-4xl lg:text-6xl text-white font-semibold uppercase">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl text-white font-medium uppercase">
             {category ? product?.collection_name : product?.category_name}
           </h1>
         </div>

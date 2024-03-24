@@ -205,7 +205,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               <div>
                 <label
                   htmlFor="login-email"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Email
                 </label>
@@ -222,7 +222,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               <div>
                 <label
                   htmlFor="login-password"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Password
                 </label>
@@ -255,7 +255,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               <div>
                 <label
                   htmlFor="register-first-name"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   First Name
                 </label>
@@ -272,7 +272,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               <div>
                 <label
                   htmlFor="register-last-name"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Last Name
                 </label>
@@ -289,7 +289,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               <div>
                 <label
                   htmlFor="register-email"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Email Address
                 </label>
@@ -306,7 +306,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               <div>
                 <label
                   htmlFor="register-password"
-                  className="block text-sm font-semibold text-gray-700"
+                  className="block text-sm font-medium text-gray-700"
                 >
                   Password
                 </label>

@@ -26,7 +26,7 @@ const SwiperWrapper = ({
         <button
           onClick={handlePrev}
           className={
-            "absolute z-10 top-[50%] left-[1rem] -translate-y-[50%] flex items-center justify-center w-[2rem] h-[2rem]  bg-[#626262] bg-opacity-80 text-white rounded-full  font-semibold " +
+            "absolute z-10 top-[50%] left-[1rem] -translate-y-[50%] flex items-center justify-center w-[2rem] h-[2rem]  bg-[#626262] bg-opacity-80 text-white rounded-full  font-medium " +
             prevClassName
           }
         >
@@ -40,7 +40,7 @@ const SwiperWrapper = ({
         <button
           onClick={handleNext}
           className={
-            "absolute z-10 top-[50%] right-[1rem] -translate-y-[50%] flex items-center justify-center w-[2rem] h-[2rem]  bg-[#626262] bg-opacity-80 text-white rounded-full  font-semibold " +
+            "absolute z-10 top-[50%] right-[1rem] -translate-y-[50%] flex items-center justify-center w-[2rem] h-[2rem]  bg-[#626262] bg-opacity-80 text-white rounded-full  font-medium " +
             nextClassName
           }
         >

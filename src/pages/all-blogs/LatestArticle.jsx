@@ -43,7 +43,7 @@ const LatestArticle = (latestBlogs) => {
                   to={`/blog/${article.post_id}/${article.post_url}`}
                   key={article.post_id}
                 >
-                  <h3 className="text-xl lg:text-xl font-semibold text-black hover:text-blue-700 md:underline hover:underline">
+                  <h3 className="text-xl lg:text-xl font-medium text-black hover:text-blue-700 md:underline hover:underline">
                     {article.post_title}
                   </h3>
                 </Link>

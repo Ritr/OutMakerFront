@@ -130,7 +130,7 @@ const ProductDetails = () => {
       <NetWork />
       <BuyerReview reviews={Comments_Replies} product={Product} />
       <div className="">
-        <div className="mb-2 md:mb-4 text-center md:text-left color-[#181818] text-2xl font-semibold">
+        <div className="mb-2 md:mb-4 text-center md:text-left color-[#181818] text-2xl font-medium">
           Other Collections
         </div>
         <SwiperWrapper
@@ -169,7 +169,7 @@ const ProductDetails = () => {
                         className="max-h-full h-32 md:h-[248px] max-w-full rounded object-cover"
                       />
                     </div>
-                    <div className=" font-semibold md:text-md absolute z-10 text-white top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+                    <div className=" font-medium md:text-md absolute z-10 text-white top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
                       {collection?.collection_name}
                     </div>
                   </Link>

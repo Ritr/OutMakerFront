@@ -34,7 +34,7 @@ const BuyerReview = ({ reviews, product }) => {
       {/* <img src={test} alt="" />
       <br></br>
       <img src={test} alt="" /> */}
-      <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold uppercase text-primary mb-10">
+      <h3 className="text-2xl md:text-3xl lg:text-4xl font-medium uppercase text-primary mb-10">
         Buyers review and question
       </h3>
       {/* buttons */}

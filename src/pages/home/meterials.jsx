@@ -51,7 +51,7 @@ const Meterials = () => {
     <section className="py-10 md:py-20  pl-5 pr-5 ">
       <div className="w-full ">
         <div className="text-left pb-4 mt-1">
-          <h2 className="text-primary font-semibold text-2xl md:text-4xl">
+          <h2 className="text-primary font-medium text-2xl md:text-4xl">
             Our Product Designer
           </h2>
         </div>
@@ -70,7 +70,7 @@ const Meterials = () => {
           <div className="flex-1 bg-[#F5F5F5]">
             <img src={imgs3} alt="" className="w-full h-30 object-cover" />
             <div className="p-3">
-              <div className="text-center text-base font-semibold mb-3">
+              <div className="text-center text-base font-medium mb-3">
                 Furniture designer
               </div>
               <div className="text-xs mb-4">
@@ -92,7 +92,7 @@ const Meterials = () => {
           <div className="flex-1 bg-[#F5F5F5]">
             <img src={imgs4} alt="" className="w-full h-30 object-cover" />
             <div className="p-3">
-              <div className="text-center text-base font-semibold mb-3">
+              <div className="text-center text-base font-medium mb-3">
                 Furniture designer
               </div>
               <div className="text-xs mb-4">
@@ -113,7 +113,7 @@ const Meterials = () => {
           </div>
         </div>
         <div className="text-center w-4/5 md:w-2/3 mx-auto mt-5">
-          <h2 className="text-primary font-semibold mt-5 text-2xl md:text-4xl">
+          <h2 className="text-primary font-medium mt-5 text-2xl md:text-4xl">
             Materials We Use
           </h2>
           <p className="text-[#666666] text-sm font-normal leading-7 pt-4">
@@ -162,7 +162,7 @@ const Meterials = () => {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-base md:text-xl py-1 text-primary font-semibold">
+                  <h2 className="text-base md:text-xl py-1 text-primary font-medium">
                     {material?.title}
                   </h2>
                   <p className="hidden md:block text-xs font-normal">

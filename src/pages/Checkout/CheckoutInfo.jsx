@@ -641,7 +641,7 @@ const CheckoutInfo = () => {
             {/* Left Column for Forms */}
             <div className="col-span-1 lg:col-span-5  p-3 pt-10 md:pt-10 md:pr-10 md:pb-0  md:overflow-auto">
               <div className="md:w-2/3 ml-auto">
-                <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+                <h2 className="text-2xl font-medium mb-4 text-gray-700">
                   Contact
                 </h2>
                 <input
@@ -652,7 +652,7 @@ const CheckoutInfo = () => {
                   onChange={handleEmailChange}
                 />
 
-                <h2 className="text-2xl font-semibold mb-4 mt-2 text-gray-700">
+                <h2 className="text-2xl font-medium mb-4 mt-2 text-gray-700">
                   Shipping Address
                 </h2>
                 <ShippingAddress
@@ -661,7 +661,7 @@ const CheckoutInfo = () => {
                 />
 
                 <div className="container mx-auto mt-2">
-                  <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+                  <h2 className="text-2xl font-medium mb-4 text-gray-700">
                     Payment
                   </h2>
                   <p className="text-gray-500 mb-4 text-xs">

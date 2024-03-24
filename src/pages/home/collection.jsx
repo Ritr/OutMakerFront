@@ -20,13 +20,13 @@ const Collection = () => {
       <div>
         <div className="flex justify-between items-center">
           <div className="basis-2/3">
-            <h1 className="text-2xl md:text-4xl font-semibold text-primary">
+            <h1 className="text-2xl md:text-4xl font-medium text-primary">
               Our Popular Collection
             </h1>
           </div>
           <Link
             to="/collections"
-            className="flex items-center text-primary text-sm font-semibold cursor-pointer justify-end text-end"
+            className="flex items-center text-primary text-sm font-medium cursor-pointer justify-end text-end"
           >
             View All
             <BsArrowRight className="ms-2" />
@@ -50,7 +50,7 @@ const Collection = () => {
                       src={ImgBaseUrl(collection?.collection_pic)}
                       alt=""
                     />
-                    <div className="flex justify-between items-center mb-5 text-xl font-semibold">
+                    <div className="flex justify-between items-center mb-5 text-xl font-medium">
                       {collection?.collection_name}
                       <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
                         Shop <BsArrowRight className="ms-2" />
@@ -79,7 +79,7 @@ const Collection = () => {
                   src={ImgBaseUrl(collection?.collection_pic)}
                   alt=""
                 />
-                <div className="flex justify-between items-center text-xl font-semibold">
+                <div className="flex justify-between items-center text-xl font-medium">
                   {collection?.collection_name}
                   <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">
                     Shop <BsArrowRight className="ms-2" />
@@ -108,7 +108,7 @@ const Collection = () => {
                   src={ImgBaseUrl(collection?.collection_pic) + "?width=600"}
                   alt=""
                 />
-                <div className=" flex justify-between items-center mb-5 text-xl font-semibold">
+                <div className=" flex justify-between items-center mb-5 text-xl font-medium">
                   {collection?.collection_name}
 
                   <span className="flex items-center text-sm opacity-0 group-hover:opacity-100 transition duration-300 ease-in">

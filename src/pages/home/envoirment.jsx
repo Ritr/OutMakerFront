@@ -9,7 +9,7 @@ const Envoirment = () => {
     <section className="w-full pb-20 pt-10  pl-5 pr-5 ">
       <div className="grid items-center grid-cols-1 md:grid-cols-2">
         <div className="mb-6 md:mb-0">
-          <h4 className="text-primary text-2xl md:text-4xl font-semibold">
+          <h4 className="text-primary text-2xl md:text-4xl font-medium">
             Environment Friendly
           </h4>
           <p className="text-[#666666] text-xs font-normal pt-1 pb-4 md:pt-6 md:pb-6">

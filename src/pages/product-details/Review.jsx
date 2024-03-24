@@ -38,11 +38,11 @@ const Review = () => {
 						<img src={review.img} alt='' className='h-[55px] w-[55px] mb-1' />
 						<div className=''>
 							<div className='flex gap-2 text-primary items-center'>
-								<h5 className='uppercase text-sm md:text-xl font-semibold'>
+								<h5 className='uppercase text-sm md:text-xl font-medium'>
 									Hosen Rahman
 								</h5>
 								<div className='w-[1px] h-[20px] bg-primary'></div>
-								<p className='text-xs md:text-sm font-semibold'>
+								<p className='text-xs md:text-sm font-medium'>
 									Product-{" "}
 									<span className='underline font-normal'>
 										Eden Sofa Set with Fixed Chairs
@@ -78,7 +78,7 @@ const Review = () => {
 										className='mask mask-star-2 bg-orange-400'
 									/>
 								</div>
-								<p className='text-[#151414] font-semibold text-xs md:text-xl'>
+								<p className='text-[#151414] font-medium text-xs md:text-xl'>
 									5.00
 								</p>
 							</div>

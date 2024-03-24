@@ -85,26 +85,26 @@ const AccountPage = () => {
           </div>
         </div>
         <div className="flex-1 bg-[#F3F4F6] p-4">
-          <h3 className="text-lg font-semibold mb-2">Account Info</h3>
+          <h3 className="text-lg font-medium mb-2">Account Info</h3>
           <div className="bg-white px-4 border rounded-sm mb-4 md:min-h-[200px]">
             <div className="py-2">
               <div className="py-2 flex gap-4  border-b border-[#e6e6e6e]">
-                <span className="md:w-32 text-right font-semibold">Name</span>
+                <span className="md:w-32 text-right font-medium">Name</span>
                 <span className="">{user_name}</span>
               </div>
               <div className="py-2 flex gap-4 border-b border-[#e6e6e6e]">
-                <span className="md:w-32 text-right font-semibold">Email</span>
+                <span className="md:w-32 text-right font-medium">Email</span>
                 <span className="">{user_email}</span>
               </div>
               <div className="py-2 flex gap-4 border-b border-[#e6e6e6e]">
-                <span className="md:w-32 text-right font-semibold">
+                <span className="md:w-32 text-right font-medium">
                   Membership
                 </span>
                 <span className="">Premium</span>
               </div>
             </div>
           </div>
-          <h3 className="text-lg font-semibold mb-2">Recent Orders</h3>
+          <h3 className="text-lg font-medium mb-2">Recent Orders</h3>
           <div className="bg-white p-4 border rounded-sm  ">
             <div className="grid grid-cols-1 gap-2 max-h-96 overflow-auto">
               {/* 这里可以循环渲染最近的订单信息 */}
@@ -120,7 +120,7 @@ const AccountPage = () => {
                             src={item[0].image}
                             alt=""
                           />
-                          <div className="font-semibold  hidden md:block">
+                          <div className="font-medium  hidden md:block">
                             {item[0].name}
                           </div>
                         </div>

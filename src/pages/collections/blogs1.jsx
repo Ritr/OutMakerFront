@@ -36,7 +36,7 @@ const Blogs = () => {
           </div>
         </div>
         <div className="text-center pt-5 md:pt-10">
-          {/* <h2 className="text-4xl font-semibold text-black">
+          {/* <h2 className="text-4xl font-medium text-black">
             {location?.pathname === "/categories"
               ? "CATEGORIES"
               : "COLLECTIONS"}

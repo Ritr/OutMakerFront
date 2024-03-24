@@ -94,7 +94,7 @@ const DetailsSlider = ({
         </Link>
         <div>
           <div className="block md:flex items-center justify-center">
-            <h4 className="uppercase text-xl md:text-3xl font-semibold">
+            <h4 className="uppercase text-xl md:text-3xl font-medium">
               {product?.p_name}
             </h4>
           </div>
@@ -163,7 +163,7 @@ const DetailsSlider = ({
             <div>
               <button
                 onClick={handlePrev}
-                className="flex items-center justify-center w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-semibold"
+                className="flex items-center justify-center w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-medium"
               >
                 <SlArrowLeft />
               </button>
@@ -247,7 +247,7 @@ const DetailsSlider = ({
             <div>
               <button
                 onClick={handleNext}
-                className="flex items-center justify-center w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-semibold"
+                className="flex items-center justify-center w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-medium"
               >
                 <SlArrowRight />
               </button>

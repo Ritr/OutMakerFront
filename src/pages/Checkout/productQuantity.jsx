@@ -5,7 +5,7 @@ const ProductQuantity = ({ product }) => {
   console.log("productDetail", productDetail);
   console.log(product);
   return productDetail.quantity > 0 ? (
-    <span className="text-[#002B5B] text-[10px] font-semibold px-3 py-1 rounded-full border border-[#002B5B]">
+    <span className="text-[#002B5B] text-[10px] font-medium px-3 py-1 rounded-full border border-[#002B5B]">
       Ship within 72 hours
     </span>
   ) : null;

@@ -21,7 +21,7 @@ const SingleBlog = ({
 				<h4 className='hidden md:block text-xl lg:text-2xl font-medium text-black tracking-wider'>
 					{contactPage ? title : "COLLECTION"}
 				</h4>
-				<h2 className='text-2xl uppercase md:normal-case md:text-3xl lg:text-5xl font-semibold text-black'>{name}</h2>
+				<h2 className='text-2xl uppercase md:normal-case md:text-3xl lg:text-5xl font-medium text-black'>{name}</h2>
 
 				{contactPage ? (
 					<div className='py-8 font-light text-lg'>

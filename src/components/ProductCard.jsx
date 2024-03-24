@@ -16,7 +16,7 @@ const OutdoorDiningChairCard = ({
   return (
     <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-gray-300 rounded-lg overflow-hidden relative">
       {isNew && (
-        <span className="bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded absolute z-10 m-2">
+        <span className="bg-green-200 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded absolute z-10 m-2">
           NEW
         </span>
       )}

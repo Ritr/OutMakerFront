@@ -31,7 +31,7 @@ const BlogHeader = (data) => {
         {data.data.post_title}
       </h2>
 
-      <div className="flex justify-center gap-6 pt-7 md:pt-10 text-primary font-semibold">
+      <div className="flex justify-center gap-6 pt-7 md:pt-10 text-primary font-medium">
         <div className="w-1 bg-[#002B5B]"></div>
         <p>{formatDateTime(data.data.updated_at)}</p>
         <div className="w-1 bg-[#002B5B]"></div>

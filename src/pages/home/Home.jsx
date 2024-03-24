@@ -136,7 +136,7 @@ const Home = () => {
               <h2>Welcome to theoutmaker</h2>
               <button
                 onClick={closeModal}
-                className="text-lg font-semibold hover:text-gray-700"
+                className="text-lg font-medium hover:text-gray-700"
               >
                 &times;
               </button>

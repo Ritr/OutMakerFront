@@ -3,9 +3,34 @@
 @tailwind utilities;
 @tailwind screens;
 
-* {
-  font-family: "Roboto" !important;
+/* roboto-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'ITCAvantGardeStd';
+  font-style: normal;
+  font-weight: 400;
+  src: url('./assets/fonts/Avant Garde/ITCAvantGardeStd-Bk.otf') format('opentype');
+
+}
+/* roboto-500 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'ITCAvantGardeStd';
+  font-style: normal;
   font-weight: 500;
+  src: url('./assets/fonts/Avant Garde/ITCAvantGardeStd-Demi.otf') format('opentype');
+}
+/* roboto-700 - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'ITCAvantGardeStd';
+  font-style: normal;
+  font-weight: 700;
+  src: url('./assets/fonts/Avant Garde/ITCAvantGardeStd-Bold.otf') format('opentype');
+}
+
+* {
+  font-family: "ITCAvantGardeStd" !important;
 }
 
 html,
@@ -88,7 +113,7 @@ body{
 }
 
 .nav-text-style {
-  @apply text-lg font-semibold uppercase mb-5;
+  @apply text-lg font-medium uppercase mb-5;
 }
 
 .divider:before {

@@ -66,7 +66,7 @@ const FAQPage = () => {
             {categories.map((category, index) => (
               <button
                 key={index}
-                className="bg-white text-black border border-neutral-600 rounded-full px-6 py-2 font-semibold transition duration-300 hover:bg-blue-200"
+                className="bg-white text-black border border-neutral-600 rounded-full px-6 py-2 font-medium transition duration-300 hover:bg-blue-200"
               >
                 {category}
               </button>

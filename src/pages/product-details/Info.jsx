@@ -184,7 +184,7 @@ const Info = ({
             <div className="">
               <div className="flex items-center">
                 <img src={img7} alt="" className="md:w-[128px] mr-2" />
-                <p className="text-2xl font-semibold">{product.p_name}</p>
+                <p className="text-2xl font-medium">{product.p_name}</p>
                 <span className="ml-2 text-sm text-right text-gray-400">
                   (in stock ship within 72hours)
                 </span>
@@ -210,7 +210,7 @@ const Info = ({
                 <del className="text-[#ADACAC]">
                   A${cost?.product_regular_price}
                 </del>
-                <span className="text-[#DC2626] pl-[5px] font-semibold">
+                <span className="text-[#DC2626] pl-[5px] font-medium">
                   A${cost?.product_sale_price}
                 </span>
               </p>
@@ -256,7 +256,7 @@ const Info = ({
                 <del className="text-[#ADACAC]">
                   A${cost?.product_regular_price}
                 </del>
-                <span className="text-[#DC2626] pl-[5px] font-semibold">
+                <span className="text-[#DC2626] pl-[5px] font-medium">
                   A${cost?.product_sale_price}
                 </span>
                 <img src={img7} className="w-28 ml-2" alt="" />

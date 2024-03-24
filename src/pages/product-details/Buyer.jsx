@@ -8,7 +8,7 @@ const Buyer = () => {
 
 	return (
 		<div className='w-full pb-10'>
-			<h2 className='text-3xl text-primary font-semibold uppercase'>
+			<h2 className='text-3xl text-primary font-medium uppercase'>
 				Buyers review and question
 			</h2>
 			<div className='py-8 block md:flex items-center gap-4'>

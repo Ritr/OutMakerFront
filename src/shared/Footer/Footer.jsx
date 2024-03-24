@@ -166,13 +166,13 @@ const Footer = () => {
               <Link to="/">
                 <div className="flex items-center">
                   <img src={logo} alt="" className="w-28 mr-3" />
-                  {/* <span className="text-lg font-semibold">OUTMAKER</span> */}
+                  {/* <span className="text-lg font-medium">OUTMAKER</span> */}
                 </div>
               </Link>
             </div>
 
             <div className="w-full lg:w-3/5 text-white rounded-lg">
-              <h3 className="text-md md:text-lg md:font-semibold text-left mb-4">
+              <h3 className="text-md md:text-lg md:font-medium text-left mb-4">
                 Newsletter Signup
               </h3>
               <p className="text-xs md:text-sm text-left mb-4">
@@ -218,7 +218,7 @@ const Footer = () => {
           <div className="flex flex-col lg:flex-row justify-end lg:space-y-0 pb-10 mt-12 md:mt-0">
             <div className="grid grid-cols-3  lg:grid lg:grid-cols-4 lg:gap-x-3 lg:gap-y-8 lg:w-full pb-10">
               {/* <div className="space-y-3" style={styleToApply}>
-              <h3 className="tracki font-semibold text-base">Product</h3>
+              <h3 className="tracki font-medium text-base">Product</h3>
               <ul className="space-y-1 text-sm font-light leading-loose">
                 <li>
                   <Link to="/">Home</Link>
@@ -242,7 +242,7 @@ const Footer = () => {
             </div> */}
 
               <div className="space-y-3">
-                <h3 className="tracki font-semibold  text-sm md:text-base">
+                <h3 className="tracki font-medium  text-sm md:text-base">
                   Quick Link
                 </h3>
                 <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">
@@ -261,7 +261,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="space-y-3">
-                <h3 className="trackifont-semibold text-sm  md:text-base">
+                <h3 className="trackifont-medium text-sm  md:text-base">
                   Our Policies
                 </h3>
                 <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">
@@ -284,7 +284,7 @@ const Footer = () => {
                 </ul>
               </div>
               <div className="space-y-3">
-                <h3 className="tracki font-semibold  text-sm md:text-base">
+                <h3 className="tracki font-medium  text-sm md:text-base">
                   Contact Info.
                 </h3>
                 <ul className="space-y-1 text-2xs md:text-sm font-light  leading-loose">

@@ -45,7 +45,7 @@ const Header = () => {
       </div>
       <div className="hero-content text-center">
         <div className="max-w-full pb-32">
-          <h1 className="text-4xl md:text-5xl text-white font-semibold">
+          <h1 className="text-4xl md:text-5xl text-white font-medium">
             Nature's Touch for Your Outdoors
           </h1>
           <p className="py-6 text-white">

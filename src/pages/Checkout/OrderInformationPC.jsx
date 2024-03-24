@@ -231,7 +231,7 @@ const CustomOrderInformationPC = () => {
       <div className="relative mx-auto bg-white rounded-sm">
         {/* Order Information Heading with rounded corners */}
         <div className="inline-flex h-[60px] bg-[#002B5B] rounded-tl-md rounded-br-md">
-          <h2 className="text-[22px] font-semibold text-white pt-4 pb-4 pl-[30px] pr-[30px] ">
+          <h2 className="text-[22px] font-medium text-white pt-4 pb-4 pl-[30px] pr-[30px] ">
             Order Information
           </h2>
         </div>
@@ -380,43 +380,43 @@ const CustomOrderInformationPC = () => {
               <tr>
                 <th
                   scope="col"
-                  className="text-left py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="text-left py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Commodity
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Quantity
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Unit price
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Discounts
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Payment method
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Distribution mode
                 </th>
                 <th
                   scope="col"
-                  className="py-3 px-4 text-sm font-semibold text-gray-800"
+                  className="py-3 px-4 text-sm font-medium text-gray-800"
                 >
                   Goods status
                 </th>
@@ -434,7 +434,7 @@ const CustomOrderInformationPC = () => {
                         className="w-20 h-20 object-contain rounded-md mr-4"
                       />
                       <div>
-                        <div className="font-semibold text-base">
+                        <div className="font-medium text-base">
                           {order.product.p_name}
                         </div>
                         <div className="text-gray-600 text-base">
@@ -449,7 +449,7 @@ const CustomOrderInformationPC = () => {
                           <ProductQuantity
                             product={order.product}
                           ></ProductQuantity>
-                          <span className="text-[#002B5B] text-[10px] font-semibold px-3 py-1 rounded-full border border-[#002B5B]">
+                          <span className="text-[#002B5B] text-[10px] font-medium px-3 py-1 rounded-full border border-[#002B5B]">
                             Fast money back
                           </span>
                         </div>

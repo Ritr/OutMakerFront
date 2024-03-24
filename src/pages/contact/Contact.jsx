@@ -13,7 +13,7 @@ const Contact = () => {
 		<main className='container mx-auto px-2 md:px-10 relative'>
 			<PageNav />
 			<div className='text-center pt-10 md:pt-20'>
-				<h2 className='text-4xl font-semibold text-black'>Contact</h2>
+				<h2 className='text-4xl font-medium text-black'>Contact</h2>
 				<h4 className='text-3xl font-medium text-[#002B5B] pt-2'>OUTMAKER</h4>
 				<p className='py-4 md:py-10 text-base font-light'>
 					Outmaker offers 9 collections of outdoor furniture with unic designs

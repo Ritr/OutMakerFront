@@ -5,7 +5,7 @@ import Button from "../../shared/Button/Button";
 const Warranty = () => {
   return (
     <section className="container mx-auto p-4 md:p-10">
-      <h4 className=" text-xl font-semibold uppercase">
+      <h4 className=" text-xl font-medium uppercase">
         Warranty
       </h4>
       <p className=" py-4">
@@ -18,7 +18,7 @@ const Warranty = () => {
 				Cleaning Instructions <BsArrowRight className='ms-2' />
 			</Button>
 
-			<h5 className='text-xl font-semibold text-primary pt-6'>We Cover:</h5>
+			<h5 className='text-xl font-medium text-primary pt-6'>We Cover:</h5>
 			<ul className='list-disc text-primary pl-4'>
 				<li>
 					Any defects from craftsmanship will be replaced within 3 years of your

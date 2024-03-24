@@ -46,7 +46,7 @@ const CollectionAllProducts = ({ category }) => {
             <li className="me-6 pb-1 border-b-2 border-b-black">
               <Link to="/collections">Collections</Link>
             </li>
-            <li className="font-semibold">
+            <li className="font-medium">
               {!category ? categoryItem?.Category.category_name : ""}
             </li>
           </ul>
@@ -93,7 +93,7 @@ const CollectionAllProducts = ({ category }) => {
                 className="px-4 pb-4"
                 style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
               >
-                <h5 className="text-lg font-semibold text-black">
+                <h5 className="text-lg font-medium text-black">
                   {product?.p_name}
                 </h5>
                 <p className="text-xs font-normal text-[#B8B8B8] leading-none">
@@ -164,7 +164,7 @@ const CollectionAllProducts = ({ category }) => {
                     className="px-4 pb-4"
                     style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
                   >
-                    <p className="text-lg font-semibold text-black cursor-pointer">
+                    <p className="text-lg font-medium text-black cursor-pointer">
                       {product?.product?.p_name.slice(0, 50)}
                     </p>
                     <p className="text-xs font-normal text-[#B8B8B8] leading-none">
@@ -247,7 +247,7 @@ const CollectionAllProducts = ({ category }) => {
                     className="px-4 pb-4"
                     style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
                   >
-                    <p className="text-lg font-semibold text-black cursor-pointer">
+                    <p className="text-lg font-medium text-black cursor-pointer">
                       {product?.product?.p_name.slice(0, 50)}
                     </p>
                     {/* <p className="text-xs font-normal text-[#B8B8B8] leading-none">

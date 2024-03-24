@@ -6,7 +6,7 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 const Dimensions = ({ dimensions }) => {
   return (
     <section className="container mx-auto p-4 md:p-10">
-      <h4 className="text-black text-xl font-semibold uppercase">
+      <h4 className="text-black text-xl font-medium uppercase">
         Dimensions
       </h4>
 

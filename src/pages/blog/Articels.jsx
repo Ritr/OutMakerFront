@@ -68,7 +68,7 @@ const Articels = (data) => {
                       key={articel.post_id}
                       className="hover:underline hover:text-primary"
                     >
-                      <h4 className="text-xl md:text-3xl font-semibold pt-2">
+                      <h4 className="text-xl md:text-3xl font-medium pt-2">
                         {articel.category_name || ""}
                       </h4>
 

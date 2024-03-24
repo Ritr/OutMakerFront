@@ -23,7 +23,7 @@ const FeatureArticle = (data) => {
           <img src={feateImageLg} alt="Shoes" />
         </figure>
         <div className="p-4">
-          <h2 className="text-xl md:text-3xl font-semibold text-black">
+          <h2 className="text-xl md:text-3xl font-medium text-black">
             How to Furnish Your Small Outdoor Space{" "}
           </h2>
           <p className="text-sm md:text-base font-light text-black py-4">
@@ -56,7 +56,7 @@ const FeatureArticle = (data) => {
                   to={`/blog/${article.post_id}/${article.post_url}`}
                   key={article.post_id}
                 >
-                  <h5 className="text-xl lg:text-xl font-semibold text-black hover:text-blue-700 md:underline hover:underline">
+                  <h5 className="text-xl lg:text-xl font-medium text-black hover:text-blue-700 md:underline hover:underline">
                     {article.post_title}
                   </h5>
                 </Link>

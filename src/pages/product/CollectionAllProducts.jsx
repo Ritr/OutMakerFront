@@ -48,7 +48,7 @@ const CollectionAllProducts = ({ category }) => {
             <li className="me-6 pb-1 border-b-2 border-b-black">
               <Link to="/collections">Collections</Link>
             </li>
-            <li className="font-semibold">
+            <li className="font-medium">
               {!category ? categoryItem?.Category.category_name : ""}
             </li>
           </ul>

@@ -14,7 +14,7 @@ function Accordion({ title, children }) {
         className="flex items-center cursor-pointer"
         onClick={toggleAccordion}
       >
-        <h2 className="text-lg font-semibold">{title}</h2>
+        <h2 className="text-lg font-medium">{title}</h2>
         {isOpen ? (
           <FaAngleUp className="ml-2" />
         ) : (

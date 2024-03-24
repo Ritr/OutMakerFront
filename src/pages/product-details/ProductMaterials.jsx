@@ -11,7 +11,7 @@ const Meterials = ({ productMaterials }) => {
     <section className="py-10 md:py-20">
       <div className="w-full ">
         <div className="text-center w-4/5 md:w-2/3 mx-auto">
-          <h2 className="text-primary font-semibold text-2xl md:text-4xl">
+          <h2 className="text-primary font-medium text-2xl md:text-4xl">
             Product Materials
           </h2>
         </div>
@@ -43,7 +43,7 @@ const Meterials = ({ productMaterials }) => {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <h2 className="text-xl py-1 text-primary font-semibold">
+                  <h2 className="text-xl py-1 text-primary font-medium">
                     {meterial?.material_name}
                   </h2>
                   <p className="text-xs font-normal">
@@ -67,7 +67,7 @@ const Meterials = ({ productMaterials }) => {
 
           <div className="md:col-span-1">
             <div data-aos="fade-up">
-              <p className="text-2xl font-semibold mb-2">Incredibly durable</p>
+              <p className="text-2xl font-medium mb-2">Incredibly durable</p>
               <p className="text-lg text-left text-gray-400">
                 Engineered for the outdoors, All-Weather wicker is built to
                 last, rain or shine - so you can enjoy the ultimate in outdoor
@@ -77,7 +77,7 @@ const Meterials = ({ productMaterials }) => {
           </div>
           <div className="md:col-span-1">
             <div data-aos="fade-up">
-              <p className="text-2xl font-semibold mb-2">
+              <p className="text-2xl font-medium mb-2">
                 Made with stainless-steel
               </p>
               <p className="text-lg text-left text-gray-400">
@@ -89,7 +89,7 @@ const Meterials = ({ productMaterials }) => {
           </div>
           <div className="md:col-span-1">
             <div data-aos="fade-up">
-              <p className="text-2xl font-semibold mb-2">Hand-crafted</p>
+              <p className="text-2xl font-medium mb-2">Hand-crafted</p>
               <p className="text-lg text-left text-gray-400">
                 Master artisans carefully craft every seat by hand using a
                 special technique for a beautiful and durable weave.

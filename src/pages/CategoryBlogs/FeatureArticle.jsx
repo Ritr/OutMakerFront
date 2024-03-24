@@ -43,7 +43,7 @@ const FeatureArticle = () => {
 					<img src={feateImageLg} alt='Shoes' />
 				</figure>
 				<div className='p-4'>
-					<h2 className='text-xl md:text-3xl font-semibold text-black'>
+					<h2 className='text-xl md:text-3xl font-medium text-black'>
 						How to Furnish Your Small Outdoor Space{" "}
 					</h2>
 					<p className='text-sm md:text-base font-light text-black py-4'>

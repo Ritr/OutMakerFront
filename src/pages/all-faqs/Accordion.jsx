@@ -8,7 +8,7 @@ const Accordion = ({ isOpen, title, content, onClick }) => {
         onClick={onClick}
         className="flex justify-between items-center w-full text-left p-3 focus:outline-none"
       >
-        <h3 className="text-sm md:text-base font-semibold">{title}</h3>
+        <h3 className="text-sm md:text-base font-medium">{title}</h3>
         <span className="">{isOpen ? "×" : "+"}</span>
       </button>
       {isOpen && (

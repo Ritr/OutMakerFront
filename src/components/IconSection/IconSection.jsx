@@ -46,7 +46,7 @@ const IconSection = () => {
                     className="w-[90px] h-[90px]"
                   />
                 </div>
-                <h6 className="text-lg font-semibold text-[#1D1B1B]">
+                <h6 className="text-lg font-medium text-[#1D1B1B]">
                   {service.title}
                 </h6>
                 <p className="text-[#666666] text-xs pt-2">

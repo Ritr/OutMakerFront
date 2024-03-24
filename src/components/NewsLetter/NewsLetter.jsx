@@ -30,7 +30,7 @@ const NewsLetter = () => {
                   *Some exclusions apply. See Terms & Conditions for details.
                 </label>
               </div>
-              <button className="bg-primary text-white flex items-center gap-2 text-xl font-semibold w-28 px-5 py-2 rounded-2xl">
+              <button className="bg-primary text-white flex items-center gap-2 text-xl font-medium w-28 px-5 py-2 rounded-2xl">
                 <span>Send</span>
                 <span>
                   <BiPaperPlane />
