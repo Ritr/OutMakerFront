@@ -10,7 +10,7 @@ const Main = () => {
     <div>
       <NavbarTop />
       <Navbar />
-      <div className="w-full relative ">
+      <div className="w-full">
         <Outlet />
       </div>
       <Footer />

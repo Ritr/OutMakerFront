@@ -61,7 +61,7 @@ const Blogs = () => {
     setWindowWidth(window.innerWidth);
 
     const handleScroll = throttle(() => {
-      const body = document.querySelector("body");
+      const root = document.querySelector("#root");
       if (elementRef.current) {
         const { top } = elementRef.current.getBoundingClientRect();
         // const y = body.scrollTop;
@@ -69,7 +69,7 @@ const Blogs = () => {
         if (top < 0) {
           h = 0;
         }
-        let direction = window.scrollY - scrollY.current > 0 ? true : false;
+        let direction = root.scrollTop - scrollY.current > 0 ? true : false;
         console.log(direction);
         if (direction) {
           // h += 108;
@@ -77,13 +77,13 @@ const Blogs = () => {
           h = 120;
         }
         setTopPos(h);
-        scrollY.current = window.scrollY;
+        scrollY.current = root.scrollTop;
       }
     }, 40); // 控制节流的时间间隔
 
-    window.addEventListener("scroll", handleScroll);
+    document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document.querySelector("#root").removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -230,7 +230,7 @@ const Blogs = () => {
         <aside
           className={`${
             showFilters ? "filter-container" : "hidden"
-          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 lg:fixed`}
+          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 fixed`}
           style={{
             display: showFilters
               ? windowWidth <= 768

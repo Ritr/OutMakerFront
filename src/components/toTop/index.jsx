@@ -10,8 +10,8 @@ const Top = () => {
   useEffect(() => {
     function handleScroll() {
       const { scrollTop } = document.querySelector("#root");
-
-      if (scrollTop > 1200) {
+      const { clientHeight } = document.querySelector("#root>div");
+      if (clientHeight - scrollTop < 2400) {
         setShowDiv(true);
       } else {
         setShowDiv(false);
