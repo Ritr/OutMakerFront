@@ -5,7 +5,8 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import ImageScale from "../../components/ImageScale";
 import useImageLoader from "../../Hooks/imageLoader";
 import Skeleton from "react-loading-skeleton";
-
+import SwiperWrapper from "../../components/SwiperWrapper";
+import { SwiperSlide } from "swiper/react";
 const ImageSlider = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const currentImage = images[currentImageIndex]?.image_url;
@@ -48,49 +49,78 @@ const ImageSlider = ({ images }) => {
         </div>
         <div className="w-full md:w-1/4 md:mt-auto">
           {imageLoaded ? (
-            <Carousel
-              responsive={responsive}
-              ssr
-              infinite={true}
-              autoPlay={false}
-              keyBoardControl={true}
-              customTransition="all .5"
-              transitionDuration={500}
-              containerClass="carousel-container"
-              itemClass="carousel-item-padding-40-px"
-              partialVisible={true}
-              beforeChange={(nextSlide, { currentSlide }) => {
-                // console.log(images);
-
-                let correctIndex = nextSlide - 2; // Get the correct index
-                if (correctIndex >= images.length) {
-                  correctIndex = 0;
-                }
-                if (correctIndex < 0) {
-                  correctIndex = images.length + correctIndex;
-                }
-                setCurrentImageIndex(correctIndex);
+            <SwiperWrapper
+              showNavigation={true}
+              swiperProps={{
+                slidesPerView: 1.3,
+                onActiveIndexChange: (swiper) => {
+                  setCurrentImageIndex(swiper.activeIndex);
+                },
               }}
             >
               {images.map((image, index) => (
-                <div
-                  key={index}
-                  className="mr-2"
-                  onClick={() => setCurrentImageIndex(index)}
-                >
-                  <img
-                    src={ImgBaseUrl(image?.image_url) + "?width=500"}
-                    alt={`slider-image-${index}`}
-                    className={`object-cover rounded-2xl drop-shadow-xl ${
-                      currentImageIndex === index
-                        ? "border-2 border-primary"
-                        : ""
-                    }`}
-                  />
-                </div>
+                <SwiperSlide>
+                  <div
+                    key={index}
+                    className="mr-2"
+                    onClick={() => setCurrentImageIndex(index)}
+                  >
+                    <img
+                      src={ImgBaseUrl(image?.image_url) + "?width=500"}
+                      alt={`slider-image-${index}`}
+                      className={`object-cover rounded-2xl drop-shadow-xl ${
+                        currentImageIndex === index
+                          ? "border-2 border-primary"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                </SwiperSlide>
               ))}
-            </Carousel>
+            </SwiperWrapper>
           ) : (
+            // <Carousel
+            //   responsive={responsive}
+            //   ssr
+            //   infinite={true}
+            //   autoPlay={false}
+            //   keyBoardControl={true}
+            //   customTransition="all .5"
+            //   transitionDuration={500}
+            //   containerClass="carousel-container"
+            //   itemClass="carousel-item-padding-40-px"
+            //   partialVisible={true}
+            //   beforeChange={(nextSlide, { currentSlide }) => {
+            //     // console.log(images);
+
+            //     let correctIndex = nextSlide - 2; // Get the correct index
+            //     if (correctIndex >= images.length) {
+            //       correctIndex = 0;
+            //     }
+            //     if (correctIndex < 0) {
+            //       correctIndex = images.length + correctIndex;
+            //     }
+            //     setCurrentImageIndex(correctIndex);
+            //   }}
+            // >
+            //   {images.map((image, index) => (
+            //     <div
+            //       key={index}
+            //       className="mr-2"
+            //       onClick={() => setCurrentImageIndex(index)}
+            //     >
+            //       <img
+            //         src={ImgBaseUrl(image?.image_url) + "?width=500"}
+            //         alt={`slider-image-${index}`}
+            //         className={`object-cover rounded-2xl drop-shadow-xl ${
+            //           currentImageIndex === index
+            //             ? "border-2 border-primary"
+            //             : ""
+            //         }`}
+            //       />
+            //     </div>
+            //   ))}
+            // </Carousel>
             <Skeleton className=" w-full md:h-[200px]"></Skeleton>
           )}
         </div>

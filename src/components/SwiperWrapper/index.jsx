@@ -33,7 +33,7 @@ const SwiperWrapper = ({
           <SlArrowLeft />
         </button>
       )}
-      <Swiper ref={sliderRef} loop={true} {...swiperProps} className="mySwiper">
+      <Swiper ref={sliderRef} loop={true} {...swiperProps}  className="mySwiper">
         {children}
       </Swiper>
       {showNavigation && (

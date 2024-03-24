@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { BsHandbagFill } from "react-icons/bs";
 import SocialShare from "../../components/SocialShare/SocialShare";
-import { FaPlay, FaPause } from "react-icons/fa";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
@@ -9,7 +8,6 @@ import { Link } from "react-router-dom";
 import ImageSlider from "./ImageSlider";
 import { FaMinus, FaPlus, FaBoxOpen } from "react-icons/fa";
 import SidebarCart from "../../components/Navbar/SidebarCart";
-import ReactPlayer from "react-player";
 import img1 from "../../assets/detail/1.png";
 import img2 from "../../assets/detail/2.png";
 import img3 from "../../assets/detail/3.png";
@@ -19,6 +17,8 @@ import img6 from "../../assets/detail/6.png";
 import img7 from "../../assets/detail/7.png";
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+
 const Info = ({
   category,
   changeCategory,
@@ -30,26 +30,12 @@ const Info = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [isSidebarCartOpen, setIsSidebarCartOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const videoRef = useRef(null);
   const { fetchCartData } = useContext(CartContext);
   const userCode = localStorage.getItem("usercode");
   const { mutate: addToCart } = useAddToCart(userCode);
   const day1 = dayjs().add(30, "day");
   const day2 = dayjs().add(40, "day");
-  // toggle video play pause
-  const togglePlayPause = () => {
-    // 如果视频正在播放，暂停它；如果视频暂停，播放它
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      // 更新播放状态
-      setIsPlaying(!isPlaying);
-    }
-  };
+
 
   // 处理增加数量
   const handleIncreaseQuantity = () => {
@@ -186,7 +172,9 @@ const Info = ({
                 <img src={img7} alt="" className="md:w-[128px] mr-2" />
                 <p className="text-2xl font-medium">{product.p_name}</p>
                 <span className="ml-2 text-sm text-right text-gray-400">
-                  (in stock ship within 72hours)
+                  {product?.quantity > 0
+                    ? "(in stock ship within 72hours)"
+                    : null}
                 </span>
               </div>
               <div className=" text-sm flex items-center mt-2">
@@ -223,7 +211,7 @@ const Info = ({
               </p>
             </div>
 
-            <div className="flex mx-6 items-center gap-6 border border-primary p-3 rounded-full cursor-pointer">
+            <div className="flex mx-6 items-center gap-6 border border-[#bfbfbf] p-3 rounded-full cursor-pointer">
               <p
                 className={`cursor-pointer ${
                   quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
@@ -267,7 +255,9 @@ const Info = ({
                 data-amount="350400"
               >
                 <span className="text-sm text-right text-gray-400">
-                  (in stock ship within 72hours)
+                  {product?.quantity > 0
+                    ? "(in stock ship within 72hours)"
+                    : null}
                 </span>
                 and 10 Year Warranty
               </p>
@@ -399,54 +389,16 @@ const Info = ({
           </button>
         </div>  */}
         {/* video */}
-        <div className="relative">
-          <div className="hidden md:block w-full h-full [&>div>video]:object-cover">
-            <ReactPlayer
-              url={video}
-              playing={true}
-              loop={true}
-              volume={0}
-              muted={true}
-              playsinline={true}
-              width="100%"
-              height="100%"
-              className="w-full  h-[50vh] md:h-[100vh]"
-            />
+        <div>
+          <div className="hidden md:block w-full h-full">
+            <div className="w-full h-[100vh]">
+              <VideoPlayer url={video}></VideoPlayer>
+            </div>
           </div>
-          <div className=" md:hidden w-full h-full [&>div>video]:object-cover">
-            <ReactPlayer
-              url={video}
-              playing={true}
-              loop={true}
-              volume={0}
-              muted={true}
-              playsinline={true}
-              className="w-full  h-[50vh] md:h-[100vh]"
-            />
-          </div>
-
-          {/* video button */}
-          <div className="absolute z-10 right-8 bottom-8">
-            <button
-              onClick={togglePlayPause}
-              className="border border-primary bg-white hover:bg-[#D8EDF5] transition-all duration-300 ease-linear p-2 rounded-full"
-            >
-              {isPlaying ? (
-                <div className="flex items-center gap-2 px-2 text-primary">
-                  <p className="bg-primary p-2 rounded-full">
-                    <FaPause className="text-white text-sm" />
-                  </p>
-                  <p>Pause</p>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 px-2 text-primary">
-                  <p className="bg-primary p-2 rounded-full">
-                    <FaPlay className="text-white text-sm" />
-                  </p>
-                  <p>Play</p>
-                </div>
-              )}
-            </button>
+          <div className="md:hidden w-full h-full">
+            <div className="w-full h-[50vh]">
+              <VideoPlayer url={video}></VideoPlayer>
+            </div>
           </div>
         </div>
         <ImageSlider images={images} />

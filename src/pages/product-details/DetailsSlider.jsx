@@ -1,10 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Rating } from "@smastrom/react-rating";
-import roundedImage from "../../assets/images/slider-rounded.png";
-import slider1 from "../../assets/images/details-slider1.png";
-import slider2 from "../../assets/images/details-slider2.png";
-import slider3 from "../../assets/images/details-slider3.png";
-import slider4 from "../../assets/images/video.mp4";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -88,7 +83,7 @@ const DetailsSlider = ({
           </div>
         </div>
         <Link to={`/collection-product/${collectionId}/${collectionName}`}>
-          <div className=" hidden md:flex p-6 py-2 w-52 md:absolute top-[500px] right-0 border rounded-full  items-center justify-center">
+          <div className=" hidden md:flex p-6 py-2 w-56 md:absolute top-[500px] right-0 border rounded-full  items-center justify-center">
             <GoSearch className="mr-2"></GoSearch> Explore collection
           </div>
         </Link>
@@ -122,31 +117,22 @@ const DetailsSlider = ({
             </div>
           </div>
         </div>
-
-        {headerImage?.endsWith(".mp4") ? (
-          <div className="h-[25vh] lg:h-[370px] mx-auto">
-            <video
-              className="w-full h-full"
-              controls
-              muted
-              poster={headerImage}
-            >
-              <source src={headerImage} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        ) : (
-          <div className="">
+        <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] ">
+          {headerImage?.endsWith(".mp4") ? (
+            <div className="h-full md:w-[50vw] mx-auto">
+              <VideoPlayer url={headerImage}></VideoPlayer>
+            </div>
+          ) : (
             <img
               src={headerImage ? headerImage : ImgBaseUrl(product?.p_pic)}
               alt="Product Image"
-              className=" h-28 md:h-[430px] lg:h-[500px] w-full object-cover mt-5 mb-3"
+              className="h-full  object-cover"
             />
-          </div>
-        )}
-        <div className="flex justify-end md:hidden">
+          )}
+        </div>
+        <div className="flex justify-end md:hidden ">
           <Link to={`/collection-product/${collectionId}/${collectionName}`}>
-            <div className="flex mt-4 mb-2 mr-4 p-6 py-2 w-52 border rounded-full  items-center justify-center">
+            <div className="flex mt-4 mb-2 mr-4 p-6 py-2 w-56 border rounded-full  items-center justify-center">
               <GoSearch className="mr-2"></GoSearch> Explore collection
             </div>
           </Link>

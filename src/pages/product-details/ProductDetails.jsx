@@ -124,7 +124,7 @@ const ProductDetails = () => {
       {/* <Buyer /> */}
       {/* <ImageSlider images={Secondary_Images} /> */}
       {showCartBar && <CartBar product={Product} cost={Product_Cost} />}
-      {Product_Materials.length && (
+      {Product_Materials.length > 0 && (
         <Materials productMaterials={Product_Materials} />
       )}
       <NetWork />
