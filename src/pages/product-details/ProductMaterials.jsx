@@ -3,57 +3,12 @@ import img1 from "../../assets/images/fabrics.png";
 import img2 from "../../assets/images/leather.png";
 import img3 from "../../assets/images/metal.png";
 import img4 from "../../assets/images/wood.png";
-import useMeterials from "../../Hooks/useMeterials";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
-import test from "../../assets/test.jpg";
 
-// import headerVideo from "../../assets/images/homePage-video.mp4";
-// import { BsArrowRight } from "react-icons/bs";
-// import { FaPlay, FaPause } from "react-icons/fa";
-
-// import Button from "../../shared/Button/Button";
-// import headerImage from "../../assets/images/home-banner.png";
-// import { Link } from "react-router-dom";
-
-const meterials = [
-  {
-    id: 1,
-    title: "Wood",
-    description:
-      "HipVan is proud to be founded in  Like you, we're young adults who.",
-    image: img1,
-  },
-  {
-    id: 2,
-    title: "Fabrics",
-    description:
-      "HipVan is proud to be founded in  Like you, we're young adults who.",
-    image: img2,
-  },
-  {
-    id: 3,
-    title: "Metal",
-    description:
-      "HipVan is proud to be founded in  Like you, we're young adults who.",
-    image: img3,
-  },
-  {
-    id: 4,
-    title: "Leather",
-    description:
-      "HipVan is proud to be founded in  Like you, we're young adults who.",
-    image: img4,
-  },
-];
-
-const Meterials = () => {
-  const { meterials } = useMeterials();
-
+// Product_Materials
+const Meterials = ({ productMaterials }) => {
   return (
-    <section
-      className="py-10 md:py-20"
-      
-    >
+    <section className="py-10 md:py-20">
       <div className="w-full ">
         <div className="text-center w-4/5 md:w-2/3 mx-auto">
           <h2 className="text-primary font-semibold text-2xl md:text-4xl">
@@ -143,30 +98,17 @@ const Meterials = () => {
           </div>
         </div> */}
 
-
-
-          {meterials.slice(0, 4)?.map((meterial) => (
-            <div
-              key={meterial?.material_id}
-              className=""
-            >
-              <div className="">
-                <img
-                  className="rounded-lg object-fill w-full h-full"
-                  src={ImgBaseUrl(meterial?.material_pic)}
-                  alt=""
-                />
-              </div>
-             
+        {productMaterials.map((meterial) => (
+          <div key={meterial?.material_id} className="mt-4">
+            <div className="">
+              <img
+                className="rounded-lg object-fill w-full h-full"
+                src={ImgBaseUrl(meterial.material?.material_pic)}
+                alt=""
+              />
             </div>
-          ))}
-
-        
-        {/* <img src={test} alt="" />
-      <br></br>
-      <img src={test} alt="" /> */}
-
-        {/* da */}
+          </div>
+        ))}
       </div>
     </section>
   );

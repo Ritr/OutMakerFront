@@ -11,7 +11,7 @@ import { useLoaderData, useParams, Link } from "react-router-dom";
 import BuyerReview from "./BuyerReview";
 import CartBar from "./CartBar";
 import useCart from "../../Hooks/useCart";
-import Meterials from "./ProductMaterials";
+import Materials from "./ProductMaterials";
 import ImageSlider from "./ImageSlider";
 import UserInitialization from "../../components/UserInitialization/UserInitialization";
 import NetWork from "../../shared/Network/Network";
@@ -70,6 +70,7 @@ const ProductDetails = () => {
     Dimensions: data,
     Comments_Replies,
     Product_Colors,
+    Product_Materials,
   } = receivedData;
   useEffect(() => {
     if (collections.length && Product) {
@@ -123,7 +124,9 @@ const ProductDetails = () => {
       {/* <Buyer /> */}
       {/* <ImageSlider images={Secondary_Images} /> */}
       {showCartBar && <CartBar product={Product} cost={Product_Cost} />}
-      <Meterials />
+      {Product_Materials.length && (
+        <Materials productMaterials={Product_Materials} />
+      )}
       <NetWork />
       <BuyerReview reviews={Comments_Replies} product={Product} />
       <div className="">

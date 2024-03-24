@@ -27,8 +27,8 @@ const AccountPage = () => {
     return statusDescriptions[statusCode] || "Unknown";
   };
   const fetchOrders = async () => {
-    let url = `${baseUrl}/user/all/order/a492754459@outlook.com`;
-    // let url = `${baseUrl}/user/all/order/${user_email}`;
+    // let url = `${baseUrl}/user/all/order/a492754459@outlook.com`;
+    let url = `${baseUrl}/user/all/order/${user_email}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -77,7 +77,7 @@ const AccountPage = () => {
   }, []);
   return (
     <div className="mx-auto w-full lg:max-w-[1600px] mb-4">
-      <h2 className="text-2xl font-bold mb-5">MY ACCOUNT</h2>
+      <h2 className="text-2xl font-bold mb-5 px-4 md:mx-0">MY ACCOUNT</h2>
       <div className="container mx-auto mt-10 w-full lg:max-w-[1600px] bg-white md:flex gap-4">
         <div className="md:min-h-16 border border-[#E6E6E6]">
           <div className="bg-[#D8EDF5] bg-opacity-50 px-6 py-3 text-primary md:w-[300px] flex gap-2 items-center">

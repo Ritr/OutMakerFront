@@ -6,8 +6,7 @@ import { CartContext } from "../../Provider/CartProvider";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import bPaypal from "../../assets/icons/bPaypal.svg";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import headerIMG from "../../assets/checkinfo.png";
-import logo from "../../assets/icons/navIcon2.jpg";
+import logo from "../../assets/icons/logo-white.png";
 import SidebarCart from "../../components/Navbar/SidebarCart";
 
 import ShippingAddress from "./ShippingAddress";
@@ -500,7 +499,7 @@ const CheckoutInfo = () => {
                 <img
                   src={logo}
                   alt="Logo"
-                  className="object-contain z-50 h-12 w-12 md:h-16 md:w-16"
+                  className="object-contain z-50 w-32 md:w-32"
                 />
               </Link>
             </div>
@@ -627,7 +626,7 @@ const CheckoutInfo = () => {
                       <div className="flex justify-between">
                         <span>
                           Estimated Tax
-                          <div className="tooltip" data-tip="hello">
+                          <div className="tooltip" data-tip="Price already includes tax">
                             <FaQuestionCircle></FaQuestionCircle>
                           </div>
                         </span>
@@ -751,7 +750,7 @@ const CheckoutInfo = () => {
                     {isBtnLoading ? "Loading..." : "Continue to Shipping"}
                   </button>
 
-                  <ul className="p-3 flex flex-wrap">
+                  <ul className="p-3 flex flex-wrap mb-8 md:mb-0">
                     <li>
                       <Link to="/ReturnPolicy" className="underline text-xs">
                         Refund policy

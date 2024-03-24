@@ -9,7 +9,7 @@ import React, {
 
 import { FaAngleDown, FaTimes, FaUser } from "react-icons/fa";
 import { BsBag } from "react-icons/bs";
-import logo from "../../assets/Navbar/Frame.svg";
+import logo from "../../assets/icons/logo-blue.png";
 import ProductItems from "./ProductItems";
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -395,7 +395,7 @@ const Navbar = () => {
                 <img
                   src={logo}
                   alt="our-company-logo"
-                  className="object-fill w-full h-full"
+                  className="object-fill  h-full w-36"
                 />
               </div>
             </Link>

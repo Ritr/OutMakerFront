@@ -36,7 +36,7 @@ const AllBlogs = () => {
   }, []); // Empty array indicates it runs only once when the component mounts
 
   return (
-    <main className="lg:max-w-[1600px]">
+    <main className="lg:max-w-[1600px] mx-auto">
       <AllBlogsHeader />
       <div className="md:mx-10 px-4 md:px-0">
         

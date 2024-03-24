@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../assets/icons/footerIcon.png";
+import logo from "../../assets/icons/logo-white.png";
 import logo2 from "../../assets/icons/footerIcon2.png";
 import facebook from "../../assets/icons/facebook.png";
 import x from "../../assets/icons/x.png";
@@ -110,7 +110,7 @@ const Footer = () => {
             <div className="hidden md:block">
               <Link to="/">
                 <div>
-                  <img src={logo} alt="" className="w-20 p-2 ms-6" />
+                  <img src={logo} alt="" className="w-28 ml-4" />
                 </div>
               </Link>
 
@@ -165,8 +165,8 @@ const Footer = () => {
             <div className="md:hidden mb-6">
               <Link to="/">
                 <div className="flex items-center">
-                  <img src={logo2} alt="" className="w-10 mr-3" />
-                  <span className="text-lg font-semibold">OUTMAKER</span>
+                  <img src={logo} alt="" className="w-28 mr-3" />
+                  {/* <span className="text-lg font-semibold">OUTMAKER</span> */}
                 </div>
               </Link>
             </div>

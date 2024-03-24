@@ -50,7 +50,7 @@ const Network = () => {
           ))}
         </SwiperWrapper>
       </div>
-      <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-auto-fit gap-0 relative">
+      <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-auto-fit gap-2 relative">
         {networkImages.map((imgSrc, index) => (
           <div
             key={index}
@@ -60,7 +60,7 @@ const Network = () => {
             <img
               src={imgSrc}
               alt="Network Image"
-              className="w-full h-[21rem] object-cover"
+              className=" h-[16rem] object-cover"
             />
             <a
               href="https://instagram.com/outmaker_furniture?igshid=bTVxM3JzZ2g4cmUy"

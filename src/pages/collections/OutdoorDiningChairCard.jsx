@@ -32,7 +32,7 @@ const OutdoorDiningChairCard = ({
         </span>
       )}
       <Link to={`/product-details/${id}/${title}`}>
-        <div className="md:hidden ml-4 mt-4 inline-flex gap-1 text-sm  text-white bg-[#dc2626] rounded-md items-center justify-center  py-1 px-1 ">
+        <div className=" ml-4 mt-4 inline-flex gap-1 text-sm  text-white bg-[#dc2626] rounded-md items-center justify-center  py-1 px-1 md:py-2 md:px-5">
           <MdOutlineDiscount className="text-sm md:text-xl font-semibold"></MdOutlineDiscount>
           30%OFF
         </div>
@@ -60,10 +60,6 @@ const OutdoorDiningChairCard = ({
           <div className="bottom-0 p-4 pb-14">
             <p className="text-lg font-bold text-black inline-block md:min-w-[220px] relative">
               <div className="md:inline">{title}</div>
-              <div className="hidden md:flex gap-1 text-sm md:text-md text-white bg-[#dc2626] rounded-md items-center justify-center md:px-5 py-1 px-1 md:py-2 md:absolute top-0 left-[100%] md:ml-2">
-                <MdOutlineDiscount className="text-sm md:text-xl font-semibold"></MdOutlineDiscount>
-                30%OFF
-              </div>
             </p>
             <div
               className="flex items-center mt-2"
