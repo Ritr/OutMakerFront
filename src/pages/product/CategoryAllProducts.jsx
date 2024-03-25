@@ -63,7 +63,7 @@ const CategoryAllProducts = ({ category }) => {
 				</p> */}
         </div>
 
-        <div className="flex justify-between pt-14 gap-2">
+        <div className="flex justify-between pt-14 gap-2 px-6 md:px-0">
           <p className="border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
             {Object.values(products).length} Products
           </p>
@@ -148,9 +148,10 @@ const CategoryAllProducts = ({ category }) => {
 
             {Object.values(products)?.map((product) => (
               <Link
-                to={`/product-details/${id}/${product.title}`}
+                to={`/product-details/${id}/${product.purl}`}
                 key={product?.product?.p_id}
               >
+                
                 <div className="rounded-lg shadow-lg relative transform transition duration-300 hover:scale-105">
                   <div className="lg:h-[250px]">
                     <img
@@ -230,8 +231,9 @@ const CategoryAllProducts = ({ category }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             {/* obj handle */}
-            {Object.values(products)?.map(({ product, price }) => {
+            {Object.values(products)?.map(({ product, price,purl }) => {
               <OutdoorDiningChairCard
+                purl={purl}
                 key={product.p_id}
                 id={product?.p_id}
                 imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
@@ -259,8 +261,9 @@ const CategoryAllProducts = ({ category }) => {
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>;
             })}
-            {Object.values(products)?.map(({ product, price }) => (
+            {Object.values(products)?.map(({ product, price ,purl}) => (
               <OutdoorDiningChairCard
+              purl={purl}
                 key={product.p_id}
                 id={product?.p_id}
                 imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed

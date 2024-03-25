@@ -24,7 +24,7 @@ const CollectionAllProducts = ({ category }) => {
       fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
         .then((res) => res.json())
         .then((data) => setProducts(JSON.parse(data)));
-        console.log("Itzmrnh Collection", collections);
+      console.log("Itzmrnh Collection", collections);
     } else {
       fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
         .then((res) => res.json())
@@ -56,7 +56,9 @@ const CollectionAllProducts = ({ category }) => {
 
         <div className="text-center w-10/12 mx-auto">
           <h2 className="text-primary font-normal text-2xl md:text-4xl">
-            {category ? categoryItem?.Collection.collection_desc : categoryItem?.Category}
+            {category
+              ? categoryItem?.Collection.collection_desc
+              : categoryItem?.Category}
           </h2>
         </div>
 
@@ -70,6 +72,7 @@ const CollectionAllProducts = ({ category }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             {Object.values(products)?.map((product) => (
               <OutdoorDiningChairCard
+                purl={product.purl}
                 key={product.p_id}
                 id={product?.p_id}
                 imageUrl={ImgBaseUrl(product?.product?.p_pic)} // Adjust the path as needed
@@ -104,6 +107,7 @@ const CollectionAllProducts = ({ category }) => {
             {/* obj handle */}
             {Object.values(products)?.map((product) => (
               <OutdoorDiningChairCard
+                purl={product.purl}
                 key={product?.product?.p_id}
                 id={product?.product?.p_id}
                 imageUrl={ImgBaseUrl(product?.product?.p_pic)} // Adjust the path as needed

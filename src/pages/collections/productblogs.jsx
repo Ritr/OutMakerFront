@@ -83,7 +83,9 @@ const Blogs = () => {
 
     document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      document.querySelector("#root").removeEventListener("scroll", handleScroll);
+      document
+        .querySelector("#root")
+        .removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -196,7 +198,7 @@ const Blogs = () => {
     });
   };
   return (
-    <section className="w-full mt-16 md:mt-0">
+    <section className="w-full ">
       <div className="text-center p-4">
         <h2 className="text-2xl font-bold text-black mb-2">
           {isProduct ? "CATEGORIES" : "COLLECTIONS"}
@@ -431,8 +433,9 @@ const Blogs = () => {
               : "lg:w-full lg:grid-cols-3 gap-[43px]"
           } grid grid-cols-1 sm:grid-cols-2  p-4`}
         >
-          {filteredProducts.map(({ product, review, price }) => (
+          {filteredProducts.map(({ product, review, price, purl }) => (
             <OutdoorDiningChairCard
+              purl={purl}
               key={product.p_id}
               id={product?.p_id}
               imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed

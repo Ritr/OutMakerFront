@@ -50,17 +50,17 @@ const Network = () => {
           ))}
         </SwiperWrapper>
       </div>
-      <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-auto-fit gap-2 relative">
+      <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-auto-fit gap-5 relative">
         {networkImages.map((imgSrc, index) => (
           <div
             key={index}
-            className="w-full wow fadeInUp"
+            className="w-full wow fadeInUp rounded-md"
             data-wow-duration={`${getRandomDuration()}s`}
           >
             <img
               src={imgSrc}
               alt="Network Image"
-              className=" h-[16rem] object-cover"
+              className=" h-[16rem] object-cover rounded-md"
             />
             <a
               href="https://instagram.com/outmaker_furniture?igshid=bTVxM3JzZ2g4cmUy"

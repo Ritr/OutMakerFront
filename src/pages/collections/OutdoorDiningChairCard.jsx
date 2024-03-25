@@ -25,32 +25,32 @@ const OutdoorDiningChairCard = ({
     sunbrella: img3,
   };
   return (
-    <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px]">
+    <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px] shadow-md">
       {isNew && (
         <span className="bg-green-200 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded absolute z-10 m-2">
           NEW
         </span>
       )}
-      <Link to={`/product-details/${id}/${title}`}>
+      <Link to={`/product-details/${id}/${purl}`}>
         <div className=" ml-4 mt-4 inline-flex gap-1 text-sm  text-white bg-[#dc2626] rounded-md items-center justify-center  py-1 px-1 md:py-2 md:px-5">
           <MdOutlineDiscount className="text-sm md:text-xl font-medium"></MdOutlineDiscount>
           30%OFF
         </div>
         <div className="flex flex-col relative">
-          <div className="w-full sm:p-1  transform transition duration-300 hover:scale-105">
+          <div className="w-full sm:p-1  transform transition duration-300 hover:scale-105 ">
             <img
               src={imageUrl}
               alt={title}
-              className="w-full md:h-[300px] object-contain "
+              className="w-full h-52 md:h-[300px] object-contain "
             />
 
-            <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">
+            {/* <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">
               <div className="absolute inset-1 z-10 flex justify-end items-center top-1/4 right-6 text-xs text-black font-normal p-1">
                 <p className="border-b-2 border-black flex font-bold ml-">
                   Shop <BsArrowRight />
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* <div className=" absolute top-2 left-2 ">

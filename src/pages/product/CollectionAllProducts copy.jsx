@@ -149,7 +149,7 @@ const CollectionAllProducts = ({ category }) => {
 
             {Object.values(products)?.map((product) => (
               <Link
-                to={`/product-details/${product?.product?.p_id}/${product?.product?.title}`}
+                to={`/product-details/${product?.product?.p_id}/${product?.purl}`}
                 key={product?.product?.p_id}
               >
                 <div className="rounded-lg shadow-lg relative">
@@ -232,7 +232,7 @@ const CollectionAllProducts = ({ category }) => {
             {/* obj handle */}
             {Object.values(products)?.map((product) => (
               <Link
-                to={`/product-details/${product?.product?.p_id}/${product?.product?.title}`}
+                to={`/product-details/${product?.product?.p_id}/${product?.purl}`}
                 key={product?.product?.p_id}
               >
                 <div className="rounded-lg shadow-lg relative">

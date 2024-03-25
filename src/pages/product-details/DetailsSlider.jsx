@@ -8,6 +8,8 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { FaPlay } from "react-icons/fa";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import { GoSearch } from "react-icons/go";
+import SwiperWrapper from "../../components/SwiperWrapper";
+import { SwiperSlide } from "swiper/react";
 const DetailsSlider = ({
   product,
   images,
@@ -138,24 +140,59 @@ const DetailsSlider = ({
           </Link>
         </div>
 
-        <div className="bg-[#f3f3f3] rounded-md px-4 py-4 md:px-[57px] md:py-[24px] flex items-center justify-center">
+        <div className="bg-[#f3f3f3] rounded-md px-10 py-4 md:px-[200px] md:py-[24px]">
           {/* {JSON.stringify(images)} */}
-          {/* <img
-                      src={ImgBaseUrl(images[0]?.image_url)}
-                      alt=""
-                      className="object-cover md:object-contain w-full h-full"
-                    /> */}
-          {images2.length && (
-            <div>
-              <button
-                onClick={handlePrev}
-                className="flex items-center justify-center w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-medium"
-              >
-                <SlArrowLeft />
-              </button>
-            </div>
-          )}
-          <Carousel
+          <SwiperWrapper
+            prevClassName="w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] md:text-2xl font-medium -translate-x-12 md:-translate-x-28"
+            nextClassName="w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-opacity-50  md:text-2xl font-medium translate-x-12 md:translate-x-28"
+            swiperProps={{
+              slidesPerView: 5,
+              onActiveIndexChange: (swiper) => {
+                console.log(swiper.activeIndex);
+                console.log(
+                  "-------------------",
+                  images2[swiper.activeIndex]?.image_url
+                );
+                // setHeaderImage(ImgBaseUrl(images2[swiper.activeIndex]?.image_url));
+              },
+            }}
+            showNavigation={true}
+          >
+            {images2?.map((image, index) => (
+              <SwiperSlide>
+                <div
+                  key={index}
+                  onClick={() => handleImageClick(ImgBaseUrl(image?.image_url))}
+                  className="cursor-pointer"
+                >
+                  <div
+                    className={`lg:w-[170px] lg:h-[150px] h-[3rem] w-[3rem] bg-white mx-auto flex justify-center items-center rounded ${
+                      headerImage === ImgBaseUrl(image?.image_url)
+                        ? "border-2 border-primary"
+                        : ""
+                    }`}
+                  >
+                    {image?.image_url?.endsWith(".mp4") ? (
+                      <div className="relative w-full h-full">
+                        <video
+                          src={ImgBaseUrl(image?.image_url)}
+                          className="object-cover w-full h-full"
+                        ></video>
+                        <FaPlay className="absolute inset-0 m-auto" />
+                      </div>
+                    ) : (
+                      <img
+                        src={ImgBaseUrl(image?.image_url) + "?width=300"}
+                        alt=""
+                        className="object-cover md:object-contain w-full h-full"
+                      />
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </SwiperWrapper>
+          {/* <Carousel
             itemClass="carousel-item-padding"
             className="md:mx-[130px] w-full"
             additionalTransfrom={0}
@@ -177,15 +214,15 @@ const DetailsSlider = ({
             responsive={{
               desktop: {
                 breakpoint: { max: 5000, min: 1024 },
-                items: 6,
+                items: 4,
               },
               tablet: {
                 breakpoint: { max: 1024, min: 780 },
-                items: 6,
+                items: 4,
               },
               mobile: {
                 breakpoint: { max: 780, min: 0 },
-                items: 5,
+                items: 3,
               },
             }}
             rewind={false}
@@ -228,17 +265,7 @@ const DetailsSlider = ({
                 </div>
               </div>
             ))}
-          </Carousel>
-          {images2.length && (
-            <div>
-              <button
-                onClick={handleNext}
-                className="flex items-center justify-center w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-medium"
-              >
-                <SlArrowRight />
-              </button>
-            </div>
-          )}
+          </Carousel> */}
         </div>
       </div>
     </header>
