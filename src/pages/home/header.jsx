@@ -4,6 +4,7 @@ import { BsArrowRight } from "react-icons/bs";
 import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
 import { Link } from "react-router-dom";
 import useWowAnimation from "../../Hooks/useAnimate";
+import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 const Header = () => {
   useWowAnimation();
 
@@ -13,7 +14,7 @@ const Header = () => {
       // style={{ backgroundImage: `url(${headerImage})` }}
     >
       <div className="video-wrapper w-full h-full wow fadeInUp">
-        <VideoPlayer url="https://cdn.shopify.com/videos/c/o/v/c3ed803a059d415fbd4421870148771f.mp4"></VideoPlayer>
+        <VideoPlayer url={ImgBaseUrl("assets/home/home1.mp4")}></VideoPlayer>
       </div>
       <div className="hero-content text-center">
         <div className="max-w-full pb-32">

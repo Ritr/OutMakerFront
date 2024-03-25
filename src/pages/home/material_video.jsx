@@ -13,7 +13,7 @@ const MV = ({ text_h2, text_p, videoSource }) => {
       </div>
       <div className="hero-content text-center">
         <div className="max-w-full pb-32">
-          <h2 className="text-4xl md:text-5xl text-white font-medium uppercase">
+          <h2 className="text-base md:text-5xl text-white font-medium uppercase">
             {text_h2}
           </h2>
           <p className="py-6 text-white">{text_p}</p>

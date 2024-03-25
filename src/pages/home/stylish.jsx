@@ -53,7 +53,7 @@ const Stylish = () => {
         </h2>
       </div>
 
-      <MV videoSource="https://cdn.shopify.com/videos/c/o/v/2d814871cb4d47b1b00c1945ddcbc38b.mp4" />
+      <MV videoSource={ImgBaseUrl("assets/home/home2.mp4")} />
       {/* <div className="text-center pb-4 mt-5">
         <h2 className="text-primary font-medium text-2xl md:text-4xl mt-4">
           Transform Your Space with Outmaker Style

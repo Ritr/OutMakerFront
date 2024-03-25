@@ -7,7 +7,7 @@ import img5 from "../../assets/stylish/1.jpg";
 import imgs2 from "../../assets/stylish/2.jpg";
 import imgs3 from "../../assets/stylish/3.jpg";
 import imgs4 from "../../assets/stylish/4.jpg";
-
+import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import MV from "./material_video";
 import { Link } from "react-router-dom";
 import { BsChevronRight } from "react-icons/bs";
@@ -139,9 +139,7 @@ const Meterials = () => {
 				</div> */}
 
         <MV
-          videoSource={
-            "https://cdn.shopify.com/videos/c/o/v/418c216f38744437bdc0bce21ac5410b.mp4"
-          }
+          videoSource={ImgBaseUrl("assets/home/home3.mp4")}
           text_h2="Built to withstand everything life throws at us."
           text_p="Where Durability Embraces the Elements"
         />
@@ -174,9 +172,8 @@ const Meterials = () => {
           ))}
         </div>
 
-        
         <MV
-          videoSource="https://cdn.shopify.com/videos/c/o/v/36bb127a7fd34c8db6c7edce78a3ed46.mp4"
+          videoSource={ImgBaseUrl("assets/home/home4.mp4")}
           text_h2="Sunbrella fabric easily handles various cold weather conditions."
         />
       </div>
