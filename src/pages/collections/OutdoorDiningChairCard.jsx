@@ -15,15 +15,10 @@ const OutdoorDiningChairCard = ({
   review,
   originalPrice,
   discountMessage,
-  warrantyOptions,
   colorOptions,
+  categoryId,
   isNew, // assuming this is a new prop to indicate if the item is new                <Link to={`/product-details/${p_id}`}></Link>
 }) => {
-  const imgs = {
-    10: img1,
-    waterproof: img2,
-    sunbrella: img3,
-  };
   return (
     <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px] shadow-md">
       {isNew && (
@@ -87,9 +82,45 @@ const OutdoorDiningChairCard = ({
 
             <div className="flex flex-wrap justify-between">
               <div className="flex flex-wrap  mt-2">
-                {warrantyOptions.map((warranty, index) => (
+                <div
+                  style={{
+                    borderColor: "#4F5574",
+                    color: "#002B5B",
+                    height: "31px",
+                    lineHeight: "31px",
+                    fontSize: "12px",
+                  }}
+                  className="text-xs border rounded-md px-3 mr-2 mb-2 flex items-center"
+                >
+                  <img
+                    src={img1}
+                    style={{ width: "17px" }}
+                    className="mr-2"
+                    alt=""
+                  />
+                  10 Year Warranty
+                </div>
+
+                <div
+                  style={{
+                    borderColor: "#4F5574",
+                    color: "#002B5B",
+                    height: "31px",
+                    lineHeight: "31px",
+                    fontSize: "12px",
+                  }}
+                  className="text-xs border rounded-md px-3 mr-2 mb-2 flex items-center"
+                >
+                  <img
+                    src={img2}
+                    style={{ width: "17px" }}
+                    className="mr-2"
+                    alt=""
+                  />
+                  Waterproof
+                </div>
+                {categoryId != 8 && categoryId != 10 ? (
                   <div
-                    key={index}
                     style={{
                       borderColor: "#4F5574",
                       color: "#002B5B",
@@ -100,14 +131,14 @@ const OutdoorDiningChairCard = ({
                     className="text-xs border rounded-md px-3 mr-2 mb-2 flex items-center"
                   >
                     <img
-                      src={imgs[warranty.key]}
+                      src={img3}
                       style={{ width: "17px" }}
                       className="mr-2"
                       alt=""
                     />
-                    {warranty.text}
+                    sunbrella washable
                   </div>
-                ))}
+                ) : null}
               </div>
               {/* <div className="flex mt-3">
               {colorOptions.map((color, index) => (

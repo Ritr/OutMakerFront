@@ -115,6 +115,10 @@ const Blogs = () => {
   // Effect to filter products whenever the products list or active filters change
   useEffect(() => {
     let updatedProducts = [...Object.values(products)];
+    // updatedProducts.sort((a,b)=>{
+    //   return a.product.p_type < b.product.p_type ? 1 : -1;
+    // });
+    // return a.product.p_type < b.product.p_type ? 1 : -1;
     // Implement your sorting logic here based on the activeFilters.sort
     if (activeFilters.sort === "priceLowToHigh") {
       updatedProducts.sort(
@@ -446,20 +450,7 @@ const Blogs = () => {
               discountMessage={`Save A$${
                 price[0].product_regular_price - price[0].product_sale_price
               } `} // Calculate discount
-              warrantyOptions={[
-                {
-                  key: "10",
-                  text: "10 Year Warranty",
-                },
-                {
-                  key: "waterproof",
-                  text: "Waterproof",
-                },
-                {
-                  key: "sunbrella",
-                  text: "sunbrella washable",
-                },
-              ]} // Set default or derive from category data
+              categoryId={product.p_category}
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
             />
           ))}

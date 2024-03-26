@@ -18,25 +18,21 @@ const CategoryAllProducts = ({ category }) => {
   );
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    if (category) {
-      fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-      console.log("Category--------", categories);
-    } else {
-      fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-    }
+    fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        let products = JSON.parse(data);
+        let productsArr = Object.values(products);
+        productsArr.sort((a, b) => {
+          return a.product.p_type > b.product.p_type ? -1 : 1;
+        });
+        setProducts(productsArr);
+      });
     window.scrollTo(0, 0);
   }, [id, category]);
 
   return (
     <>
-      {/* <ProductHeader
-        category={category}
-        product={category ? categoryItem?.Collection : categoryItem?.Category}
-      />*/}
       <div className="w-full">
         <nav className="sm:pt-16 md:py-8">
           <ul className="flex text-sm text-[#000000] font-normal">
@@ -65,7 +61,7 @@ const CategoryAllProducts = ({ category }) => {
 
         <div className="flex justify-between pt-14 gap-2 px-6 md:px-0">
           <p className="border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
-            {Object.values(products).length} Products
+            {products.length} Products
           </p>
           {/* <p
 					className='flex w-max border items-center px-4 justify-between border-1 text-xs md:text-lg font-medium rounded-full py-2 border-primary cursor-pointer hover:bg-primary hover:text-white gap-x-8'
@@ -146,12 +142,11 @@ const CategoryAllProducts = ({ category }) => {
 
             {/* obj handle */}
 
-            {Object.values(products)?.map((product) => (
+            {products?.map((product) => (
               <Link
                 to={`/product-details/${id}/${product.purl}`}
                 key={product?.product?.p_id}
               >
-                
                 <div className="rounded-lg shadow-lg relative transform transition duration-300 hover:scale-105">
                   <div className="lg:h-[250px]">
                     <img
@@ -231,8 +226,9 @@ const CategoryAllProducts = ({ category }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             {/* obj handle */}
-            {Object.values(products)?.map(({ product, price,purl }) => {
+            {products?.map(({ product, price, purl }) => {
               <OutdoorDiningChairCard
+                categoryId={product.category_id}
                 purl={purl}
                 key={product.p_id}
                 id={product?.p_id}
@@ -244,26 +240,13 @@ const CategoryAllProducts = ({ category }) => {
                 discountMessage={`Save A$${
                   price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount
-                warrantyOptions={[
-                  {
-                    key: "10",
-                    text: "10 Year Warranty",
-                  },
-                  {
-                    key: "waterproof",
-                    text: "Waterproof",
-                  },
-                  {
-                    key: "sunbrella",
-                    text: "sunbrella washable",
-                  },
-                ]} // Set default or derive from category data
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>;
             })}
-            {Object.values(products)?.map(({ product, price ,purl}) => (
+            {products?.map(({ product, price, purl }) => (
               <OutdoorDiningChairCard
-              purl={purl}
+                categoryId={product.category_id}
+                purl={purl}
                 key={product.p_id}
                 id={product?.p_id}
                 imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
@@ -274,20 +257,6 @@ const CategoryAllProducts = ({ category }) => {
                 discountMessage={`Save A$${
                   price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount
-                warrantyOptions={[
-                  {
-                    key: "10",
-                    text: "10 Year Warranty",
-                  },
-                  {
-                    key: "waterproof",
-                    text: "Waterproof",
-                  },
-                  {
-                    key: "sunbrella",
-                    text: "sunbrella washable",
-                  },
-                ]}  // Set default or derive from category data
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>
             ))}

@@ -348,16 +348,16 @@ const Info = ({
                 <img src={img3} className="w-4 h-4 object-contain" alt="" />
                 Furniture Assemble: {product?.assemble ? "yes" : "no"}
               </div>
-              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+              {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img4} className="w-4 h-4 object-contain" alt="" />
                 Freight calculated based on the shipping address
-              </div>
+              </div> */}
             </div>
             <div className="md:flex gap-4">
-              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+              {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img5} className="w-4 h-4 object-contain" alt="" />
                 Furniturep Provided for installation
-              </div>
+              </div> */}
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img6} className="w-4 h-4 object-contain" alt="" />
                 Modular splicing design: {product?.modular ? "yes" : "no"}
