@@ -494,12 +494,12 @@ const CheckoutInfo = () => {
       <section className="w-full h-full bg-[#F7F7F7]">
         <div className="bg-primary py-6">
           <div className="lg:max-w-[1600px] mx-auto flex justify-between">
-            <div className="flex-1 flex justify-center md:justify-start">
+            <div className="flex-1 flex justify-center">
               <Link to={"/"}>
                 <img
                   src={logo}
                   alt="Logo"
-                  className="object-contain z-50 w-32 md:w-32"
+                  className="object-contain z-50 w-32 md:w-32 md:translate-x-28"
                 />
               </Link>
             </div>

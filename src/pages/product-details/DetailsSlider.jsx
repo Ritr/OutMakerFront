@@ -19,7 +19,10 @@ const DetailsSlider = ({
   collectionName,
 }) => {
   const [headerImage, setHeaderImage] = useState(null);
-  const images2 = [{ image_url: product.p_pic }, ...images];
+  const [images2, setImages] = useState([
+    { image_url: product.p_pic },
+    ...images,
+  ]);
   // handler for image change
   const handleImageClick = (image) => {
     setHeaderImage(image);
@@ -27,32 +30,29 @@ const DetailsSlider = ({
   const carouselRef = React.useRef(null);
 
   const handleNext = () => {
-    carouselRef.current.next();
+    console.log(headerImage);
     let index = images2.findIndex((item) => {
-      return ImgBaseUrl(item.image_url) === headerImage;
+      return item.image_url === (headerImage || product.p_pic);
     });
-    let nextIndex = index + 1;
-    if (nextIndex <= 0) {
-      nextIndex = 1;
+    if (index + 1 >= images2.length) {
+      return;
     }
-    if (nextIndex >= images2.length) {
-      nextIndex = 0;
-    }
-    let image = images2[nextIndex];
-    setHeaderImage(ImgBaseUrl(image.image_url));
+
+    let image = images2[index + 1];
+    console.log(image.image_url);
+    setHeaderImage(image.image_url);
   };
 
   const handlePrev = () => {
-    carouselRef.current.previous();
     let index = images2.findIndex((item) => {
-      return ImgBaseUrl(item.image_url) === headerImage;
+      return item.image_url === (headerImage || product.p_pic);
     });
-    let prevIndex = index - 1;
-    if (prevIndex < 0) {
-      prevIndex = images2.length - 1;
+
+    if (index === 0) {
+      return;
     }
-    let image = images2[prevIndex];
-    setHeaderImage(ImgBaseUrl(image.image_url));
+    let image = images2[index - 1];
+    setHeaderImage(image.image_url);
   };
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -63,7 +63,6 @@ const DetailsSlider = ({
       // setHeaderImage(ImgBaseUrl(images[0].image_url));
     }
   }, images);
-
   return (
     <header>
       <div className="text-center w-full ">
@@ -122,11 +121,15 @@ const DetailsSlider = ({
         <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] ">
           {headerImage?.endsWith(".mp4") ? (
             <div className="h-full md:w-[50vw] mx-auto">
-              <VideoPlayer url={headerImage}></VideoPlayer>
+              <VideoPlayer url={ImgBaseUrl(headerImage)}></VideoPlayer>
             </div>
           ) : (
             <img
-              src={headerImage ? headerImage : ImgBaseUrl(product?.p_pic)}
+              src={
+                headerImage
+                  ? ImgBaseUrl(headerImage)
+                  : ImgBaseUrl(product?.p_pic)
+              }
               alt="Product Image"
               className="h-full  object-cover"
             />
@@ -145,16 +148,13 @@ const DetailsSlider = ({
           <SwiperWrapper
             prevClassName="w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] md:text-2xl font-medium -translate-x-12 md:-translate-x-28"
             nextClassName="w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-opacity-50  md:text-2xl font-medium translate-x-12 md:translate-x-28"
+            onNextClick={handleNext}
+            onPrevClick={() => {
+              handlePrev();
+            }}
             swiperProps={{
               slidesPerView: 5,
-              onActiveIndexChange: (swiper) => {
-                console.log(swiper.activeIndex);
-                console.log(
-                  "-------------------",
-                  images2[swiper.activeIndex]?.image_url
-                );
-                // setHeaderImage(ImgBaseUrl(images2[swiper.activeIndex]?.image_url));
-              },
+              loop: false,
             }}
             showNavigation={true}
           >
@@ -162,12 +162,12 @@ const DetailsSlider = ({
               <SwiperSlide>
                 <div
                   key={index}
-                  onClick={() => handleImageClick(ImgBaseUrl(image?.image_url))}
+                  onClick={() => handleImageClick(image?.image_url)}
                   className="cursor-pointer"
                 >
                   <div
                     className={`lg:w-[170px] lg:h-[150px] h-[3rem] w-[3rem] bg-white mx-auto flex justify-center items-center rounded ${
-                      headerImage === ImgBaseUrl(image?.image_url)
+                      headerImage === image?.image_url
                         ? "border-2 border-primary"
                         : ""
                     }`}

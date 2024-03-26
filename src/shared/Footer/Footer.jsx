@@ -16,9 +16,9 @@ import { useEffect, useState } from "react";
 const Footer = () => {
   const location = useLocation();
   const [hidden, setHidden] = useState(false);
-  const [isChecked1, setIsChecked1] = useState(true);
-  const [isChecked2, setIsChecked2] = useState(true);
-  const [isChecked3, setIsChecked3] = useState(true);
+  const [isChecked1, setIsChecked1] = useState(false);
+  const [isChecked2, setIsChecked2] = useState(false);
+  const [isChecked3, setIsChecked3] = useState(false);
   const hiddenStyle = {
     display: "none", // 在小屏幕上隐藏元素
   };

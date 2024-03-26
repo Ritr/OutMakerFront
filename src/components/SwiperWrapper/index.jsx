@@ -9,17 +9,21 @@ const SwiperWrapper = ({
   swiperProps,
   prevClassName,
   nextClassName,
+  onPrevClick,
+  onNextClick,
 }) => {
   const sliderRef = useRef(null);
-  const handlePrev = useCallback(() => {
+  const handlePrev = () => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slidePrev();
-  }, []);
+    onPrevClick && onPrevClick();
+  };
 
-  const handleNext = useCallback(() => {
+  const handleNext = () => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
-  }, []);
+    onNextClick && onNextClick();
+  };
   return (
     <div className="relative">
       {showNavigation && (
@@ -33,7 +37,7 @@ const SwiperWrapper = ({
           <SlArrowLeft />
         </button>
       )}
-      <Swiper ref={sliderRef} loop={true} {...swiperProps}  className="mySwiper">
+      <Swiper ref={sliderRef} loop={true} {...swiperProps} className="mySwiper">
         {children}
       </Swiper>
       {showNavigation && (
