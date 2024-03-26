@@ -20,7 +20,7 @@ const OutdoorDiningChairCard = ({
           NEW
         </span>
       )}
-      <Link to={`/product-details/${id}/${title}`}>
+      <Link to={`/product-details/${id}/`}>
         <div className="w-full sm:p-1 ">
           <img src={imageUrl} alt={title} className="w-full " />
           <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">

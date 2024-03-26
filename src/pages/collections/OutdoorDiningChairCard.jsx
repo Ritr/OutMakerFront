@@ -6,7 +6,7 @@ import img2 from "../../assets/images/waterproof.png";
 import img3 from "../../assets/images/washable.png";
 
 const OutdoorDiningChairCard = ({
-  id,purl,
+  id, purl,
   imageUrl,
   title,
   price,
@@ -18,10 +18,20 @@ const OutdoorDiningChairCard = ({
   isNew, // assuming this is a new prop to indicate if the item is new                <Link to={`/product-details/${p_id}`}></Link>
 }) => {
   const imgs = {
-    "10":img1,
-    "waterproof":img2,
-    "sunbrella":img3,
+    "10": img1,
+    "waterproof": img2,
+    "sunbrella": img3,
   };
+
+
+
+  const getTitleFormat = (title) => {
+    return title.replace(/\s+/g, '-');
+  };
+  const titleFormat = getTitleFormat(title);
+
+
+
   return (
     <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px]">
       {isNew && (
@@ -29,7 +39,7 @@ const OutdoorDiningChairCard = ({
           NEW
         </span>
       )}
-      <Link to={`/product-details/${id}/${title}`}>
+      <Link to={`/product-details/${id}/${titleFormat}`}>
         <div className="flex flex-col relative">
           <div className="w-full sm:p-1  transform transition duration-300 hover:scale-105">
             <img
@@ -53,10 +63,10 @@ const OutdoorDiningChairCard = ({
 
           <div className="bottom-0 p-4 pb-14">
             <p className="text-lg font-bold text-black">{title}</p>
-            <div className="flex items-center mt-2" style={{fontSize:"16px"}}>
-              <del className="text-sm text-gray-500 mr-2" style={{color:"#ADACAC"}}>{originalPrice}</del>
-              <p className="text-xl text-red-600 font-bold" style={{color:"#DC2626"}}>{price}</p>
-              <p className="text-sm text-red-600 ml-2" style={{color:"#DC2626"}}>{discountMessage}</p>
+            <div className="flex items-center mt-2" style={{ fontSize: "16px" }}>
+              <del className="text-sm text-gray-500 mr-2" style={{ color: "#ADACAC" }}>{originalPrice}</del>
+              <p className="text-xl text-red-600 font-bold" style={{ color: "#DC2626" }}>{price}</p>
+              <p className="text-sm text-red-600 ml-2" style={{ color: "#DC2626" }}>{discountMessage}</p>
             </div>
 
             <div className="flex flex-wrap justify-between">
@@ -64,10 +74,10 @@ const OutdoorDiningChairCard = ({
                 {warrantyOptions.map((warranty, index) => (
                   <div
                     key={index}
-                    style={{borderColor:"#4F5574",color:"#002B5B",height:"31px",lineHeight:"31px",fontSize:"12px"}}
+                    style={{ borderColor: "#4F5574", color: "#002B5B", height: "31px", lineHeight: "31px", fontSize: "12px" }}
                     className="text-xs border rounded-md px-3 mr-2 mb-2 flex items-center"
                   >
-                    <img src={imgs[warranty.key]} style={{width:"17px"}} className="mr-2" alt="" />
+                    <img src={imgs[warranty.key]} style={{ width: "17px" }} className="mr-2" alt="" />
                     {warranty.text}
                   </div>
                 ))}
