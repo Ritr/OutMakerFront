@@ -7,12 +7,14 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import OutdoorDiningChairCard from "../collections/OutdoorDiningChairCard.jsx";
+import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6";
 
 const CategoryAllProducts = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
   const categoryItem = useLoaderData();
   const { id } = useParams();
   const { categories } = useCategories();
+  const [sort, setSort] = useState(null);
   const filteredCollection = categories.filter(
     (collection) => collection?.category_id !== parseInt(id)
   );
@@ -30,7 +32,54 @@ const CategoryAllProducts = ({ category }) => {
       });
     window.scrollTo(0, 0);
   }, [id, category]);
-
+  useEffect(() => {
+    if (!sort) {
+      return;
+    }
+    let productsArr = [...products];
+    switch (sort) {
+      // 综合排序
+      case "score":
+        // productsArr.sort((a, b) => {
+        //   return a.price[0].product_regular_price >
+        //     b.price[0].product_regular_price
+        //     ? -1
+        //     : 1;
+        // });
+        break;
+      // 销量排序
+      case "sales":
+        // productsArr.sort((a, b) => {
+        //   return a.price[0].product_regular_price >
+        //     b.price[0].product_regular_price
+        //     ? -1
+        //     : 1;
+        // });
+        break;
+      case "price1":
+        productsArr.sort((a, b) => {
+          return a.price[0].product_regular_price >
+            b.price[0].product_regular_price
+            ? -1
+            : 1;
+        });
+        break;
+      case "price2":
+        productsArr.sort((a, b) => {
+          return a.price[0].product_regular_price <
+            b.price[0].product_regular_price
+            ? -1
+            : 1;
+        });
+        break;
+      case "collection":
+        productsArr.sort((a, b) => {
+          return a.product.collection_id < b.product.collection_id ? -1 : 1;
+        });
+        break;
+    }
+    setProducts(productsArr);
+  }, [sort]);
   return (
     <>
       <div className="w-full">
@@ -59,10 +108,81 @@ const CategoryAllProducts = ({ category }) => {
 				</p> */}
         </div>
 
-        <div className="flex justify-between pt-14 gap-2 px-6 md:px-0">
-          <p className="border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
+        <div className="md:flex  justify-between pt-14 gap-2 px-6 md:px-0">
+          <p className="border-1 mb-4 md:mb-0 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
             {products.length} Products
           </p>
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="font-semibold md:mr-2 text-md">Sort By:</span>
+            <button
+              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "score" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("score")}
+            >
+              score
+            </button>
+            <button
+              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "sales" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("sales")}
+            >
+              sales
+            </button>
+            <button
+              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "price1" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("price1")}
+            >
+              Price <FaArrowDownLong></FaArrowDownLong>
+            </button>
+            <button
+              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "price2" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("price2")}
+            >
+              Price <FaArrowUpLong></FaArrowUpLong>
+            </button>
+            <button
+              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "collection" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("collection")}
+            >
+              Collection
+            </button>
+            {/* <label htmlFor="score" className="">
+              <input type="radio" name="sort1" id="score" className="hidden" />
+              <span className="cursor-pointer">score</span>
+            </label>
+            <label htmlFor="sales">
+              <input type="radio" name="sort1" id="sales" className="hidden" />
+              <span className="cursor-pointer">sales</span>
+            </label>
+
+            <label htmlFor="price1" onClick={() => setSort("price1")}>
+              <input type="radio" name="sort1" id="price1" className="hidden" />
+              <span className="cursor-pointer">Price (High to Low)</span>
+            </label>
+
+            <label htmlFor="price2" onClick={() => setSort("price2")}>
+              <input type="radio" name="sort1" id="price2" className="hidden" />
+              <span className="cursor-pointer">Price (Low to High)</span>
+            </label>
+
+            <label htmlFor="collection" onClick={() => setSort("collection")}>
+              <input
+                type="radio"
+                name="sort1"
+                id="collection"
+                className="hidden"
+              />
+              <span className="cursor-pointer">Collection</span>
+            </label> */}
+          </div>
           {/* <p
 					className='flex w-max border items-center px-4 justify-between border-1 text-xs md:text-lg font-medium rounded-full py-2 border-primary cursor-pointer hover:bg-primary hover:text-white gap-x-8'
 					onClick={() => setShowModal(true)}>
@@ -240,7 +360,6 @@ const CategoryAllProducts = ({ category }) => {
                 discountMessage={`Save A$${
                   price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount
-
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>;
             })}
@@ -255,7 +374,6 @@ const CategoryAllProducts = ({ category }) => {
                 review={product?.review?.[0]?.review}
                 price={`A$${price[0].product_sale_price}`} // Display sale price
                 originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
-
                 discountMessage={`Save A$${
                   price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount

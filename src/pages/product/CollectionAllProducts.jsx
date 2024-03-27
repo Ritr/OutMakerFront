@@ -9,12 +9,14 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import ProductCard from "../../components/ProductCard";
 import OutdoorDiningChairCard from "../collections/OutdoorDiningChairCard.jsx";
+import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6";
 
 const CollectionAllProducts = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
   const categoryItem = useLoaderData();
   const { id } = useParams();
   const { collections } = useCollections();
+  const [sort, setSort] = useState(null);
   const filteredCollection = collections.filter(
     (collection) => collection?.category_id !== parseInt(id)
   );
@@ -33,7 +35,54 @@ const CollectionAllProducts = ({ category }) => {
       });
     window.scrollTo(0, 0);
   }, [id, category]);
-
+  useEffect(() => {
+    if (!sort) {
+      return;
+    }
+    let productsArr = [...products];
+    switch (sort) {
+      // 综合排序
+      case "score":
+        // productsArr.sort((a, b) => {
+        //   return a.price[0].product_regular_price >
+        //     b.price[0].product_regular_price
+        //     ? -1
+        //     : 1;
+        // });
+        break;
+      // 销量排序
+      case "sales":
+        // productsArr.sort((a, b) => {
+        //   return a.price[0].product_regular_price >
+        //     b.price[0].product_regular_price
+        //     ? -1
+        //     : 1;
+        // });
+        break;
+      case "price1":
+        productsArr.sort((a, b) => {
+          return a.price[0].product_regular_price >
+            b.price[0].product_regular_price
+            ? -1
+            : 1;
+        });
+        break;
+      case "price2":
+        productsArr.sort((a, b) => {
+          return a.price[0].product_regular_price <
+            b.price[0].product_regular_price
+            ? -1
+            : 1;
+        });
+        break;
+      case "collection":
+        productsArr.sort((a, b) => {
+          return a.product.collection_id < b.product.collection_id ? -1 : 1;
+        });
+        break;
+    }
+    setProducts(productsArr);
+  }, [sort]);
   return (
     <>
       <ProductHeader
@@ -63,17 +112,52 @@ const CollectionAllProducts = ({ category }) => {
           </h2>
         </div>
 
-        <div className="flex justify-between pt-14 gap-2">
-          <p className="border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
+        <div className="md:flex  justify-between pt-14 gap-2">
+          <p className=" mb-4 md:mb-0 border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
             {products.length} Products
           </p>
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="font-semibold md:mr-2 text-md">Sort By:</span>
+            <button
+              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "score" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("score")}
+            >
+              score
+            </button>
+            <button
+              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "sales" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("sales")}
+            >
+              sales
+            </button>
+            <button
+              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "price1" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("price1")}
+            >
+              Price <FaArrowDownLong></FaArrowDownLong>
+            </button>
+            <button
+              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
+                sort === "price2" ? "bg-primary text-white" : ""
+              }`}
+              onClick={() => setSort("price2")}
+            >
+              Price <FaArrowUpLong></FaArrowUpLong>
+            </button>
+          </div>
         </div>
 
         {!category ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             {products?.map((product) => (
               <OutdoorDiningChairCard
-                categoryId={product.category_id}
+                categoryId={product.product.category_id}
                 purl={product.purl}
                 key={product.p_id}
                 id={product?.p_id}
@@ -96,7 +180,7 @@ const CollectionAllProducts = ({ category }) => {
             {products?.map((product) => (
               // <div>{JSON.stringify(product)}</div>
               <OutdoorDiningChairCard
-                categoryId={product.category_id}
+                categoryId={product.product.category_id}
                 purl={product.purl}
                 key={product?.product?.p_id}
                 id={product?.product?.p_id}

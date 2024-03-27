@@ -24,7 +24,7 @@ const Dimensions = ({ dimensions }) => {
                 {dimension?.dimension?.dim_length}' x{" "}
                 {dimension?.dimension?.dim_height}"
               </p>
-              <p>Weight: {dimension?.dimension?.dim_weight}</p>
+              <p>Weight: {dimension?.dimension?.dim_weight} kg</p>
             </div>
             <div className="md:w-2/3">
               <img
