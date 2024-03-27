@@ -183,9 +183,9 @@ const Info = ({
                   {product?.quantity > 0
                     ? "In stock - Ship from Melbourne warehouse.Received within 5-7days"
                     : "pre-order - Ship from Melbourne warehouse.Received between " +
-                      day1.format("DD/MM") +
-                      " and " +
-                      day2.format("DD/MM")}
+                    day1.format("DD/MM") +
+                    " and " +
+                    day2.format("DD/MM")}
                 </span>
               </div>
             </div>
@@ -213,9 +213,8 @@ const Info = ({
 
             <div className="flex mx-6 items-center gap-6 border border-[#bfbfbf] p-3 rounded-full cursor-pointer">
               <p
-                className={`cursor-pointer ${
-                  quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
-                }`}
+                className={`cursor-pointer ${quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+                  }`}
                 onClick={handleDecreaseQuantity}
               >
                 <FaMinus />
@@ -265,9 +264,8 @@ const Info = ({
             <div className="md:hidden">
               <div className="flex items-center gap-4 p-2 ">
                 <p
-                  className={`cursor-pointer ${
-                    quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
-                  }`}
+                  className={`cursor-pointer ${quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+                    }`}
                   onClick={handleDecreaseQuantity}
                 >
                   <FaMinus />
@@ -283,9 +281,8 @@ const Info = ({
             <div className="flex px-2 flex-1">
               <div className="flex items-center gap-6 border-2 border-primary p-2 md:mr-1 rounded-full cursor-pointer">
                 <p
-                  className={`cursor-pointer ${
-                    quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
-                  }`}
+                  className={`cursor-pointer ${quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+                    }`}
                   onClick={handleDecreaseQuantity}
                 >
                   <FaMinus />
@@ -325,9 +322,9 @@ const Info = ({
               {product?.quantity > 0
                 ? "In stock - Ship from Melbourne warehouse.Received within 5-7days"
                 : "pre-order - Ship from Melbourne warehouse.Received " +
-                  day1.format("DD/MM") +
-                  " and " +
-                  day2.format("DD/MM")}
+                day1.format("DD/MM") +
+                " and " +
+                day2.format("DD/MM")}
             </span>
           </div>
         </div>
@@ -367,7 +364,7 @@ const Info = ({
         </div>
 
         <div className="py-6 text-center">
-          <h4 className="text-2xl font-font leading-loose">MEET LUDLOW</h4>
+          <h4 className="text-2xl font-font leading-loose">Meet {product.collection_name}</h4>
           <p className="text-sm font-light">{product?.p_s_description}</p>
         </div>
         {/* <div className="pt-8 pb-0 md:pb-8">
@@ -407,41 +404,36 @@ const Info = ({
             <ul className="flex flex-wrap px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0">
               <li
                 onClick={() => changeCategory("dimension")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
-                  category === "dimension" ? "bg-primary text-white" : ""
-                } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "dimension" ? "bg-primary text-white" : ""
+                  } hover:text-white  hover:bg-primary`}
               >
                 Dimensions
               </li>
               <li
                 onClick={() => changeCategory("details")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
-                  category === "details" ? "bg-primary text-white" : ""
-                } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "details" ? "bg-primary text-white" : ""
+                  } hover:text-white  hover:bg-primary`}
               >
                 Product details
               </li>
               <li
                 onClick={() => changeCategory("warranty")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
-                  category === "warranty" ? "bg-primary text-white" : ""
-                } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "warranty" ? "bg-primary text-white" : ""
+                  } hover:text-white  hover:bg-primary`}
               >
                 Warranty
               </li>
               <li
                 onClick={() => changeCategory("CareGuide")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
-                  category === "CareGuide" ? "bg-primary text-white" : ""
-                } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "CareGuide" ? "bg-primary text-white" : ""
+                  } hover:text-white  hover:bg-primary`}
               >
                 Care Guide
               </li>
               <li
                 onClick={() => changeCategory("Shipping")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
-                  category === "Shipping" ? "bg-primary text-white" : ""
-                } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "Shipping" ? "bg-primary text-white" : ""
+                  } hover:text-white  hover:bg-primary`}
               >
                 Shipping
               </li>
