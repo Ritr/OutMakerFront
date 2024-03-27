@@ -15,7 +15,7 @@ const ScheduledDetails = () => {
         
         {/* text container */}
         <div className="schedule-img-gradient text-primary absolute top-0 w-full h-full p-8 md:px-[100px] md:py-[90px]">
-          <h1 className="text-4xl md:text-5xl font-semibold mb-10">Scheduled Premium Freight Shipping</h1>
+          <h1 className="text-4xl md:text-5xl font-medium mb-10">Scheduled Premium Freight Shipping</h1>
           <p className="text-xl md:text-2xl mb-8 md:mb-16">
             For the following products, our standard scheduled freight delivery
             is $275 and includes the delivery, placement in area/room of choice,
@@ -32,7 +32,7 @@ const ScheduledDetails = () => {
                 <LuSofa className="text-5xl" />
               </div>
               {/* text  */}
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-lg font-medium">
                 Sofas, Sectionals, and <br /> Modular Chairs
               </h3>
             </div>
@@ -42,7 +42,7 @@ const ScheduledDetails = () => {
                 <MdTableRestaurant className="text-5xl" />
               </div>
               {/* text  */}
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-lg font-medium">
               Fire Pit Table
               </h3>
             </div>
@@ -52,7 +52,7 @@ const ScheduledDetails = () => {
                 <TbBrandAirtable className="text-5xl" />
               </div>
               {/* text  */}
-              <h3 className="text-lg font-semibold">
+              <h3 className="text-lg font-medium">
               Large Outdoor Rugs
               </h3>
             </div>

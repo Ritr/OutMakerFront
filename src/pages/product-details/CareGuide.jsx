@@ -6,14 +6,14 @@ import { Link } from 'react-router-dom';
 const CareGuide = () => {
   return (
     <section className="container mx-auto p-4 md:p-10">
-      <h4 className=" text-xl font-semibold uppercase">CareGuide</h4>
+      <h4 className=" text-xl font-medium uppercase">CareGuide</h4>
       <p className="text-base  py-4 leading-loose">
         Sunbrella fabric combines design and functionality, making daily
         maintenance easy and convenient.
       </p>
 
-      {/* <h5 className="text-xl font-semibold text-primary pt-6">Care Guide</h5> */}
-      <ul className="list-disc text-xs pl-4">
+      {/* <h5 className="text-xl font-medium text-primary pt-6">Care Guide</h5> */}
+      <ul className="list-disc pl-4">
         <li>Brush off floating dust.</li>
         <li>
           Prepare cleaning solution and mild soapy water, such as Woolite or

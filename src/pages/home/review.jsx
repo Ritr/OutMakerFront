@@ -85,7 +85,7 @@ const Review = () => {
     <section className="w-full pb-10 md:mt-10 overflow-hidden  pl-5 pr-5 ">
       <div className="flex justify-between items-center mb-1">
         <div className="">
-          <h1 className="text-2xl md:text-4xl font-semibold text-primary">
+          <h1 className="text-2xl md:text-4xl font-medium text-primary">
             Our Customers Reviews
           </h1>
         </div>
@@ -94,7 +94,7 @@ const Review = () => {
         <div>
           <button
             onClick={handlePrev}
-            className="flex items-center justify-center w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-semibold"
+            className="flex items-center justify-center w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-medium"
           >
             <SlArrowLeft />
           </button>
@@ -214,7 +214,7 @@ const Review = () => {
         <div>
           <button
             onClick={handleNext}
-            className="flex items-center justify-center w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-semibold"
+            className="flex items-center justify-center w-[2rem] h-[2rem] lg:w-[53px] lg:h-[53px] bg-[#626262] bg-opacity-50 text-white rounded-full md:text-2xl font-medium"
           >
             <SlArrowRight />
           </button>

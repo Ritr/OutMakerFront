@@ -6,7 +6,7 @@ import { getApiBaseUrl } from "../../utils/api/index";
 const OrderList = () => {
   const [filteredOrders, setFilteredOrders] = useState([]); // State for displaying orders
   const [searchEmail, setSearchEmail] = useState("");
-  const [searchType, setSearchType] = useState("code");
+  const [searchType, setSearchType] = useState("email");
 
   // const userCode = localStorage.getItem("usercode");
   const [userCode, setUserCode] = useState("");
@@ -216,7 +216,7 @@ const OrderList = () => {
                           <div className="text-gray-900">
                             {group[0].date} Order number: {group[0].orderNumber}
                           </div>
-                          <div className="bg-primary text-white flex px-3 py-1 text-center items-center justify-center font-semibold leading-tight rounded-full w-32 h-8">
+                          <div className="bg-primary text-white flex px-3 py-1 text-center items-center justify-center font-medium leading-tight rounded-full w-32 h-8">
                             <Link
                               to={`/OrderInformation/${group[0].orderNumber}`}
                             >

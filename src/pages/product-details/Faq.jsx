@@ -28,8 +28,8 @@ const FAQ = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h2 className="text-2xl  text-center mb-6">
+    <div className="container mx-auto px-4 py-6 md:px-64">
+      <h2 className="text-2xl  text-center mb-6 font-medium">
         We're here to answer anything
       </h2>
       <div className="space-y-4">
@@ -45,7 +45,7 @@ const FAQ = () => {
       </div>
       <div className="text-center mt-6">
         <Link to="/FAQ">
-          <button className="bg-primary text-white py-2 px-4 rounded-lg">
+          <button className="bg-primary text-white py-2 px-4 rounded-full">
             View all FAQs
           </button>
         </Link>

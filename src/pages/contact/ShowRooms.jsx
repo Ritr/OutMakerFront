@@ -58,7 +58,7 @@ const ShowRooms = () => {
 							<h4 className='text-xl font-normal text-black tracking-wider pt-2'>
 								{room.title}
 							</h4>
-							<h2 className='text-4xl font-semibold text-black'>
+							<h2 className='text-4xl font-medium text-black'>
 								{room.location}
 							</h2>
 

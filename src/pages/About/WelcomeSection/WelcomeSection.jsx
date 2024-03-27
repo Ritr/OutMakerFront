@@ -5,7 +5,7 @@ const WelcomeSection = () => {
   return (
     <div>
       <div className="bg-[#002b5b08] text-[#002B5B] py-5 px-8 md:py-7 md:px-24">
-        <h1 className="text-2xl md:text-3xl font-semibold text-center mb-6">
+        <h1 className="text-2xl md:text-3xl font-medium text-center mb-6">
           Welcome to Outmaker
         </h1>
         <p className="text-xl md:text-2xl text-justify">

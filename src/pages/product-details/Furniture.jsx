@@ -50,7 +50,7 @@ const Furniture = () => {
 					"linear-gradient( 180deg, rgba(64, 123, 255, 0.06) 0%, rgba(244, 247, 255, 0) 100% )",
 			}}>
 			<div className='container mx-auto px-10'>
-				<h2 className='text-primary text-xl md:text-4xl font-semibold text-center'>
+				<h2 className='text-primary text-xl md:text-4xl font-medium text-center'>
 					Outdoor furniture that fits your space
 				</h2>
 				<div className='furniture-slider py-10'>

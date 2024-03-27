@@ -67,7 +67,7 @@ const ProductReviews = ({ reviews }) => {
                 ))}
               </div>
               {/* share and date  */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between w-full">
+              <div className="flex flex-row md:items-center justify-between w-full">
                 <SocialShare />
                 <p className="text-black">
                   {formatDate(review?.comment?.created_at)}
@@ -80,7 +80,7 @@ const ProductReviews = ({ reviews }) => {
       {visibleReviews < totalReviews && (
         <div className="text-center mt-4">
           <button
-            className="bg-primary text-white py-2 px-4 rounded-lg"
+            className="bg-primary text-white py-2 px-4 rounded-full"
             onClick={loadMoreReviews}
           >
             Load More

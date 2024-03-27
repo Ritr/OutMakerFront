@@ -6,6 +6,8 @@ import useProducts from "../../Hooks/useProductAll.js";
 import OutdoorDiningChairCard from "./OutdoorDiningChairCard.jsx";
 import { FiFilter } from "react-icons/fi";
 import { throttle } from "lodash";
+import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl.jsx";
+
 import {
   useFetchSeat,
   useFetchCombination,
@@ -59,7 +61,7 @@ const Blogs = () => {
     setWindowWidth(window.innerWidth);
 
     const handleScroll = throttle(() => {
-      const body = document.querySelector("body");
+      const root = document.querySelector("#root");
       if (elementRef.current) {
         const { top } = elementRef.current.getBoundingClientRect();
         // const y = body.scrollTop;
@@ -67,7 +69,7 @@ const Blogs = () => {
         if (top < 0) {
           h = 0;
         }
-        let direction = window.scrollY - scrollY.current > 0 ? true : false;
+        let direction = root.scrollTop - scrollY.current > 0 ? true : false;
         console.log(direction);
         if (direction) {
           // h += 108;
@@ -75,13 +77,15 @@ const Blogs = () => {
           h = 120;
         }
         setTopPos(h);
-        scrollY.current = window.scrollY;
+        scrollY.current = root.scrollTop;
       }
     }, 40); // 控制节流的时间间隔
 
-    window.addEventListener("scroll", handleScroll);
+    document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document
+        .querySelector("#root")
+        .removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -111,6 +115,10 @@ const Blogs = () => {
   // Effect to filter products whenever the products list or active filters change
   useEffect(() => {
     let updatedProducts = [...Object.values(products)];
+    // updatedProducts.sort((a,b)=>{
+    //   return a.product.p_type < b.product.p_type ? 1 : -1;
+    // });
+    // return a.product.p_type < b.product.p_type ? 1 : -1;
     // Implement your sorting logic here based on the activeFilters.sort
     if (activeFilters.sort === "priceLowToHigh") {
       updatedProducts.sort(
@@ -194,7 +202,7 @@ const Blogs = () => {
     });
   };
   return (
-    <section className="w-full mt-16 md:mt-0">
+    <section className="w-full ">
       <div className="text-center p-4">
         <h2 className="text-2xl font-bold text-black mb-2">
           {isProduct ? "CATEGORIES" : "COLLECTIONS"}
@@ -228,7 +236,7 @@ const Blogs = () => {
         <aside
           className={`${
             showFilters ? "filter-container" : "hidden"
-          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 lg:fixed`}
+          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 fixed`}
           style={{
             display: showFilters
               ? windowWidth <= 768
@@ -429,11 +437,12 @@ const Blogs = () => {
               : "lg:w-full lg:grid-cols-3 gap-[43px]"
           } grid grid-cols-1 sm:grid-cols-2  p-4`}
         >
-          {filteredProducts.map(({ product, review, price }) => (
+          {filteredProducts.map(({ product, review, price, purl }) => (
             <OutdoorDiningChairCard
+              purl={purl}
               key={product.p_id}
               id={product?.p_id}
-              imageUrl={`https://www.theoutmaker.com/${product.p_pic}`} // Adjust the path as needed
+              imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
               title={product.p_name}
               review={product?.review?.[0]?.review}
               price={`A$${price[0].product_sale_price}`} // Display sale price
@@ -441,20 +450,7 @@ const Blogs = () => {
               discountMessage={`Save A$${
                 price[0].product_regular_price - price[0].product_sale_price
               } `} // Calculate discount
-              warrantyOptions={[
-                {
-                  key: "10",
-                  text: "10 Year Warranty",
-                },
-                {
-                  key: "waterproof",
-                  text: "Waterproof",
-                },
-                {
-                  key: "sunbrella",
-                  text: "sunbrella washable",
-                },
-              ]} // Set default or derive from category data
+              categoryId={product.p_category}
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
             />
           ))}

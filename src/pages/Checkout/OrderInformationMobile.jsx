@@ -38,7 +38,7 @@ const OrderStatusSteps = ({ step }) => {
               className={`step ${index <= step ? "step-primary" : ""}`}
             >
               <div className="flex flex-col items-start">
-                <span className="text-black text-left font-semibold">
+                <span className="text-black text-left font-medium">
                   {info.title}
                 </span>
                 <span
@@ -108,7 +108,7 @@ const OrderInformation = ({ orders }) => {
     <div className="relative mx-auto bg-white rounded-sm">
       {/* Order Information Heading with rounded corners */}
       <div className="inline-flex h-[60px] bg-[#002B5B] rounded-tl-md rounded-br-md">
-        <h2 className="text-[22px] font-semibold text-white pt-4 pb-4 pl-[30px] pr-[30px] ">
+        <h2 className="text-[22px] font-medium text-white pt-4 pb-4 pl-[30px] pr-[30px] ">
           Order Information
         </h2>
       </div>
@@ -177,7 +177,7 @@ const OrderDetails = ({ orders }) => {
             />
             <div className="flex flex-col justify-between">
               <div>
-                <div className="text-gray-800 font-semibold text-lg">
+                <div className="text-gray-800 font-medium text-lg">
                   {order.product.p_name}
                 </div>
                 <div className="text-gray-600">Commodity name</div>
@@ -214,9 +214,9 @@ const TotalCost = ({ freight, actualPayment }) => {
   return (
     <div className="p-10 mb-8">
       <div className="flex justify-end mb-4">
-        <p className="text-lg font-bold text-black pr-1">
-          30 days no reason to return{" "}
-        </p>
+        {/* <p className="text-lg font-bold text-black pr-1">
+          30 days no reason to return
+        </p> */}
         <Link to="/ShippingPolicy">
           <p className="text-lg font-bold text-[#002B5B]">shipping delivey </p>
         </Link>

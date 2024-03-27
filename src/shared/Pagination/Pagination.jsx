@@ -5,7 +5,7 @@ const Pagination = () => {
 		<div className='flex flex-col lg:flex-row justify-between items-center'>
 			<nav
 				aria-label='Pagination'
-				className='flex justify-center items-center text-gray-600 mt-8 lg:mt-0 font-semibold'>
+				className='flex justify-center items-center text-gray-600 mt-8 lg:mt-0 font-medium'>
 				<a href='#' className='p-2 mr-0 hover:bg-[#F5F6FF] flex text-[#879bb2]'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'

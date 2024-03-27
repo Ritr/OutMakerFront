@@ -18,7 +18,7 @@ const Blogs = () => {
   console.log(location?.pathname);
 
   return (
-    <section className="w-full pt-28">
+    <section className="w-full">
       <div className="md:hidden bg-primary text-white text-center text-3xl font-bold uppercase py-6">
         COLLECTIONS.
       </div>
@@ -36,7 +36,7 @@ const Blogs = () => {
           </div>
         </div>
         <div className="text-center pt-5 md:pt-10">
-          {/* <h2 className="text-4xl font-semibold text-black">
+          {/* <h2 className="text-4xl font-medium text-black">
             {location?.pathname === "/categories"
               ? "CATEGORIES"
               : "COLLECTIONS"}

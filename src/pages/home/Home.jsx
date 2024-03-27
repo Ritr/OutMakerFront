@@ -11,13 +11,13 @@ import Network from "../../shared/Network/Network";
 import { Link } from "react-router-dom";
 
 import { getApiBaseUrl } from "../../utils/api/index";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 function ScrollToTop() {
   const location = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location]);
+  }, [location.pathname]);
 
   return null;
 }
@@ -122,7 +122,7 @@ const Home = () => {
           onClick={openModal}
           className="fixed bottom-5 left-5 z-50 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full shadow-md"
         >
-          Open Menu
+          Track Order
         </button>
       )}
 
@@ -136,7 +136,7 @@ const Home = () => {
               <h2>Welcome to theoutmaker</h2>
               <button
                 onClick={closeModal}
-                className="text-lg font-semibold hover:text-gray-700"
+                className="text-lg font-medium hover:text-gray-700"
               >
                 &times;
               </button>

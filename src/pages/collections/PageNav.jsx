@@ -10,7 +10,7 @@ const PageNav = () => {
 					Home
 					</Link>
 				</li>
-				<li className='font-semibold'>Collections</li>
+				<li className='font-medium'>Collections</li>
 			</ul>
 		</nav>
 	);

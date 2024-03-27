@@ -6,8 +6,7 @@ import { CartContext } from "../../Provider/CartProvider";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import bPaypal from "../../assets/icons/bPaypal.svg";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import headerIMG from "../../assets/checkinfo.png";
-import logo from "../../assets/icons/navIcon.png";
+import logo from "../../assets/icons/logo-white.png";
 import SidebarCart from "../../components/Navbar/SidebarCart";
 
 import ShippingAddress from "./ShippingAddress";
@@ -493,7 +492,27 @@ const CheckoutInfo = () => {
   return (
     <>
       <section className="w-full h-full bg-[#F7F7F7]">
-        {/* SidebarCart */}
+        <div className="bg-primary py-6">
+          <div className="lg:max-w-[1600px] mx-auto flex justify-between">
+            <div className="flex-1 flex justify-center">
+              <Link to={"/"}>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  className="object-contain z-50 w-32 md:w-32 md:translate-x-28"
+                />
+              </Link>
+            </div>
+            <div className="flex-1 flex justify-center items-center">
+              <FaShoppingBag
+                onClick={() => setIsSidebarCartOpen(true)}
+                size="1.5em"
+                color="white"
+                className="cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
         <SidebarCart
           isOpen={isSidebarCartOpen}
           toggleSidebar={() => setIsSidebarCartOpen(false)}
@@ -521,8 +540,8 @@ const CheckoutInfo = () => {
           </div>
         </div> */}
 
-        <div className="w-full bg-white">
-          <div className="grid grid-cols-1 lg:grid-cols-9">
+        <div className="w-full bg-white lg:max-w-[1600px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-9 ">
             {/* mobile order summary */}
             <aside className="sm:hidden bg-[#FFFAEE]">
               <div className="">
@@ -541,26 +560,34 @@ const CheckoutInfo = () => {
                     <p>A$ {totalEstimatedPrice}</p>
                   </div>
                 </button>
-                <div className={isOpen ? "px-4 pb-4 bg-white" : "hidden"}>
-                  <div className="md:w-96">
+                <div className={isOpen ? "pb-4 bg-white" : "hidden"}>
+                  <div className="md:w-96 col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  pt-10 ">
                     {objectOnlyData && objectOnlyData.length > 0 ? (
                       objectOnlyData.map((item) => (
-                        <div key={item?.product?.p_id} className="flex mb-6">
+                        <div
+                          key={item?.product?.p_id}
+                          className="flex mb-6 w-full relative"
+                        >
+                          <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
+                            {item.qunatity}
+                          </span>
                           <img
                             src={ImgBaseUrl(item?.product?.p_pic)}
                             alt="Product"
-                            className="object-contain rounded w-20 h-20  mr-4"
+                            className="object-contain rounded w-20 h-20  mr-4 bg-white"
                           />
-                          <div>
+                          <div className="flex-1">
                             <h4 className="text-lg font-medium">
                               {item?.product?.p_name.slice(0, 30)}
                             </h4>
                             <p className="text-sm text-gray-500">
                               Glacier / {item?.dimension} / {item?.category}
                             </p>
-                            <p className="text-sm text-gray-500">
-                              A${item?.cost?.product_sale_price}
-                            </p>
+                          </div>
+                          <div className="w-16 text-left flex flex-col justify-center items-center">
+                            <span className="text-sm text-gray-500">
+                              A${item?.cost?.product_sale_price * item.qunatity}
+                            </span>
                           </div>
                         </div>
                       ))
@@ -599,7 +626,7 @@ const CheckoutInfo = () => {
                       <div className="flex justify-between">
                         <span>
                           Estimated Tax
-                          <div className="tooltip" data-tip="hello">
+                          <div className="tooltip" data-tip="Price already includes tax">
                             <FaQuestionCircle></FaQuestionCircle>
                           </div>
                         </span>
@@ -612,20 +639,20 @@ const CheckoutInfo = () => {
             </aside>
 
             {/* Left Column for Forms */}
-            <div className="col-span-1 lg:col-span-5 bg-[#FFFAEE] rounded-lg shadow-lg p-3 pt-10 md:pt-10 md:pr-10 md:pb-0">
+            <div className="col-span-1 lg:col-span-5  p-3 pt-10 md:pt-10 md:pr-10 md:pb-0  md:overflow-auto">
               <div className="md:w-2/3 ml-auto">
-                <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+                <h2 className="text-2xl font-medium mb-4 text-gray-700">
                   Contact
                 </h2>
                 <input
                   type="email"
                   placeholder="Email"
-                  className="input input-bordered border-2 focus:outline-none w-full text-sm"
+                  className="input input-bordered focus:outline-none w-full text-sm"
                   value={formDataemail}
                   onChange={handleEmailChange}
                 />
 
-                <h2 className="text-2xl font-semibold mb-4 mt-2 text-gray-700">
+                <h2 className="text-2xl font-medium mb-4 mt-2 text-gray-700">
                   Shipping Address
                 </h2>
                 <ShippingAddress
@@ -634,7 +661,7 @@ const CheckoutInfo = () => {
                 />
 
                 <div className="container mx-auto mt-2">
-                  <h2 className="text-2xl font-semibold mb-4 text-gray-700">
+                  <h2 className="text-2xl font-medium mb-4 text-gray-700">
                     Payment
                   </h2>
                   <p className="text-gray-500 mb-4 text-xs">
@@ -644,10 +671,11 @@ const CheckoutInfo = () => {
                   <div className="bg-white ">
                     <div className="form-control">
                       <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "paypal"
-                          ? "paymentMethodselected"
-                          : ""
-                          }`}
+                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${
+                          paymentMethod === "paypal"
+                            ? "paymentMethodselected"
+                            : ""
+                        }`}
                       >
                         <div className="flex items-center">
                           <input
@@ -676,10 +704,11 @@ const CheckoutInfo = () => {
 
                     <div className="form-control">
                       <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${paymentMethod === "card"
-                          ? "paymentMethodselected"
-                          : ""
-                          }`}
+                        className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${
+                          paymentMethod === "card"
+                            ? "paymentMethodselected"
+                            : ""
+                        }`}
                       >
                         <div className="flex items-center">
                           <input
@@ -721,7 +750,7 @@ const CheckoutInfo = () => {
                     {isBtnLoading ? "Loading..." : "Continue to Shipping"}
                   </button>
 
-                  <ul className="p-3 flex flex-wrap">
+                  <ul className="p-3 flex flex-wrap mb-8 md:mb-0">
                     <li>
                       <Link to="/ReturnPolicy" className="underline text-xs">
                         Refund policy
@@ -747,26 +776,34 @@ const CheckoutInfo = () => {
               </div>
             </div>
             {/* Right Column for Order Summary */}
-            <div className="col-span-1 lg:col-span-4 bg-white p-6 rounded-lg shadow-lg md:w-full md:pl-10 pt-10 md:pb-0">
-              <div className="md:w-3/5">
+            <div className="hidden md:block col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  md:w-full md:pl-10 pt-10 md:pb-0">
+              <div className="sticky top-6">
                 {objectOnlyData && objectOnlyData.length > 0 ? (
                   objectOnlyData.map((item) => (
-                    <div key={item?.product?.p_id} className="flex mb-6">
+                    <div
+                      key={item?.product?.p_id}
+                      className="flex mb-6 w-full relative"
+                    >
+                      <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
+                        {item.qunatity}
+                      </span>
                       <img
                         src={ImgBaseUrl(item?.product?.p_pic)}
                         alt="Product"
-                        className="object-contain rounded w-20 h-20  mr-4"
+                        className="object-contain rounded w-20 h-20  mr-4 bg-white"
                       />
-                      <div>
+                      <div className="flex-1">
                         <h4 className="text-lg font-medium">
                           {item?.product?.p_name.slice(0, 30)}
                         </h4>
                         <p className="text-sm text-gray-500">
                           Glacier / {item?.dimension} / {item?.category}
                         </p>
-                        <p className="text-sm text-gray-500">
-                          A${item?.cost?.product_sale_price}
-                        </p>
+                      </div>
+                      <div className="w-16 text-left flex flex-col justify-center items-center">
+                        <span className="text-sm text-gray-500">
+                          A${item?.cost?.product_sale_price * item.qunatity}
+                        </span>
                       </div>
                     </div>
                   ))
@@ -792,7 +829,10 @@ const CheckoutInfo = () => {
                   <div className="flex justify-between">
                     <span className="flex items-center cursor-pointer">
                       Estimated Tax
-                      <div className="tooltip" data-tip="Price already includes tax">
+                      <div
+                        className="tooltip"
+                        data-tip="Price already includes tax"
+                      >
                         <FaQuestionCircle className="ml-1"></FaQuestionCircle>
                       </div>
                     </span>

@@ -36,9 +36,9 @@ const AllBlogs = () => {
   }, []); // Empty array indicates it runs only once when the component mounts
 
   return (
-    <main>
+    <main className="lg:max-w-[1600px] mx-auto">
       <AllBlogsHeader />
-      <div className="mx-10">
+      <div className="md:mx-10 px-4 md:px-0">
         
         <PageNav blogCategories={blogCategories} />
 

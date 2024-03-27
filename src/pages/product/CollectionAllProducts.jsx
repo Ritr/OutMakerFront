@@ -20,16 +20,17 @@ const CollectionAllProducts = ({ category }) => {
   );
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    if (category) {
-      fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-        console.log("Itzmrnh Collection", collections);
-    } else {
-      fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-    }
+    fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        let products = JSON.parse(data);
+        let productsArr = Object.values(products);
+        productsArr.sort((a, b) => {
+          return a.product.p_type > b.product.p_type ? -1 : 1;
+        });
+        console.log("CollectionAllProducts", productsArr);
+        setProducts(productsArr);
+      });
     window.scrollTo(0, 0);
   }, [id, category]);
 
@@ -48,7 +49,7 @@ const CollectionAllProducts = ({ category }) => {
             <li className="me-6 pb-1 border-b-2 border-b-black">
               <Link to="/collections">Collections</Link>
             </li>
-            <li className="font-semibold">
+            <li className="font-medium">
               {!category ? categoryItem?.Category.category_name : ""}
             </li>
           </ul>
@@ -56,20 +57,24 @@ const CollectionAllProducts = ({ category }) => {
 
         <div className="text-center w-10/12 mx-auto">
           <h2 className="text-primary font-normal text-2xl md:text-4xl">
-            {category ? categoryItem?.Collection.collection_desc : categoryItem?.Category}
+            {category
+              ? categoryItem?.Collection.collection_desc
+              : categoryItem?.Category}
           </h2>
         </div>
 
         <div className="flex justify-between pt-14 gap-2">
           <p className="border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
-            {Object.values(products).length} Products
+            {products.length} Products
           </p>
         </div>
 
         {!category ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
-            {Object.values(products)?.map((product) => (
+            {products?.map((product) => (
               <OutdoorDiningChairCard
+                categoryId={product.category_id}
+                purl={product.purl}
                 key={product.p_id}
                 id={product?.p_id}
                 imageUrl={ImgBaseUrl(product?.product?.p_pic)} // Adjust the path as needed
@@ -81,20 +86,6 @@ const CollectionAllProducts = ({ category }) => {
                   product?.price[0].product_regular_price -
                   product?.price[0].product_sale_price
                 } `} // Calculate discount
-                warrantyOptions={[
-                  {
-                    key: "10",
-                    text: "10 Year Warranty",
-                  },
-                  {
-                    key: "waterproof",
-                    text: "Waterproof",
-                  },
-                  {
-                    key: "sunbrella",
-                    text: "sunbrella washable",
-                  },
-                ]} // Set default or derive from category data
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               />
             ))}
@@ -102,8 +93,11 @@ const CollectionAllProducts = ({ category }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             {/* obj handle */}
-            {Object.values(products)?.map((product) => (
+            {products?.map((product) => (
+              // <div>{JSON.stringify(product)}</div>
               <OutdoorDiningChairCard
+                categoryId={product.category_id}
+                purl={product.purl}
                 key={product?.product?.p_id}
                 id={product?.product?.p_id}
                 imageUrl={ImgBaseUrl(product?.product?.p_pic)} // Adjust the path as needed
@@ -115,20 +109,6 @@ const CollectionAllProducts = ({ category }) => {
                   product?.price[0].product_regular_price -
                   product?.price[0].product_sale_price
                 } `} // Calculate discount
-                warrantyOptions={[
-                  {
-                    key: "10",
-                    text: "10 Year Warranty",
-                  },
-                  {
-                    key: "waterproof",
-                    text: "Waterproof",
-                  },
-                  {
-                    key: "sunbrella",
-                    text: "sunbrella washable",
-                  },
-                ]} // Set default or derive from category data
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               />
             ))}

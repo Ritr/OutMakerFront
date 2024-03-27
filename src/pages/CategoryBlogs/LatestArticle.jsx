@@ -1,4 +1,5 @@
 import React from "react";
+import { LuArrowRight } from "react-icons/lu";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 function formatDateTime(isoDateString) {
   const date = new Date(isoDateString);
@@ -33,13 +34,24 @@ const LatestArticle = (Subcategory_Blogs) => {
                 className="w-full h-full"
               />
             </div>
-            <div className="basis-2/3 border-b-4 border-[#B8B8B8] flex flex-col justify-between">
-              <h5 className="text-sm lg:text-xl font-medium text-black">
-                {article.subcatgory_name}
-              </h5>
-
-              <div className="flex items-center justify-between gap-[6px] md:gap-3 text-xs lg:text-base text-[#213343] font-normal pb-1">
-                <span>{formatDateTime(article.updated_at)}</span>
+            <div className="basis-2/3 pl-2 md:border-b-4 border-[#B8B8B8] flex flex-col justify-between">
+              <Link
+                to={`/blog/${article.post_id}/${article.post_url}`}
+                key={article.post_id}
+              >
+                <h5 className="text-xl lg:text-xl font-medium text-black hover:text-blue-700 md:underline hover:underline">
+                  {article.post_title}
+                </h5>
+              </Link>
+              <div className="flex items-center justify-end md:justify-between gap-[6px] md:gap-3 text-xs lg:text-base text-[#213343] font-normal pb-1">
+                <span className="hidden md:block">
+                  {formatDateTime(article.updated_at)}
+                </span>
+                <Link to={`/blog/${article.post_id}/${article.post_url}`}>
+                  <span className="md:hidden flex gap-1 items-center text-md">
+                    LEARN MORE<LuArrowRight></LuArrowRight>
+                  </span>
+                </Link>
               </div>
             </div>
           </div>

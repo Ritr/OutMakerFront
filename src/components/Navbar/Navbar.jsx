@@ -5,9 +5,11 @@ import React, {
   useState,
   useLayoutEffect,
 } from "react";
+// import { Navbar as NextNavbar } from "@nextui-org/navbar";
+
 import { FaAngleDown, FaTimes, FaUser } from "react-icons/fa";
 import { BsBag } from "react-icons/bs";
-import logo from "../../assets/Navbar/Frame.svg";
+import logo from "../../assets/icons/logo-blue.png";
 import ProductItems from "./ProductItems";
 import "aos/dist/aos.css";
 import AOS from "aos";
@@ -20,9 +22,8 @@ import SidebarCart from "./SidebarCart";
 import useOutsideClick from "../../Hooks/useOutsideClick";
 import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
-import { throttle } from "lodash";
+import { throttle, debounce } from "lodash";
 import navb from "../../assets/navb.webp";
-
 AOS.init();
 const Navbar = () => {
   const { objectOnlyData } = useContext(CartContext);
@@ -37,22 +38,32 @@ const Navbar = () => {
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   // const [navVisible, setNavVisible] = useState(window.innerWidth > 768);
-  const [topPos, setTopPos] = useState(48);
+  const [topPos, setTopPos] = useState(124);
   const location = useLocation(); // Get the current location
   const [isOpen, setIsOpen] = useState(false);
   const scrollY = useRef(0);
+  const [hidden, setHidden] = useState(false);
+  const [direction, setDirection] = useState(false);
+  const [scrollTop, setScrollTop] = useState(0);
   //判断页面滚动方向
 
   useEffect(() => {
-    let top = document.querySelector("#tip").clientHeight;
+    let tip = document.querySelector("#tip").getBoundingClientRect();
+    let top = tip.clientHeight;
+    if (tip.top < 0) {
+      top = 0;
+    }
+    let top2 = document.querySelector("#tip2").clientHeight;
     // 如果是购物车页面，则top = 0
 
     // const location = useLocation(); // Get the current location
     // alert(location.pathname);
     if (location.pathname == "/checkout-info") {
-      top = 0;
+      setTopPos(0);
+    } else {
+      setTopPos(top + top2);
     }
-    setTopPos(top);
+
     // const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
     // setNavVisible(window.innerWidth > 768);
@@ -61,23 +72,28 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
-
-      let h = top - window.scrollY;
-      console.log(h);
-      let direction = window.scrollY - scrollY.current > 0 ? true : false;
-      if (direction) {
-        h = -window.scrollY;
-      } else {
-        if (h < 0) {
-          h = 0;
-        }
+      let scrollTop = document.querySelector("#root").scrollTop;
+      setScrollTop(scrollTop);
+      let direction = scrollTop - scrollY.current > 0 ? true : false;
+      if (scrollY.current < 0) {
+        direction = false;
       }
-      setTopPos(h);
-      scrollY.current = window.scrollY;
+      setDirection(direction);
+      scrollY.current = document.querySelector("#root").scrollTop;
+      let tip = document.querySelector("#tip").getBoundingClientRect();
+      let top = tip.height;
+      if (tip.top < -10) {
+        top = 0;
+      }
+
+      let top2 = document.querySelector("#tip2").clientHeight;
+      setTopPos(top + top2 - 4);
     }, 50); // 控制节流的时间间隔
-    window.addEventListener("scroll", handleScroll);
+    document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document
+        .querySelector("#root")
+        .removeEventListener("scroll", handleScroll);
       // window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -116,11 +132,19 @@ const Navbar = () => {
     setProductItem(false);
     setLearnItem(false);
     setCollectionItem(false);
+    if (location.pathname == "/checkout-info") {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+
+    // todo
+    document.querySelector("#root").scrollTo(0, 0);
   }, [location.pathname]);
   useEffect(() => {
     cancelList();
   }, [location]);
-  useEffect(() => { }, [objectOnlyData]);
+  useEffect(() => {}, [objectOnlyData]);
   const cancelList = () => {
     setIsOpen(false);
     setActiveDropdown(null);
@@ -309,14 +333,19 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      {/* <NavbarTop/> */}
-      {/* navbar functonalities */}
+    // 根据滚动方向决定是否隐藏 transition-all  duration-300 ease-in-out
+    <div
+      className={`z-[9999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
+        direction && scrollTop > 50 ? "-translate-y-full" : ""
+      }`}
+    >
       <div
-        className="w-full h-[108px] z-50 fixed bg-white transition-all  duration-300 ease-in-out "
-        style={{ top: topPos + "px", zIndex: 99 }}
+        className={`w-full h-[108px] z-50  bg-white  ${hidden ? "hidden" : ""}`}
       >
-        <div className="relative navbar lg:h-[108px] w-full lg:max-w-[1600px] mx-auto">
+        <div
+          id="tip2"
+          className="relative navbar lg:h-[108px] w-full lg:w-[1600px] mx-auto bg-white"
+        >
           <div className="navbar-start w-full h-full z-10">
             <label className="p-1 md:p-0 swap swap-rotate md:hidden">
               <input
@@ -348,7 +377,7 @@ const Navbar = () => {
               </svg>
             </label>
             <div
-              className={` overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0 mt-20 ${
+              className={`overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0  ${
                 isOpen ? "" : " hidden"
               }`}
               style={{ top: topPos + "px", overscrollBehavior: "contain" }}
@@ -366,23 +395,13 @@ const Navbar = () => {
                 <img
                   src={logo}
                   alt="our-company-logo"
-                  className="object-fill w-full h-full"
+                  className="object-fill  h-full w-36"
                 />
               </div>
             </Link>
           </div>
           <div className="navbar-end w-full">
             <div className="flex gap-0 flex-row md:items-center z-20 relative">
-              {/* <div className="relative w-full hidden md:flex">
-              <input
-                type="text"
-                placeholder="Search Products"
-                className="input input-bordered rounded-3xl w-full max-h-9 placeholder:text-sm"
-              />
-              <div className="absolute right-3 top-2">
-                <PiMagnifyingGlassThin className="text-lg" />
-              </div>
-            </div> */}
               <div className="flex ml-5 md:ml-16">
                 <div className="relative mr-3">
                   <p className="absolute -top-3 right-0 text-black font-bold">
@@ -397,8 +416,9 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div
-                  className={`dropdown ${isMobile ? "dropdown-left dropdown-bottom" : ""
-                    } `}
+                  className={`dropdown ${
+                    isMobile ? "dropdown-left dropdown-bottom" : ""
+                  } `}
                 >
                   <button
                     onClick={toggleUserDropdown}
@@ -440,100 +460,7 @@ const Navbar = () => {
         isOpen={isSidebarCartOpen}
         toggleSidebar={() => setIsSidebarCartOpen(false)}
       />
-      {/* functionalities */}
-
-      {/* <div ref={dropdownRef} className="block md:hidden">
-        {isDropdownOpen("productItem") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-              navVisible ? "pt-52" : "pt-28"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <ProductItems />
-          </div>
-        )}
-        {isDropdownOpen("collectionItem") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out lg:pt-[138px]  ${
-              navVisible ? "pt-52" : "pt-28"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <CollectionItem />
-          </div>
-        )}
-        {isDropdownOpen("learnItems") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-              navVisible ? "pt-40" : "pt-16"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <LearnItem />
-          </div>
-        )}
-        {isDropdownOpen("designHelp") && (
-          <div
-            className={`bg-white w-full z-10 duration-700 transition-all ease-in-out  lg:pt-[138px] ${
-              navVisible ? "pt-56" : "pt-32"
-            }`}
-            onClick={() => {
-              cancelList();
-            }}
-          >
-            <DesignHelp />
-          </div>
-        )}
-      </div> */}
-
-      {/* <div
-        className="w-full flex flex-col overflow-auto top-36 bg-white fixed z-10 left-0"
-        style={{
-          height: "calc(let(--vh, 1vh) * 100 - 5rem)",
-          transform: "translate(0, 0)",
-        }}
-      >
-        {/* Content here */}
-      {/* <Accordion title="ProductItems">
-          <div className="bg-white w-full z-10 duration-700 transition-all ease-in-out">
-            <ProductItems />
-          </div>
-        </Accordion>
-        <Accordion title="CollectionItem">
-          <div className="bg-white w-full z-10 duration-700 transition-all ease-in-out">
-            <CollectionItem />
-          </div>
-        </Accordion>
-        <Accordion title="LearnItem">
-          <div className="bg-white w-full z-10 duration-700 transition-all ease-in-out">
-            <LearnItem />
-          </div>
-        </Accordion>
-        <div className="space-y-3 text-center">
-          <h3 className="tracki font-semibold text-base">Quick Link</h3>
-          <ul className="space-y-1 text-sm font-light  leading-loose">
-            <li>
-              <Link to="/AboutUs">About us</Link>
-            </li>
-            <li>
-              <Link to="/ContactUs">Contact us</Link>
-            </li>
-            <li>
-              <Link to="/all-blogs">Blogs</Link>
-            </li>
-            <li>
-              <Link to="/care-guide">Care & Maintenance</Link>
-            </li>
-          </ul>
-        </div> </div> */}
-    </>
+    </div>
   );
 };
 export default Navbar;

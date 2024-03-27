@@ -85,7 +85,7 @@ const ProductItems = () => {
                 className="p-2 min-h-40"
               >
                 <ImageWithSkeleton
-                  src={ImgBaseUrl(category?.category_pic)}
+                  src={ImgBaseUrl(category?.category_pic)+"?width=300"}
                   alt={category?.category_name}
                   width="100%"
                 />
@@ -102,7 +102,7 @@ const ProductItems = () => {
         </div>
 
         {/* Material Buttons and "View All Products" button in the same row for desktop */}
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-between mt-8">
+        <div className="flex flex-col md:flex-row items-center justify-center md:justify-end mt-8">
           <Link to="/categories" className="mb-4 md:mb-0">
             <button className="flex items-center gap-2 bg-primary text-white text-lg py-4 px-7 rounded-full hover:bg-white hover:text-primary border border-primary duration-500 transition-all ease-in-out">
               <span>View All Products</span>

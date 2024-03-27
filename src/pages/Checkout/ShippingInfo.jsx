@@ -13,7 +13,7 @@ const ShippingInfo = () => {
           {/* details part */}
           <div className="shadow-xl px-5 py-8 flex-1">
             <div>
-              <h1 className="text-2xl font-semibold">Contact Information</h1>
+              <h1 className="text-2xl font-medium">Contact Information</h1>
               <div className="border-2 border-primary rounded-lg px-7 py-4">
                 <div className="flex flex-col md:flex-row  md:items-center justify-between gap-2 md:gap-0">
                   <h3 className="text-[#B8B8B8]">Contact</h3>
@@ -33,7 +33,7 @@ const ShippingInfo = () => {
               </div>
             </div>
             <div className="mt-8">
-              <h1 className="text-2xl font-semibold">Contact Information</h1>
+              <h1 className="text-2xl font-medium">Contact Information</h1>
               <div className="border-2 border-primary rounded-lg px-7 py-4">
                 <div className="flex items-center justify-between">
                   <div className="flex gap-2">

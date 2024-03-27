@@ -8,7 +8,7 @@ const Details = ({ product, content, images }) => {
   console.log(images);
   return (
     <section className="w-full p-4 md:p-10">
-      <h4 className=" text-xl font-semibold uppercase">Product details</h4>
+      <h4 className=" text-xl font-medium uppercase">Product details</h4>
 
       <div className="text-base font-normal py-4 leading-loose">
         <Description data={product?.p_l_description} />
@@ -19,7 +19,7 @@ const Details = ({ product, content, images }) => {
         Cleaning Instructions <BsArrowRight className="ms-2" />
       </Button> */}
 
-      {/* <h5 className="text-xl font-semibold text-primary pt-8">
+      {/* <h5 className="text-xl font-medium text-primary pt-8">
         THIS SET INCLUDES
       </h5>
       <ul className="list-disc block md:flex gap-10 text-primary pl-4 pt-1">

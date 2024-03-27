@@ -9,7 +9,7 @@ const ShippingDetails = () => {
           <img src={image} className="object-cover w-full h-full" alt="" />
         </div>
         <div className="absolute top-[90px] px-10 md:px-[100px] text-white">
-          <h1 className="text-2xl md:text-5xl font-semibold mb-8">
+          <h1 className="text-2xl md:text-5xl font-medium mb-8">
             Shipping Details
           </h1>
           <ul className="md:text-2xl list-disc space-y-5">

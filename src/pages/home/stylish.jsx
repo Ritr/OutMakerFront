@@ -46,16 +46,16 @@ const Stylish = () => {
   const { subCategories } = useSubCategories();
 
   return (
-    <section className="w-full mx-auto  pt-10 md:pb-20  relative stylish">
+    <section className="w-full mx-auto  md:pt-10 md:pb-20  relative stylish">
       <div className="text-center pb-4 mt-1">
-        <h2 className="text-primary font-semibold text-2xl md:text-4xl">
+        <h2 className="text-primary font-medium text-2xl md:text-4xl">
           Modular splicing design makes outdoor space more flexible
         </h2>
       </div>
 
-      <MV videoSource="https://cdn.shopify.com/videos/c/o/v/2d814871cb4d47b1b00c1945ddcbc38b.mp4" />
+      <MV videoSource={ImgBaseUrl("assets/home/home2.mp4")} />
       {/* <div className="text-center pb-4 mt-5">
-        <h2 className="text-primary font-semibold text-2xl md:text-4xl mt-4">
+        <h2 className="text-primary font-medium text-2xl md:text-4xl mt-4">
           Transform Your Space with Outmaker Style
         </h2>
         <p className="text-[#513f3f] text-sm font-normal leading-10">
@@ -113,7 +113,7 @@ const Stylish = () => {
               />
               <div className="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-gradient-to-r from-primary via-primary-400 to-accent opacity-0 transition duration-300 ease-in-out hover:opacity-70"></div>
             </div>
-            <h4 className="text-primary font-semibold text-xl py-2">
+            <h4 className="text-primary font-medium text-xl py-2">
               {subCategory?.subcategory_name}
             </h4>
             <p className="text-primary font-normal text-xs">

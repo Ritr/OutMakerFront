@@ -327,7 +327,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
           </div>
           <form id="merchant-payment-form">
             <div>
-              <h3 className="text-2xl font-semibold mb-4 mt-14">
+              <h3 className="text-2xl font-medium mb-4 mt-14">
                 Shipping Address
               </h3>
               <ShippingAddress

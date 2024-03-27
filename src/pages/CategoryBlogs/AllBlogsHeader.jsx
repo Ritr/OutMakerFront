@@ -15,7 +15,7 @@ const AllBlogsHeader = (Category) => {
       }}
     >
       <div className="border-b-4 border-white">
-        <h1 className="text-2xl md:text-5xl text-white font-semibold uppercase">
+        <h1 className="text-2xl md:text-5xl text-white font-medium uppercase">
           {Category?.Category?.category_name}
         </h1>
         <p className="pt-6 pb-2 text-white uppercase">

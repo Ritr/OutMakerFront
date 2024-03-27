@@ -22,15 +22,18 @@ const AllProducts = ({ category }) => {
   console.log("filteredCollection", filteredCollection);
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    if (category) {
-      fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-    } else {
-      fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-    }
+    fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        let products = JSON.parse(data);
+        let productsArr = Object.values(products);
+        productsArr.sort((a, b) => {
+          return a.product.p_type > b.product.p_type ? -1 : 1;
+        });
+        console.log("--------", productsArr);
+        setProducts(productsArr);
+      });
+
     window.scrollTo(0, 0);
   }, [id, category]);
 
@@ -49,7 +52,7 @@ const AllProducts = ({ category }) => {
             <li className="me-6 pb-1 border-b-2 border-b-black">
               <Link to="/collections">Collections</Link>
             </li>
-            <li className="font-semibold">
+            <li className="font-medium">
               {!category ? categoryItem?.Category.category_name : ""}
             </li>*/}
           </ul>
@@ -69,7 +72,7 @@ const AllProducts = ({ category }) => {
 
         <div className="flex justify-between pt-14 gap-2">
           <p className="border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
-            {Object.values(products).length} Products
+            {products.length} Products
           </p>
           {/* <p
 					className='flex w-max border items-center px-4 justify-between border-1 text-xs md:text-lg font-medium rounded-full py-2 border-primary cursor-pointer hover:bg-primary hover:text-white gap-x-8'
@@ -96,7 +99,7 @@ const AllProducts = ({ category }) => {
                 className="px-4 pb-4"
                 style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
               >
-                <h5 className="text-lg font-semibold text-black">
+                <h5 className="text-lg font-medium text-black">
                   {product?.p_name}
                 </h5>
                 <p className="text-xs font-normal text-[#B8B8B8] leading-none">
@@ -150,9 +153,9 @@ const AllProducts = ({ category }) => {
 
             {/* obj handle */}
 
-            {Object.values(products)?.map((product) => (
+            {products?.map((product) => (
               <Link
-                to={`/product-details/${product?.product?.p_id}/${product?.product?.title}`}
+                to={`/product-details/${product?.product?.p_id}/${product?.purl}`}
                 key={product?.product?.p_id}
               >
                 <div className="rounded-lg shadow-lg relative">
@@ -173,7 +176,7 @@ const AllProducts = ({ category }) => {
                     className="px-4 pb-4"
                     style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
                   >
-                    <p className="text-lg font-semibold text-black cursor-pointer">
+                    <p className="text-lg font-medium text-black cursor-pointer">
                       {product?.product?.p_name.slice(0, 50)}
                     </p>
                     <p className="text-xs font-normal text-[#B8B8B8] leading-none">
@@ -239,9 +242,9 @@ const AllProducts = ({ category }) => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
             {/* obj handle */}
-            {Object.values(products)?.map((product) => (
+            {products?.map((product) => (
               <Link
-                to={`/product-details/${product?.product?.p_id}/${product?.product?.title}`}
+                to={`/product-details/${product?.product?.p_id}/${product?.purl}`}
                 key={product?.product?.p_id}
               >
                 <div className="rounded-lg shadow-lg relative">
@@ -256,7 +259,7 @@ const AllProducts = ({ category }) => {
                     className="px-4 pb-4"
                     style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
                   >
-                    <p className="text-lg font-semibold text-black cursor-pointer">
+                    <p className="text-lg font-medium text-black cursor-pointer">
                       {product?.product?.p_name.slice(0, 50)}
                     </p>
                     {/* <p className="text-xs font-normal text-[#B8B8B8] leading-none">

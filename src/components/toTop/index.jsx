@@ -3,26 +3,24 @@ import { BiArrowToTop } from "react-icons/bi";
 
 const Top = () => {
   const handle = () => {
-    window.scrollTo(0, 0);
+    document.querySelector("#root").scrollTo(0, 0);
   };
   const [showDiv, setShowDiv] = useState(false);
 
   useEffect(() => {
     function handleScroll() {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
-      const distanceToBottom = scrollHeight - (scrollTop + clientHeight);
-
-      if (distanceToBottom < 1200) {
+      const { scrollTop } = document.querySelector("#root");
+      const { clientHeight } = document.querySelector("#root>div");
+      if (clientHeight - scrollTop < 2400) {
         setShowDiv(true);
       } else {
         setShowDiv(false);
       }
     }
 
-    window.addEventListener("scroll", handleScroll);
+    document.querySelector("#root").addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      // document.querySelector("#root").window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   return (

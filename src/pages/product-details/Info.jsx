@@ -1,7 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { BsHandbagFill } from "react-icons/bs";
 import SocialShare from "../../components/SocialShare/SocialShare";
-import { FaPlay, FaPause } from "react-icons/fa";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
@@ -9,10 +8,17 @@ import { Link } from "react-router-dom";
 import ImageSlider from "./ImageSlider";
 import { FaMinus, FaPlus, FaBoxOpen } from "react-icons/fa";
 import SidebarCart from "../../components/Navbar/SidebarCart";
-import ReactPlayer from "react-player";
-
+import img1 from "../../assets/detail/1.png";
+import img2 from "../../assets/detail/2.png";
+import img3 from "../../assets/detail/3.png";
+import img4 from "../../assets/detail/4.png";
+import img5 from "../../assets/detail/5.png";
+import img6 from "../../assets/detail/6.png";
+import img7 from "../../assets/detail/7.png";
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
+import VideoPlayer from "../../components/VideoPlayer/VideoPlayer";
+
 const Info = ({
   category,
   changeCategory,
@@ -24,26 +30,12 @@ const Info = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [isSidebarCartOpen, setIsSidebarCartOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const videoRef = useRef(null);
   const { fetchCartData } = useContext(CartContext);
   const userCode = localStorage.getItem("usercode");
   const { mutate: addToCart } = useAddToCart(userCode);
   const day1 = dayjs().add(30, "day");
   const day2 = dayjs().add(40, "day");
-  // toggle video play pause
-  const togglePlayPause = () => {
-    // 如果视频正在播放，暂停它；如果视频暂停，播放它
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      // 更新播放状态
-      setIsPlaying(!isPlaying);
-    }
-  };
+
 
   // 处理增加数量
   const handleIncreaseQuantity = () => {
@@ -176,10 +168,13 @@ const Info = ({
               </div>
             </div> */}
             <div className="">
-              <div className="flex items-end">
-                <p className="text-2xl font-semibold">{product.p_name}</p>
+              <div className="flex items-center">
+                <img src={img7} alt="" className="md:w-[128px] mr-2" />
+                <p className="text-2xl font-medium">{product.p_name}</p>
                 <span className="ml-2 text-sm text-right text-gray-400">
-                  (in stock ship within 72hours)
+                  {product?.quantity > 0
+                    ? "(in stock ship within 72hours)"
+                    : null}
                 </span>
               </div>
               <div className=" text-sm flex items-center mt-2">
@@ -203,7 +198,7 @@ const Info = ({
                 <del className="text-[#ADACAC]">
                   A${cost?.product_regular_price}
                 </del>
-                <span className="text-[#DC2626] pl-[5px] font-semibold">
+                <span className="text-[#DC2626] pl-[5px] font-medium">
                   A${cost?.product_sale_price}
                 </span>
               </p>
@@ -216,7 +211,7 @@ const Info = ({
               </p>
             </div>
 
-            <div className="flex mx-6 items-center gap-6 border border-primary p-3 rounded-full cursor-pointer">
+            <div className="flex mx-6 items-center gap-6 border border-[#bfbfbf] p-3 rounded-full cursor-pointer">
               <p
                 className={`cursor-pointer ${
                   quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
@@ -245,13 +240,14 @@ const Info = ({
         <div className="md:hidden">
           <div className="flex justify-between p-3 w-full">
             <div>
-              <p className="price">
+              <p className="price flex items-center">
                 <del className="text-[#ADACAC]">
                   A${cost?.product_regular_price}
                 </del>
-                <span className="text-[#DC2626] pl-[5px] font-semibold">
+                <span className="text-[#DC2626] pl-[5px] font-medium">
                   A${cost?.product_sale_price}
                 </span>
+                <img src={img7} className="w-28 ml-2" alt="" />
               </p>
               <p
                 className="affirm-as-low-as text-base"
@@ -259,14 +255,32 @@ const Info = ({
                 data-amount="350400"
               >
                 <span className="text-sm text-right text-gray-400">
-                  (in stock ship within 72hours)
+                  {product?.quantity > 0
+                    ? "(in stock ship within 72hours)"
+                    : null}
                 </span>
                 and 10 Year Warranty
               </p>
             </div>
+            <div className="md:hidden">
+              <div className="flex items-center gap-4 p-2 ">
+                <p
+                  className={`cursor-pointer ${
+                    quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+                  }`}
+                  onClick={handleDecreaseQuantity}
+                >
+                  <FaMinus />
+                </p>
+                <span className="w-full text-center">{quantity}</span>
+                <p onClick={handleIncreaseQuantity} className="cursor-pointer">
+                  <FaPlus />
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex w-full  items-center">
-            <div className="flex px-1 md:px-2  md:flex-1">
+          <div className="hidden md:flex w-full  items-center">
+            <div className="flex px-2 flex-1">
               <div className="flex items-center gap-6 border-2 border-primary p-2 md:mr-1 rounded-full cursor-pointer">
                 <p
                   className={`cursor-pointer ${
@@ -282,7 +296,7 @@ const Info = ({
                 </p>
               </div>
             </div>
-            <div className="flex px-1 md:px-2 flex-1 md:flex-3">
+            <div className="flex px-2 flex-3">
               <button
                 onClick={handleAddToCart}
                 className="bg-primary  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  md:p-3 md:px-8 text-sm font-normal"
@@ -294,6 +308,16 @@ const Info = ({
               </button>
             </div>
           </div>
+
+          <button
+            onClick={handleAddToCart}
+            className="bg-primary md:hidden  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  text-sm "
+          >
+            <p className="flex gap-2 items-center text-center">
+              <BsHandbagFill className="" /> Add to cart- A$
+              {cost?.product_sale_price}
+            </p>
+          </button>
 
           <div className="text-sm p-3 flex">
             <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
@@ -307,11 +331,44 @@ const Info = ({
             </span>
           </div>
         </div>
-        <div className="py-6">
-          <h4 className="text-2xl font-medium leading-loose">MEET LUDLOW</h4>
-          <p className="text-base font-light  leading-loose">
-            {product?.p_s_description}
-          </p>
+        <div className="px-4 pt-4 md:border rounded-lg md:flex justify-between flex-row-reverse mt-4 md:mt-6">
+          <div>
+            <div className="font-bold mb-3 flex gap-2 items-center">
+              <img src={img1} className="w-4 h-4 object-contain" alt="" />
+              30 Days Free Returns
+            </div>
+            <div className="font-bold mb-3 flex gap-2 items-center">
+              <img src={img2} className="w-4 h-4 object-contain" alt="" />
+              Quick refund
+            </div>
+          </div>
+          <div>
+            <div className="md:flex gap-4 md:mb-3">
+              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img3} className="w-4 h-4 object-contain" alt="" />
+                Furniture Assemble: {product?.assemble ? "yes" : "no"}
+              </div>
+              {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img4} className="w-4 h-4 object-contain" alt="" />
+                Freight calculated based on the shipping address
+              </div> */}
+            </div>
+            <div className="md:flex gap-4">
+              {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img5} className="w-4 h-4 object-contain" alt="" />
+                Furniturep Provided for installation
+              </div> */}
+              <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
+                <img src={img6} className="w-4 h-4 object-contain" alt="" />
+                Modular splicing design: {product?.modular ? "yes" : "no"}
+              </div>
+            </div>{" "}
+          </div>
+        </div>
+
+        <div className="py-6 text-center">
+          <h4 className="text-2xl font-font leading-loose">MEET LUDLOW</h4>
+          <p className="text-sm font-light">{product?.p_s_description}</p>
         </div>
         {/* <div className="pt-8 pb-0 md:pb-8">
           <button className="btn btn-outline bg-white hover:bg-primary text-primary rounded-full hover:text-white w-[300px] md:w-[400px] text-sm font-normal">
@@ -332,98 +389,59 @@ const Info = ({
           </button>
         </div>  */}
         {/* video */}
-        <div className="relative">
-          <div className=" w-full h-full">
-            {/* <video
-              playsInline
-              autoPlay
-              muted
-              loop
-              poster="cake.jpg"
-              className="w-full md:h-[100vh] h-[300px] object-cover lg:object-cover"
-              ref={videoRef}
-            >
-              <source src={video} type="video/webm" />
-              Your browser does not support the video tag.
-            </video> */}
-            <ReactPlayer
-              url={video}
-              playing={true}
-              loop={true}
-              volume={0}
-              muted={true}
-              width="100%"
-              height="100%"
-              playsinline={true}
-              className="w-full md:h-[100vh] h-[300px] object-cover lg:object-cover"
-            />
+        <div>
+          <div className="hidden md:block w-full h-full">
+            <div className="w-full h-[100vh]">
+              <VideoPlayer url={video}></VideoPlayer>
+            </div>
           </div>
-          {/* video button */}
-          <div className="absolute z-10 right-8 bottom-8">
-            <button
-              onClick={togglePlayPause}
-              className="border border-primary bg-white hover:bg-[#D8EDF5] transition-all duration-300 ease-linear p-2 rounded-full"
-            >
-              {isPlaying ? (
-                <div className="flex items-center gap-2 px-2 text-primary">
-                  <p className="bg-primary p-2 rounded-full">
-                    <FaPause className="text-white text-sm" />
-                  </p>
-                  <p>Pause</p>
-                </div>
-              ) : (
-                <div className="flex items-center gap-2 px-2 text-primary">
-                  <p className="bg-primary p-2 rounded-full">
-                    <FaPlay className="text-white text-sm" />
-                  </p>
-                  <p>Play</p>
-                </div>
-              )}
-            </button>
+          <div className="md:hidden w-full h-full">
+            <div className="w-full h-[50vh]">
+              <VideoPlayer url={video}></VideoPlayer>
+            </div>
           </div>
         </div>
         <ImageSlider images={images} />
         <div className="block lg:flex items-center gap-8 md:pt-4">
-          <nav className="md:pt-4">
-            <ul className="block md:border md:rounded-full overflow-hidden md:flex justify-between text-sm md:text-base font-normal text-center">
+          <nav className="pt-4">
+            <ul className="flex flex-wrap px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0">
               <li
                 onClick={() => changeCategory("dimension")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "dimension" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Dimensions
               </li>
               <li
                 onClick={() => changeCategory("details")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "details" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Product details
               </li>
-
               <li
                 onClick={() => changeCategory("warranty")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "warranty" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Warranty
               </li>
               <li
                 onClick={() => changeCategory("CareGuide")}
-                className={`cursor-pointer border-r ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "CareGuide" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Care Guide
               </li>
               <li
                 onClick={() => changeCategory("Shipping")}
-                className={`cursor-pointer border-l ${
+                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${
                   category === "Shipping" ? "bg-primary text-white" : ""
-                } hover:text-white py-4 hover:bg-primary px-10`}
+                } hover:text-white  hover:bg-primary`}
               >
                 Shipping
               </li>

@@ -13,7 +13,7 @@ const ParcelDetails = () => {
           />
         </div>
         <div className="parcel-img-gradient h-full w-full absolute top-0 py-[90px] px-20 md:px-[100px] text-primary">
-          <h1 className="text-2xl md:text-5xl font-semibold mb-8 font-shadow">
+          <h1 className="text-2xl md:text-5xl font-medium mb-8 font-shadow">
           Free Small Parcel Shipping
           </h1>
           <ul className="grid grid-cols-1 lg:grid-cols-2 md:text-2xl list-disc space-y-5">
