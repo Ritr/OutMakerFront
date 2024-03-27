@@ -15,7 +15,7 @@ const DesignHelp = () => {
           <RiWechat2Line></RiWechat2Line> Online Chat
         </div>
         <div className=" py-2 mt-4 flex justify-center items-center rounded-full bg-primary text-white text-xl gap-4">
-          <BsFillTelephoneFill></BsFillTelephoneFill> (+88)0160576503
+          <BsFillTelephoneFill></BsFillTelephoneFill> +61483966676
         </div>
       </div>
     </>

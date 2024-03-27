@@ -240,6 +240,7 @@ const CategoryAllProducts = ({ category }) => {
                 discountMessage={`Save A$${
                   price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount
+
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>;
             })}
@@ -254,6 +255,7 @@ const CategoryAllProducts = ({ category }) => {
                 review={product?.review?.[0]?.review}
                 price={`A$${price[0].product_sale_price}`} // Display sale price
                 originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
+
                 discountMessage={`Save A$${
                   price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount

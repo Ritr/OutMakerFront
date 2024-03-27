@@ -19,6 +19,10 @@ const OutdoorDiningChairCard = ({
   categoryId,
   isNew, // assuming this is a new prop to indicate if the item is new                <Link to={`/product-details/${p_id}`}></Link>
 }) => {
+  const getTitleFormat = (title) => {
+    return title.replace(/\s+/g, '-');
+  };
+  const titleFormat = getTitleFormat(title);
   return (
     <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[495px] shadow-md">
       {isNew && (
@@ -26,7 +30,8 @@ const OutdoorDiningChairCard = ({
           NEW
         </span>
       )}
-      <Link to={`/product-details/${id}/${purl}`}>
+      <Link to={`/product-details/${id}/${titleFormat}`}>
+
         <div className=" ml-4 mt-4 inline-flex gap-1 text-sm  text-white bg-[#dc2626] rounded-md items-center justify-center  py-1 px-1 md:py-2 md:px-5">
           <MdOutlineDiscount className="text-sm md:text-xl font-medium"></MdOutlineDiscount>
           30%OFF
@@ -53,31 +58,13 @@ const OutdoorDiningChairCard = ({
         </div> */}
 
           <div className="bottom-0 p-4 pb-14">
-            <p className="text-lg font-medium inline-block md:min-w-[220px] relative">
-              <div className="md:inline">{title}</div>
-            </p>
-            <div
-              className="flex items-center mt-2"
-              style={{ fontSize: "16px" }}
-            >
-              <del
-                className="text-sm text-gray-500 mr-2"
-                style={{ color: "#ADACAC" }}
-              >
-                {originalPrice}
-              </del>
-              <p
-                className="text-xl text-red-600 font-medium"
-                style={{ color: "#DC2626" }}
-              >
-                {price}
-              </p>
-              <p
-                className="text-sm text-red-600 ml-2"
-                style={{ color: "#DC2626" }}
-              >
-                {discountMessage}
-              </p>
+
+            <p className="text-lg font-bold text-black">{title}</p>
+            <div className="flex items-center mt-2" style={{ fontSize: "16px" }}>
+              <del className="text-sm text-gray-500 mr-2" style={{ color: "#ADACAC" }}>{originalPrice}</del>
+              <p className="text-xl text-red-600 font-bold" style={{ color: "#DC2626" }}>{price}</p>
+              <p className="text-sm text-red-600 ml-2" style={{ color: "#DC2626" }}>{discountMessage}</p>
+
             </div>
 
             <div className="flex flex-wrap justify-between">
@@ -121,6 +108,7 @@ const OutdoorDiningChairCard = ({
                 </div>
                 {categoryId != 8 && categoryId != 10 ? (
                   <div
+
                     style={{
                       borderColor: "#4F5574",
                       color: "#002B5B",
