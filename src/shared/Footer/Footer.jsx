@@ -283,18 +283,10 @@ const Footer = () => {
             </div>
             {/* <input type="checkbox" checked onClick={handleCheckboxChange} /> */}
             <div className="md:hidden mb-4">
-              <div class="collapse collapse-arrow  rounded-none">
-                <input
-                  type="checkbox"
-                  checked={isChecked1}
-                  onChange={() => {
-                    setIsChecked1(!isChecked1);
-                  }}
-                  className=" min-h-8"
-                />
-                <div class="collapse-title font-medium py-4 min-h-8 border-b  border-[#BFBFBF] px-0">
+              <details class="collapse collapse-arrow rounded-none">
+                <summary class="collapse-title font-medium py-4 min-h-8 border-b  border-[#BFBFBF] px-0">
                   Quick Link
-                </div>
+                </summary>
                 <div class="collapse-content px-0">
                   <ul className="space-y-1 text-sm font-light leading-6 pt-4">
                     <li className="">
@@ -311,20 +303,12 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </details>
 
-              <div class="collapse collapse-arrow rounded-none">
-                <input
-                  type="checkbox"
-                  className=" min-h-8"
-                  checked={isChecked2}
-                  onChange={() => {
-                    setIsChecked2(!isChecked2);
-                  }}
-                />
-                <div class="collapse-title font-medium  py-4  min-h-8 border-b  border-[#BFBFBF] px-0">
+              <details class="collapse collapse-arrow rounded-none">
+                <summary class="collapse-title font-medium  py-4  min-h-8 border-b  border-[#BFBFBF] px-0">
                   Our Policies
-                </div>
+                </summary>
                 <div class="collapse-content px-0">
                   <ul className="space-y-1 text-sm  pt-4   font-light  leading-6">
                     <li className="">
@@ -345,20 +329,12 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </details>
 
-              <div class="collapse collapse-arrow rounded-none">
-                <input
-                  type="checkbox"
-                  className=" min-h-8"
-                  checked={isChecked3}
-                  onChange={() => {
-                    setIsChecked3(!isChecked3);
-                  }}
-                />
-                <div class="collapse-title font-medium  py-4 min-h-8 border-b  border-[#BFBFBF] px-0">
+              <details class="collapse collapse-arrow rounded-none">
+                <summary class="collapse-title font-medium  py-4 min-h-8 border-b  border-[#BFBFBF] px-0">
                   Contact Info
-                </div>
+                </summary>
                 <div class="collapse-content px-0">
                   <ul className="space-y-1 text-sm font-light pt-4  leading-6">
                     <li className="">
@@ -372,7 +348,7 @@ const Footer = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </details>
             </div>
             <div className="md:hidden flex items-center gap-3">
               <a

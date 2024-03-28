@@ -31,8 +31,8 @@ const collections = [
 const CollectionSlider = ({ filteredCollection }) => {
   return (
     <section className="w-full px-5 pb-10 relative product-collection">
-      <div className="text-left border-b-4 border-primary">
-        <h2 className="text-primary text-xl md:text-3xl font-bold pb-3">
+      <div className="text-center ">
+        <h2 className="mb-2 md:mb-4 text-center md:text-left color-[#181818] text-2xl font-medium">
           Other Collections
         </h2>
       </div>
@@ -57,39 +57,27 @@ const CollectionSlider = ({ filteredCollection }) => {
       >
         {filteredCollection?.map((collection) => (
           <SwiperSlide className="h-full">
-            <Link
-              key={collection?.collection_id}
-              to={`/collection-product/${collection?.collection_id}/${collection.collection_name}`}
-            >
-              <div className="py-6 md:py-10 ">
-                <div className="relative text-center overflow-hidden h-[300px]">
+            <div className="relative">
+              <Link
+                to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}
+                className="text-xl md:text-2xl lg:text-3xl"
+              >
+                <div className=" w-full flex items-center justify-center">
                   <img
-                    src={ImgBaseUrl(collection?.collection_pic)}
-                    alt=""
-                    className="hover:scale-125 transition ease-in-out duration-1000 object-cover w-full h-full"
+                    src={ImgBaseUrl(collection?.collection_pic) + "?width=600"}
+                    alt="IMAGE"
+                    className="max-h-full h-32 md:h-[248px] max-w-full rounded object-cover"
                   />
-                  <div
-                    className="flex flex-col absolute"
-                    style={{
-                      top: "40%",
-                      transform: "translate(-50%, 0)",
-                      left: "50%",
-                    }}
-                  >
-                    <p className="text-lg md:text-xl font-light text-white">
-                      COLLECTION
-                    </p>
-                    <h4 className="text-4xl md:text-5xl text-white font-medium">
-                      {collection?.collection_name}
-                    </h4>
-                  </div>
                 </div>
-              </div>
-            </Link>
+                <div className=" font-medium md:text-md absolute z-10 text-white top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%]">
+                  {collection?.collection_name}
+                </div>
+              </Link>
+            </div>
           </SwiperSlide>
         ))}
       </SwiperWrapper>
-
+      <div className="mb-8"></div>
       <Network />
     </section>
   );

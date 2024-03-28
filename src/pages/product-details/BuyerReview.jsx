@@ -41,7 +41,7 @@ const BuyerReview = ({ reviews, product }) => {
       <div className="flex justify-between md:justify-start  items-center md:gap-5 gap-2 mb-10">
         <button
           onClick={() => handleToggleReview("reviews")}
-          className={`text-sm md:text-base px-3 py-2 border border-primary ${
+          className={`text-xs md:text-base px-3 py-2 border border-primary ${
             isReview ? "btn-primary text-white" : "btn-outline text-primary"
           } rounded-full normal-case `}
         >
@@ -49,7 +49,7 @@ const BuyerReview = ({ reviews, product }) => {
         </button>
         <button
           onClick={() => handleToggleReview("question")}
-          className={` text-sm md:text-base  border border-primary px-3 py-2 ${
+          className={` text-xs md:text-base  border border-primary px-3 py-2 ${
             !isReview ? "btn-primary text-white" : "btn-outline text-primary"
           } rounded-full normal-case `}
         >
@@ -61,7 +61,7 @@ const BuyerReview = ({ reviews, product }) => {
         <div className="flex-shrink-0">
           <button
             onClick={() => setToggleWriting(true)}
-            className=" px-3 py-2  btn-primary  border-primary border text-sm md:text-base  rounded-full normal-case text-white flex flex-nowrap items-center"
+            className=" px-3 py-2  btn-primary  border-primary border text-xs md:text-base  rounded-full normal-case text-white flex flex-nowrap items-center"
           >
             <LiaEditSolid className="text-xl" />
             {isReview ? (
