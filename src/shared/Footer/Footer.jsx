@@ -284,14 +284,7 @@ const Footer = () => {
             {/* <input type="checkbox" checked onClick={handleCheckboxChange} /> */}
             <div className="md:hidden mb-4">
               <div class="collapse collapse-arrow  rounded-none">
-                <input
-                  type="checkbox"
-                  checked={isChecked1}
-                  onChange={() => {
-                    setIsChecked1(!isChecked1);
-                  }}
-                  className=" min-h-8"
-                />
+                <input type="checkbox" className=" min-h-8" />
                 <div class="collapse-title font-medium py-4 min-h-8 border-b  border-[#BFBFBF] px-0">
                   Quick Link
                 </div>
@@ -314,14 +307,7 @@ const Footer = () => {
               </div>
 
               <div class="collapse collapse-arrow rounded-none">
-                <input
-                  type="checkbox"
-                  className=" min-h-8"
-                  checked={isChecked2}
-                  onChange={() => {
-                    setIsChecked2(!isChecked2);
-                  }}
-                />
+                <input type="checkbox" className=" min-h-8" />
                 <div class="collapse-title font-medium  py-4  min-h-8 border-b  border-[#BFBFBF] px-0">
                   Our Policies
                 </div>
@@ -348,14 +334,7 @@ const Footer = () => {
               </div>
 
               <div class="collapse collapse-arrow rounded-none">
-                <input
-                  type="checkbox"
-                  className=" min-h-8"
-                  checked={isChecked3}
-                  onChange={() => {
-                    setIsChecked3(!isChecked3);
-                  }}
-                />
+                <input type="checkbox" className=" min-h-8" />
                 <div class="collapse-title font-medium  py-4 min-h-8 border-b  border-[#BFBFBF] px-0">
                   Contact Info
                 </div>
