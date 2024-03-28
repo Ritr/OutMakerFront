@@ -19,7 +19,7 @@ const Dimensions = ({ dimensions }) => {
             <div className="h-full border-2 border-gray-200 rounded-lg text-black font-normal text-base  md:w-1/3 p-4 mb-4 md:mb-0">
               <p>
                 {dimension?.dimension?.dim_title}
-                <span className="px-2">WIDTH</span>
+                <span className="px-2">Size</span>
                 {dimension?.dimension?.dim_width}" x{" "}
                 {dimension?.dimension?.dim_length}' x{" "}
                 {dimension?.dimension?.dim_height}"
