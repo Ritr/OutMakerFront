@@ -16,7 +16,7 @@ export const useFetchCartData = (userId) => {
             console.error("Error fetching cart data:", error);
             // 过期重新刷新
             localStorage.clear();
-            // location.reload();
+            location.reload();
         },
         select: (data) => {
             if (!data || data.length === 0) {

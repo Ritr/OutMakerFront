@@ -48,7 +48,6 @@ body{
   overflow-y: auto;
   overflow-x: hidden;
   position: relative;
-  overscroll-behavior-y: contain;
 }
 /* .wow {
   visibility: hidden;
@@ -306,4 +305,12 @@ img {
 .collapse-arrow .collapse-title:after {
   right: 0.4rem;
   box-shadow:1px 1px;
+}
+/*oceanpayment*/
+#oceanpayment-element{
+	height: 180px;
+	width: 100%;
+}
+#oceanpayment-element iframe{
+	height: 180px !important;	
 }

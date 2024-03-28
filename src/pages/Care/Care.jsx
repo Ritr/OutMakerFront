@@ -11,7 +11,7 @@ import image9 from "../../../src/assets/care/9.png";
 
 const Care = () => {
   return (
-    <div className="px-4 md:px-20">
+    <div className="px-4 md:px-20 pt-28">
       <h1 className="hidden md:block text-5xl text-blue-950 text-center font-bold">
         Sunbrella's Fabric Advantage
       </h1>
