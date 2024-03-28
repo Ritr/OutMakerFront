@@ -19,6 +19,7 @@ import Checkout from "../pages/Checkout/Checkout";
 import CheckoutInfo from "../pages/Checkout/CheckoutInfo";
 import PayStatus from "../pages/Checkout/PayStatus";
 import PayStatusPaypal from "../pages/Checkout/PayStatusPaypal";
+import PayStatusOrder from "../pages/Checkout/PayStatusOrder";
 import ShippingInfo from "../pages/Checkout/ShippingInfo";
 import PaymentInfo from "../pages/Checkout/PaymentInfo";
 import TestPayement from "../pages/Checkout/TestPayement";
@@ -150,6 +151,10 @@ const router = createBrowserRouter([
       {
         path: "/paypal/status",
         element: <PayStatusPaypal />,
+      },
+      {
+        path: "/pay/statusOrder/:order_no",
+        element: <PayStatusOrder />,
       },
       {
         path: "/shipping-info",

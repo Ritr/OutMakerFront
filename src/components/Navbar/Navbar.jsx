@@ -331,17 +331,11 @@ const Navbar = () => {
     toast.success("Logout!", "success");
     setIsUserDropdownOpen(false);
   };
-  useEffect(() => {
-    if (isOpen) {
-      document.querySelector("#root").style.overflowY = "hidden";
-    } else {
-      document.querySelector("#root").style.overflowY = "auto";
-    }
-  }, [isOpen]);
+
   return (
     // 根据滚动方向决定是否隐藏 transition-all  duration-300 ease-in-out
     <div
-      className={`z-[999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
+      className={`z-[9999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
         direction && scrollTop > 50 ? "-translate-y-full" : ""
       }`}
     >
@@ -387,10 +381,6 @@ const Navbar = () => {
                 isOpen ? "" : " hidden"
               }`}
               style={{ top: topPos + "px", overscrollBehavior: "contain" }}
-              onTouchStart={(e) => {
-                e.defaultPrevented();
-                return false;
-              }}
             >
               {navItems}
               <img src={navb} alt="" className="my-10" />

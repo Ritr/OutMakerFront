@@ -236,7 +236,7 @@ const Blogs = () => {
         <aside
           className={`${
             showFilters ? "filter-container" : "hidden"
-          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 md:fixed`}
+          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 fixed`}
           style={{
             display: showFilters
               ? windowWidth <= 768
