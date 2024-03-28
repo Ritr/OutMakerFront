@@ -251,10 +251,10 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                     {singleData?.product?.p_name}
                   </h2>
                   <div className="">
-                    <p className="mb-1 text-sm">Color: Glacier</p>
+                    {/* <p className="mb-1 text-sm">Color: Glacier</p>
                     <p className="mb-1 text-sm">
                       Dimension: {singleData?.dimension}
-                    </p>
+                    </p> */}
                     <p className="mb-1 text-sm">
                       Category: {singleData?.category}
                     </p>

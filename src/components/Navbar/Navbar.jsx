@@ -335,7 +335,7 @@ const Navbar = () => {
   return (
     // 根据滚动方向决定是否隐藏 transition-all  duration-300 ease-in-out
     <div
-      className={`z-[9999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
+      className={`z-[999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
         direction && scrollTop > 50 ? "-translate-y-full" : ""
       }`}
     >

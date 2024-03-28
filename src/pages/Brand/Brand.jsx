@@ -10,13 +10,13 @@ const image7 = ImgBaseUrl("/assets/brand/7.jpg");
 
 const Brand = () => {
   return (
-    <div className="px-20">
+    <div className="px-6 md:px-20">
       <h1 className="text-5xl text-blue-950 text-center font-bold">BRAND</h1>
-      <p className="text-center py-5">
+      <p className="py-5">
         Outmaker—Outdoor furniture brand committed to environmental protection
         and sustainable development
       </p>
-      <p className="text-justify">
+      <p className="">
         As a brand focusing on outdoor furniture, we are well aware of the
         importance of sustainable development of environmental protection. We
         are committed to using environmentally friendly and sustainable
@@ -45,7 +45,7 @@ const Brand = () => {
       <h1 className="text-3xl text-blue-950 text-center font-bold">
         MATERIALS
       </h1>
-      <p className="text-center py-5">
+      <p className="py-5">
         Today the fusion between outdoor and indoor style is more and more
         evident, although the outdoor product must seek and use materials with
         unique characteristics for outdoor durability. Nostin materials are
@@ -54,7 +54,7 @@ const Brand = () => {
       </p>
       <img src={image4} alt="" className="w-full object-cover" />
       <h1 className="text-3xl text-blue-950 text-center font-bold">Rattan</h1>
-      <p className="text-justify py-5">
+      <p className=" py-5">
         Rattan: We use high-quality wild rattan as one of the main materials for
         outdoor furniture. Rattan is a natural and renewable resource with
         sustainable characteristics. At the same time, the adhesives and
@@ -66,7 +66,7 @@ const Brand = () => {
       <h1 className="text-3xl text-blue-950 text-center font-bold">
         Aluminum Alloy
       </h1>
-      <p className="text-justify py-5">
+      <p className=" py-5">
         Aluminum alloy: Aluminum alloy is a recyclable metal material with
         sustainable characteristics. Our aluminum alloy furniture has been
         precisionly processed and anodized, which not only maintains metal
@@ -79,7 +79,7 @@ const Brand = () => {
       />
 
       <h1 className="text-3xl text-blue-950 text-center font-bold">Yarn</h1>
-      <p className="text-justify py-5">
+      <p className=" py-5">
         The yarn is mixed with up to 50% post industrial recycled fibers. These
         waste materials are grouped by color, returned to their fiber state,
         mixed with native fibers, and finally returned to the fabric
