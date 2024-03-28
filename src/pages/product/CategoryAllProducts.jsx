@@ -40,12 +40,12 @@ const CategoryAllProducts = ({ category }) => {
     switch (sort) {
       // 综合排序
       case "score":
-        // productsArr.sort((a, b) => {
-        //   return a.price[0].product_regular_price >
-        //     b.price[0].product_regular_price
-        //     ? -1
-        //     : 1;
-        // });
+        productsArr.sort((a, b) => {
+          return a.review[0].review >
+            b.review[0].review
+            ? -1
+            : 1;
+        });
         break;
       // 销量排序
       case "sales":
