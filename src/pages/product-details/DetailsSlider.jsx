@@ -131,7 +131,7 @@ const DetailsSlider = ({
                   : ImgBaseUrl(product?.p_pic)
               }
               alt="Product Image"
-              className="h-full  object-contain"
+              className="h-full  object-cover"
             />
           )}
         </div>
