@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
+import Refund from "./Refund";
 
 const OrderStatusSteps = ({ step }) => {
   if (step == 1) {
@@ -42,9 +43,8 @@ const OrderStatusSteps = ({ step }) => {
                   {info.title}
                 </span>
                 <span
-                  className={`text-sm ${
-                    index <= step ? "text-gray-800" : "text-gray-400"
-                  }`}
+                  className={`text-sm ${index <= step ? "text-gray-800" : "text-gray-400"
+                    }`}
                 >
                   {info.timestamp}
                 </span>
@@ -75,6 +75,75 @@ const OrderStatusSteps = ({ step }) => {
   );
 };
 const OrderInformation = ({ orders }) => {
+  const ActionButtons = ({ step }) => {
+    // 2  to ship 是代发货，3  shipping是已发货 发货中   1 Completed  0 Cancelled
+
+    // 待出货：取消订单，申请发票，确认订单
+    // 已发货：申请售后,申请发票，确认收货
+    // 已完成（从发货之后30天，订单状态改为已完成）：申请发票
+    // 已取消：什么按钮都没有。
+    let buttons = null;
+    switch (step) {
+      case 2: // 待发货
+      case 8:
+        buttons = (
+          <div className="grid grid-cols-2 gap-6 p-10">
+            <button className="text-xs  btn font-normal  leading-3 min-h-0 h-6 bg-white border-[#002B5B] text-[#002B5B]">
+              Cancellation Of Order
+            </button>
+            <button className="text-xs   font-normal  leading-3 min-h-0 h-6  btn normal-case btn-primary">
+              Apply for invoice
+            </button>
+            <button className="text-xs   font-normal  leading-3 min-h-0 h-6   btn normal-case btn-primary">
+              Confirm An Order
+            </button>
+          </div>
+        );
+        break;
+
+      case 3: // 已发货
+        buttons = (
+          <div className="flex justify-between space-x-2 p-10">
+            <button className="btn normal-case btn-primary">
+              Apply for After-Sales
+            </button>
+            <button className="btn normal-case btn-primary">
+              Apply for invoice
+            </button>
+            <button className="btn normal-case btn-primary">
+              Confirm Receipt
+            </button>
+          </div>
+        );
+        break;
+
+      case 1: // 已完成
+        buttons = (
+          <div className="flex justify-between space-x-2 p-10">
+            <button className="btn normal-case btn-primary">
+              Apply for invoice
+            </button>
+            <button
+              onClick={() => setRefundVisible(true)}
+              className="btn normal-case btn-primary"
+            >
+              Refund
+            </button>
+          </div>
+        );
+        break;
+
+      case 0: // 已取消
+        buttons = null; // 什么按钮都没有
+        break;
+
+      default:
+        buttons = null; // 处理未知状态
+        break;
+    }
+
+    return buttons;
+  };
   const calculateTotalCost = () => {
     let totalCost = 0;
     let totalShippingCost = 0;
@@ -104,6 +173,8 @@ const OrderInformation = ({ orders }) => {
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", options);
   };
+
+  const [refundVisible, setRefundVisible] = useState(false);
   return (
     <div className="relative mx-auto bg-white rounded-sm">
       {/* Order Information Heading with rounded corners */}
@@ -159,6 +230,12 @@ const OrderInformation = ({ orders }) => {
 
       <TotalCost freight={freight} actualPayment={actualPayment} />
       <ActionButtons step={orders[0]?.order.status} />
+      <Refund
+        visible={refundVisible}
+        onCancel={() => setRefundVisible(false)}
+        max={actualPayment}
+        id={orders[0]?.order.order_id}
+      />
     </div>
   );
 };
@@ -237,72 +314,7 @@ const TotalCost = ({ freight, actualPayment }) => {
   );
 };
 
-const ActionButtons = ({ step }) => {
-  // 2  to ship 是代发货，3  shipping是已发货 发货中   1 Completed  0 Cancelled
 
-  // 待出货：取消订单，申请发票，确认订单
-  // 已发货：申请售后,申请发票，确认收货
-  // 已完成（从发货之后30天，订单状态改为已完成）：申请发票
-  // 已取消：什么按钮都没有。
-  let buttons = null;
-
-  switch (step) {
-    case 2: // 待发货
-    case 8:
-      buttons = (
-        <div className="flex justify-between space-x-2 p-10">
-          <button className="btn normal-case bg-white border-[#002B5B] text-[#002B5B]">
-            Cancellation Of Order
-          </button>
-          <div>
-            <button className="btn normal-case btn-primary">
-              Apply for invoice
-            </button>
-            <button className="ml-7 btn normal-case btn-primary">
-              Confirm An Order
-            </button>
-          </div>
-        </div>
-      );
-      break;
-
-    case 3: // 已发货
-      buttons = (
-        <div className="flex justify-between space-x-2 p-10">
-          <button className="btn normal-case btn-primary">
-            Apply for After-Sales
-          </button>
-          <button className="btn normal-case btn-primary">
-            Apply for invoice
-          </button>
-          <button className="btn normal-case btn-primary">
-            Confirm Receipt
-          </button>
-        </div>
-      );
-      break;
-
-    case 1: // 已完成
-      buttons = (
-        <div className="flex justify-between space-x-2 p-10">
-          <button className="btn normal-case btn-primary">
-            Apply for invoice
-          </button>
-        </div>
-      );
-      break;
-
-    case 0: // 已取消
-      buttons = null; // 什么按钮都没有
-      break;
-
-    default:
-      buttons = null; // 处理未知状态
-      break;
-  }
-
-  return buttons;
-};
 
 const CustomOrderInformationMobile = () => {
   const { number } = useParams();
@@ -336,6 +348,7 @@ const CustomOrderInformationMobile = () => {
       <OrderStatusSteps step={filteredData[0]?.order.status} />
 
       <OrderInformation orders={filteredData} />
+
     </div>
   );
 };

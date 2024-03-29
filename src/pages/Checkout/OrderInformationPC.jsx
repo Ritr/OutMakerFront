@@ -4,12 +4,13 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { getApiBaseUrl } from "../../utils/api/index";
 import toast from "react-hot-toast";
 import ProductQuantity from "./productQuantity";
+import Refund from "./Refund";
 const CustomOrderInformationPC = () => {
   const { number } = useParams();
   const [filteredData, setFilteredData] = useState([]);
   const [payerActionLink, setPayerActionLink] = useState("");
   const baseUrl = getApiBaseUrl();
-
+  const [refundVisible, setRefundVisible] = useState(false);
   const getOrderDetails_paypal = () => {
     fetch(`${baseUrl}/paypal/order/${number}/details`)
       .then((response) => response.json())
@@ -178,9 +179,8 @@ const CustomOrderInformationPC = () => {
           {timestamps.map((time, index) => (
             <div
               key={index}
-              className={`mx-4 ${
-                index === step ? "text-gray-800" : "text-gray-400"
-              }`}
+              className={`mx-4 ${index === step ? "text-gray-800" : "text-gray-400"
+                }`}
             >
               {time ? formatDate(time) : ""}
             </div>
@@ -468,8 +468,8 @@ const CustomOrderInformationPC = () => {
                     {order.order.payment_method == "0"
                       ? "paypal"
                       : order.order.payment_method == "1"
-                      ? "card"
-                      : "unknown"}
+                        ? "card"
+                        : "unknown"}
                   </td>
                   <td className="py-4 px-4 text-center">Expressage</td>
                   <td className="py-4 px-4 text-center">
@@ -497,7 +497,7 @@ const CustomOrderInformationPC = () => {
         </div>
         <div className="flex justify-between items-center mb-4">
           <p className="text-lg font-bold text-[#002B5B]">Total Cost</p>
-          <p className="text-lg font-bold text-[#002B5B]">A${totalCost}</p>
+          <p className="text-lg font-bold text-[#002B5B]">A${actualPayment}</p>
         </div>
         <div className="flex justify-between items-center mb-4">
           <p className="text-base text-[#002B5B]">Freight</p>
@@ -708,15 +708,17 @@ const CustomOrderInformationPC = () => {
         break;
 
       case 2: // 待发货
-      case 8:
+      case 6:
         buttons = (
           <div className="flex justify-between space-x-2 p-10 bg-white">
-            <button
-              onClick={() => CancellOrder(order_no)}
-              className="btn normal-case bg-white border-[#002B5B] text-[#002B5B]"
-            >
-              Cancellation Of Order
-            </button>
+            <div>
+              <button
+                onClick={() => CancellOrder(order_no)}
+                className="btn normal-case bg-white border-[#002B5B] text-[#002B5B]"
+              >
+                Cancellation Of Order
+              </button>
+            </div>
             <div>
               <button
                 onClick={() => setInvoiceModalOpen(true)}
@@ -758,14 +760,22 @@ const CustomOrderInformationPC = () => {
 
       case 1: // 已完成
         buttons = (
-          <div className="flex justify-between space-x-2 p-10 bg-white">
+          <div className="flex space-x-2 p-10 bg-white">
             <button
               onClick={() => setInvoiceModalOpen(true)}
-              className="btn normal-case btn-primary"
+              className="btn normal-case btn-primary mr-7"
             >
               Apply for invoice
             </button>
+            {/* 退款 */}
+            <button
+              onClick={() => setRefundVisible(true)}
+              className="btn normal-case btn-primary"
+            >
+              Refund
+            </button>
           </div>
+
         );
         break;
 
@@ -808,6 +818,13 @@ const CustomOrderInformationPC = () => {
         order_no={filteredData[0]?.order.order_no}
         status={filteredData[0]?.order.status}
       />
+      <Refund
+        visible={refundVisible}
+        onCancel={() => setRefundVisible(false)}
+        max={actualPayment}
+        id={filteredData[0]?.order.order_id}
+      />
+
     </div>
   );
 };
