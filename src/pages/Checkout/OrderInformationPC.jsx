@@ -102,24 +102,22 @@ const CustomOrderInformationPC = () => {
         setFilteredData(ordersArray);
         // 在这里，您可以使用 orders 变量来执行其他操作，如设置状态等
         // 假设您不知道订单的具体键（如"138"）
-        const orderKeys = Object.keys(orders); // 获取所有外层键
+        // const orderKeys = Object.keys(orders);
+        // orderKeys.forEach((key) => {
+        //   const order = orders[key].order;
+        //   // 获取paypal_order_no
+        //   const paypalOrderNo = order.paypal_order_no;
 
-        orderKeys.forEach((key) => {
-          const order = orders[key].order;
-          // 获取paypal_order_no
-          const paypalOrderNo = order.paypal_order_no;
-
-          // 获取payment_method
-          const paymentMethod = order.payment_method;
-          if (paymentMethod == "0") {
-            getOrderDetails_paypal(paypalOrderNo);
-          } else {
-            getOrderDetails_lianlian(order.order_no);
-          }
-        });
+        //   // 获取payment_method
+        //   const paymentMethod = order.payment_method;
+        //   if (paymentMethod == "0") {
+        //     getOrderDetails_paypal(paypalOrderNo);
+        //   } else {
+        //     getOrderDetails_lianlian(order.order_no);
+        //   }
+        // });
       } catch (error) {
         console.error("Error fetching orders:", error);
-        // 可以在这里处理错误
       }
     };
 
@@ -494,9 +492,7 @@ const CustomOrderInformationPC = () => {
             30 days no reason to return
           </p> */}
           <Link to="/ShippingPolicy">
-            <p className="text-lg font-bold text-[#002B5B]">
-              shipping delivey
-            </p>
+            <p className="text-lg font-bold text-[#002B5B]">shipping delivey</p>
           </Link>
         </div>
         <div className="flex justify-between items-center mb-4">
@@ -524,9 +520,9 @@ const CustomOrderInformationPC = () => {
     // 已发货：申请售后,申请发票，确认收货
     // 已完成（从发货之后30天，订单状态改为已完成）：申请发票
     // 已取消：什么按钮都没有。
-    const handlePayPalPayment = (order_no) => {
-      window.location.href = payerActionLink;
-    };
+    // const handlePayPalPayment = (order_no) => {
+    //   window.location.href = payerActionLink;
+    // };
 
     const InvoiceModal = () => {
       const [companyName, setCompanyName] = useState("");

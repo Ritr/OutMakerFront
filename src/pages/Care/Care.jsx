@@ -20,7 +20,7 @@ const Care = () => {
       </div>
       <div className=" grid grid-cols sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 py-10 justify-center">
         <div className="border md:border-0 rounded md:rounded-none mb-4 md:mb-0 p-2 md:p-0 flex md:block gap-2">
-          <img src={image1} alt="" className="w-24 h-24 md:w-3/5 md:h-auto mx-auto" />
+          <img src={image1} alt="" className="w-24 h-24 md:w-2/5 md:h-auto mx-auto" />
           <h1 className="hidden md:block text-3xl text-blue-950 text-center font-bold">
             UV resistant, non fading
           </h1>
@@ -31,7 +31,7 @@ const Care = () => {
           </p>
         </div>
         <div className="border md:border-0 rounded md:rounded-none mb-4 md:mb-0 p-2 md:p-0 flex md:block gap-2">
-          <img src={image2} alt="" className="w-24 h-24 md:w-3/5 md:h-auto mx-auto " />
+          <img src={image2} alt="" className="w-24 h-24 md:w-2/5 md:h-auto mx-auto " />
           <h1 className="hidden md:block text-3xl text-blue-950 text-center font-bold">
             Anti mold, easy to clean
           </h1>
@@ -42,7 +42,7 @@ const Care = () => {
           </p>
         </div>
         <div className="border md:border-0 rounded md:rounded-none mb-4 md:mb-0 p-2 md:p-0 flex md:block gap-2">
-          <img src={image3} alt="" className="w-24 h-24 md:w-3/5 md:h-auto mx-auto " />
+          <img src={image3} alt="" className="w-24 h-24 md:w-2/5 md:h-auto mx-auto " />
           <h1 className="hidden md:block text-3xl text-blue-950 text-center font-bold">
             Bleachable cleaning
           </h1>
@@ -54,7 +54,7 @@ const Care = () => {
         </div>
       </div>
 
-      <h1 className="text-xl lg:text-5xl md:text-blue-950 text-center md:font-bold mb-8 md:mb-0">
+      <h1 className="text-xl lg:text-5xl md:text-blue-950 text-center md:font-bold mb-8">
         How to Clean Sunbrella
       </h1>
       <div className="bg-[#f7f7f7] md:bg-none rounded-md mb-6 md:mb-0">
