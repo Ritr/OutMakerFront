@@ -182,7 +182,7 @@ const DetailsSlider = ({
                       </div>
                     ) : (
                       <img
-                        src={ImgBaseUrl(image?.image_url) + "?width=300"}
+                        src={ImgBaseUrl(image?.image_url) + "?width=900"}
                         alt=""
                         className="object-cover md:object-contain w-full h-full"
                       />
