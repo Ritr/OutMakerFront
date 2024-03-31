@@ -257,7 +257,7 @@ const Footer = () => {
                   </li>
 
                   <li className="">
-                    <Link to="/RefundPolicy">Refund Policy</Link>
+                    <Link to="/ReturnPolicy">Refund Policy</Link>
                   </li>
                   <li className="">
                     <Link to="/FAQ">Frequently Asked Questions</Link>
