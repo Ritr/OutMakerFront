@@ -85,6 +85,26 @@ const OrderInformation = ({ orders }) => {
     let buttons = null;
     switch (step) {
       case 2: // 待发货
+        buttons = (
+          <div className="grid grid-cols-2 gap-6 p-10">
+            <button className="text-xs  btn font-normal  leading-3 min-h-0 h-6 bg-white border-[#002B5B] text-[#002B5B]">
+              Cancellation Of Order
+            </button>
+            <button
+              onClick={() => setRefundVisible(true)}
+              className="btn normal-case btn-primary"
+            >
+              Refund
+            </button>
+            <button className="text-xs   font-normal  leading-3 min-h-0 h-6  btn normal-case btn-primary">
+              Apply for invoice
+            </button>
+            <button className="text-xs   font-normal  leading-3 min-h-0 h-6   btn normal-case btn-primary">
+              Confirm An Order
+            </button>
+          </div>
+        );
+        break;
       case 8:
         buttons = (
           <div className="grid grid-cols-2 gap-6 p-10">
@@ -122,12 +142,6 @@ const OrderInformation = ({ orders }) => {
           <div className="flex justify-between space-x-2 p-10">
             <button className="btn normal-case btn-primary">
               Apply for invoice
-            </button>
-            <button
-              onClick={() => setRefundVisible(true)}
-              className="btn normal-case btn-primary"
-            >
-              Refund
             </button>
           </div>
         );

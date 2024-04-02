@@ -6,7 +6,7 @@ import { CartContext } from "../../Provider/CartProvider";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import ImageSlider from "./ImageSlider";
-import { FaMinus, FaPlus, FaBoxOpen } from "react-icons/fa";
+import { FaMinus, FaPlus, FaBoxOpen, FaRegQuestionCircle } from "react-icons/fa";
 import SidebarCart from "../../components/Navbar/SidebarCart";
 import img1 from "../../assets/detail/1.png";
 import img2 from "../../assets/detail/2.png";
@@ -344,6 +344,29 @@ const Info = ({
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img3} className="w-4 h-4 object-contain" alt="" />
                 Furniture Assemble: {product?.assemble ? "yes" : "no"}
+                <div className="tooltip" data-tip="Brief Description of Outdoor Furniture Disassembly and Assembly
+1、 Outdoor furniture that needs to be assembled
+Prepare tools and accessories:
+Prepare the product manual and necessary tools (such as screwdrivers, wrenches, etc.), and we will provide a screwdriver as a gift
+Check if all accessories are complete, without any missing or damaged parts.
+Reading the instruction manual:
+Carefully read the product manual to understand the assembly steps and precautions.
+Start assembly:
+According to the instructions, gradually assemble each component together.
+Pay attention to the direction and position of each component to ensure correct assembly.
+Tightening screws and inspection:
+Use a screwdriver or wrench to tighten the screws at the connections of each component.
+Check if all parts of the furniture are secure, without shaking or tilting.
+Completion and cleaning:
+After assembly, clean the site to ensure that no tools or accessories are missing.
+2、 Notes:
+During assembly or installation, please pay attention to safety and avoid injury.
+If you encounter any problems or misunderstandings, please contact our customer service in a timely manner.
+Use appropriate tools for assembly to avoid damaging the product.
+I hope this brief disassembly and assembly instructions can help you better use our outdoor furniture. If you have any questions or need further assistance, please feel free to contact us at any time.">
+                  <FaRegQuestionCircle></FaRegQuestionCircle>
+
+                </div>
               </div>
               {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img4} className="w-4 h-4 object-contain" alt="" />
