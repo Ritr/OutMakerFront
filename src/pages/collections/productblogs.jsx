@@ -205,7 +205,7 @@ const Blogs = () => {
     <section className="w-full ">
       <div className="text-center p-4">
         <h2 className="text-2xl font-bold text-black mb-2">
-          {isProduct ? "CATEGORIES" : "COLLECTIONS"}
+          {isProduct ? "" : "COLLECTIONS"}
         </h2>
         <h4 className="text-xl text-gray-800 mb-8">OUTMAKER</h4>
         <p className="text-lg text-gray-600">
@@ -216,9 +216,8 @@ const Blogs = () => {
       </div>
 
       <div
-        className={`w-full items-center justify-end p-4 ${
-          isProduct ? "flex" : "hidden"
-        }`}
+        className={`w-full items-center justify-end p-4 ${isProduct ? "flex" : "hidden"
+          }`}
       >
         <span
           onClick={toggleFilters}
@@ -234,9 +233,8 @@ const Blogs = () => {
       <div className="w-full flex flex-col lg:flex-row justify-end  md:min-h-[820px]">
         {/*Filter bar  Sorting options */}
         <aside
-          className={`${
-            showFilters ? "filter-container" : "hidden"
-          } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 fixed`}
+          className={`${showFilters ? "filter-container" : "hidden"
+            } flex-1 p-4 border text-left transition-all duration-300 ease-in-out  bg-base-100 fixed`}
           style={{
             display: showFilters
               ? windowWidth <= 768
@@ -431,11 +429,10 @@ const Blogs = () => {
         {/* Products grid */}
         <div
           ref={divRef}
-          className={`w-full ${
-            showFilters
-              ? "lg:w-3/4 lg:grid-cols-2 gap-[37px]"
-              : "lg:w-full lg:grid-cols-3 gap-[43px]"
-          } grid grid-cols-1 sm:grid-cols-2  p-4`}
+          className={`w-full ${showFilters
+            ? "lg:w-3/4 lg:grid-cols-2 gap-[37px]"
+            : "lg:w-full lg:grid-cols-3 gap-[43px]"
+            } grid grid-cols-1 sm:grid-cols-2  p-4`}
         >
           {filteredProducts.map(({ product, review, price, purl }) => (
             <OutdoorDiningChairCard
@@ -447,9 +444,8 @@ const Blogs = () => {
               review={product?.review?.[0]?.review}
               price={`A$${price[0].product_sale_price}`} // Display sale price
               originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
-              discountMessage={`Save A$${
-                price[0].product_regular_price - price[0].product_sale_price
-              } `} // Calculate discount
+              discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
+                } `} // Calculate discount
               categoryId={product.p_category}
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
             />
