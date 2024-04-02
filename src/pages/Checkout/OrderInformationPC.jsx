@@ -708,13 +708,44 @@ const CustomOrderInformationPC = () => {
         break;
 
       case 2: // 待发货
+        buttons = (
+          <div className="flex justify-between space-x-2 p-10 bg-white">
+            <div>
+              <button
+                onClick={() => CancellOrder(order_no)}
+                className="btn normal-case bg-white border-[#002B5B] text-[#002B5B] mr-7"
+              >
+                Cancellation Of Order
+              </button>
+              {/* 退款 */}
+              <button
+                onClick={() => setRefundVisible(true)}
+                className="btn normal-case btn-primary"
+              >
+                Refund
+              </button>
+            </div>
+            <div>
+              <button
+                onClick={() => setInvoiceModalOpen(true)}
+                className="btn normal-case btn-primary"
+              >
+                Apply for invoice
+              </button>
+              <button className="ml-7 btn normal-case btn-primary">
+                Confirm An Order
+              </button>
+            </div>
+          </div>
+        );
+        break;
       case 6:
         buttons = (
           <div className="flex justify-between space-x-2 p-10 bg-white">
             <div>
               <button
                 onClick={() => CancellOrder(order_no)}
-                className="btn normal-case bg-white border-[#002B5B] text-[#002B5B]"
+                className="btn normal-case bg-white border-[#002B5B] text-[#002B5B] mr-7"
               >
                 Cancellation Of Order
               </button>
@@ -767,13 +798,7 @@ const CustomOrderInformationPC = () => {
             >
               Apply for invoice
             </button>
-            {/* 退款 */}
-            <button
-              onClick={() => setRefundVisible(true)}
-              className="btn normal-case btn-primary"
-            >
-              Refund
-            </button>
+
           </div>
 
         );

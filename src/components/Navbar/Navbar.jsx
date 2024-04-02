@@ -48,6 +48,9 @@ const Navbar = () => {
   //判断页面滚动方向
 
   useEffect(() => {
+    if (!document.querySelector("#tip")) {
+      return;
+    }
     let tip = document.querySelector("#tip").getBoundingClientRect();
     let top = tip.clientHeight;
     if (tip.top < 0) {
@@ -72,6 +75,9 @@ const Navbar = () => {
     // window.addEventListener("resize", handleResize);
 
     const handleScroll = throttle(() => {
+      if (!document.querySelector("#tip")) {
+        return;
+      }
       let scrollTop = document.querySelector("#root").scrollTop;
       setScrollTop(scrollTop);
       let direction = scrollTop - scrollY.current > 0 ? true : false;
@@ -144,7 +150,7 @@ const Navbar = () => {
   useEffect(() => {
     cancelList();
   }, [location]);
-  useEffect(() => {}, [objectOnlyData]);
+  useEffect(() => { }, [objectOnlyData]);
   const cancelList = () => {
     setIsOpen(false);
     setActiveDropdown(null);
@@ -341,9 +347,8 @@ const Navbar = () => {
   return (
     // 根据滚动方向决定是否隐藏 transition-all  duration-300 ease-in-out
     <div
-      className={`z-[999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${
-        direction && scrollTop > 50 ? "-translate-y-full" : ""
-      }`}
+      className={`z-[999] w-full sticky top-0  inset-x-0 transition-all  duration-300 ease-in-out ${direction && scrollTop > 50 ? "-translate-y-full" : ""
+        }`}
     >
       <div
         className={`w-full h-[108px] z-50  bg-white  ${hidden ? "hidden" : ""}`}
@@ -383,9 +388,8 @@ const Navbar = () => {
               </svg>
             </label>
             <div
-              className={`overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0  ${
-                isOpen ? "" : " hidden"
-              }`}
+              className={`overflow-auto px-4 z-[1] md:p-2 shadow bg-base-100 md:rounded-box lg:w-52 w-[100vw] fixed bottom-0  left-0 right-0  ${isOpen ? "" : " hidden"
+                }`}
               style={{ top: topPos + "px", overscrollBehavior: "contain" }}
             >
               {navItems}
@@ -422,9 +426,8 @@ const Navbar = () => {
                   </button>
                 </div>
                 <div
-                  className={`dropdown ${
-                    isMobile ? "dropdown-left dropdown-bottom" : ""
-                  } `}
+                  className={`dropdown ${isMobile ? "dropdown-left dropdown-bottom" : ""
+                    } `}
                 >
                   <button
                     onClick={toggleUserDropdown}

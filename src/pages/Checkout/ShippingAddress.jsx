@@ -12,6 +12,7 @@ import {
 } from "./LargeCalculations";
 
 const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
+  const [selectFilter, setSelectFilter] = useState("");
   // 存储可用的州/地区列表
   const [states, setStates] = useState([]);
 
@@ -191,11 +192,15 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
             </option>
           ))}
         </select>
-
         <Select
+          onInputChange={(value) => {
+            setSelectFilter(value);
+          }}
           value={selectedOption}
           onChange={handleChange}
-          options={cityOptions}
+          options={cityOptions.filter((option) => {
+            return option.value.toLowerCase().includes(selectFilter.toLowerCase());
+          }).slice(0, 10)}
           isDisabled={!selectedStateAbbrev}
           styles={{
             control: (base) => ({
