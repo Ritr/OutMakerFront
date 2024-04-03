@@ -5,6 +5,7 @@ import UserInitialization from "../../components/UserInitialization/UserInitiali
 import { CartContext } from "../../Provider/CartProvider";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import bPaypal from "../../assets/icons/bPaypal.svg";
+import zip from "../../assets/icons/ZIP.png";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import logo from "../../assets/icons/logo-white.png";
 import SidebarCart from "../../components/Navbar/SidebarCart";
@@ -28,7 +29,6 @@ import OceanPayment from "../../Hooks/useOceanpayment";
 import { useCreateOceanpayment } from "../../Hooks/api/useOceanpayment";
 import FormDataAfter from "../../components/Oceanpayment/formDataAfter";
 
-import { v4 as uuidv4 } from "uuid";
 
 const CheckoutInfo = () => {
   // context to get the data
@@ -64,6 +64,8 @@ const CheckoutInfo = () => {
   //oceanpayment
   const { mutate: useFetchOceanCreate } = useCreateOceanpayment();
   const [afterpay, setAfterpay] = useState({ pay_url: "", data: {} });
+  const [payzippay, setPayzippay ] = useState({ pay_url: "", data: {} });
+  
   const handleTotalCharge = (totalCharge, formData) => {
     setFormDataFromShipping(formData);
 
@@ -214,11 +216,7 @@ const CheckoutInfo = () => {
             localStorage.setItem("OrderID", data?.order.id);
             const approvalUrl = data?.approvalUrl; // approvalUrl支付跳转链接
             const paypalOrderID = data?.order.id; // paypalOrderID官方订单号
-            const uuid = uuidv4();
-            console.log(approvalUrl, paypalOrderID, uuid);
-
             const data_fetchOrder = {
-              uuid,
               receiver_name: firstName + lastName,
               receiver_email: formDataemail,
               phone,
@@ -240,11 +238,53 @@ const CheckoutInfo = () => {
                 address: address,
                 amount: amount,
                 paypal_no: paypalOrderID,
-                uuid,
               },
               {
-                onSuccess: (data) => {
+                onSuccess: (res) => {
                   // 处理成功逻辑
+				  if(res.code==1){
+					  fetchOrder(
+					    {
+					      userId,
+					      data: data_fetchOrder,
+					      order_no: res.data.invoice,
+					    },
+					    {
+					      onSuccess: (response) => {
+					        if (response.Error) {
+					          toast.error(response.Error);
+					          return;
+					        }
+					        // After order draft, execute order clear
+					        fetchClear(
+					          { userId, order_no: res.data.invoice },
+					          {
+					            onSuccess: () => {
+					              // Handle the success scenario for order clear
+					             // toast.success("Order cleared successfully");
+					              // Additional success logic here...
+					              setIsBtnLoading(false);
+					            },
+					            onError: (error) => {
+					              // Handle the error scenario for order clear
+					              toast.error("Error clearing order: " + error.message);
+					              setIsBtnLoading(false);
+					            },
+					          }
+					        );
+					      },
+					      onError: (error) => {
+					        // Handle the error scenario for order draft
+					        toast.error("Error creating order draft: " + error.message);
+					      },
+					    }
+					  );
+				  }else{
+					 toast.error("Error creating order draft: " + error.message);  
+				  }
+				  
+				  
+				  
                 },
                 onError: (error) => {
                   // 处理错误逻辑
@@ -252,42 +292,7 @@ const CheckoutInfo = () => {
               }
             );
 
-            fetchOrder(
-              {
-                userId,
-                data: data_fetchOrder,
-                order_no: uuid,
-              },
-              {
-                onSuccess: (response) => {
-                  if (response.Error) {
-                    toast.error(response.Error);
-                    return;
-                  }
-                  // After order draft, execute order clear
-                  fetchClear(
-                    { userId, order_no: uuid },
-                    {
-                      onSuccess: () => {
-                        // Handle the success scenario for order clear
-                        toast.success("Order cleared successfully");
-                        // Additional success logic here...
-                        setIsBtnLoading(false);
-                      },
-                      onError: (error) => {
-                        // Handle the error scenario for order clear
-                        toast.error("Error clearing order: " + error.message);
-                        setIsBtnLoading(false);
-                      },
-                    }
-                  );
-                },
-                onError: (error) => {
-                  // Handle the error scenario for order draft
-                  toast.error("Error creating order draft: " + error.message);
-                },
-              }
-            );
+          
           } else {
             toast.error("Creating PayPal order failed.");
             return null;
@@ -316,9 +321,7 @@ const CheckoutInfo = () => {
             product.p_id.toString(),
         };
       });
-      const uuid = uuidv4();
       const orderData = {
-        uuid,
         user_id: userId,
         city: city,
         country: "AU",
@@ -410,7 +413,57 @@ const CheckoutInfo = () => {
                 {
                   onSuccess: () => {
                     // Handle the success scenario for order clear
-                    toast.success("Order cleared successfully");
+                    //toast.success("Order cleared successfully");
+                    // Additional success logic here...
+                    setIsBtnLoading(false);
+                  },
+                  onError: (error) => {
+                    // Handle the error scenario for order clear
+                    toast.error("Error clearing order: " + error.message);
+                    setIsBtnLoading(false);
+                  },
+                }
+              );
+            } else {
+              setIsBtnLoading(false);
+              toast.error(result.msg);
+            }
+          },
+          onError: (error) => {
+            // Handle the error scenario
+            console.error("Error in ocean process:", error);
+            toast.error("Error in ocean process:" + error.message);
+            setIsBtnLoading(false);
+          },
+        }
+      );
+    } else if (paymentMethod == "payZip") {
+      useFetchOceanCreate(
+        {
+          user_code: userId,
+          send_type: "zip",
+          billing_country: "AU",
+          billing_state: state,
+          billing_city: city,
+          billing_address: address,
+          billing_zip: zip,
+          billing_firstName: firstName,
+          billing_lastName: lastName,
+          billing_email: formDataemail,
+          billing_phone: phone,
+          billing_tip: totalChargeFromShipping.toFixed(2),
+          baseUrl: window.location.origin,
+        },
+        {
+          onSuccess: (result) => {
+            if (result.code == 1) {
+              setPayzippay(result.sign);
+              fetchClear(
+                { userId: userId, order_no: result.order_number },
+                {
+                  onSuccess: () => {
+                    // Handle the success scenario for order clear
+                    //toast.success("Order cleared successfully");
                     // Additional success logic here...
                     setIsBtnLoading(false);
                   },
@@ -456,7 +509,7 @@ const CheckoutInfo = () => {
       zip,
     } = formDataFromShipping;
     const orderData = {
-      uuid: order_no,
+      order_no: order_no,
       receiver_name: firstName + lastName,
       receiver_email: formDataemail,
       phone,
@@ -879,6 +932,42 @@ const CheckoutInfo = () => {
                         </>
                       )}
                     </div>
+					<div className="form-control">
+					  <label
+					    className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${
+					      paymentMethod === "payZip"
+					        ? "paymentMethodselected"
+					        : ""
+					    }`}
+					  >
+					    <div className="flex items-center">
+					      <input
+					        type="radio"
+					        name="payment"
+					        className="radio checked:bg-blue-500"
+					        checked={paymentMethod === "payZip"}
+					        onChange={() => setPaymentMethod("payZip")}
+					      />
+					      <span className="label-text ml-2">ZIP</span>
+					    </div>
+					     <img
+					       src={zip}
+					       alt="ZIP"
+					       className="w-[54px] h-[22px]"
+					     />
+					  </label>
+					  {paymentMethod === "payZip" && (
+					    <>
+					      <FormDataAfter
+					        payUrl={payzippay.pay_url}
+					        formData={payzippay.data}
+					      ></FormDataAfter>
+					      <p className="text-xs p-1 text-gray-500 mt-1">
+					        Payment with Zip will be limited by 2000 AUD
+					      </p>
+					    </>
+					  )}
+					</div>
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${
