@@ -52,17 +52,7 @@ const Description = ({ data }) => {
 
 
   return (
-    <div>
-      {blobUrl && (
-        <iframe
-          src={blobUrl}
-          id="auto-height-iframe"
-          frameBorder="0"
-          scrolling="no"
-          width="100%"
-          title="Auto Height Iframe"
-        />
-      )}
+    <div dangerouslySetInnerHTML={{ __html: data }}>
     </div>
   );
 };

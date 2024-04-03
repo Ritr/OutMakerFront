@@ -35,7 +35,7 @@ const Info = ({
   const { mutate: addToCart } = useAddToCart(userCode);
   const day1 = dayjs().add(30, "day");
   const day2 = dayjs().add(40, "day");
-
+  const [visible, setVisible] = useState(false);
 
   // 处理增加数量
   const handleIncreaseQuantity = () => {
@@ -344,29 +344,6 @@ const Info = ({
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img3} className="w-4 h-4 object-contain" alt="" />
                 Furniture Assemble: {product?.assemble ? "yes" : "no"}
-                <div className="tooltip" data-tip="Brief Description of Outdoor Furniture Disassembly and Assembly
-1、 Outdoor furniture that needs to be assembled
-Prepare tools and accessories:
-Prepare the product manual and necessary tools (such as screwdrivers, wrenches, etc.), and we will provide a screwdriver as a gift
-Check if all accessories are complete, without any missing or damaged parts.
-Reading the instruction manual:
-Carefully read the product manual to understand the assembly steps and precautions.
-Start assembly:
-According to the instructions, gradually assemble each component together.
-Pay attention to the direction and position of each component to ensure correct assembly.
-Tightening screws and inspection:
-Use a screwdriver or wrench to tighten the screws at the connections of each component.
-Check if all parts of the furniture are secure, without shaking or tilting.
-Completion and cleaning:
-After assembly, clean the site to ensure that no tools or accessories are missing.
-2、 Notes:
-During assembly or installation, please pay attention to safety and avoid injury.
-If you encounter any problems or misunderstandings, please contact our customer service in a timely manner.
-Use appropriate tools for assembly to avoid damaging the product.
-I hope this brief disassembly and assembly instructions can help you better use our outdoor furniture. If you have any questions or need further assistance, please feel free to contact us at any time.">
-                  <FaRegQuestionCircle></FaRegQuestionCircle>
-
-                </div>
               </div>
               {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img4} className="w-4 h-4 object-contain" alt="" />
@@ -381,8 +358,9 @@ I hope this brief disassembly and assembly instructions can help you better use 
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img6} className="w-4 h-4 object-contain" alt="" />
                 Modular splicing design: {product?.modular ? "yes" : "no"}
+                <FaRegQuestionCircle className="cursor-pointer" onClick={() => { setVisible(true) }}></FaRegQuestionCircle>
               </div>
-            </div>{" "}
+            </div>
           </div>
         </div>
 
@@ -424,46 +402,93 @@ I hope this brief disassembly and assembly instructions can help you better use 
         <ImageSlider images={images} />
         <div className="block lg:flex items-center gap-8 md:pt-4">
           <nav className="pt-4">
-            <ul className="flex flex-wrap px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0">
+            <ul className="flex overflow-auto md:px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0 border-t border-b md:border-0 ">
               <li
                 onClick={() => changeCategory("dimension")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "dimension" ? "bg-primary text-white" : ""
-                  } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer box-border px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "dimension" ? "md:bg-primary md:text-white  border-b-4" : " border-white md:border-primary"
+                  } md:hover:text-white  md:hover:bg-primary  border-b-4 md:border-b-1`}
               >
                 Dimensions
               </li>
               <li
                 onClick={() => changeCategory("details")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "details" ? "bg-primary text-white" : ""
-                  } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer box-border whitespace-nowrap px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "details" ? "md:bg-primary md:text-white border-b-4" : "border-white md:border-primary"
+                  } md:hover:text-white  md:hover:bg-primary border-b-4 md:border-b-1`}
               >
                 Product details
               </li>
               <li
                 onClick={() => changeCategory("warranty")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "warranty" ? "bg-primary text-white" : ""
-                  } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer box-border whitespace-nowrap  px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "warranty" ? "md:bg-primary md:text-white border-b-4" : "border-white md:border-primary"
+                  } md:hover:text-white  md:hover:bg-primary border-b-4 md:border-b-1`}
               >
                 Warranty
               </li>
               <li
                 onClick={() => changeCategory("CareGuide")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "CareGuide" ? "bg-primary text-white" : ""
-                  } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer box-border whitespace-nowrap px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "CareGuide" ? "md:bg-primary md:text-white border-b-4" : "border-white md:border-primary"
+                  } md:hover:text-white  md:hover:bg-primary border-b-4 md:border-b-1`}
               >
                 Care Guide
               </li>
               <li
                 onClick={() => changeCategory("Shipping")}
-                className={`cursor-pointer px-4 py-2 rounded-full text-sm md:text-base border border-primary ${category === "Shipping" ? "bg-primary text-white" : ""
-                  } hover:text-white  hover:bg-primary`}
+                className={`cursor-pointer box-border whitespace-nowrap px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "Shipping" ? "md:bg-primary md:text-white border-b-4" : "border-white md:border-primary"
+                  } md:hover:text-white  md:hover:bg-primary border-b-4 md:border-b-1`}
               >
                 Shipping
+              </li>
+              <li
+                onClick={() => changeCategory("Color")}
+                className={`cursor-pointer whitespace-nowrap px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "Color" ? "md:bg-primary md:text-white border-b-4" : "border-white md:border-primary"
+                  } md:hover:text-white  md:hover:bg-primary border-b-4 md:border-b-1 `}
+              >
+                Color
               </li>
             </ul>
           </nav>
 
           <SocialShare />
+        </div>
+      </div>
+      <div className={`modal modal-open ${visible ? "" : "hidden"}`}>
+        <div className="modal-box max-w-[40rem] max-h-[70vh]">
+          <h3 className="font-bold text-lg">Modular splicing design</h3>
+          <p className="py-4">
+            Brief Description of Outdoor Furniture Disassembly and Assembly
+            <br />
+            1、 Outdoor furniture that needs to be assembled
+            Prepare tools and accessories:
+            Prepare the product manual and necessary tools (such as screwdrivers, wrenches, etc.), and we will provide a screwdriver as a gift
+            Check if all accessories are complete, without any missing or damaged parts.
+            Reading the instruction manual:
+            Carefully read the product manual to understand the assembly steps and precautions.
+            Start assembly:
+            According to the instructions, gradually assemble each component together.
+            Pay attention to the direction and position of each component to ensure correct assembly.
+            Tightening screws and inspection:
+            Use a screwdriver or wrench to tighten the screws at the connections of each component.
+            Check if all parts of the furniture are secure, without shaking or tilting.
+            Completion and cleaning:
+            After assembly, clean the site to ensure that no tools or accessories are missing.
+            <br />
+            2、 Notes:
+            During assembly or installation, please pay attention to safety and avoid injury.
+            If you encounter any problems or misunderstandings, please contact our customer service in a timely manner.
+            Use appropriate tools for assembly to avoid damaging the product.
+            I hope this brief disassembly and Color can help you better use our outdoor furniture. If you have any questions or need further assistance, please feel free to contact us at any time.
+          </p>
+          <div className="modal-action">
+            <label
+              htmlFor="my-modal"
+              className="btn"
+              onClick={() => {
+                setVisible(false)
+              }}
+            >
+              Got it
+            </label>
+          </div>
         </div>
       </div>
     </section>

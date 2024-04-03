@@ -7,11 +7,11 @@ import ImageSlider from "./ImageSlider";
 const Details = ({ product, content, images }) => {
   console.log(images);
   return (
-    <section className="w-full p-4 md:p-10">
+    <section className="container mx-auto w-full p-4 md:p-10">
       <h4 className=" text-xl font-medium uppercase">Product details</h4>
 
       <div className="text-base font-normal py-4 leading-loose">
-        <Description data={product?.p_l_description} />
+        <Description data={product?.p_l_description.replace(/<h2>/g, '<h2 class="text-xl font-medium">')} />
       </div>
 
       {/* <ImageSlider images={images} /> */}
