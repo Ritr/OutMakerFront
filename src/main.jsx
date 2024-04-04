@@ -27,6 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </CartProvider>
 
         <Toaster />
+
       </QueryClientProvider>
     </div>
   </React.StrictMode>

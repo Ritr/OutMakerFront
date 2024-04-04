@@ -6,6 +6,7 @@ import Dimensions from "./Dimensions";
 import Warranty from "./Warranty";
 import CareGuide from "./CareGuide";
 import Shipping from "./Shipping";
+import Color from "./Color";
 import mic from "../../assets/images/mic.png";
 import { useLoaderData, useParams, Link } from "react-router-dom";
 import BuyerReview from "./BuyerReview";
@@ -119,6 +120,7 @@ const ProductDetails = () => {
       {category === "warranty" && <Warranty product={Product} />}
       {category === "CareGuide" && <CareGuide product={Product} />}
       {category === "Shipping" && <Shipping product={Product} />}
+      {category === "Color" && <Color product={Product} />}
       {/* <Weather /> */}
       {/* <Furniture /> */}
       {/* <Buyer /> */}
