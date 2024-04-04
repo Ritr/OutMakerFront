@@ -10,8 +10,17 @@ import Top from "../components/toTop/index";
 const Main = () => {
   const [visible, setVisible] = useState(false);
   useEffect(() => {
-    setVisible(true);
+    if (localStorage.getItem("sended")) {
+      setVisible(false);
+    } else {
+      setVisible(true);
+
+    }
   }, []);
+  const cancel = () => {
+    localStorage.setItem("sended", true);
+    setVisible(false)
+  }
   return (
     <div>
       <NavbarTop />
@@ -21,7 +30,7 @@ const Main = () => {
       </div>
       <Footer />
       <Top></Top>
-      <Discount visible={visible} onCancel={() => setVisible(false)}></Discount>
+      <Discount visible={visible} onCancel={cancel}></Discount>
     </div>
   );
 };
