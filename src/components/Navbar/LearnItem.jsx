@@ -49,7 +49,7 @@ const LearnItem = () => {
           {/* img container */}
         </div>
         <div>
-          <img src={navImg} alt="" className="object-fill h-full w-full" />
+          <img src={navImg} alt="" className="object-fill  w-[550px]" />
         </div>
       </div>
     </>
