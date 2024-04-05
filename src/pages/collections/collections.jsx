@@ -22,7 +22,7 @@ const Collections = () => {
       {/* <div className="absolute right-0 bottom-[0px]">
         <img src={mic} alt="" className="w-3/4 md:w-full" />
       </div> */}
-      <UserInitialization />
+      
     </main>
   );
 };

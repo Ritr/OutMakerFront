@@ -350,7 +350,6 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
         </div>
 
         {/* to generate a rnadom number when user will land on this page */}
-        <UserInitialization />
       </div>
     </>
   );

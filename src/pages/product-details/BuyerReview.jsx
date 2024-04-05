@@ -79,7 +79,7 @@ const BuyerReview = ({ reviews, product }) => {
         <WriteReview isReviw={isReview ? true : false} id={id} />
       )}
       {/* to generate a rnadom number when user will land on this page */}
-      <UserInitialization />
+      
     </section>
   );
 };

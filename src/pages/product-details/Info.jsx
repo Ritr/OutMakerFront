@@ -344,6 +344,7 @@ const Info = ({
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img3} className="w-4 h-4 object-contain" alt="" />
                 Furniture Assemble: {product?.assemble ? "yes" : "no"}
+                <FaRegQuestionCircle className="cursor-pointer" onClick={() => { setVisible(true) }}></FaRegQuestionCircle>
               </div>
               {/* <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img4} className="w-4 h-4 object-contain" alt="" />
@@ -358,7 +359,6 @@ const Info = ({
               <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                 <img src={img6} className="w-4 h-4 object-contain" alt="" />
                 Modular splicing design: {product?.modular ? "yes" : "no"}
-                <FaRegQuestionCircle className="cursor-pointer" onClick={() => { setVisible(true) }}></FaRegQuestionCircle>
               </div>
             </div>
           </div>
@@ -402,7 +402,7 @@ const Info = ({
         <ImageSlider images={images} />
         <div className="block lg:flex items-center gap-8 md:pt-4">
           <nav className="pt-4">
-            <ul className="flex overflow-auto md:px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0 border-t border-b md:border-0 ">
+            <ul className="scrollbar-hidden flex overflow-auto md:px-2 md:gap-4 md:rounded-full gap-2 md:justify-between text-sm md:text-base font-normal text-center mb-2 md:mb-0 border-t border-b md:border-0 ">
               <li
                 onClick={() => changeCategory("dimension")}
                 className={`cursor-pointer box-border px-4 py-4 md:py-2 md:rounded-full text-sm md:text-base md:border border-primary ${category === "dimension" ? "md:bg-primary md:text-white  border-b-4" : " border-white md:border-primary"

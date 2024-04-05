@@ -12,7 +12,7 @@ const ProductCollection = () => {
 		<main className="lg:max-w-[1600px] mx-auto">
 			<CollectionAllProducts category={location.pathname.includes('collection-product/')} />
 			{/* to generate a rnadom number when user will land on this page */}
-			<UserInitialization/>
+			
 		</main>
 	);
 };

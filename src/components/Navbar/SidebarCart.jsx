@@ -154,12 +154,12 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                       <h6 className="text-base  mb-2">
                         {singleData?.product?.p_name}
                       </h6>
-                      <p className="text-sm text-[#808080] mb-1">
+                      {/* <p className="text-sm text-[#808080] mb-1">
                         Color: Glacier
                       </p>
                       <p className="text-sm text-[#808080] mb-1">
                         Dimension: {singleData?.dimension}
-                      </p>
+                      </p> */}
                       <p className="text-sm text-[#808080] mb-1">
                         Category: {singleData?.category}
                       </p>
@@ -239,8 +239,6 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
               </div>
             </div>
           </div>
-
-          <UserInitialization />
         </section>
       </div>
     </div>

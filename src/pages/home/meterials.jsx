@@ -55,31 +55,31 @@ const Meterials = () => {
             Our Product Designer
           </h2>
         </div>
-
-        <img
-          src={img5}
-          alt=""
-          className="hidden md:inline-block wow slideInLeft"
-        />
-        <img
+        <div className="md:flex justify-between gap-3">
+          <img
+            src={imgs2}
+            alt=""
+            className="inline-block wow slideInLeft"
+          />
+          {/* <img
           src={imgs2}
           alt=""
           className="inline-block md:hidden wow slideInLeft"
-        />
-        <div className="flex mt-3 md:hidden justify-between gap-3  wow slideInLeft">
-          <div className="flex-1 bg-[#F5F5F5]">
-            <img src={imgs3} alt="" className="w-full h-30 object-cover" />
-            <div className="p-3">
-              <div className="text-center text-base font-medium mb-3">
-                Furniture designer
-              </div>
-              <div className="text-xs mb-4">
-                He is a renowned designer, artist, and creative directorin
-                Mexico, leading the design industry. He has servedas the founder
-                and CEO of PANOR Á MICA, the creativedirector of NONO, and the
-                CEO and founder of joelEscalona Studio.
-              </div>
-              {/* <div className="flex justify-center">
+        /> */}
+          <div className="flex mt-3 md:mt-0  justify-between gap-3  wow slideInLeft">
+            <div className="flex-1 bg-[#F5F5F5]">
+              <img src={imgs3} alt="" className="w-full h-30 object-cover" />
+              <div className="p-3">
+                <div className="text-center text-base font-medium mb-3">
+                  Furniture designer
+                </div>
+                <div className="text-xs mb-4">
+                  He is a renowned designer, artist, and creative directorin
+                  Mexico, leading the design industry. He has servedas the founder
+                  and CEO of PANOR Á MICA, the creativedirector of NONO, and the
+                  CEO and founder of joelEscalona Studio.
+                </div>
+                {/* <div className="flex justify-center">
                 <Link>
                   <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
                     View more
@@ -87,21 +87,21 @@ const Meterials = () => {
                   </button>
                 </Link>
               </div> */}
+              </div>
             </div>
-          </div>
-          <div className="flex-1 bg-[#F5F5F5]">
-            <img src={imgs4} alt="" className="w-full h-30 object-cover" />
-            <div className="p-3">
-              <div className="text-center text-base font-medium mb-3">
-                Furniture designer
-              </div>
-              <div className="text-xs mb-4">
-                He is a renowned designer, artist, and creative directorin
-                Mexico, leading the design industry. He has servedas the founder
-                and CEO of PANOR Á MICA, the creativedirector of NONO, and the
-                CEO and founder of joelEscalona Studio.
-              </div>
-              {/* <div className="flex justify-center">
+            <div className="flex-1 bg-[#F5F5F5]">
+              <img src={imgs4} alt="" className="w-full h-30 object-cover" />
+              <div className="p-3">
+                <div className="text-center text-base font-medium mb-3">
+                  Furniture designer
+                </div>
+                <div className="text-xs mb-4">
+                  He is a renowned designer, artist, and creative directorin
+                  Mexico, leading the design industry. He has servedas the founder
+                  and CEO of PANOR Á MICA, the creativedirector of NONO, and the
+                  CEO and founder of joelEscalona Studio.
+                </div>
+                {/* <div className="flex justify-center">
                 <Link>
                   <button className="border flex items-center border-[#002B5B] color-[#002B5B] text-sm px-3 py-1">
                     View more
@@ -109,6 +109,7 @@ const Meterials = () => {
                   </button>
                 </Link>
               </div> */}
+              </div>
             </div>
           </div>
         </div>

@@ -116,7 +116,7 @@ const Home = () => {
       <Network />
       <Review />
       <IconSection />
-      <UserInitialization />
+      
       {isMinimized && (
         <button
           onClick={openModal}
