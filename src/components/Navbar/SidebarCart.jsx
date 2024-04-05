@@ -239,8 +239,6 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
               </div>
             </div>
           </div>
-
-          <UserInitialization />
         </section>
       </div>
     </div>

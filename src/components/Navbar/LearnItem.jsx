@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import navImg from "../../assets/images/nav-img.png";
+import navImg from "../../assets/images/nav-img.webp";
 const LearnItem = () => {
   return (
     <>

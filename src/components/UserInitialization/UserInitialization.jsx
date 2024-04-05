@@ -3,7 +3,9 @@
 import React, { useEffect } from "react";
 import { useSetUserCode } from "../../Hooks/api/useSetUserCode";
 
-const UserInitialization = () => {
+const UserInitialization = ({
+  onReady
+}) => {
   const { mutate: setUserCode, data } = useSetUserCode();
   const storedUserCode = localStorage.getItem("usercode");
   useEffect(() => {
@@ -11,8 +13,11 @@ const UserInitialization = () => {
       setUserCode(undefined, {
         onSuccess: (data) => {
           localStorage.setItem("usercode", data);
+          onReady();
         },
       });
+    }else{
+      onReady();
     }
   }, [setUserCode]);
 

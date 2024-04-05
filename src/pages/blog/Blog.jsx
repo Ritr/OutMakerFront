@@ -24,7 +24,6 @@ const Blog = () => {
         <img src={mic} alt="" className="w-3/4 md:w-full" />
       </div>
       {/* to generate a rnadom number when user will land on this page */}
-      <UserInitialization />
     </main>
   );
 };

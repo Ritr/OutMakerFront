@@ -12,7 +12,7 @@ const Product = () => {
 		<main className="lg:max-w-[1600px] mx-auto">
 			<AllProducts category={location.pathname.includes('category-product/')} />
 			{/* to generate a rnadom number when user will land on this page */}
-			<UserInitialization/>
+			
 		</main>
 	);
 };

@@ -343,7 +343,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
           </div>
         </div>
         {/* to generate a rnadom number when user will land on this page */}
-        <UserInitialization />
+        
       </section>
     </div>
   );

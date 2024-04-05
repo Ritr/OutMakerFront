@@ -65,7 +65,6 @@ const CategoryBlogs = () => {
          <CategoryBlog categoryBlogs={Category_Blogs} />
 
         <Network />
-        <UserInitialization />
       </div>
     </main>
   );

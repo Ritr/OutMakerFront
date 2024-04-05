@@ -190,7 +190,7 @@ const ProductDetails = () => {
       </div> */}
       <Faq />
       {/* to generate a rnadom number when user will land on this page */}
-      <UserInitialization />
+      
     </main>
   );
 };

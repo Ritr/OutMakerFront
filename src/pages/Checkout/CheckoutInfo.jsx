@@ -1112,7 +1112,7 @@ const CheckoutInfo = () => {
         </div>
 
         {/* Random number generator */}
-        <UserInitialization />
+        
       </section>
     </>
   );

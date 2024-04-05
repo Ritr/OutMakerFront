@@ -53,7 +53,6 @@ const AllBlogs = () => {
         {/* {categoryBlogs.length > 0 && <Ideas categoryBlogs={categoryBlogs} />} */}
         {/* <Video /> */}
         <Network />
-        <UserInitialization />
       </div>
     </main>
   );

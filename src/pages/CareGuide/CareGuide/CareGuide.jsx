@@ -15,7 +15,6 @@ const CareGuide = () => {
       <IconSection />
       <Chat/>
       {/* to generate a rnadom number when user will land on this page */}
-      <UserInitialization/>
     </div>
   );
 };

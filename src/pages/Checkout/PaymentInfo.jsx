@@ -317,7 +317,7 @@ const PaymentInfo = () => {
       </>
 
       {/* to generate a rnadom number when user will land on this page */}
-      <UserInitialization/>
+      
     </section>
   );
 };

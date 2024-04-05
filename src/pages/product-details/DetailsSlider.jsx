@@ -143,7 +143,7 @@ const DetailsSlider = ({
           </Link>
         </div>
 
-        <div className="bg-[#f3f3f3] rounded-md px-10 py-4 md:px-[200px] md:py-[24px]">
+        <div className="bg-[#f3f3f3] rounded-md px-10 py-4 md:px-[120px] md:mx-[100px] md:py-[24px]">
           {/* {JSON.stringify(images)} */}
           <SwiperWrapper
             prevClassName="w-[2rem] h-[2rem] md:w-[53px] md:h-[53px] md:text-2xl font-medium -translate-x-12 md:-translate-x-28"
