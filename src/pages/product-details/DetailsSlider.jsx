@@ -23,6 +23,32 @@ const DetailsSlider = ({
     { image_url: product.p_pic },
     ...images,
   ]);
+  const [productColor, setProductColor] = useState({});
+  const toggleColor = (color) => {
+    if (productColor.color_name === color.color_name) {
+      setProductColor({});
+      filterColor({});
+    } else {
+      setProductColor(color);
+      filterColor(color);
+    }
+
+  }
+  const filterColor = (color) => {
+    console.log(images);
+
+    const res = images.filter((item) => {
+      if (!color.color_name) {
+        return item;
+      }
+      return item.image_color === color.color_name;
+    })
+    console.log(color);
+
+    console.log(res);
+    setImages([{ image_url: product.p_pic }, ...res])
+    // return [{ image_url: product.p_pic }, ...res]
+  };
   // handler for image change
   const handleImageClick = (image) => {
     setHeaderImage(image);
@@ -102,21 +128,6 @@ const DetailsSlider = ({
               readOnly
             />
           </div> */}
-          <div className="flex flex-wrap justify-start ml-14">
-            <div className="flex gap-4 pt-2">
-              {Product_Colors.map(({ color }) => (
-                <div key={color.color_id} className="text-center">
-                  <div
-                    style={{ backgroundColor: color.color_code }}
-                    className="h-9 w-9 rounded-full mx-auto"
-                  ></div>
-                  <p className="text-xs text-[#666666] font-normal">
-                    {color.color_name}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
         <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] ">
           {headerImage?.endsWith(".mp4") ? (
@@ -142,7 +153,22 @@ const DetailsSlider = ({
             </div>
           </Link>
         </div>
+        <div className="flex mb-2 justify-center">
+          <div className="flex gap-4 items-center">
 
+            {Product_Colors.map(({ color }) => (
+              <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
+                <div
+                  style={{ backgroundColor: color.color_code }}
+                  className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border-2 border-yellow-400 scale-150 " : ""}`}
+                ></div>
+                {/* <p className="text-xs text-[#666666] font-normal">
+                  {color.color_name}
+                </p> */}
+              </div>
+            ))}
+          </div>
+        </div>
         <div className="bg-[#f3f3f3] rounded-md px-10 py-4 md:px-[120px] md:mx-[100px] md:py-[24px]">
           {/* {JSON.stringify(images)} */}
           <SwiperWrapper
@@ -166,11 +192,10 @@ const DetailsSlider = ({
                   className="cursor-pointer"
                 >
                   <div
-                    className={`lg:w-[170px] lg:h-[150px] h-[3rem] w-[3rem] bg-white mx-auto flex justify-center items-center rounded ${
-                      headerImage === image?.image_url
-                        ? "border-2 border-primary"
-                        : ""
-                    }`}
+                    className={`lg:w-[170px] lg:h-[150px] h-[3rem] w-[3rem] bg-white mx-auto flex justify-center items-center rounded ${headerImage === image?.image_url
+                      ? "border-2 border-primary"
+                      : ""
+                      }`}
                   >
                     {image?.image_url?.endsWith(".mp4") ? (
                       <div className="relative w-full h-full">
