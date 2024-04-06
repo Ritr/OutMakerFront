@@ -21,7 +21,6 @@ const AllBlogs = () => {
 				<Video />
 				
 				<Network />
-				<UserInitialization/>
 			</div>
 		</main>
 	);

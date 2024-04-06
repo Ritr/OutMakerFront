@@ -62,7 +62,10 @@ const CartBar = ({ product, cost }) => {
         </div>
         <p className="ml-2">{product.p_name}</p>
         <span className="text-xs text-right text-gray-500">
-          (in stock ship within 72hours)
+          {product?.quantity > 0
+            ? "(in stock ship within 72hours)"
+            : null}
+          {/* (in stock ship within 72hours) */}
         </span>
       </div>
 
@@ -85,9 +88,8 @@ const CartBar = ({ product, cost }) => {
 
         <div className="flex items-center gap-6 border-2 border-primary p-2 mr-1 rounded-full cursor-pointer">
           <p
-            className={`cursor-pointer ${
-              quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
-            }`}
+            className={`cursor-pointer ${quantity === 1 ? "text-gray-400 cursor-not-allowed" : ""
+              }`}
             onClick={handleDecreaseQuantity}
           >
             <FaMinus />

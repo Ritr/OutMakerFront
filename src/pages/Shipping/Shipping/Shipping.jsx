@@ -20,7 +20,7 @@ const Shipping = () => {
       <ParcelDetails />
       <IconSection />
       <Chat />
-      <UserInitialization/>
+      
     </section>
   );
 };

@@ -57,7 +57,7 @@ const Meterials = () => {
         </div>
 
         <img
-          src={img5}
+          src="https://outmaker.b-cdn.net/assets/1710146514821.webp"
           alt=""
           className="hidden md:inline-block wow slideInLeft"
         />

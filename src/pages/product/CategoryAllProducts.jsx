@@ -49,12 +49,12 @@ const CategoryAllProducts = ({ category }) => {
         break;
       // 销量排序
       case "sales":
-        // productsArr.sort((a, b) => {
-        //   return a.price[0].product_regular_price >
-        //     b.price[0].product_regular_price
-        //     ? -1
-        //     : 1;
-        // });
+        productsArr.sort((a, b) => {
+          return a.product.sold_item >
+            b.product.sold_item
+            ? -1
+            : 1;
+        });
         break;
       case "price1":
         productsArr.sort((a, b) => {

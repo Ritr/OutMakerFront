@@ -22,7 +22,7 @@ const Sustainability = () => {
         <IconSection />
       </div>
       <Chat />
-      <UserInitialization/>
+      
     </div>
   );
 };
