@@ -225,7 +225,7 @@ const CheckoutInfo = () => {
               city,
               zip,
               country,
-              payment_method: "0",
+              payment_method: "1",
               paypal_order_no: paypalOrderID,
               shipping_cost: totalChargeFromShipping,
               total_cost: amount,
@@ -519,7 +519,7 @@ const CheckoutInfo = () => {
       zip,
       country,
       paypal_order_no: "",
-      payment_method: "1",
+      payment_method: "2",
       shipping_cost: totalChargeFromShipping,
       total_cost: paymentAmount,
     };
