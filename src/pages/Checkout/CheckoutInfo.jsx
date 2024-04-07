@@ -31,7 +31,8 @@ import FormDataAfter from "../../components/Oceanpayment/formDataAfter";
 
 
 import { v4 as uuidv4 } from "uuid";
-import afterPay from "../../assets/Afterpay.png"
+import afterPay from "../../assets/Afterpay.png";
+import { applyDiscount } from "../../Hooks/api/applyDiscount";
 const CheckoutInfo = () => {
   // context to get the data
   const {
@@ -46,6 +47,11 @@ const CheckoutInfo = () => {
     window.scrollTo(0, 0);
     window.oceanWin = { userId: 0, order_no: "" };
   }, []);
+  const [discount, setDiscount] = useState(0);
+  const applyDiscountMutation = applyDiscount(discount);
+  const applyDiscountHandle = () => {
+    applyDiscountMutation.mutate();
+  }
   const userId = localStorage.getItem("usercode") || null;
   const [totalChargeFromShipping, setTotalChargeFromShipping] = useState(0);
   const [formDataFromShipping, setFormDataFromShipping] = useState(0);
@@ -66,8 +72,8 @@ const CheckoutInfo = () => {
   //oceanpayment
   const { mutate: useFetchOceanCreate } = useCreateOceanpayment();
   const [afterpay, setAfterpay] = useState({ pay_url: "", data: {} });
-  const [payzippay, setPayzippay ] = useState({ pay_url: "", data: {} });
-  
+  const [payzippay, setPayzippay] = useState({ pay_url: "", data: {} });
+
   const handleTotalCharge = (totalCharge, formData) => {
     setFormDataFromShipping(formData);
 
@@ -245,49 +251,49 @@ const CheckoutInfo = () => {
               {
                 onSuccess: (res) => {
                   // 处理成功逻辑
-				  if(res.code==1){
-					  fetchOrder(
-					    {
-					      userId,
-					      data: data_fetchOrder,
-					      order_no: res.data.invoice,
-					    },
-					    {
-					      onSuccess: (response) => {
-					        if (response.Error) {
-					          toast.error(response.Error);
-					          return;
-					        }
-					        // After order draft, execute order clear
-					        fetchClear(
-					          { userId, order_no: res.data.invoice },
-					          {
-					            onSuccess: () => {
-					              // Handle the success scenario for order clear
-					             // toast.success("Order cleared successfully");
-					              // Additional success logic here...
-					              setIsBtnLoading(false);
-					            },
-					            onError: (error) => {
-					              // Handle the error scenario for order clear
-					              toast.error("Error clearing order: " + error.message);
-					              setIsBtnLoading(false);
-					            },
-					          }
-					        );
-					      },
-					      onError: (error) => {
-					        // Handle the error scenario for order draft
-					        toast.error("Error creating order draft: " + error.message);
-					      },
-					    }
-					  );
-				  }else{
-					 toast.error("Error creating order draft: " + error.message);  
-				  }
-				  
-				  
-				  
+                  if (res.code == 1) {
+                    fetchOrder(
+                      {
+                        userId,
+                        data: data_fetchOrder,
+                        order_no: res.data.invoice,
+                      },
+                      {
+                        onSuccess: (response) => {
+                          if (response.Error) {
+                            toast.error(response.Error);
+                            return;
+                          }
+                          // After order draft, execute order clear
+                          fetchClear(
+                            { userId, order_no: res.data.invoice },
+                            {
+                              onSuccess: () => {
+                                // Handle the success scenario for order clear
+                                // toast.success("Order cleared successfully");
+                                // Additional success logic here...
+                                setIsBtnLoading(false);
+                              },
+                              onError: (error) => {
+                                // Handle the error scenario for order clear
+                                toast.error("Error clearing order: " + error.message);
+                                setIsBtnLoading(false);
+                              },
+                            }
+                          );
+                        },
+                        onError: (error) => {
+                          // Handle the error scenario for order draft
+                          toast.error("Error creating order draft: " + error.message);
+                        },
+                      }
+                    );
+                  } else {
+                    toast.error("Error creating order draft: " + error.message);
+                  }
+
+
+
                 },
                 onError: (error) => {
                   // 处理错误逻辑
@@ -295,7 +301,7 @@ const CheckoutInfo = () => {
               }
             );
 
-          
+
           } else {
             toast.error("Creating PayPal order failed.");
             return null;
@@ -829,8 +835,8 @@ const CheckoutInfo = () => {
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "paypal"
-                            ? "paymentMethodselected"
-                            : ""
+                          ? "paymentMethodselected"
+                          : ""
                           }`}
                       >
                         <div className="flex items-center">
@@ -861,8 +867,8 @@ const CheckoutInfo = () => {
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${paymentMethod === "card"
-                            ? "paymentMethodselected"
-                            : ""
+                          ? "paymentMethodselected"
+                          : ""
                           }`}
                       >
                         <div className="flex items-center">
@@ -899,8 +905,8 @@ const CheckoutInfo = () => {
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "afterpay"
-                            ? "paymentMethodselected"
-                            : ""
+                          ? "paymentMethodselected"
+                          : ""
                           }`}
                       >
                         <div className="flex items-center">
@@ -937,47 +943,46 @@ const CheckoutInfo = () => {
                         </>
                       )}
                     </div>
-					<div className="form-control">
-					  <label
-					    className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${
-					      paymentMethod === "payZip"
-					        ? "paymentMethodselected"
-					        : ""
-					    }`}
-					  >
-					    <div className="flex items-center">
-					      <input
-					        type="radio"
-					        name="payment"
-					        className="radio checked:bg-blue-500"
-					        checked={paymentMethod === "payZip"}
-					        onChange={() => setPaymentMethod("payZip")}
-					      />
-					      <span className="label-text ml-2">ZIP</span>
-					    </div>
-					     <img
-					       src={zip}
-					       alt="ZIP"
-					       className="w-[54px] h-[22px]"
-					     />
-					  </label>
-					  {paymentMethod === "payZip" && (
-					    <>
-					      <FormDataAfter
-					        payUrl={payzippay.pay_url}
-					        formData={payzippay.data}
-					      ></FormDataAfter>
-					      <p className="text-xs p-1 text-gray-500 mt-1">
-					        Payment with Zip will be limited by 2000 AUD
-					      </p>
-					    </>
-					  )}
-					</div>
+                    <div className="form-control">
+                      <label
+                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "payZip"
+                          ? "paymentMethodselected"
+                          : ""
+                          }`}
+                      >
+                        <div className="flex items-center">
+                          <input
+                            type="radio"
+                            name="payment"
+                            className="radio checked:bg-blue-500"
+                            checked={paymentMethod === "payZip"}
+                            onChange={() => setPaymentMethod("payZip")}
+                          />
+                          <span className="label-text ml-2">ZIP</span>
+                        </div>
+                        <img
+                          src={zip}
+                          alt="ZIP"
+                          className="w-[54px] h-[22px]"
+                        />
+                      </label>
+                      {paymentMethod === "payZip" && (
+                        <>
+                          <FormDataAfter
+                            payUrl={payzippay.pay_url}
+                            formData={payzippay.data}
+                          ></FormDataAfter>
+                          <p className="text-xs p-1 text-gray-500 mt-1">
+                            Payment with Zip will be limited by 2000 AUD
+                          </p>
+                        </>
+                      )}
+                    </div>
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${paymentMethod === "ocean"
-                            ? "paymentMethodselected"
-                            : ""
+                          ? "paymentMethodselected"
+                          : ""
                           }`}
                       >
                         <div className="flex items-center">
@@ -1051,40 +1056,54 @@ const CheckoutInfo = () => {
             <div className="hidden md:block col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  md:w-full md:pl-10 pt-10 md:pb-0">
               <div className="sticky top-6">
                 {objectOnlyData && objectOnlyData.length > 0 ? (
-                  objectOnlyData.map((item) => (
-                    <div
-                      key={item?.product?.p_id}
-                      className="flex mb-6 w-full relative"
-                    >
-                      <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
-                        {item.qunatity}
-                      </span>
-                      <img
-                        src={ImgBaseUrl(item?.product?.p_pic)}
-                        alt="Product"
-                        className="object-contain rounded w-20 h-20  mr-4 bg-white"
-                      />
-                      <div className="flex-1">
-                        <h4 className="text-lg font-medium">
-                          {item?.product?.p_name.slice(0, 30)}
-                        </h4>
-                        <p className="text-sm text-gray-500">
-                          Glacier / {item?.dimension} / {item?.category}
-                        </p>
-                      </div>
-                      <div className="w-16 text-left flex flex-col justify-center items-center">
-                        <span className="text-sm text-gray-500">
-                          A${item?.cost?.product_sale_price * item.qunatity}
-                        </span>
+                  <>
+                    {
+                      objectOnlyData.map((item) => (
+                        <div
+                          key={item?.product?.p_id}
+                          className="flex mb-6 w-full relative"
+                        >
+                          <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
+                            {item.qunatity}
+                          </span>
+                          <img
+                            src={ImgBaseUrl(item?.product?.p_pic)}
+                            alt="Product"
+                            className="object-contain rounded w-20 h-20  mr-4 bg-white"
+                          />
+                          <div className="flex-1">
+                            <h4 className="text-lg font-medium">
+                              {item?.product?.p_name.slice(0, 30)}
+                            </h4>
+                            <p className="text-sm text-gray-500">
+                              Glacier / {item?.dimension} / {item?.category}
+                            </p>
+                          </div>
+                          <div className="w-16 text-left flex flex-col justify-center items-center">
+                            <span className="text-sm text-gray-500">
+                              A${item?.cost?.product_sale_price * item.qunatity}
+                            </span>
+                          </div>
+                        </div>
+                      ))
+                    }
+                    <div>
+                      {/* {JSON.stringify(applyDiscountMutation)} */}
+                      <div className="flex justify-between gap-4">
+                        <input type="text" className={`input flex-1 ${applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? "input-error" : ""}`} placeholder="Discount Code" onChange={e => {
+                          setDiscount(e.target.value)
+                        }} />
+                        <button disabled={applyDiscountMutation.isLoading || !discount} className={`btn btn-primary ${applyDiscountMutation.isLoading ? "loading" : ""} `} onClick={applyDiscountHandle}>Apply</button>
                       </div>
                     </div>
-                  ))
+                    {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className="mb-4 text-red-400 text-sm">Enter a valid discount code</div> : null}
+                    {applyDiscountMutation?.data?.msg === "success" ? <div className="mb-4 text-green-400 text-sm">Success</div> : null}
+                  </>
                 ) : (
                   <div className="text-center">
                     <p>No items in the cart.</p>
                   </div>
                 )}
-
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
@@ -1117,7 +1136,7 @@ const CheckoutInfo = () => {
         </div>
 
         {/* Random number generator */}
-        
+
       </section>
     </>
   );
