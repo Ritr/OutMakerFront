@@ -5,6 +5,8 @@ import { getApiBaseUrl } from "../../utils/api/index";
 import toast from "react-hot-toast";
 import ProductQuantity from "./productQuantity";
 import Refund from "./Refund";
+import { saveNotes } from "../../Hooks/api/saveOrderNotes";
+import { useMutation } from '@tanstack/react-query';
 const CustomOrderInformationPC = () => {
   const { number } = useParams();
   const [filteredData, setFilteredData] = useState([]);
@@ -824,7 +826,38 @@ const CustomOrderInformationPC = () => {
       </>
     );
   };
+  const Notes = ({ order }) => {
+    const [disabled, setDisabled] = useState(true);
+    const [notes, setNotes] = useState(order?.notes);
+    const saveNotesMutation = saveNotes(order?.order_no, notes);
+    const saveNotesHandle = () => {
+      saveNotesMutation.mutate();
+    }
+    useEffect(() => {
+      if (saveNotesMutation.isSuccess) {
+        setDisabled(true);
+        toast.success("save success!", "success");
 
+      } else if (saveNotesMutation.isError) {
+        setDisabled(false);
+        toast.error("save error!", "error");
+
+      }
+    }, [saveNotesMutation]);
+    return (<div className="bg-white rounded-md p-10 mt-4">
+      <div className="text-lg font-bold text-[#002B5B]">Notes</div>
+
+      <div className="mt-4">
+        <textarea disabled={disabled} class="textarea textarea-bordered w-full" placeholder="notes" value={notes} onChange={e => {
+          setNotes(e.target.value);
+        }}></textarea>
+
+      </div>
+      <div className="mt-4 flex justify-end">
+        {!disabled ? <button className="btn btn-primary" onClick={saveNotesHandle}>Save Notes</button> : <button className="btn" onClick={() => setDisabled(false)}>Edit Notes</button>}
+      </div>
+    </div>);
+  }
   return (
     <div className="container  mx-auto bg-[#F7F7F7]  shadow-lg rounded-lg">
       <OrderStatusSteps
@@ -849,7 +882,7 @@ const CustomOrderInformationPC = () => {
         max={actualPayment}
         id={filteredData[0]?.order.order_id}
       />
-
+      <Notes order={filteredData[0]?.order}></Notes>
     </div>
   );
 };
