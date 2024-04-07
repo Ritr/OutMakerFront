@@ -146,14 +146,14 @@ const CategoryAllProducts = ({ category }) => {
             >
               Price <FaArrowUpLong></FaArrowUpLong>
             </button>
-            <button
+            {/* <button
               className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
                 sort === "collection" ? "bg-primary text-white" : ""
               }`}
               onClick={() => setSort("collection")}
             >
               Collection
-            </button>
+            </button> */}
             {/* <label htmlFor="score" className="">
               <input type="radio" name="sort1" id="score" className="hidden" />
               <span className="cursor-pointer">score</span>
