@@ -227,6 +227,7 @@ const CheckoutInfo = () => {
               city,
               zip,
               country,
+              discount:'',
               payment_method: "1",
               paypal_order_no: paypalOrderID,
               shipping_cost: totalChargeFromShipping,
@@ -369,6 +370,7 @@ const CheckoutInfo = () => {
           billing_phone: phone,
           billing_tip: totalChargeFromShipping.toFixed(2),
           baseUrl: window.location.origin,
+          discount:'',
         },
         {
           onSuccess: (result) => {
@@ -405,6 +407,7 @@ const CheckoutInfo = () => {
           billing_phone: phone,
           billing_tip: totalChargeFromShipping.toFixed(2),
           baseUrl: window.location.origin,
+          discount:''
         },
         {
           onSuccess: (result) => {
@@ -455,6 +458,7 @@ const CheckoutInfo = () => {
           billing_phone: phone,
           billing_tip: totalChargeFromShipping.toFixed(2),
           baseUrl: window.location.origin,
+          discount:'',
         },
         {
           onSuccess: (result) => {
@@ -522,6 +526,7 @@ const CheckoutInfo = () => {
       country,
       paypal_order_no: "",
       payment_method: "2",
+      discount:'',
       shipping_cost: totalChargeFromShipping,
       total_cost: paymentAmount,
     };
