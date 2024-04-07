@@ -828,8 +828,8 @@ const CustomOrderInformationPC = () => {
   };
   const Notes = ({ order }) => {
     const [disabled, setDisabled] = useState(true);
-    const saveNotesMutation = saveNotes(order?.order_no, order?.notes);
     const [notes, setNotes] = useState(order?.notes);
+    const saveNotesMutation = saveNotes(order?.order_no, notes);
     const saveNotesHandle = () => {
       saveNotesMutation.mutate();
     }
@@ -837,8 +837,8 @@ const CustomOrderInformationPC = () => {
       if (saveNotesMutation.isSuccess) {
         setDisabled(true);
         toast.success("save success!", "success");
-        
-      }else if (saveNotesMutation.isError) {
+
+      } else if (saveNotesMutation.isError) {
         setDisabled(false);
         toast.error("save error!", "error");
 

@@ -52,6 +52,12 @@ const CheckoutInfo = () => {
   const applyDiscountHandle = () => {
     applyDiscountMutation.mutate();
   }
+  const [confirm, setConfirm] = useState(false);
+  useEffect(() => {
+    if (applyDiscountMutation.isSuccess) {
+      setConfirm(true);
+    }
+  }, [applyDiscountMutation.isSuccess])
   const userId = localStorage.getItem("usercode") || null;
   const [totalChargeFromShipping, setTotalChargeFromShipping] = useState(0);
   const [formDataFromShipping, setFormDataFromShipping] = useState(0);
@@ -233,7 +239,7 @@ const CheckoutInfo = () => {
               city,
               zip,
               country,
-              discount:'',
+              discount: confirm ? discount : '',
               payment_method: "1",
               paypal_order_no: paypalOrderID,
               shipping_cost: totalChargeFromShipping,
@@ -376,7 +382,7 @@ const CheckoutInfo = () => {
           billing_phone: phone,
           billing_tip: totalChargeFromShipping.toFixed(2),
           baseUrl: window.location.origin,
-          discount:'',
+          discount: confirm ? discount : '',
         },
         {
           onSuccess: (result) => {
@@ -413,7 +419,7 @@ const CheckoutInfo = () => {
           billing_phone: phone,
           billing_tip: totalChargeFromShipping.toFixed(2),
           baseUrl: window.location.origin,
-          discount:''
+          discount: confirm ? discount : ''
         },
         {
           onSuccess: (result) => {
@@ -464,7 +470,7 @@ const CheckoutInfo = () => {
           billing_phone: phone,
           billing_tip: totalChargeFromShipping.toFixed(2),
           baseUrl: window.location.origin,
-          discount:'',
+          discount: confirm ? discount : '',
         },
         {
           onSuccess: (result) => {
@@ -532,7 +538,7 @@ const CheckoutInfo = () => {
       country,
       paypal_order_no: "",
       payment_method: "2",
-      discount:'',
+      discount: confirm ? discount : '',
       shipping_cost: totalChargeFromShipping,
       total_cost: paymentAmount,
     };
@@ -723,34 +729,48 @@ const CheckoutInfo = () => {
                 <div className={isOpen ? "pb-4 bg-white" : "hidden"}>
                   <div className="md:w-96 col-span-1 lg:col-span-4 bg-[#f8f8f8] p-6 rounded-lg  pt-10 ">
                     {objectOnlyData && objectOnlyData.length > 0 ? (
-                      objectOnlyData.map((item) => (
-                        <div
-                          key={item?.product?.p_id}
-                          className="flex mb-6 w-full relative"
-                        >
-                          <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
-                            {item.qunatity}
-                          </span>
-                          <img
-                            src={ImgBaseUrl(item?.product?.p_pic)}
-                            alt="Product"
-                            className="object-contain rounded w-20 h-20  mr-4 bg-white"
-                          />
-                          <div className="flex-1">
-                            <h4 className="text-lg font-medium">
-                              {item?.product?.p_name.slice(0, 30)}
-                            </h4>
-                            <p className="text-sm text-gray-500">
-                              Glacier / {item?.dimension} / {item?.category}
-                            </p>
-                          </div>
-                          <div className="w-16 text-left flex flex-col justify-center items-center">
-                            <span className="text-sm text-gray-500">
-                              A${item?.cost?.product_sale_price * item.qunatity}
+                      <>
+                        {objectOnlyData.map((item) => (
+                          <div
+                            key={item?.product?.p_id}
+                            className="flex mb-6 w-full relative"
+                          >
+                            <span className="w-6 h-6 leading-6 text-center rounded-full bg-gray-300 absolute z-10 -left-3 -top-3 ">
+                              {item.qunatity}
                             </span>
+                            <img
+                              src={ImgBaseUrl(item?.product?.p_pic)}
+                              alt="Product"
+                              className="object-contain rounded w-20 h-20  mr-4 bg-white"
+                            />
+                            <div className="flex-1">
+                              <h4 className="text-lg font-medium">
+                                {item?.product?.p_name.slice(0, 30)}
+                              </h4>
+                              <p className="text-sm text-gray-500">
+                                Glacier / {item?.dimension} / {item?.category}
+                              </p>
+                            </div>
+                            <div className="w-16 text-left flex flex-col justify-center items-center">
+                              <span className="text-sm text-gray-500">
+                                A${item?.cost?.product_sale_price * item.qunatity}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                        <div>
+                          {/* {JSON.stringify(applyDiscountMutation)} */}
+                          <div className="flex justify-between gap-4">
+                            <input type="text" className={`input flex-1 ${applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? "input-error" : ""}`} placeholder="Discount Code" onChange={e => {
+                              setConfirm(false);
+                              setDiscount(e.target.value);
+                            }} />
+                            <button disabled={applyDiscountMutation.isLoading || !discount} className={`btn btn-primary ${applyDiscountMutation.isLoading ? "loading" : ""} `} onClick={applyDiscountHandle}>Apply</button>
                           </div>
                         </div>
-                      ))
+                        {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className=" text-red-400 text-sm">Enter a valid discount code</div> : null}
+                        {applyDiscountMutation?.data?.msg === "success" ? <div className=" text-green-400 text-sm">Success</div> : null}
+                      </>
                     ) : (
                       <div className="text-center">
                         <p>No items in the cart.</p>
@@ -770,7 +790,7 @@ const CheckoutInfo = () => {
               </div> */}
 
                     {/* Pricing Information */}
-                    <div className="space-y-4 mb-6">
+                    <div className="space-y-4 mb-6 mt-4">
                       <div className="flex justify-between">
                         <span>Subtotal</span>
                         <span>A${totalEstimatedPrice}</span>
@@ -1091,20 +1111,21 @@ const CheckoutInfo = () => {
                       {/* {JSON.stringify(applyDiscountMutation)} */}
                       <div className="flex justify-between gap-4">
                         <input type="text" className={`input flex-1 ${applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? "input-error" : ""}`} placeholder="Discount Code" onChange={e => {
-                          setDiscount(e.target.value)
+                          setConfirm(false);
+                          setDiscount(e.target.value);
                         }} />
                         <button disabled={applyDiscountMutation.isLoading || !discount} className={`btn btn-primary ${applyDiscountMutation.isLoading ? "loading" : ""} `} onClick={applyDiscountHandle}>Apply</button>
                       </div>
                     </div>
-                    {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className="mb-4 text-red-400 text-sm">Enter a valid discount code</div> : null}
-                    {applyDiscountMutation?.data?.msg === "success" ? <div className="mb-4 text-green-400 text-sm">Success</div> : null}
+                    {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className=" text-red-400 text-sm">Enter a valid discount code</div> : null}
+                    {applyDiscountMutation?.data?.msg === "success" ? <div className=" text-green-400 text-sm">Success</div> : null}
                   </>
                 ) : (
                   <div className="text-center">
                     <p>No items in the cart.</p>
                   </div>
                 )}
-                <div className="space-y-4 mb-6">
+                <div className="space-y-4 mb-6 mt-4">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
                     <span>A${totalEstimatedPrice}</span>
