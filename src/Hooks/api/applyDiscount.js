@@ -11,7 +11,7 @@ export const applyDiscount = (code) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    Discount : code,
+                    code : code,
                 }),
             });
             if (!response.ok) {
