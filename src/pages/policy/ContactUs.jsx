@@ -84,7 +84,7 @@ const ContactUs = () => {
         >
           <span  className="text-sm">&#xa0;</span>
         </p>
-        <p
+        {/* <p
           style={{
             marginTop: "0pt",
             marginBottom: "0pt",
@@ -154,7 +154,7 @@ const ContactUs = () => {
           }}
         >
           <span  className="text-sm">Phone: +61 123-456-7890</span>
-        </p>
+        </p> */}
         <p
           style={{
             marginTop: "0pt",
@@ -529,14 +529,14 @@ const ContactUs = () => {
             SHARLOMAY LTD registered at Agion Theodoron 6 Agios Athanasios,
             4102, Limassol, Cyprus
           </span> */}
-          <span style={{ fontFamily: "Arial", textAlign: "justify" }}>
+          {/* <span style={{ fontFamily: "Arial", textAlign: "justify" }}>
             The website is jointly operated by Hangzhou Hengdong Cross border
             E-commerce Co., Ltd registered at 905, He'ertai Science and
             Technology Park, No. 850 Weiken Street, Xiasha Street, Qiantang
             District, Hangzhou City, Zhejiang Province and SHARLOMAY LTD
             registered at Agion Theodoron 6 Agios Athanasios, 4102, Limassol,
             Cyprus
-          </span>
+          </span> */}
         </p>
         <p
           style={{

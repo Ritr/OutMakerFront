@@ -54,7 +54,7 @@ const CheckoutInfo = () => {
   }
   const [confirm, setConfirm] = useState(false);
   useEffect(() => {
-    if (applyDiscountMutation.isSuccess) {
+    if (applyDiscountMutation.isSuccess && applyDiscountMutation.data.msg === "Ok") {
       setConfirm(true);
     }
   }, [applyDiscountMutation.isSuccess])
@@ -768,8 +768,8 @@ const CheckoutInfo = () => {
                             <button disabled={applyDiscountMutation.isLoading || !discount} className={`btn btn-primary ${applyDiscountMutation.isLoading ? "loading" : ""} `} onClick={applyDiscountHandle}>Apply</button>
                           </div>
                         </div>
-                        {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className=" text-red-400 text-sm">Enter a valid discount code</div> : null}
-                        {applyDiscountMutation?.data?.msg === "success" ? <div className=" text-green-400 text-sm">Success</div> : null}
+                        {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className=" text-red-400 text-sm mt-2">Enter a valid discount code</div> : null}
+                        {applyDiscountMutation?.data?.msg === "Ok" ? <div className=" text-green-600 text-sm mt-2">Valid Success</div> : null}
                       </>
                     ) : (
                       <div className="text-center">
@@ -1117,8 +1117,8 @@ const CheckoutInfo = () => {
                         <button disabled={applyDiscountMutation.isLoading || !discount} className={`btn btn-primary ${applyDiscountMutation.isLoading ? "loading" : ""} `} onClick={applyDiscountHandle}>Apply</button>
                       </div>
                     </div>
-                    {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className=" text-red-400 text-sm">Enter a valid discount code</div> : null}
-                    {applyDiscountMutation?.data?.msg === "success" ? <div className=" text-green-400 text-sm">Success</div> : null}
+                    {applyDiscountMutation?.data?.msg === "Discount coupons do not exist" ? <div className=" text-red-400 text-sm mt-2">Enter a valid discount code</div> : null}
+                    {applyDiscountMutation?.data?.msg === "Ok" ? <div className=" text-green-600 text-sm mt-2">Valid Success</div> : null}
                   </>
                 ) : (
                   <div className="text-center">
