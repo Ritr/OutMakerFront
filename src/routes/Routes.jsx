@@ -39,6 +39,7 @@ import OrderConfirm from "../pages/Checkout/OrderConfirm";
 
 import TermsOfService from "../pages/policy/TermsOfService";
 import Privacypolicy from "../pages/policy/Privacypolicy";
+import Intellectual from "../pages/policy/Intellectual";
 import AboutUs from "../pages/policy/AboutUs";
 import ContactUs from "../pages/policy/ContactUs";
 import ReturnPolicy from "../pages/policy/ReturnPolicy";
@@ -183,6 +184,10 @@ const router = createBrowserRouter([
       {
         path: "/Privacypolicy",
         element: <Privacypolicy />,
+      },
+      {
+        path: "/Intellectual",
+        element: <Intellectual />,
       },
       {
         path: "/ContactUs",

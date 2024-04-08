@@ -262,6 +262,9 @@ const Footer = () => {
                   <li className="">
                     <Link to="/FAQ">Frequently Asked Questions</Link>
                   </li>
+                  <li className="">
+                    <Link to="/Intellectual">INTELLECTUAL Property Rights</Link>
+                  </li>
                 </ul>
               </div>
               <div className="space-y-3">
@@ -326,6 +329,9 @@ const Footer = () => {
                     </li>
                     <li className="">
                       <Link to="/FAQ">Frequently Asked Questions</Link>
+                    </li>
+                    <li className="">
+                      <Link to="/Intellectual">INTELLECTUAL Property Rights</Link>
                     </li>
                   </ul>
                 </div>

@@ -729,14 +729,14 @@ const AboutUs = () => {
             SHARLOMAY LTD registered at Agion Theodoron 6 Agios Athanasios,
             4102, Limassol, Cyprus
           </span> */}
-          <span className="text-sm">
+          {/* <span className="text-sm">
             The website is jointly operated by Hangzhou Hengdong Cross border
             E-commerce Co., Ltd registered at 905, He'ertai Science and
             Technology Park, No. 850 Weiken Street, Xiasha Street, Qiantang
             District, Hangzhou City, Zhejiang Province and SHARLOMAY LTD
             registered at Agion Theodoron 6 Agios Athanasios, 4102, Limassol,
             Cyprus
-          </span>
+          </span> */}
         </p>
         <p
           style={{
