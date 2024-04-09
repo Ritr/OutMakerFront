@@ -20,7 +20,7 @@ const Privacypolicy = () => {
         >
           <a name="_pc3pi6uqaz5b"></a>
           <span className="text-2xl">
-            Privacy Policy
+          INTELLECTUAL Property Rights
           </span>
         </h1>
 
@@ -113,7 +113,7 @@ const Privacypolicy = () => {
           }}
         >
           <span className="text-xl block pb-4 pt-6">
-            2. Disclaimer
+            4. Disclaimer
           </span>
         </p>
 
@@ -130,7 +130,7 @@ const Privacypolicy = () => {
         </p>
 
       </div>
-      <img src="https://www.9-bill.com/index/legal" className="w-1 h-1"></img>
+      <img src="https://www.9-bill.com/index/legal" className="w-full"></img>
     </section>
   );
 };

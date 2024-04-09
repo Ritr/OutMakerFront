@@ -814,7 +814,7 @@ const CheckoutInfo = () => {
                       )}
                     </div>
 
-                    <div className="form-control">
+                    {/* <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center transition-all duration-300 ${paymentMethod === "card"
                           ? "paymentMethodselected"
@@ -851,7 +851,7 @@ const CheckoutInfo = () => {
                           </p>
                         </>
                       )}
-                    </div>
+                    </div> */}
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "afterpay"

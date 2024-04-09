@@ -6,7 +6,7 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 const DesignHelp = () => {
   return (
     <>
-      <div className="lg:w-[450px] w-[80vw] md:px-10 pb-20 mx-auto pt-5">
+      <div className="lg:w-[450px] w-[80vw] md:px-10 pb-2 mx-auto pt-5">
         <div className="py-2 mt-4 flex justify-center items-center rounded-full bg-primary text-white text-xl gap-4">
           <TfiEmail />
           contact@theoutmaker.com

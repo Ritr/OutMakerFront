@@ -9,8 +9,7 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import ProductCard from "../../components/ProductCard";
 import OutdoorDiningChairCard from "../collections/OutdoorDiningChairCard.jsx";
-import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6";
-
+import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 const CollectionAllProducts = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
   const categoryItem = useLoaderData();
@@ -21,6 +20,7 @@ const CollectionAllProducts = ({ category }) => {
     (collection) => collection?.category_id !== parseInt(id)
   );
   const [products, setProducts] = useState([]);
+  const [oldProducts, setOldProducts] = useState([]);
   useEffect(() => {
     fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
       .then((res) => res.json())
@@ -32,13 +32,14 @@ const CollectionAllProducts = ({ category }) => {
         });
         console.log("CollectionAllProducts", productsArr);
         setProducts(productsArr);
+        setOldProducts(productsArr);
       });
     window.scrollTo(0, 0);
   }, [id, category]);
   useEffect(() => {
-    if (!sort) {
-      return;
-    }
+    // if (!sort) {
+    //   return;
+    // }
     let productsArr = [...products];
     switch (sort) {
       // 综合排序
@@ -80,6 +81,9 @@ const CollectionAllProducts = ({ category }) => {
           return a.product.collection_id < b.product.collection_id ? -1 : 1;
         });
         break;
+      default:
+        productsArr = [...oldProducts];
+        break;
     }
     setProducts(productsArr);
   }, [sort]);
@@ -117,39 +121,45 @@ const CollectionAllProducts = ({ category }) => {
             {products.length} Products
           </p>
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="font-semibold md:mr-2 text-md">Sort By:</span>
             <button
-              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "score" ? "bg-primary text-white" : ""
-              }`}
+              className={`p-1 md:py-2 md:px-4 rounded-md  border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "score" ? " text-primary border-primary" : "text-[#DCDCDC]"
+                }`}
               onClick={() => setSort("score")}
             >
               score
             </button>
             <button
-              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "sales" ? "bg-primary text-white" : ""
-              }`}
+              className={`p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "sales" ? " text-primary border-primary" : "text-[#DCDCDC]"
+                }`}
               onClick={() => setSort("sales")}
             >
               sales
             </button>
             <button
-              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "price1" ? "bg-primary text-white" : ""
-              }`}
-              onClick={() => setSort("price1")}
+              className={`flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${(sort === "price1" || sort === "price2") ? " text-primary border-primary" : "text-[#DCDCDC]"
+                }`}
+              onClick={
+                () => {
+                  sort == "price2"
+                    ? setSort("price1") :
+                    setSort("price2")
+                }
+              }
             >
-              Price <FaArrowDownLong></FaArrowDownLong>
+              Price
+              <div className="text-3xs md:text-xs ml-2">
+                <BiSolidUpArrow
+                  className={`${sort === "price2" ? "text-red-500" : "text-[#DCDCDC]"
+                    }`}
+                /> <BiSolidDownArrow
+                  className={`${sort === "price1" ? "text-red-500" : "text-[#DCDCDC]"
+                    }`}
+                />
+              </div>
             </button>
-            <button
-              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "price2" ? "bg-primary text-white" : ""
-              }`}
-              onClick={() => setSort("price2")}
-            >
-              Price <FaArrowUpLong></FaArrowUpLong>
-            </button>
+            <button className="flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0 text-[#DCDCDC]" onClick={() => {
+              setSort(null);
+            }}>Clear</button>
           </div>
         </div>
 
@@ -166,10 +176,9 @@ const CollectionAllProducts = ({ category }) => {
                 review={product?.review?.[0]?.review}
                 price={`A$${product?.price[0].product_sale_price}`} // Display sale price
                 originalPrice={`A$${product?.price[0].product_regular_price}`} // Display regular price
-                discountMessage={`Save A$${
-                  product?.price[0].product_regular_price -
+                discountMessage={`Save A$${product?.price[0].product_regular_price -
                   product?.price[0].product_sale_price
-                } `} // Calculate discount
+                  } `} // Calculate discount
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               />
             ))}
@@ -189,10 +198,9 @@ const CollectionAllProducts = ({ category }) => {
                 review={product?.review?.[0]?.review}
                 price={`A$${product?.price[0].product_sale_price}`} // Display sale price
                 originalPrice={`A$${product?.price[0].product_regular_price}`} // Display regular price
-                discountMessage={`Save A$${
-                  product?.price[0].product_regular_price -
+                discountMessage={`Save A$${product?.price[0].product_regular_price -
                   product?.price[0].product_sale_price
-                } `} // Calculate discount
+                  } `} // Calculate discount
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               />
             ))}
