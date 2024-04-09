@@ -7,7 +7,7 @@ import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import OutdoorDiningChairCard from "../collections/OutdoorDiningChairCard.jsx";
-import { FaArrowDownLong, FaArrowUpLong } from "react-icons/fa6";
+import { BiSolidDownArrow, BiSolidUpArrow } from "react-icons/bi";
 
 const CategoryAllProducts = ({ category }) => {
   const [showModal, setShowModal] = useState(false);
@@ -19,23 +19,25 @@ const CategoryAllProducts = ({ category }) => {
     (collection) => collection?.category_id !== parseInt(id)
   );
   const [products, setProducts] = useState([]);
+  const [oldProducts, setOldProducts] = useState([]);
   useEffect(() => {
     fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        let products = JSON.parse(data);
+        let products = data;
         let productsArr = Object.values(products);
         productsArr.sort((a, b) => {
           return a.product.p_type > b.product.p_type ? -1 : 1;
         });
         setProducts(productsArr);
+        setOldProducts(productsArr);
       });
     window.scrollTo(0, 0);
   }, [id, category]);
   useEffect(() => {
-    if (!sort) {
-      return;
-    }
+    // if (!sort) {
+    //   return;
+    // }
     let productsArr = [...products];
     switch (sort) {
       // 综合排序
@@ -77,6 +79,9 @@ const CategoryAllProducts = ({ category }) => {
           return a.product.collection_id < b.product.collection_id ? -1 : 1;
         });
         break;
+      default:
+        productsArr = [...oldProducts];
+        break;
     }
     setProducts(productsArr);
   }, [sort]);
@@ -113,39 +118,46 @@ const CategoryAllProducts = ({ category }) => {
             {products.length} Products
           </p>
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="font-semibold md:mr-2 text-md">Sort By:</span>
+            {/* <span className="font-semibold md:mr-2 text-md">Sort By:</span> */}
             <button
-              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "score" ? "bg-primary text-white" : ""
-              }`}
+              className={`p-1 md:py-2 md:px-4 rounded-md  border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "score" ? " text-primary border-primary" : "text-[#DCDCDC]"
+                }`}
               onClick={() => setSort("score")}
             >
               score
             </button>
             <button
-              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "sales" ? "bg-primary text-white" : ""
-              }`}
+              className={`p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "sales" ? " text-primary border-primary" : "text-[#DCDCDC]"
+                }`}
               onClick={() => setSort("sales")}
             >
               sales
             </button>
             <button
-              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "price1" ? "bg-primary text-white" : ""
-              }`}
-              onClick={() => setSort("price1")}
+              className={`flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${(sort === "price1" || sort === "price2") ? " text-primary border-primary" : "text-[#DCDCDC]"
+                }`}
+              onClick={
+                () => {
+                  sort == "price2"
+                    ? setSort("price1") :
+                    setSort("price2")
+                }
+              }
             >
-              Price <FaArrowDownLong></FaArrowDownLong>
+              Price
+              <div className="text-3xs md:text-xs ml-2">
+                <BiSolidUpArrow
+                  className={`${sort === "price2" ? "text-red-500" : "text-[#DCDCDC]"
+                    }`}
+                /> <BiSolidDownArrow
+                  className={`${sort === "price1" ? "text-red-500" : "text-[#DCDCDC]"
+                    }`}
+                />
+              </div>
             </button>
-            <button
-              className={`flex items-center p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "price2" ? "bg-primary text-white" : ""
-              }`}
-              onClick={() => setSort("price2")}
-            >
-              Price <FaArrowUpLong></FaArrowUpLong>
-            </button>
+            <button className="flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0 text-[#DCDCDC]" onClick={() => {
+              setSort(null);
+            }}>Clear</button>
             {/* <button
               className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
                 sort === "collection" ? "bg-primary text-white" : ""
@@ -357,9 +369,8 @@ const CategoryAllProducts = ({ category }) => {
                 review={product?.review?.[0]?.review}
                 price={`A$${price[0].product_sale_price}`} // Display sale price
                 originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
-                discountMessage={`Save A$${
-                  price[0].product_regular_price - price[0].product_sale_price
-                } `} // Calculate discount
+                discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
+                  } `} // Calculate discount
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>;
             })}
@@ -374,9 +385,8 @@ const CategoryAllProducts = ({ category }) => {
                 review={product?.review?.[0]?.review}
                 price={`A$${price[0].product_sale_price}`} // Display sale price
                 originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
-                discountMessage={`Save A$${
-                  price[0].product_regular_price - price[0].product_sale_price
-                } `} // Calculate discount
+                discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
+                  } `} // Calculate discount
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
               ></OutdoorDiningChairCard>
             ))}
