@@ -19,15 +19,9 @@ const CollectionAllProducts = ({ category }) => {
   );
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    if (category) {
       fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
         .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-    } else {
-      fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
-        .then((res) => res.json())
-        .then((data) => setProducts(JSON.parse(data)));
-    }
+        .then((data) => setProducts(data));
     window.scrollTo(0, 0);
   }, [id, category]);
 

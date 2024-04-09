@@ -6,7 +6,7 @@ const useProducts = () => {
     useEffect(() => {
         fetch("https://theoutmaker.com/public/api/get/product/all")
             .then((res) => res.json())
-            .then((data) => setProducts(JSON.parse(data)));
+            .then((data) => setProducts(data));
     }, []);
     return { products }
 };
