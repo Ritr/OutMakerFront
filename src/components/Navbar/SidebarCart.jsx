@@ -52,6 +52,8 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
     // 此处添加跳转逻辑，如果已勾选复选框
   };
   const handleIncreaseQuantity = (id) => {
+
+    
     manageQuantity(
       { productId: id, action: "increase" },
       {
@@ -142,6 +144,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                 </button>
               </div>
               <div className={`max-h-[60vh] overflow-y-auto`}>
+               
                 {objectOnlyData?.map((singleData, index) => (
                   <div key={index} className="flex gap-4 my-4">
                     <img

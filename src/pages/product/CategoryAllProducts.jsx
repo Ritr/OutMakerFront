@@ -23,7 +23,7 @@ const CategoryAllProducts = ({ category }) => {
     fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        let products = JSON.parse(data);
+        let products = data;
         let productsArr = Object.values(products);
         productsArr.sort((a, b) => {
           return a.product.p_type > b.product.p_type ? -1 : 1;
@@ -113,7 +113,7 @@ const CategoryAllProducts = ({ category }) => {
             {products.length} Products
           </p>
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="font-semibold md:mr-2 text-md">Sort By:</span>
+            {/* <span className="font-semibold md:mr-2 text-md">Sort By:</span> */}
             <button
               className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
                 sort === "score" ? "bg-primary text-white" : ""

@@ -25,7 +25,7 @@ const AllProducts = ({ category }) => {
     fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        let products = JSON.parse(data);
+        let products = data;
         let productsArr = Object.values(products);
         productsArr.sort((a, b) => {
           return a.product.p_type > b.product.p_type ? -1 : 1;
