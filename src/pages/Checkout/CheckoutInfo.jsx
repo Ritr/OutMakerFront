@@ -196,132 +196,62 @@ const CheckoutInfo = () => {
       };
     });
     if (paymentMethod == "paypal") {
-      // 上传到官方paypal的， 不用修改
-      const orderData = {
-        intent: "CAPTURE",
-        purchase_units: [
-          {
-            amount: {
-              currency_code: "AUD",
-              value: amount,
-            },
+      useFetchOceanCreate(
+        {
+          user_code: userId,
+          send_type: "paypal",
+          billing_country: "AU",
+          billing_state: state,
+          billing_city: city,
+          billing_address: address,
+          billing_zip: zip,
+          billing_firstName: firstName,
+          billing_lastName: lastName,
+          billing_email: formDataemail,
+          billing_phone: phone,
+          billing_tip: totalChargeFromShipping.toFixed(2),
+          baseUrl: window.location.origin,
+          discount: confirm ? discount : ''
+        },
+        {
+          onSuccess: (result) => {
+            if (result.code == 1) {
+              fetchClear(
+                { userId: userId, order_no: result.order_number },
+                {
+                  onSuccess: () => {
+                    // Handle the success scenario for order clear
+                    //toast.success("Order cleared successfully");
+                    // Additional success logic here...
+                    if (result.sign.link) {
+                      window.location.href = result.sign.link;
+                    } else {
+                      toast.error("Error clearing order: " + result.msg);
+                    }
+                    setIsBtnLoading(false);
+                  },
+                  onError: (error) => {
+                    // Handle the error scenario for order clear
+                    toast.error("Error clearing order: " + error.message);
+                    setIsBtnLoading(false);
+                  },
+                }
+              );
+            } else {
+              setIsBtnLoading(false);
+              toast.error(result.msg);
+            }
           },
-        ],
-        payment_source: {
-          paypal: {
-            experience_context: {
-              payment_method_preference: "IMMEDIATE_PAYMENT_REQUIRED",
-              brand_name: "EXAMPLE INC",
-              locale: "en-US",
-              landing_page: "LOGIN",
-              shipping_preference: "NO_SHIPPING",
-              user_action: "PAY_NOW",
-              return_url: "https://theoutmaker.com.au/paypal/status",
-              cancel_url: "https://theoutmaker.com.au/paypal/status",
-            },
+          onError: (error) => {
+            // Handle the error scenario
+            console.error("Error in ocean process:", error);
+            toast.error("Error in ocean process:" + error.message);
+            setIsBtnLoading(false);
           },
-        },
-      };
-
-      createOrder(orderData, {
-        onSuccess: (data) => {
-          setIsBtnLoading(false);
-          if (data?.approvalUrl) {
-            localStorage.setItem("OrderID", data?.order.id);
-            const approvalUrl = data?.approvalUrl; // approvalUrl支付跳转链接
-            const paypalOrderID = data?.order.id; // paypalOrderID官方订单号
-            const data_fetchOrder = {
-              receiver_name: firstName + lastName,
-              receiver_email: formDataemail,
-              phone,
-              address,
-              state,
-              city,
-              zip,
-              country,
-              discount: confirm ? discount : '',
-              payment_method: "1",
-              paypal_order_no: paypalOrderID,
-              shipping_cost: totalChargeFromShipping,
-              total_cost: amount,
-            };
-
-            fetchOrderPaypal(
-              {
-                userinfo: formDataemail,
-                product: JSON.stringify(idAndNameArray),
-                address: address,
-                amount: amount,
-                paypal_no: paypalOrderID,
-              },
-              {
-                onSuccess: (res) => {
-                  // 处理成功逻辑
-                  if (res.code == 1) {
-                    fetchOrder(
-                      {
-                        userId,
-                        data: data_fetchOrder,
-                        order_no: res.data.invoice,
-                      },
-                      {
-                        onSuccess: (response) => {
-                          if (response.Error) {
-                            toast.error(response.Error);
-                            return;
-                          }
-                          // After order draft, execute order clear
-                          fetchClear(
-                            { userId, order_no: res.data.invoice },
-                            {
-                              onSuccess: () => {
-                                // Handle the success scenario for order clear
-                                // toast.success("Order cleared successfully");
-                                // Additional success logic here...
-                                setIsBtnLoading(false);
-                              },
-                              onError: (error) => {
-                                // Handle the error scenario for order clear
-                                toast.error("Error clearing order: " + error.message);
-                                setIsBtnLoading(false);
-                              },
-                            }
-                          );
-                        },
-                        onError: (error) => {
-                          // Handle the error scenario for order draft
-                          toast.error("Error creating order draft: " + error.message);
-                        },
-                      }
-                    );
-                  } else {
-                    toast.error("Error creating order draft: " + error.message);
-                  }
+        }
+      );
 
 
-
-                },
-                onError: (error) => {
-                  // 处理错误逻辑
-                },
-              }
-            );
-
-
-          } else {
-            toast.error("Creating PayPal order failed.");
-            return null;
-          }
-          // 成功后的操作，例如重定向到 PayPal 的 approvalUrl
-          window.location.href = data.approvalUrl;
-        },
-        onError: (error) => {
-          // 错误处理已经在 mutation 内部完成，这里可以添加额外的错误处理逻辑
-          console.error("error", error);
-          toast.error(error.message);
-          setIsBtnLoading(false);
-        },
-      });
     } else if (paymentMethod == "card") {
       const cardToken = await getCardTokenAsync();
       const productList = objectOnlyData.map((item) => {
