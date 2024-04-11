@@ -7,7 +7,7 @@ export const useCreateOceanpayment = () => {
     const baseUrl = getApiBaseUrl(); // 使用动态API基础URL
     return useMutation(async (data) => {
         try {
-            const response = await axios.post(`${baseUrl}/oceanpayment/create`, data, {
+            const response = await axios.post(`${baseUrl}/pay/orders/create`, data, {
                 headers: {
                     "Content-Type": "application/json",
                 },
