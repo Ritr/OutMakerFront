@@ -14,6 +14,8 @@ const PaymentSuccess = () => {
   const [details, setDetails] = useState({ orderId: '----', paymentAmount: '--', paymentType: '--', create_time: '' });
   const { mutate: ajaxOrderStatus } = useOrderStatus();
   const { mutate: ajaxOrderDetail } = useOrderStatus();
+  const searchParams = new URLSearchParams(location.search);
+  const token = searchParams.get("token");
   let i = 30;
   let j = 0;
   useEffect(() => {
@@ -21,11 +23,16 @@ const PaymentSuccess = () => {
   }, []);
 
   const ajaxOrderStatusFun = (order_no) => {
-    ajaxOrderStatus({ order_no: order_no }, {
+    let param = { order_no: order_no };
+    //token返回的是订单验证
+    if (token) {
+      param.token = token;
+    }
+    ajaxOrderStatus(param, {
       onSuccess: (result) => {
         //0=Cancelled, 1=Completed, 2=To Ship, 3=Shipping, 4=Returned, 5=Failed, 6=Refunded, 7=Payment Pending, 8=Paid 0=已取消、1=已完成、2=发货、3=发货、4=已退回、5=失败、6=退款、7=待付款、8=已付款
         if (result.code == 1) {
-          setDetails({orderId:result.order.order_no,paymentAmount:result.order.payment_amount,create_time:result.order.created_at,paymentType:result.order.paymentType})
+          setDetails({ orderId: result.order.order_no, paymentAmount: result.order.payment_amount, create_time: result.order.created_at, paymentType: result.order.paymentType })
           switch (result.order.status) {
             //支付中,估计会有延迟，按秒计算
             case 7:
