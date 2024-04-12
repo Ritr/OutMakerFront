@@ -26,3 +26,4 @@ dist-ssr
 front
 front.zip
 .gitignore
+*.zip
