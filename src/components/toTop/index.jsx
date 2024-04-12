@@ -11,7 +11,7 @@ const Top = () => {
     function handleScroll() {
       const { scrollTop } = document.querySelector("#root");
       const { clientHeight } = document.querySelector("#root>div");
-      if (clientHeight - scrollTop < 2400) {
+      if (scrollTop > 1000 && clientHeight - scrollTop < 2000) {
         setShowDiv(true);
       } else {
         setShowDiv(false);

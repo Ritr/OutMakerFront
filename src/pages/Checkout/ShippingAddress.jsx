@@ -10,7 +10,11 @@ import {
   recalculateCharge,
   calculateFuelSurchargeAndGST,
 } from "./LargeCalculations";
-
+const FormatName = (inputString) => {
+  let words = inputString.toLowerCase().split(' ');
+  let result = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  return result;
+};
 const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
   const [selectFilter, setSelectFilter] = useState("");
   // 存储可用的州/地区列表
@@ -74,7 +78,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
     setCities(loadedCities);
     const cityOptions = loadedCities.map((city) => ({
       value: city,
-      label: city,
+      label: FormatName(city),
     }));
 
     setCityOptions(cityOptions);
@@ -193,6 +197,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
           ))}
         </select>
         <Select
+          isClearable
           onInputChange={(value) => {
             setSelectFilter(value);
           }}

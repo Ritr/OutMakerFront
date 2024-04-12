@@ -158,240 +158,30 @@ const CategoryAllProducts = ({ category }) => {
             <button className="flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0 text-[#DCDCDC]" onClick={() => {
               setSort(null);
             }}>Clear</button>
-            {/* <button
-              className={`p-1 md:p-2 border font-normal text-xs md:text-md h-auto min-h-0  ${
-                sort === "collection" ? "bg-primary text-white" : ""
-              }`}
-              onClick={() => setSort("collection")}
-            >
-              Collection
-            </button> */}
-            {/* <label htmlFor="score" className="">
-              <input type="radio" name="sort1" id="score" className="hidden" />
-              <span className="cursor-pointer">score</span>
-            </label>
-            <label htmlFor="sales">
-              <input type="radio" name="sort1" id="sales" className="hidden" />
-              <span className="cursor-pointer">sales</span>
-            </label>
-
-            <label htmlFor="price1" onClick={() => setSort("price1")}>
-              <input type="radio" name="sort1" id="price1" className="hidden" />
-              <span className="cursor-pointer">Price (High to Low)</span>
-            </label>
-
-            <label htmlFor="price2" onClick={() => setSort("price2")}>
-              <input type="radio" name="sort1" id="price2" className="hidden" />
-              <span className="cursor-pointer">Price (Low to High)</span>
-            </label>
-
-            <label htmlFor="collection" onClick={() => setSort("collection")}>
-              <input
-                type="radio"
-                name="sort1"
-                id="collection"
-                className="hidden"
-              />
-              <span className="cursor-pointer">Collection</span>
-            </label> */}
           </div>
-          {/* <p
-					className='flex w-max border items-center px-4 justify-between border-1 text-xs md:text-lg font-medium rounded-full py-2 border-primary cursor-pointer hover:bg-primary hover:text-white gap-x-8'
-					onClick={() => setShowModal(true)}>
-					Filter
-					<span className='pl-0 md:pl-4'>
-						<BsFillFilterCircleFill />
-					</span>
-				</p> */}
         </div>
 
-        {!category ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
-            {/* {products?.map((product) => (
-            <div key={product?.p_id} className="rounded-lg shadow-lg relative">
-              <div className="lg:h-[250px]">
-                <img
-                  src={ImgBaseUrl(product?.p_pic)}
-                  alt=""
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div
-                className="px-4 pb-4"
-                style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
-              >
-                <h5 className="text-lg font-medium text-black">
-                  {product?.p_name}
-                </h5>
-                <p className="text-xs font-normal text-[#B8B8B8] leading-none">
-                  {categoryItem?.Category.category_name}
-                </p>
-                <div className="flex justify-between items-center pt-4">
-                  <div className="flex w-max gap-4">
-                    <input
-                      type="radio"
-                      name={product.id}
-                      className="radio radio-warning"
-                      checked
-                      style={{ width: "25px", height: "25px" }}
-                    />
-                    <input
-                      type="radio"
-                      name={product.id + 1}
-                      className="radio"
-                      checked
-                      disabled
-                      style={{ width: "25px", height: "25px" }}
-                    />
-                    <input
-                      type="radio"
-                      name={product.id + 2}
-                      className="radio"
-                      checked
-                      style={{ width: "25px", height: "25px" }}
-                    />
-                  </div>
-                  <p>$600</p>
-                </div>
-              </div>
-
-              <div className="absolute inset-0 bg-cover bg-center z-0"></div>
-
-              <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">
-                <div className="absolute inset-0 z-10 flex justify-start items-start top-4 left-4 text-xs text-black font-normal p-1">
-                 <Rating style={{ maxWidth: 100 }} value={3} readOnly activeColor="black"/>
-                </div>
-                <p className="absolute inset-0 z-10 flex justify-end items-center top-1/4 right-7 text-xs text-black font-normal p-1">
-                  <Link to={`/product-details/${"id"}`}>
-                    <p className="border-b-2 border-black flex">
-                      Shop <BsArrowRight />
-                    </p>
-                  </Link>
-                </p>
-              </div>
-            </div>
-          ))} */}
-
-            {/* obj handle */}
-
-            {products?.map((product) => (
-              <Link
-                to={`/product-details/${id}/${product.purl}`}
-                key={product?.product?.p_id}
-              >
-                <div className="rounded-lg shadow-lg relative transform transition duration-300 hover:scale-105">
-                  <div className="lg:h-[250px]">
-                    <img
-                      src={ImgBaseUrl(product?.product?.p_pic)}
-                      alt=""
-                      className="w-full h-full"
-                      style={{ objectFit: "cover" }}
-                    />
-                  </div>
-                  <div
-                    className="px-4 pb-4"
-                    style={{ boxShadow: "0px 0px 50px 1px #f5f5f5" }}
-                  >
-                    <p className="text-lg font-medium text-black cursor-pointer">
-                      {product?.product?.p_name.slice(0, 50)}
-                    </p>
-                    <p className="text-xs font-normal text-[#B8B8B8] leading-none">
-                      {categoryItem?.Category.category_name}
-                    </p>
-                    <div className="flex justify-between items-center pt-4">
-                      {/* for color selection */}
-
-                      {/* <div className="flex w-max gap-4">
-                  <input
-                    type="radio"
-                    name={product.id}
-                    className="radio radio-warning"
-                    checked
-                    style={{ width: "25px", height: "25px" }}
-                  />
-                  <input
-                    type="radio"
-                    name={product.id + 1}
-                    className="radio"
-                    checked
-                    disabled
-                    style={{ width: "25px", height: "25px" }}
-                  />
-                  <input
-                    type="radio"
-                    name={product.id + 2}
-                    className="radio"
-                    checked
-                    style={{ width: "25px", height: "25px" }}
-                  />
-                </div> */}
-                      <Rating
-                        style={{ maxWidth: 100 }}
-                        value={product?.review?.[0]?.review}
-                        readOnly
-                      />
-                      <p>${product?.price?.[0]?.product_sale_price}</p>
-                    </div>
-                  </div>
-
-                  {/* <div className="absolute inset-0 bg-cover bg-center z-0"></div> */}
-
-                  <div className="opacity-1 md:opacity-0 hover:opacity-[1] duration-300 ">
-                    {/* <div className="absolute inset-0 z-10 flex justify-start items-start top-4 left-4 text-xs text-black font-normal p-1">
-              <Rating style={{ maxWidth: 100 }} value={product?.review?.[0]?.review} readOnly />
-              </div> */}
-                    <div className="absolute inset-1 z-10 flex justify-end items-center top-1/4 right-7 text-xs text-black font-normal p-1">
-                      {/* <Link to={`/product-details/${product?.product?.p_id}`}>
-                  <p className="border-b-2 border-black flex font-bold">
-                    Shop <BsArrowRight />
-                  </p>
-                </Link> */}
-                      <p className="border-b-2 border-black flex font-bold">
-                        Shop <BsArrowRight />
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
-            {/* obj handle */}
-            {products?.map(({ product, price, purl }) => {
-              <OutdoorDiningChairCard
-                categoryId={product.category_id}
-                purl={purl}
-                key={product.p_id}
-                id={product?.p_id}
-                imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
-                title={product.p_name}
-                review={product?.review?.[0]?.review}
-                price={`A$${price[0].product_sale_price}`} // Display sale price
-                originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
-                discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
-                  } `} // Calculate discount
-                colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
-              ></OutdoorDiningChairCard>;
-            })}
-            {products?.map(({ product, price, purl }) => (
-              <OutdoorDiningChairCard
-                categoryId={product.category_id}
-                purl={purl}
-                key={product.p_id}
-                id={product?.p_id}
-                imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
-                title={product.p_name}
-                review={product?.review?.[0]?.review}
-                price={`A$${price[0].product_sale_price}`} // Display sale price
-                originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
-                discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
-                  } `} // Calculate discount
-                colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
-              ></OutdoorDiningChairCard>
-            ))}
-          </div>
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">        
+          {products?.map(({ product, price, purl,materials }) => (
+            <OutdoorDiningChairCard
+              materials={materials}
+              images={product.images}
+              Product_Colors={product.product_colors}
+              categoryId={product.category_id}
+              purl={purl}
+              key={product.p_id}
+              id={product?.p_id}
+              imageUrl={ImgBaseUrl(product.p_pic)} // Adjust the path as needed
+              title={product.p_name}
+              review={product?.review?.[0]?.review}
+              price={`A$${price[0].product_sale_price}`} // Display sale price
+              originalPrice={`A$${price[0].product_regular_price}`} // Display regular price
+              discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
+                } `} // Calculate discount
+              colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
+            ></OutdoorDiningChairCard>
+          ))}
+        </div>
 
         {showModal ? (
           <>

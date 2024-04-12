@@ -8,18 +8,19 @@ export const CartContext = createContext(null);
 const CartProvider = ({ children }) => {
   const userId = localStorage.getItem("usercode") || null;
   const queryClient = useQueryClient();
-  const { data, error } = useFetchCartData(userId);
+  const { data, error, isLoading } = useFetchCartData(userId);
   const [cartData, setCartData] = useState(null);
   const [objectOnlyData, setObjectOnlyData] = useState([]);
   const [costData, setCostData] = useState([]);
 
   useEffect(() => {
+    console.log("isLoading", isLoading);
     if (data) {
       setCartData(data);
       setObjectOnlyData(data.filter((item) => typeof item === "object"));
       setCostData(data.find((item) => typeof item === "number"));
     }
-  }, [data]);
+  }, [isLoading]);
 
   useEffect(() => {
     if (error) {
@@ -30,7 +31,7 @@ const CartProvider = ({ children }) => {
 
   const fetchCartData = () => {
     if (userId) {
-      queryClient.invalidateQueries(["cartData", userId]);
+      queryClient.invalidateQueries(["cartData"]);
     }
   };
 
