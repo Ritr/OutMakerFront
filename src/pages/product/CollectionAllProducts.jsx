@@ -189,7 +189,7 @@ const CollectionAllProducts = ({ category }) => {
             {products?.map((product) => (
               // <div>{JSON.stringify(product)}</div>
               <OutdoorDiningChairCard
-                materials={product.materials}
+                materials={product.product.materials}
                 images={product.product.images}
                 Product_Colors={product.product.product_colors}
                 categoryId={product.product.category_id}

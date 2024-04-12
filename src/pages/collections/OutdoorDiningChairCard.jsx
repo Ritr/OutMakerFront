@@ -67,13 +67,13 @@ const OutdoorDiningChairCard = ({
     <div className="max-w-sm md:max-w-md lg:max-w-xl mx-auto bg-white mb-3 border border-[#e5e7eb]  overflow-hidden relative md:max-h-[515px] shadow-md">
       {isNew && (
         <span className="bg-green-200 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded absolute z-10 m-2">
-          NEW
+          NEW 
         </span>
       )}
 
       <div className=" ml-4 mt-4 inline-flex gap-1 text-sm  text-white bg-[#dc2626] rounded-md items-center justify-center  py-1 px-1 md:py-2 md:px-5">
         <MdOutlineDiscount className="text-sm md:text-xl font-medium"></MdOutlineDiscount>
-        30%OFF
+        30%OFF{JSON.stringify}
       </div>
 
 

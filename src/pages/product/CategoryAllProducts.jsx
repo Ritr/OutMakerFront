@@ -162,9 +162,9 @@ const CategoryAllProducts = ({ category }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">        
-          {products?.map(({ product, price, purl,materials }) => (
+          {products?.map(({ product, price, purl }) => (
             <OutdoorDiningChairCard
-              materials={materials}
+              materials={product.materials}
               images={product.images}
               Product_Colors={product.product_colors}
               categoryId={product.category_id}
