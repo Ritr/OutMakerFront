@@ -100,7 +100,7 @@ const CheckoutInfo = () => {
   );
 
   const totalEstimatedPrice = objectOnlyData?.reduce(
-    (total, item) => total + (item?.cost?.total_cost * item?.qunatity || 0),
+    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0) * (confirm ? 90 : 100)/100),
     0
   );
 
