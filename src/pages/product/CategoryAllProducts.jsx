@@ -113,28 +113,27 @@ const CategoryAllProducts = ({ category }) => {
 				</p> */}
         </div>
 
-        <div className="md:flex  justify-between pt-14 gap-2 px-6 md:px-0">
-          <p className="border-1 mb-4 md:mb-0 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
+        <div className="flex  justify-between pt-14 gap-2 px-6 md:px-0">
+          <p className="border-1 md:mb-0 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
             {products.length} Products
           </p>
           <div className="flex flex-wrap gap-2 items-center">
-            {/* <span className="font-semibold md:mr-2 text-md">Sort By:</span> */}
             <button
-              className={`p-1 md:py-2 md:px-4 rounded-md  border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "score" ? " text-primary border-primary" : "text-[#DCDCDC]"
+              className={`p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0  ${sort === "score" ? " text-white bg-primary" : ""
                 }`}
               onClick={() => setSort("score")}
             >
               score
             </button>
             <button
-              className={`p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "sales" ? " text-primary border-primary" : "text-[#DCDCDC]"
+              className={`p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0  ${sort === "sales" ? " text-white bg-primary" : ""
                 }`}
               onClick={() => setSort("sales")}
             >
               sales
             </button>
             <button
-              className={`flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${(sort === "price1" || sort === "price2") ? " text-primary border-primary" : "text-[#DCDCDC]"
+              className={`flex p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0  ${(sort === "price1" || sort === "price2") ? " text-white bg-primary" : ""
                 }`}
               onClick={
                 () => {
@@ -145,23 +144,23 @@ const CategoryAllProducts = ({ category }) => {
               }
             >
               Price
-              <div className="text-3xs md:text-xs ml-2">
+              <div className="text-3xs md:text-xs ml-2 ">
                 <BiSolidUpArrow
-                  className={`${sort === "price2" ? "text-red-500" : "text-[#DCDCDC]"
+                  className={`text-4xs md:text-xs ${sort === "price2" ? "text-red-500" : ""
                     }`}
                 /> <BiSolidDownArrow
-                  className={`${sort === "price1" ? "text-red-500" : "text-[#DCDCDC]"
+                  className={`text-4xs md:text-xs ${sort === "price1" ? "text-red-500" : ""
                     }`}
                 />
               </div>
             </button>
-            <button className="flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0 text-[#DCDCDC]" onClick={() => {
+            <button className="flex p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0" onClick={() => {
               setSort(null);
             }}>Clear</button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 py-10">
           {products?.map(({ product, price, purl }) => (
             <OutdoorDiningChairCard
               materials={product.materials}

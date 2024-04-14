@@ -331,7 +331,7 @@ const Footer = () => {
                       <Link to="/FAQ">Frequently Asked Questions</Link>
                     </li>
                     <li className="">
-                      <Link to="/Intellectual">INTELLECTUAL Property Rights</Link>
+                      <Link to="/Intellectual">Intellectual Property Rights</Link>
                     </li>
                   </ul>
                 </div>
