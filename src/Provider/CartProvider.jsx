@@ -14,14 +14,12 @@ const CartProvider = ({ children }) => {
   const [costData, setCostData] = useState([]);
 
   useEffect(() => {
-    console.log("isLoading", isLoading);
     if (data) {
       setCartData(data);
       setObjectOnlyData(data.filter((item) => typeof item === "object"));
       setCostData(data.find((item) => typeof item === "number"));
     }
-  }, [isLoading]);
-
+  }, [data]);
   useEffect(() => {
     if (error) {
       console.error("Error fetching cart data:", error);
