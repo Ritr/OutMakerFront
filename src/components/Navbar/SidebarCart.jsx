@@ -7,16 +7,17 @@ import { CartContext } from "../../Provider/CartProvider";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { PiNotePencil } from "react-icons/pi";
 
 import { useManageProductQuantity } from "../../Hooks/api/useManageProductQuantity";
-
+import CartNotes from "./CartNodes";
 const SidebarCart = ({ isOpen, toggleSidebar }) => {
   const { cartData, objectOnlyData, fetchCartData, updateObjectOnlyData } =
     useContext(CartContext);
   const navigate = useNavigate();
   const userCode = localStorage.getItem("usercode");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false); // 新状态
-
+  const [noteFlag, setNoteFlag] = useState(false);
   const { mutate: manageQuantity } = useManageProductQuantity(userCode);
 
   // 处理复选框变化
@@ -178,6 +179,14 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                     </div>
                   </div>
                 ))}
+              </div>
+              <div className="flex">
+                <div class="tooltip" data-tip="Edit Notes">
+                  <button className={`btn ${noteFlag ? "hidden" : ""}`} onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
+                </div>
+              </div>
+              <div className={`mt-4 ${(noteFlag && objectOnlyData[0]) ? "" : "hidden"}`}>
+                <CartNotes initNotes={objectOnlyData[0]?.notes} onCancel={() => { setNoteFlag(false) }} onSubmit={() => { setNoteFlag(false) }} />
               </div>
             </div>
             <div id="paymentRef" className="bg-gray-50 p-5 sticky bottom-0">
