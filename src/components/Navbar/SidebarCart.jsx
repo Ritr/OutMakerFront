@@ -93,7 +93,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       style={{
         zIndex: "1001",
       }}
-      className={`fixed  inset-y-0 right-0 left-0  h-full w-full bg-gray-900 bg-opacity-60  ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+      className={`fixed  inset-y-0 right-0 left-0 top-0 bottom-0  h-full w-full bg-gray-900 bg-opacity-60  ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
         }`}
     >
       <div
@@ -109,7 +109,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
           }}
           className="w-full h-full text-black container mx-auto py-2 md:pb-10 "
         >
-          <div className="flex flex-col h-screen justify-between">
+          <div className="flex flex-col h-full justify-between">
             <div className="p-5 bg-white border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
@@ -188,7 +188,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                 <CartNotes initNotes={objectOnlyData[0]?.notes} onCancel={() => { setNoteFlag(false) }} onSubmit={() => { setNoteFlag(false) }} />
               </div>
             </div>
-            <div id="paymentRef" className={`bg-gray-50 p-5 pb-14 sticky bottom-0 ${(noteFlag && objectOnlyData[0])?"hidden":""}` }>
+            <div id="paymentRef" className={`bg-gray-50 p-5 pb-0 sticky bottom-0 ${(noteFlag && objectOnlyData[0])?"hidden":""}` }>
               <div className="flex justify-between items-center">
                 <h5 className="text-xl leading-none ">Order Summary</h5>
               </div>
