@@ -20,7 +20,7 @@ export const useFetchCartData = () => {
             // location.reload();
         },
         select: (data) => {
-            if (!data || data.length === 0) {
+            if (!data) {
                 return null;
             }
             return Object.values(data);

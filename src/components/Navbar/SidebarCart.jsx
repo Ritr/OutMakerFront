@@ -109,7 +109,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
           }}
           className="w-full h-full text-black container mx-auto py-2 md:pb-10 "
         >
-          <div className="flex flex-col h-screen">
+          <div className="flex flex-col h-screen justify-between">
             <div className="p-5 bg-white border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
@@ -126,8 +126,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                   <FaTimes />
                 </button>
               </div>
-              <div className={`max-h-[60vh] overflow-y-auto`}>
-
+              <div className={`max-h-[50vh] overflow-y-auto`}>
                 {objectOnlyData?.map((singleData, index) => (
                   <div key={index} className="flex gap-4 my-4">
                     <img
@@ -180,7 +179,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                   </div>
                 ))}
               </div>
-              <div className={`${objectOnlyData[0] ? "flex" : "hidden"}`}>
+              <div className={`${objectOnlyData[0] ? "flex pt-4" : "hidden"}`}>
                 <div className="tooltip" data-tip="Edit Notes">
                   <button className={`btn ${noteFlag ? "hidden" : ""}`} onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
                 </div>
