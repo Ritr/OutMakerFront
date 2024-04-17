@@ -33,7 +33,13 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       tagline.parentNode.removeChild(tagline);
     }
   }, []);
-
+  useEffect(() => {
+    if (isOpen) {
+      document.querySelector("#root").style.overflowY = "hidden";
+    } else {
+      document.querySelector("#root").style.overflowY = "auto";
+    }
+  }, [isOpen]);
   // Calculate the total price from objectOnlyData
   const totalEstimatedPrice = objectOnlyData?.reduce(
     (total, item) => total + (item?.cost?.total_cost * item?.qunatity || 0),
