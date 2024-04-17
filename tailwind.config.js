@@ -27,6 +27,7 @@ export default {
       fontSize: {
         '2xs': '0.725rem',
         '3xs': '0.7rem',
+        '4xs': '0.5rem',
       },
     },
   },

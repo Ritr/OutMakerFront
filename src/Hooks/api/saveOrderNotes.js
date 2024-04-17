@@ -21,3 +21,24 @@ export const saveNotes = (orderNumber, notes) => {
         }
     });
 };
+export const saveCartNotes = (notes) => {
+    const userId = localStorage.getItem("usercode");
+    let url = `https://www.theoutmaker.com/public/api/user/product/save_notes/cart/${userId}`;
+    const formData = new URLSearchParams();
+    formData.append('notes', notes);
+    return useMutation({
+        mutationFn: async () => {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: formData,
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        }
+    });
+};

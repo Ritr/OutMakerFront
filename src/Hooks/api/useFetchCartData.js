@@ -12,7 +12,7 @@ export const fetchCartData = async () => {
 };
 
 export const useFetchCartData = () => {
-    return useQuery(['cartData'], () => fetchCartData(), {
+    return useQuery(["cartData"], () => fetchCartData(), {
         onError: (error) => {
             console.error("Error fetching cart data:", error);
             // 过期重新刷新

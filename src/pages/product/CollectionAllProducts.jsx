@@ -116,27 +116,27 @@ const CollectionAllProducts = ({ category }) => {
           </h2>
         </div>
 
-        <div className="md:flex  justify-between pt-14 gap-2">
-          <p className=" mb-4 md:mb-0 border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
+        <div className="flex  justify-between items-center pt-14 gap-2">
+          <p className=" md:mb-0 border-1 border text-xs md:text-lg font-medium rounded-full py-2 px-4 w-max border-primary text-center">
             {products.length} Products
           </p>
           <div className="flex flex-wrap gap-2 items-center">
             <button
-              className={`p-1 md:py-2 md:px-4 rounded-md  border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "score" ? " text-primary border-primary" : "text-[#DCDCDC]"
+              className={`p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0  ${sort === "score" ? " text-white bg-primary" : ""
                 }`}
               onClick={() => setSort("score")}
             >
               score
             </button>
             <button
-              className={`p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${sort === "sales" ? " text-primary border-primary" : "text-[#DCDCDC]"
+              className={`p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0  ${sort === "sales" ? " text-white bg-primary" : ""
                 }`}
               onClick={() => setSort("sales")}
             >
               sales
             </button>
             <button
-              className={`flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0  ${(sort === "price1" || sort === "price2") ? " text-primary border-primary" : "text-[#DCDCDC]"
+              className={`flex p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0  ${(sort === "price1" || sort === "price2") ? " text-white bg-primary" : ""
                 }`}
               onClick={
                 () => {
@@ -147,17 +147,17 @@ const CollectionAllProducts = ({ category }) => {
               }
             >
               Price
-              <div className="text-3xs md:text-xs ml-2">
+              <div className="text-3xs md:text-xs ml-2 ">
                 <BiSolidUpArrow
-                  className={`${sort === "price2" ? "text-red-500" : "text-[#DCDCDC]"
+                  className={`text-4xs md:text-xs ${sort === "price2" ? "text-red-500" : ""
                     }`}
                 /> <BiSolidDownArrow
-                  className={`${sort === "price1" ? "text-red-500" : "text-[#DCDCDC]"
+                  className={`text-4xs md:text-xs ${sort === "price1" ? "text-red-500" : ""
                     }`}
                 />
               </div>
             </button>
-            <button className="flex p-1 md:py-2 md:px-4 rounded-md border font-normal text-xs md:text-base h-auto min-h-0 text-[#DCDCDC]" onClick={() => {
+            <button className="flex p-1 md:py-2 md:px-4 rounded-md  border border-primary font-normal text-sm md:text-base h-auto min-h-0" onClick={() => {
               setSort(null);
             }}>Clear</button>
           </div>
@@ -189,6 +189,9 @@ const CollectionAllProducts = ({ category }) => {
             {products?.map((product) => (
               // <div>{JSON.stringify(product)}</div>
               <OutdoorDiningChairCard
+                materials={product.product.materials}
+                images={product.product.images}
+                Product_Colors={product.product.product_colors}
                 categoryId={product.product.category_id}
                 purl={product.purl}
                 key={product?.product?.p_id}

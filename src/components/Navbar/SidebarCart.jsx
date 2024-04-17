@@ -7,16 +7,17 @@ import { CartContext } from "../../Provider/CartProvider";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { PiNotePencil } from "react-icons/pi";
 
 import { useManageProductQuantity } from "../../Hooks/api/useManageProductQuantity";
-
+import CartNotes from "./CartNodes";
 const SidebarCart = ({ isOpen, toggleSidebar }) => {
   const { cartData, objectOnlyData, fetchCartData, updateObjectOnlyData } =
     useContext(CartContext);
   const navigate = useNavigate();
   const userCode = localStorage.getItem("usercode");
   const [isAgreementChecked, setIsAgreementChecked] = useState(false); // 新状态
-
+  const [noteFlag, setNoteFlag] = useState(false);
   const { mutate: manageQuantity } = useManageProductQuantity(userCode);
 
   // 处理复选框变化
@@ -53,7 +54,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
   };
   const handleIncreaseQuantity = (id) => {
 
-    
+
     manageQuantity(
       { productId: id, action: "increase" },
       {
@@ -75,25 +76,9 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       { productId: id, action: "decrease" },
       {
         onSuccess: () => {
-          // 直接更新 objectOnlyData 状态以反映数量减少后的变化
-          const updatedData = objectOnlyData.reduce((acc, item) => {
-            if (item.product.p_id === id) {
-              const newQuantity = item.qunatity - 1;
-              if (newQuantity > 0) {
-                // 如果数量大于 0，更新该项
-                acc.push({ ...item, qunatity: newQuantity });
-              }
-              // 如果数量等于 0，不再将该项添加到数组中，相当于移除该商品
-            } else {
-              // 如果不是当前操作的商品 ID，保持不变
-              acc.push(item);
-            }
-            return acc;
-          }, []);
-
-          // 更新状态
-          updateObjectOnlyData(updatedData);
-          toast.success("Product quantity decreased successfully.");
+          // 触发 Context 中的状态更新
+          fetchCartData(); // 假设这个函数会重新获取最新的购物车数据并更新状态
+          toast.success("Product quantity increased successfully.");
         },
         onError: (error) => {
           console.error("Failed to decrease quantity", error);
@@ -108,17 +93,15 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       style={{
         zIndex: "1001",
       }}
-      className={`fixed  inset-y-0 right-0 left-0  h-full w-full bg-gray-900 bg-opacity-60  ease-in-out ${
-        isOpen ? "translate-x-0" : "translate-x-full"
-      }`}
+      className={`fixed  inset-y-0 right-0 left-0  h-full w-full bg-gray-900 bg-opacity-60  ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
     >
       <div
         style={{
           zIndex: "1001",
         }}
-        className={`fixed inset-y-0 right-0 left-10 md:left-auto md:w-3/12  bg-base-100 shadow-xl transition-transform duration-300 ease-in-out ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed inset-y-0 right-0 left-10 md:left-auto md:w-3/12  bg-base-100 shadow-xl transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <section
           style={{
@@ -144,7 +127,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                 </button>
               </div>
               <div className={`max-h-[60vh] overflow-y-auto`}>
-               
+
                 {objectOnlyData?.map((singleData, index) => (
                   <div key={index} className="flex gap-4 my-4">
                     <img
@@ -196,6 +179,14 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                     </div>
                   </div>
                 ))}
+              </div>
+              <div className="flex">
+                <div class="tooltip" data-tip="Edit Notes">
+                  <button className={`btn ${noteFlag ? "hidden" : ""}`} onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
+                </div>
+              </div>
+              <div className={`mt-4 ${(noteFlag && objectOnlyData[0]) ? "" : "hidden"}`}>
+                <CartNotes initNotes={objectOnlyData[0]?.notes} onCancel={() => { setNoteFlag(false) }} onSubmit={() => { setNoteFlag(false) }} />
               </div>
             </div>
             <div id="paymentRef" className="bg-gray-50 p-5 sticky bottom-0">
