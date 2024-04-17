@@ -126,7 +126,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                   <FaTimes />
                 </button>
               </div>
-              <div className={`max-h-[50vh] overflow-y-auto`}>
+              <div className={`max-h-[45vh] overflow-y-auto`}>
                 {objectOnlyData?.map((singleData, index) => (
                   <div key={index} className="flex gap-4 my-4">
                     <img
@@ -188,7 +188,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                 <CartNotes initNotes={objectOnlyData[0]?.notes} onCancel={() => { setNoteFlag(false) }} onSubmit={() => { setNoteFlag(false) }} />
               </div>
             </div>
-            <div id="paymentRef" className={`bg-gray-50 p-5 sticky bottom-0 ${(noteFlag && objectOnlyData[0])?"hidden":""}` }>
+            <div id="paymentRef" className={`bg-gray-50 p-5 pb-14 sticky bottom-0 ${(noteFlag && objectOnlyData[0])?"hidden":""}` }>
               <div className="flex justify-between items-center">
                 <h5 className="text-xl leading-none ">Order Summary</h5>
               </div>
