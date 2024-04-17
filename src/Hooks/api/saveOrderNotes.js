@@ -23,7 +23,7 @@ export const saveNotes = (orderNumber, notes) => {
 };
 export const saveCartNotes = (notes) => {
     const userId = localStorage.getItem("usercode");
-    let url = `https://www.theoutmaker.com/public/api/user/product/cart/add_notes/${userId}`;
+    let url = `https://www.theoutmaker.com/public/api/user/product/save_notes/cart/${userId}`;
     const formData = new URLSearchParams();
     formData.append('notes', notes);
     return useMutation({
