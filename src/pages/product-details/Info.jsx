@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { BsHandbagFill } from "react-icons/bs";
 import SocialShare from "../../components/SocialShare/SocialShare";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
@@ -32,11 +32,17 @@ const Info = ({
   const [isSidebarCartOpen, setIsSidebarCartOpen] = useState(false);
   const { fetchCartData } = useContext(CartContext);
   const userCode = localStorage.getItem("usercode");
-  const { mutate: addToCart } = useAddToCart(userCode);
+  const addToCartMutation = useAddToCart(userCode);
   const day1 = dayjs().add(30, "day");
   const day2 = dayjs().add(40, "day");
   const [visible, setVisible] = useState(false);
-
+  useEffect(() => {
+    if (addToCartMutation.isSuccess) {
+      toast.success("Successfully Added to your cart.");
+      fetchCartData();
+      document.getElementById("my_modal_3").showModal();
+    }
+  }, [addToCartMutation.isSuccess]);
   // 处理增加数量
   const handleIncreaseQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -69,22 +75,23 @@ const Info = ({
   //     });
   // };
   const handleAddToCart = () => {
-    addToCart(
-      { productId: product?.p_id, quantity },
-      {
-        onSuccess: (response) => {
-          const data = response.data;
-          console.log(data);
-          if (data.Failed) {
-            toast.error(data.Failed);
-            return;
-          }
-          toast.success("Successfully Added to your cart.");
-          fetchCartData(); // Refetch cart data
-          document.getElementById("my_modal_3").showModal(); // Show modal
-        },
-      }
-    );
+    addToCartMutation.mutate({ productId: product?.p_id, quantity });
+    // addToCart(
+    //   { productId: product?.p_id, quantity },
+    //   {
+    //     onSuccess: (response) => {
+    //       const data = response.data;
+    //       console.log(data);
+    //       if (data.Failed) {
+    //         toast.error("xxxxxxxx");
+    //         return;
+    //       }
+    //       toast.success("Successfully Added to your cart.");
+    //       fetchCartData(); // Refetch cart data
+    //       document.getElementById("my_modal_3").showModal(); // Show modal
+    //     },
+    //   }
+    // );
   };
 
   const viewCart = () => {
