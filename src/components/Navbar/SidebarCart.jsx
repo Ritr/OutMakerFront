@@ -187,10 +187,10 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
               </div>
               <div className={`${objectOnlyData[0] ? "flex pt-4" : "hidden"}`}>
                 <div className="tooltip" data-tip="Edit Notes">
-                  <button className={`btn ${noteFlag ? "hidden" : ""}`} onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
+                  <button className="btn" onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
                 </div>
               </div>
-              <div className={`mt-4 absolute bottom-20 z-10 ${(noteFlag && objectOnlyData[0]) ? "" : "hidden"}`}>
+              <div className={`mt-4 absolute bottom-20 z-10 left-0 right-0 px-4 ${(noteFlag && objectOnlyData[0]) ? "" : "hidden"}`}>
                 <CartNotes initNotes={objectOnlyData[0]?.notes} onCancel={() => { setNoteFlag(false) }} onSubmit={() => { setNoteFlag(false) }} />
               </div>
             </div>
