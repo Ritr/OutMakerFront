@@ -42,6 +42,7 @@ const Discount = ({ onCancel, visible }) => {
                                 className=" w-64 h-10 md:w-[360px] md:h-[40px] border indent-4 rounded-sm"
                                 placeholder="Email"
                                 onInput={e => setEmail(e.target.value)}
+                                onBlur={()=>{window.scrollTo(0,0,)}}
                             />
                         </div>
                         <div className="mt-2 md:mt-4">
