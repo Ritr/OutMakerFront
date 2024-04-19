@@ -7,13 +7,15 @@ const Discount = ({ onCancel, visible }) => {
     const sendDiscountEmailMutation = sendDiscountEmail(email);
     const submit = () => {
         sendDiscountEmailMutation.mutate();
+        toast.success("Email sent successfully,Please check later");
+        onCancel();
     };
-    useEffect(() => {
-        if (sendDiscountEmailMutation.isSuccess) {
-            toast.success("Email sent successfully");
-            onCancel();
-        }
-    }, [sendDiscountEmailMutation.isSuccess]);
+    // useEffect(() => {
+    //     if (sendDiscountEmailMutation.isSuccess) {
+    //         toast.success("Email sent successfully");
+    //         onCancel();
+    //     }
+    // }, [sendDiscountEmailMutation.isSuccess]);
     useEffect(() => {
         if (sendDiscountEmailMutation.isError) {
             toast.error("Failed to send email");
