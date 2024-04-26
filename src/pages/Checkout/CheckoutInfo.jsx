@@ -922,9 +922,9 @@ const CheckoutInfo = () => {
                             payUrl={payzippay.pay_url}
                             formData={payzippay.data}
                           ></FormDataAfter>
-                          <p className="text-xs p-1 text-gray-500 mt-1">
+                          {/* <p className="text-xs p-1 text-gray-500 mt-1">
                             Payment with Zip will be limited by 2000 AUD
-                          </p>
+                          </p> */}
                         </>
                       )}
                     </div>
