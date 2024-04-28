@@ -869,7 +869,7 @@ const CheckoutInfo = () => {
                           />
                           <span className="label-text ml-2">Afterpay</span>
                         </div>
-                        <img src={afterPay} alt="" className="w-[68px] h-[24px]" />
+                        <img src={afterPay} alt="" className="w-auto h-[26px]" />
                         {/* <svg
                           role="img"
                           className="w-[68px] h-[24px]"
@@ -913,7 +913,7 @@ const CheckoutInfo = () => {
                         <img
                           src={zip}
                           alt="ZIP"
-                          className="w-[54px] h-[22px]"
+                          className="w-auto h-[26px]"
                         />
                       </label>
                       {paymentMethod === "payZip" && (

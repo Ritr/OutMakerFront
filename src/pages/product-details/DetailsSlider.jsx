@@ -28,7 +28,8 @@ import img6 from "../../assets/detail/6.png";
 import img7 from "../../assets/detail/7.png";
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
-
+import zip from "../../assets/icons/ZIP.png";
+import afterPay from "../../assets/Afterpay.png";
 const DetailsSlider = ({
   product,
   images,
@@ -42,7 +43,18 @@ const DetailsSlider = ({
   poster,
   cost,
   imagesInfo,
+  productMaterials = []
 }) => {
+  const find24 = () => {
+    let res = productMaterials.find(item => {
+      return item.material_id == 24;
+    });
+    if (res) {
+      return 10;
+    } else {
+      return 5;
+    }
+  }
   const [headerImage, setHeaderImage] = useState(null);
   const [images2, setImages] = useState([
     { image_url: product.p_pic },
@@ -122,6 +134,8 @@ const DetailsSlider = ({
   const day1 = dayjs().add(30, "day");
   const day2 = dayjs().add(40, "day");
   const [visible, setVisible] = useState(false);
+  const [afterPayVisible, setAfterPayVisible] = useState(false);
+  const [zipPayVisible, setZipPayVisible] = useState(false);
   useEffect(() => {
     if (addToCartMutation.isSuccess) {
       toast.success("Successfully Added to your cart.");
@@ -256,19 +270,20 @@ const DetailsSlider = ({
             ))}
           </SwiperWrapper>
         </div>
-        <div className="hidden mb-2 justify-center  md:flex">
-          <div className="flex gap-4 items-center p-3 rounded-full bg-white border  md:absolute md:top-[500px]">
-            Color: <span className="text-left">{productColor.color_name}</span>
-            {Product_Colors.map(({ color }) => (
-              <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
-                <div
-                  style={{ backgroundColor: color.color_code }}
-                  className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border border-[#002B5B]  " : ""}`}
-                ></div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {Product_Colors.length ?
+          <div className="hidden mb-2 justify-center  md:flex">
+            <div className="flex gap-4 items-center p-3 rounded-full bg-white border  md:absolute md:top-[500px]">
+              Color: <span className="text-left">{productColor.color_name}</span>
+              {Product_Colors.map(({ color }) => (
+                <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
+                  <div
+                    style={{ backgroundColor: color.color_code }}
+                    className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border border-[#002B5B]  " : ""}`}
+                  ></div>
+                </div>
+              ))}
+            </div>
+          </div> : null}
       </div>
       <section className="">
         <div className="w-full">
@@ -368,7 +383,7 @@ const DetailsSlider = ({
                   data-page-type="product"
                   data-amount="350400"
                 >
-                  and 10 Year Warranty
+                  and {find24()} Year Warranty
                 </p>
               </div>
 
@@ -397,6 +412,18 @@ const DetailsSlider = ({
               </button>
             </div>
           </div>
+          <div className="hidden md:flex gap-4 pt-4">
+            <div className="text-center cursor-pointer">
+              <div className="h-8 w-24 mx-auto  bg-[#b2fce5] px-6 rounded-full overflow-hidden">
+                <img src={afterPay} className="h-8 w-auto mx-auto scale-150" alt="" />
+              </div>
+              <p className="text-sm text-[#777] mt-2">pay in 4 up to $2000</p>
+            </div>
+            <div className="text-center cursor-pointer">
+              <img src={zip} className="h-8 w-auto mx-auto" alt="" />
+              <p className="text-sm text-[#777] mt-2">From $10/week</p>
+            </div>
+          </div>
           <div className="md:hidden">
             <div className="flex justify-between p-3 w-full">
               <div>
@@ -419,7 +446,7 @@ const DetailsSlider = ({
                       ? "(in stock ship within 72hours)"
                       : null}
                   </span>
-                  and 10 Year Warranty
+                  and {find24()} Year Warranty
                 </p>
               </div>
               <div className="md:hidden">
@@ -466,24 +493,25 @@ const DetailsSlider = ({
                 </button>
               </div>
             </div>
-            <div className="p-1 my-2">
-              <div className="p-4  rounded-md bg-white border">
-                Color: <span className="text-left">{productColor.color_name}</span>
-                <div className="flex gap-2 items-center mt-4">
-                  {Product_Colors.map(({ color }) => (
-                    <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
-                      <div
-                        style={{ backgroundColor: color.color_code }}
-                        className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border border-[#002B5B]  " : ""}`}
-                      ></div>
-                      {/* <p className="text-xs text-[#666666] font-normal">
+            {Product_Colors.length ?
+              <div className="p-1 my-2">
+                <div className="p-4  rounded-md bg-white border">
+                  Color: <span className="text-left">{productColor.color_name}</span>
+                  <div className="flex gap-2 items-center mt-4">
+                    {Product_Colors.map(({ color }) => (
+                      <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
+                        <div
+                          style={{ backgroundColor: color.color_code }}
+                          className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border border-[#002B5B]  " : ""}`}
+                        ></div>
+                        {/* <p className="text-xs text-[#666666] font-normal">
                   {color.color_name}
                 </p> */}
-                    </div>
-                  ))}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </div>
+              </div> : null}
             <button
               onClick={handleAddToCart}
               className="bg-primary md:hidden  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  text-sm "
@@ -493,7 +521,18 @@ const DetailsSlider = ({
                 {cost?.product_sale_price}
               </p>
             </button>
-
+            <div className="md:hidden flex gap-4 pt-4 justify-center">
+              <div className="text-center cursor-pointer">
+                <div className="h-6 w-24 mx-auto  bg-[#b2fce5] px-6 rounded-full overflow-hidden">
+                  <img src={afterPay} className="h-6 w-auto mx-auto scale-150" alt="" />
+                </div>
+                <p className="text-xs text-[#777] mt-2">pay in 4 up to $2000</p>
+              </div>
+              <div className="text-center cursor-pointer">
+                <img src={zip} className="h-6 w-auto mx-auto" alt="" />
+                <p className="text-xs text-[#777] mt-2">From $10/week</p>
+              </div>
+            </div>
             <div className="text-sm p-3 flex">
               <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
               <span>
@@ -643,6 +682,14 @@ const DetailsSlider = ({
             </div>
           </div>
         </div>
+
+        <div className={`modal modal-open ${afterPayVisible ? "" : "hidden"}`}>
+          <div class="modal-box">
+            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => { setAfterPayVisible(false) }}>✕</button>
+            <div></div>
+          </div>
+        </div>
+        <div className={`modal modal-open ${zipPayVisible ? "" : "hidden"}`}></div>
       </section>
     </div>
   );

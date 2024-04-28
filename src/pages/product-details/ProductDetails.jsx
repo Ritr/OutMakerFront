@@ -97,6 +97,7 @@ const ProductDetails = () => {
         poster={Single_Video[0]?.video_cover}
         cost={Product_Cost}
         imagesInfo={Secondary_Images}
+        productMaterials={Product_Materials}
       />
       {/* <Info
         category={category}

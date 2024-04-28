@@ -43,9 +43,9 @@ const OutdoorDiningChairCard = ({
       return item.material_id == 24;
     });
     if (res) {
-      return true;
+      return 10;
     } else {
-      return false;
+      return 5;
     }
   }
   useEffect(() => {
@@ -130,10 +130,10 @@ const OutdoorDiningChairCard = ({
                 <div className="relative mr-1">
                   <LuHexagon className="text-lg" />
                   <span className="text-base scale-50 absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]">
-                    {find24() ? "10" : "5"}
+                    {find24()}
                   </span>
                 </div>
-                {find24() ? "10" : "5"} Year Warranty
+                {find24()} Year Warranty
               </div>
 
               <div
