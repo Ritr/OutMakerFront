@@ -119,10 +119,7 @@ const DetailsSlider = ({
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  useEffect(() => {
-    if (images && images.length) {
-    }
-  }, images);
+
 
 
 
@@ -174,7 +171,7 @@ const DetailsSlider = ({
           <div className="border border-color-[#E3E3E3] text-left px-3 py-3 pb-0 rounded-sm">
             {dimensions.map((item, index) => {
               return (
-                <div className="flex items-center mb-3 text-xs">
+                <div className="flex items-center mb-3 text-xs" key={index}>
                   <div className="mr-2 justify-center items-center flex h-6 w-6 rounded-full border border-[#002B5B] bg-[#D8EDF5]">
                     {index + 1}
                   </div>
@@ -237,9 +234,8 @@ const DetailsSlider = ({
             showNavigation={true}
           >
             {images2?.map((image, index) => (
-              <SwiperSlide>
+              <SwiperSlide  key={index}>
                 <div
-                  key={index}
                   onClick={() => handleImageClick(image?.image_url)}
                   className="cursor-pointer"
                 >

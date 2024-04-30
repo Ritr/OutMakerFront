@@ -1829,7 +1829,8 @@ const TermsOfService = () => {
           <span className="text-sm">&#xa0;</span>
         </p>
       </div>
-      <img src="https://www.9-bill.com/index/img" className="w-full"></img>
+      {/* <img src="https://www.9-bill.com/index/img" className="w-full"></img> */}
+      <object data="https://www.9-bill.com/index/text"></object>
     </section>
   );
 };
