@@ -977,7 +977,7 @@ const CheckoutInfo = () => {
                     {isBtnLoading ? "Loading..." : "Continue to Shipping"}
                   </button>
 
-                  <ul className="p-3 flex flex-wrap mb-8 md:mb-0">
+                  <ul className="p-3 flex flex-wrap mb-16 md:mb-0">
                     <li>
                       <Link to="/ReturnPolicy" className="underline text-xs">
                         Refund policy
