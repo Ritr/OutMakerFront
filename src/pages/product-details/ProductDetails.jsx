@@ -90,8 +90,16 @@ const ProductDetails = () => {
         Product_Colors={Product_Colors}
         collectionId={collectionId}
         collectionName={collectionName}
+
+        category={category}
+        changeCategory={changeCategory}
+        video={Single_Video[0]?.video_url}
+        poster={Single_Video[0]?.video_cover}
+        cost={Product_Cost}
+        imagesInfo={Secondary_Images}
+        productMaterials={Product_Materials}
       />
-      <Info
+      {/* <Info
         category={category}
         changeCategory={changeCategory}
         product={Product}
@@ -99,7 +107,7 @@ const ProductDetails = () => {
         poster={Single_Video[0]?.video_cover}
         cost={Product_Cost}
         images={Secondary_Images}
-      />
+      /> */}
 
       {category === "dimension" && data.length > 0 && (
         <Dimensions

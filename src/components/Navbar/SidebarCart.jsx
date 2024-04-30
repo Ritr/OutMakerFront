@@ -33,7 +33,13 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       tagline.parentNode.removeChild(tagline);
     }
   }, []);
-
+  useEffect(() => {
+    if (isOpen) {
+      document.querySelector("#root").style.overflowY = "hidden";
+    } else {
+      document.querySelector("#root").style.overflowY = "auto";
+    }
+  }, [isOpen]);
   // Calculate the total price from objectOnlyData
   const totalEstimatedPrice = objectOnlyData?.reduce(
     (total, item) => total + (item?.cost?.total_cost * item?.qunatity || 0),
@@ -93,7 +99,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
       style={{
         zIndex: "1001",
       }}
-      className={`fixed  inset-y-0 right-0 left-0  h-full w-full bg-gray-900 bg-opacity-60  ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
+      className={`fixed  inset-y-0 right-0 left-0 top-0 bottom-0  h-full w-full bg-gray-900 bg-opacity-60  ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"
         }`}
     >
       <div
@@ -109,7 +115,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
           }}
           className="w-full h-full text-black container mx-auto py-2 md:pb-10 "
         >
-          <div className="flex flex-col h-screen">
+          <div className="flex flex-col h-full justify-between">
             <div className="p-5 bg-white border-b border-gray-200">
               <div className="flex justify-between items-center">
                 <div className="flex items-center">
@@ -126,8 +132,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                   <FaTimes />
                 </button>
               </div>
-              <div className={`max-h-[60vh] overflow-y-auto`}>
-
+              <div className={`max-h-[45vh] overflow-y-auto`}>
                 {objectOnlyData?.map((singleData, index) => (
                   <div key={index} className="flex gap-4 my-4">
                     <img
@@ -180,16 +185,16 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
                   </div>
                 ))}
               </div>
-              <div className="flex">
-                <div class="tooltip" data-tip="Edit Notes">
-                  <button className={`btn ${noteFlag ? "hidden" : ""}`} onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
+              <div className={`${objectOnlyData[0] ? "flex pt-4" : "hidden"}`}>
+                <div className="tooltip" data-tip="Edit Notes">
+                  <button className="btn" onClick={() => { setNoteFlag(true) }}>Edit Notes <PiNotePencil className="text-xl" /></button>
                 </div>
               </div>
-              <div className={`mt-4 ${(noteFlag && objectOnlyData[0]) ? "" : "hidden"}`}>
+              <div className={`mt-4 absolute bottom-20 z-10 left-0 right-0 px-4 ${(noteFlag && objectOnlyData[0]) ? "" : "hidden"}`}>
                 <CartNotes initNotes={objectOnlyData[0]?.notes} onCancel={() => { setNoteFlag(false) }} onSubmit={() => { setNoteFlag(false) }} />
               </div>
             </div>
-            <div id="paymentRef" className="bg-gray-50 p-5 sticky bottom-0">
+            <div id="paymentRef" className={`bg-gray-50 p-5 pb-0 sticky bottom-0 ${(noteFlag && objectOnlyData[0])?"hidden":""}` }>
               <div className="flex justify-between items-center">
                 <h5 className="text-xl leading-none ">Order Summary</h5>
               </div>

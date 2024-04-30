@@ -7,13 +7,15 @@ const Discount = ({ onCancel, visible }) => {
     const sendDiscountEmailMutation = sendDiscountEmail(email);
     const submit = () => {
         sendDiscountEmailMutation.mutate();
+        toast.success("Email sent successfully,Please check later");
+        onCancel();
     };
-    useEffect(() => {
-        if (sendDiscountEmailMutation.isSuccess) {
-            toast.success("Email sent successfully");
-            onCancel();
-        }
-    }, [sendDiscountEmailMutation.isSuccess]);
+    // useEffect(() => {
+    //     if (sendDiscountEmailMutation.isSuccess) {
+    //         toast.success("Email sent successfully");
+    //         onCancel();
+    //     }
+    // }, [sendDiscountEmailMutation.isSuccess]);
     useEffect(() => {
         if (sendDiscountEmailMutation.isError) {
             toast.error("Failed to send email");
@@ -42,6 +44,11 @@ const Discount = ({ onCancel, visible }) => {
                                 className=" w-64 h-10 md:w-[360px] md:h-[40px] border indent-4 rounded-sm"
                                 placeholder="Email"
                                 onInput={e => setEmail(e.target.value)}
+                                onBlur={() => {
+                                    setTimeout(() => {
+                                        window.scrollTo(0, 0,)
+                                    }, 0);
+                                }}
                             />
                         </div>
                         <div className="mt-2 md:mt-4">

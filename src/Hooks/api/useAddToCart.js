@@ -8,22 +8,37 @@ export const useAddToCart = (userCode) => {
     const queryClient = useQueryClient();
     const baseUrl = getApiBaseUrl(); // Dynamic API base URL
 
-
-    return useMutation(
-        ({ productId, quantity }) => axios.post(
-            `${baseUrl}/user/product/add_to/cart/${userCode}/${productId}`,
-            { quantity },
-            { headers: { "Content-Type": "application/json" } }
-        ),
-        {
-            onSuccess: () => {
-
-                queryClient.invalidateQueries(['cartData']);
-                // Handle modal logic if necessary
-            },
-            onError: () => {
-                toast.error("Failed to add item to cart.");
+    return useMutation({
+        mutationFn: async ({ productId, quantity }) => {
+            const response = await fetch(`${baseUrl}/user/product/add_to/cart/${userCode}/${productId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: {quantity:quantity},
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
             }
+            return response.json();
         }
-    );
+    });
+    // return useMutation(
+    //     ({ productId, quantity }) => axios.post(
+    //         `${baseUrl}/user/product/add_to/cart/${userCode}/${productId}`,
+    //         { quantity },
+    //         { headers: { "Content-Type": "application/json" } }
+    //     ),
+    //     {
+    //         onSuccess: () => {
+
+    //             //queryClient.invalidateQueries(['cartData']);
+    //             // Handle modal logic if necessary
+    //         },
+    //         onError: (err) => {
+    //             alert(JSON.stringify(err))
+    //             toast.error();
+    //         }
+    //     }
+    // );
 };

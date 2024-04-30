@@ -43,9 +43,9 @@ const OutdoorDiningChairCard = ({
       return item.material_id == 24;
     });
     if (res) {
-      return true;
+      return 10;
     } else {
-      return false;
+      return 5;
     }
   }
   useEffect(() => {
@@ -87,13 +87,13 @@ const OutdoorDiningChairCard = ({
             />
           </Link>
         </div>
-        <div className="flex mb-2 justify-center">
+        <div className="flex mb-2 justify-center absolute top-44 md:top-[240px] left-[50%] -translate-x-[50%]">
           <div className="flex gap-2 items-center">
             {Product_Colors.map(({ color }) => (
-              <div onClick={(e) => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
+              <div onClick={(e) => { toggleColor(color) }} key={color.color_id} className={`text-center rounded-full cursor-pointer p-1  ${color.color_name === productColor.color_name ? " border-2" : ""}`}>
                 <div
                   style={{ backgroundColor: color.color_code }}
-                  className={`h-3 w-3 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border-2 border-yellow-400 scale-150 " : ""}`}
+                  className={`h-4 w-4 rounded-full mx-auto`}
                 ></div>
               </div>
             ))}
@@ -130,10 +130,10 @@ const OutdoorDiningChairCard = ({
                 <div className="relative mr-1">
                   <LuHexagon className="text-lg" />
                   <span className="text-base scale-50 absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]">
-                    {find24() ? "10" : "5"}
+                    {find24()}
                   </span>
                 </div>
-                {find24() ? "10" : "5"} Year Warranty
+                {find24()} Year Warranty
               </div>
 
               <div

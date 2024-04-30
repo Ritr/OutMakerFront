@@ -383,7 +383,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pb-10 ">
+        <div className="pb-64 md:pb-10">
           <div className="flex gap-4 flex-col md:flex-row justify-between items-center bg-[#222A36] p-2 rounded">
             <div className="basis-1/2">
               <p className="text-xs">@ 2023, OUTMAKER All Right Reserved</p>

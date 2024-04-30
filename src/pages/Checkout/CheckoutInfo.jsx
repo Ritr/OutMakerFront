@@ -869,7 +869,7 @@ const CheckoutInfo = () => {
                           />
                           <span className="label-text ml-2">Afterpay</span>
                         </div>
-                        <img src={afterPay} alt="" className="w-[68px] h-[24px]" />
+                        <img src={afterPay} alt="" className="w-auto h-[26px]" />
                         {/* <svg
                           role="img"
                           className="w-[68px] h-[24px]"
@@ -913,7 +913,7 @@ const CheckoutInfo = () => {
                         <img
                           src={zip}
                           alt="ZIP"
-                          className="w-[54px] h-[22px]"
+                          className="w-auto h-[26px]"
                         />
                       </label>
                       {paymentMethod === "payZip" && (
@@ -922,9 +922,9 @@ const CheckoutInfo = () => {
                             payUrl={payzippay.pay_url}
                             formData={payzippay.data}
                           ></FormDataAfter>
-                          <p className="text-xs p-1 text-gray-500 mt-1">
+                          {/* <p className="text-xs p-1 text-gray-500 mt-1">
                             Payment with Zip will be limited by 2000 AUD
-                          </p>
+                          </p> */}
                         </>
                       )}
                     </div>
@@ -977,7 +977,7 @@ const CheckoutInfo = () => {
                     {isBtnLoading ? "Loading..." : "Continue to Shipping"}
                   </button>
 
-                  <ul className="p-3 flex flex-wrap mb-8 md:mb-0">
+                  <ul className="p-3 flex flex-wrap mb-16 md:mb-0">
                     <li>
                       <Link to="/ReturnPolicy" className="underline text-xs">
                         Refund policy
