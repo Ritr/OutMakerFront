@@ -84,13 +84,13 @@ const CheckoutInfo = () => {
     setFormDataFromShipping(formData);
 
     // 计算原价减去77%的折扣后的费用
-    const discountRate = 0.77; // 77%的折扣
-    const discountedTotalCharge = totalCharge * (1 - discountRate);
-    console.log(`totalCharge：${totalCharge}`);
-    console.log(`discountedTotalCharge：${discountedTotalCharge}`);
+    // const discountRate = 0.77; // 77%的折扣
+    // const discountedTotalCharge = totalCharge * (1 - discountRate);
+    // console.log(`totalCharge：${totalCharge}`);
+    // console.log(`discountedTotalCharge：${discountedTotalCharge}`);
     // 更新总费用为折扣后的费用
     // setTotalChargeFromShipping(0);
-    setTotalChargeFromShipping(discountedTotalCharge);
+    setTotalChargeFromShipping(totalCharge);
   };
 
   // Calculate the tax price
@@ -726,7 +726,7 @@ const CheckoutInfo = () => {
                         <span>A${totalEstimatedPrice}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Shipping</span>
+                        <span>Shipping111</span>
                         <span>
                           {totalChargeFromShipping
                             ? `A$${totalChargeFromShipping.toFixed(2)}`
