@@ -137,9 +137,10 @@ const CheckoutInfo = () => {
         //支付成功
       } else {
         //会异步通知
-        window.location.href =
-          "http://theoutmaker.com.au/pay/statusOrder/" +
-          window.oceanWin.order_no;
+       // window.location.href =
+         // "http://theoutmaker.com.au/pay/statusOrder/" +
+          //window.oceanWin.order_no;
+          setIsBtnLoading(false);
       }
       console.log("调用成功", res);
     }
