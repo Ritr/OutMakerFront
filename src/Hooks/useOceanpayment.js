@@ -21,7 +21,7 @@ function OceanPayment() {
 			script.onload = () => {
 				console.log('Oceanpayment onLoad');
 				//加载成功过一次就不加载了
-				window.Oceanpayment.init(true);
+				window.Oceanpayment.init();
 			};
 
 			script.onerror = error => {
