@@ -366,7 +366,7 @@ const CheckoutInfo = () => {
                   },
                   onError: (error) => {
                     // Handle the error scenario for order clear
-                    toast.error("Error clearing order: " + error.message);
+                   // toast.error("Error clearing order: " + error.message);
                     setIsBtnLoading(false);
                   },
                 }
