@@ -152,7 +152,9 @@ const DetailsSlider = ({
     );
   };
   const handleAddToCart = () => {
-    addToCartMutation.mutate({ productId: product?.p_id, quantity });
+    const color_id = productColor.color_id;
+    const color_name = productColor.color_name;
+    addToCartMutation.mutate({ productId: product?.p_id, quantity, colorId: color_id, colorName: color_name,colorCode:productColor.color_code });
   };
   const viewCart = () => {
     const modal = document.getElementById("my_modal_3");
@@ -234,7 +236,7 @@ const DetailsSlider = ({
             showNavigation={true}
           >
             {images2?.map((image, index) => (
-              <SwiperSlide  key={index}>
+              <SwiperSlide key={index}>
                 <div
                   onClick={() => handleImageClick(image?.image_url)}
                   className="cursor-pointer"
