@@ -80,8 +80,8 @@ const CartBar = ({ product, cost }) => {
       <div className="content-wrapper flex items-center justify-between w-full md:w-auto p-1 md:p-0">
         <div className="hidden md:block price-info mr-2 text-right">
           <p className="price">
-            <del>A${cost?.product_regular_price}</del>{" "}
-            <span className="text-[#BF0A30] pl-[5px]">
+            <del className="text-[#ADACAC]">A${cost?.product_regular_price}</del>
+            <span className="text-[#BF0A30] pl-[5px] font-medium">
               A${cost?.product_sale_price}
             </span>
           </p>
