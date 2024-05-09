@@ -9,13 +9,14 @@ export const useAddToCart = (userCode) => {
     const baseUrl = getApiBaseUrl(); // Dynamic API base URL
 
     return useMutation({
-        mutationFn: async ({ productId, quantity }) => {
+        mutationFn: async ({ productId, quantity, colorId, colorName,codeCode }) => {
+            console.log(productId, quantity, colorId, colorName)
             const response = await fetch(`${baseUrl}/user/product/add_to/cart/${userCode}/${productId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: {quantity:quantity},
+                body: JSON.stringify({ quantity: quantity, colorId: colorId, colorName: colorName,codeCode:codeCode }),
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');

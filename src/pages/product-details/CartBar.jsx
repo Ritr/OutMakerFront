@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext,useEffect } from "react";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import toast from "react-hot-toast";
 import { FaMinus, FaPlus } from "react-icons/fa";
@@ -12,6 +12,7 @@ const CartBar = ({ product, cost }) => {
   const { fetchCartData } = useContext(CartContext);
   const { mutate: addToCart } = useAddToCart(userCode);
   const [quantity, setQuantity] = useState(1);
+  const addToCartMutation = useAddToCart(userCode);
   // 处理增加数量
   const handleIncreaseQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -26,24 +27,31 @@ const CartBar = ({ product, cost }) => {
 
   // 处理添加到购物车
   const handleAddToCart = () => {
-    addToCart(
-      { productId: product?.p_id, quantity },
-      {
-        onSuccess: (response) => {
-          const data = response.data;
-          console.log(data);
-          if (data.Failed) {
-            toast.error(data.Failed);
-            return;
-          }
-          toast.success("Successfully Added to your cart.");
-          fetchCartData(); // Refetch cart data
-          document.getElementById("my_modal_3").showModal(); // Show modal
-        },
-      }
-    );
+    // addToCart(
+    //   { productId: product?.p_id, quantity },
+    //   {
+    //     onSuccess: (response) => {
+    //       const data = response.data;
+    //       console.log(data);
+    //       if (data.Failed) {
+    //         toast.error(data.Failed);
+    //         return;
+    //       }
+    //       toast.success("Successfully Added to your cart.");
+    //       fetchCartData(); // Refetch cart data
+    //       document.getElementById("my_modal_3").showModal(); // Show modal
+    //     },
+    //   }
+    // );
+    addToCartMutation.mutate({ productId: product?.p_id, quantity });
   };
-
+  useEffect(() => {
+    if (addToCartMutation.isSuccess) {
+      toast.success("Successfully Added to your cart.");
+      fetchCartData();
+      document.getElementById("my_modal_3").showModal();
+    }
+  }, [addToCartMutation.isSuccess]);
   return (
     <div className="cart-bar w-full md:right-4 md:left-1 fixed bottom-4 z-10 md:p-3 bg-white flex items-center justify-between rounded-full shadow-lg md:h-16 justify-center">
       <div className="hidden md:flex  items-center">
@@ -72,8 +80,8 @@ const CartBar = ({ product, cost }) => {
       <div className="content-wrapper flex items-center justify-between w-full md:w-auto p-1 md:p-0">
         <div className="hidden md:block price-info mr-2 text-right">
           <p className="price">
-            <del>A${cost?.product_regular_price}</del>{" "}
-            <span className="text-[#BF0A30] pl-[5px]">
+            <del className="text-[#ADACAC]">A${cost?.product_regular_price}</del>
+            <span className="text-[#BF0A30] pl-[5px] font-medium">
               A${cost?.product_sale_price}
             </span>
           </p>

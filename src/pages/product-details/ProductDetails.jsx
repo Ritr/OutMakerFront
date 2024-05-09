@@ -22,6 +22,8 @@ import SwiperWrapper from "../../components/SwiperWrapper";
 import { SwiperSlide } from "swiper/react";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 const ProductDetails = () => {
+  const [colorId,setColorId] = useState();
+  const [colorName,setColorName] = useState();
   const [category, setCategory] = useState("dimension");
   const changeCategory = (payload) => setCategory(payload);
   const [showCartBar, setShowCartBar] = useState(false);
@@ -90,7 +92,6 @@ const ProductDetails = () => {
         Product_Colors={Product_Colors}
         collectionId={collectionId}
         collectionName={collectionName}
-
         category={category}
         changeCategory={changeCategory}
         video={Single_Video[0]?.video_url}
@@ -98,6 +99,8 @@ const ProductDetails = () => {
         cost={Product_Cost}
         imagesInfo={Secondary_Images}
         productMaterials={Product_Materials}
+        colorId={colorId}
+        colorName={colorName}
       />
       {/* <Info
         category={category}
@@ -164,7 +167,7 @@ const ProductDetails = () => {
         >
           {collections.map((collection) => {
             return (
-              <SwiperSlide className="h-full">
+              <SwiperSlide className="h-full" key={collection?.collection_id}>
                 <div className="relative">
                   <Link
                     to={`/collection-product/${collection?.collection_id}/${collection?.collection_name}`}

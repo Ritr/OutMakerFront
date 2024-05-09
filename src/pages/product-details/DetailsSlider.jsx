@@ -30,6 +30,14 @@ import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
 import zip from "../../assets/icons/ZIP.png";
 import afterPay from "../../assets/Afterpay.png";
+import imgPostPrice from "../../assets/postPrice.png";
+import { stateAbbreviations, map, logisticsInfo } from "../Checkout/au.js";
+import {
+  calculateWeight,
+  calculateBaseCharge,
+  calculateAdditionalCharges,
+  calculateFuelSurchargeAndGST,
+} from "../Checkout/LargeCalculations";
 const DetailsSlider = ({
   product,
   images,
@@ -133,6 +141,7 @@ const DetailsSlider = ({
   const [visible, setVisible] = useState(false);
   const [afterPayVisible, setAfterPayVisible] = useState(false);
   const [zipPayVisible, setZipPayVisible] = useState(false);
+  const [postCost, setPostCost] = useState(0);
   useEffect(() => {
     if (addToCartMutation.isSuccess) {
       toast.success("Successfully Added to your cart.");
@@ -152,7 +161,9 @@ const DetailsSlider = ({
     );
   };
   const handleAddToCart = () => {
-    addToCartMutation.mutate({ productId: product?.p_id, quantity });
+    const color_id = productColor.color_id;
+    const color_name = productColor.color_name;
+    addToCartMutation.mutate({ productId: product?.p_id, quantity, colorId: color_id, colorName: color_name, colorCode: productColor.color_code });
   };
   const viewCart = () => {
     const modal = document.getElementById("my_modal_3");
@@ -160,6 +171,47 @@ const DetailsSlider = ({
       modal.close();
     }
     setIsSidebarCartOpen(true);
+  };
+  const postCodeChange = (code) => {
+
+    if (code) {
+      const cityInfo = map?.find(
+        (item) => item.邮编 === code
+      );
+
+      if (cityInfo) {
+        console.log("cityInfo", cityInfo);
+        const logistics = logisticsInfo?.find(
+          (info) => info.物流分区 === cityInfo.物流分区
+        );
+
+        if (logistics) {
+          // const totalWeight = calculateWeight(
+          //   [product]
+          // ); // 计算总重量
+          // console.log("计算总重量", totalWeight);
+          const baseCharge = calculateBaseCharge(
+            logistics.基础费用,
+            logistics.续重费,
+            logistics.最低单费,
+            80
+          );
+          console.log("logistics", logistics);
+          const additionalCharges = calculateAdditionalCharges(
+            [{ product }]
+          ); // 计算附加费用
+          const FuelSurchargeAndGST = calculateFuelSurchargeAndGST(
+            baseCharge,
+            additionalCharges
+          ); // 包括燃油附加费、GST和保险费
+
+          // console.log("Base Charge: ", baseCharge);
+          // console.log("Additional Charges: ", additionalCharges);
+          // console.log("FuelSurchargeAndGST: ", FuelSurchargeAndGST);
+          setPostCost(FuelSurchargeAndGST.toFixed(2));
+        }
+      }
+    }
   };
   return (
     <div>
@@ -234,7 +286,7 @@ const DetailsSlider = ({
             showNavigation={true}
           >
             {images2?.map((image, index) => (
-              <SwiperSlide  key={index}>
+              <SwiperSlide key={index}>
                 <div
                   onClick={() => handleImageClick(image?.image_url)}
                   className="cursor-pointer"
@@ -529,6 +581,27 @@ const DetailsSlider = ({
                 <p className="text-xs text-[#777] mt-2">From $10/week</p>
               </div>
             </div>
+            <div className="md:hidden">
+              <div className="border mt-4 p-4">
+                <div className="mb-1 flex items-center">
+                  <input type="radio" id="radio-2" className="radio text-xs mr-2" />
+                  <label htmlFor="radio-2" className="text-black font-semibold cursor-pointer">Installation Services</label>
+                  <div className="text-red-400 text-xs pl-8">
+                    {"(Installation Coast $A80)"}
+                  </div>
+                </div>
+
+              </div>
+              <div className="border mt-4 mb-4 p-4">
+                <div className="bg-[#EEEEEE] flex  items-stretch">
+                  <div className="flex w-1/2 p-2">
+                    <input type="text" className="h-full w-full inline-block" onChange={(e) => {postCodeChange(e.target.value)}} />
+                  </div>
+                  <button className="btn btn-primary rounded-none">Postage</button>
+                  <div className="text-red-400 font-semibold pl-2 flex items-center">A${postCost}</div>
+                </div>
+              </div>
+            </div>
             <div className="text-sm p-3 flex">
               <FaBoxOpen className="mr-2 color-[#a0a0a0]" />
               <span>
@@ -541,8 +614,8 @@ const DetailsSlider = ({
               </span>
             </div>
           </div>
-          <div className="px-4 pt-4 md:border rounded-lg md:flex justify-between flex-row-reverse mt-4 md:mt-6">
-            <div>
+          <div className="md:border rounded-lg md:flex justify-between flex-row-reverse mt-4 md:mt-6">
+            <div className="md:p-4 md:w-1/6">
               <div className="font-bold mb-3 flex gap-2 items-center">
                 <img src={img1} className="w-4 h-4 object-contain" alt="" />
                 30 Days Free Returns
@@ -552,7 +625,29 @@ const DetailsSlider = ({
                 Quick refund
               </div>
             </div>
-            <div>
+            <div className="hidden md:flex w-1/2 border-l border-r p-4 px-24 justify-between">
+              <div className="flex-1">
+                <div className="mb-1 flex items-center">
+                  <input type="radio" id="radio-1" className="radio text-xs mr-2" />
+                  <label htmlFor="radio-1" className="text-black font-semibold cursor-pointer">Installation Services</label>
+                </div>
+                <div className="text-red-400 text-xs pl-8">
+                  Installation Coast $A80
+                </div>
+              </div>
+              <div className="flex-1">
+                <div className="text-black font-semibold mb-1 flex items-center gap-2">
+                  <img src={imgPostPrice} className="w-5" alt="" />
+                  <span> Quickly check postage</span>
+                </div>
+                <div className="bg-[#f0f0f0] p-2">
+                  <input type="text" className="bg-[#f0f0f0] outline-none" onChange={(e) => { postCodeChange(e.target.value) }} />
+                  <span className="text-[#7D7D7D] opacity-20 mx-2">|</span>
+                  <span className="text-red-500 font-semibold">$A{postCost}</span>
+                </div>
+              </div>
+            </div>
+            <div className="md:p-4 md:w-1/3">
               <div className="md:flex gap-4 md:mb-3">
                 <div className="mb-3 md:mb-0 text-sm flex gap-2 items-center">
                   <img src={img3} className="w-4 h-4 object-contain" alt="" />
