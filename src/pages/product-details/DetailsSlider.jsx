@@ -208,7 +208,7 @@ const DetailsSlider = ({
           // console.log("Base Charge: ", baseCharge);
           // console.log("Additional Charges: ", additionalCharges);
           // console.log("FuelSurchargeAndGST: ", FuelSurchargeAndGST);
-          setPostCost(Math.floor(FuelSurchargeAndGST, 2));
+          setPostCost(FuelSurchargeAndGST.toFixed(2));
         }
       }
     }

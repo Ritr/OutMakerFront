@@ -100,13 +100,20 @@ const CheckoutInfo = () => {
   );
 
   const totalEstimatedPrice = objectOnlyData?.reduce(
-    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0) * (confirm ? 90 : 100)/100),
+    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0) * (confirm ? 90 : 100) / 100),
     0
   );
 
   // Calculate the shipping cost
   const shippingCost = objectOnlyData?.reduce(
-    (total, item) => total + (item?.cost?.shipping_cost * item?.quantity || 0),
+    (total, item) => total + (item?.cost?.shipping_cost * item?.qunatity || 0),
+    0
+  );
+  const installationCost = objectOnlyData?.reduce(
+    (total, item) => {
+      console.log((80 * Math.ceil(item?.qunatity / 2)))
+      return total + (80 * Math.ceil(item?.qunatity / 2))
+    },
     0
   );
   //ocean回调
@@ -726,7 +733,7 @@ const CheckoutInfo = () => {
                         <span>A${totalEstimatedPrice}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span>Shipping111</span>
+                        <span>Shipping</span>
                         <span>
                           {totalChargeFromShipping
                             ? `A$${totalChargeFromShipping.toFixed(2)}`
@@ -1066,6 +1073,12 @@ const CheckoutInfo = () => {
                       {totalChargeFromShipping
                         ? `A$${totalChargeFromShipping.toFixed(2)}`
                         : "Enter shipping address"}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Installation</span>
+                    <span>
+                      {installationCost}
                     </span>
                   </div>
                   <div className="flex justify-between">
