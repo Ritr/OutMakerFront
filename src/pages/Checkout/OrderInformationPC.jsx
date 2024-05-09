@@ -468,10 +468,19 @@ const CustomOrderInformationPC = () => {
                   </td>
                   <td className="py-4 px-4 text-center">
                     {order.order.payment_method == "0"
+                      ? "unknown"
+                      :order.order.payment_method == "1"
                       ? "paypal"
-                      : order.order.payment_method == "1"
-                        ? "card"
-                        : "unknown"}
+                      :order.order.payment_method == "2"
+                      ? "card"
+                      :order.order.payment_method == "3"
+                      ? "afterpay"
+                      :order.order.payment_method == "4"
+                      ? "card"
+                      : order.order.payment_method == "5"
+                        ? "Zip"
+                        : "unknown"
+                      }
                   </td>
                   <td className="py-4 px-4 text-center">Expressage</td>
                   <td className="py-4 px-4 text-center">

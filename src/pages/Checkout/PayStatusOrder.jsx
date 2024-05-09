@@ -217,7 +217,7 @@ const PaymentSuccess = () => {
                     Payment method
                   </span>
                   <span className="text-sm font-medium text-gray-900">
-                    Paypal payment
+                    {details.paymentType}
                   </span>
                 </div>
                 <div className="flex justify-between items-center">

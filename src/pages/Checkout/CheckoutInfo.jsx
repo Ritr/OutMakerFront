@@ -144,9 +144,10 @@ const CheckoutInfo = () => {
         //支付成功
       } else {
         //会异步通知
-        window.location.href =
-          "http://theoutmaker.com.au/pay/statusOrder/" +
-          window.oceanWin.order_no;
+       // window.location.href =
+         // "http://theoutmaker.com.au/pay/statusOrder/" +
+          //window.oceanWin.order_no;
+          setIsBtnLoading(false);
       }
       console.log("调用成功", res);
     }
@@ -233,13 +234,13 @@ const CheckoutInfo = () => {
                     if (result.sign.link) {
                       window.location.href = result.sign.link;
                     } else {
-                      toast.error("Error clearing order: " + result.msg);
+                      toast.error("Error order: " + result.msg);
                     }
                     setIsBtnLoading(false);
                   },
                   onError: (error) => {
                     // Handle the error scenario for order clear
-                    toast.error("Error clearing order: " + error.message);
+                //    toast.error("Error clearing order: " + error.message);
                     setIsBtnLoading(false);
                   },
                 }
@@ -325,7 +326,7 @@ const CheckoutInfo = () => {
           onSuccess: (result) => {
             if (result.code == 1) {
               window.oceanWin.userId = userId;
-              window.oceanWin.order_no = result.order_number;
+              window.oceanWin.order_no = result.sign.order_number;
               Oceanpayment.checkout(result.sign);
             } else {
               setIsBtnLoading(false);
@@ -373,7 +374,6 @@ const CheckoutInfo = () => {
                   },
                   onError: (error) => {
                     // Handle the error scenario for order clear
-                    // toast.error("Error clearing order: " + error.message);
                     setIsBtnLoading(false);
                   },
                 }
