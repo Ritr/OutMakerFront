@@ -30,6 +30,8 @@ import { useAddToCart } from "../../Hooks/api/useAddToCart";
 import dayjs from "dayjs/esm/index.js";
 import zip from "../../assets/icons/ZIP.png";
 import afterPay from "../../assets/Afterpay.png";
+import bPaypal from "../../assets/icons/bPaypal.svg";
+
 import imgPostPrice from "../../assets/postPrice.png";
 import { stateAbbreviations, map, logisticsInfo } from "../Checkout/au.js";
 import {
@@ -467,10 +469,16 @@ const DetailsSlider = ({
               </div>
               <p className="text-sm text-[#777] mt-2">pay in 4 up to $2000</p>
             </div>
-            <div className="text-center cursor-pointer">
+            {/* <div className="text-center cursor-pointer">
               <img src={zip} className="h-8 w-auto mx-auto" alt="" />
               <p className="text-sm text-[#777] mt-2">From $10/week</p>
+            </div> */}
+            
+            <div className="text-center cursor-pointer pt-2">
+              <img src={bPaypal} className="h-5 w-auto mx-auto" alt="" />
+              <p className="text-sm text-[#777] mt-2">paypal in 4 </p>
             </div>
+            
           </div>
           <div className="md:hidden">
             <div className="flex justify-between p-3 w-full">
@@ -576,9 +584,13 @@ const DetailsSlider = ({
                 </div>
                 <p className="text-xs text-[#777] mt-2">pay in 4 up to $2000</p>
               </div>
-              <div className="text-center cursor-pointer">
+              {/* <div className="text-center cursor-pointer">
                 <img src={zip} className="h-6 w-auto mx-auto" alt="" />
                 <p className="text-xs text-[#777] mt-2">From $10/week</p>
+              </div> */}
+              <div className="text-center cursor-pointer pt-1">
+                <img src={bPaypal} className="h-4 w-auto mx-auto" alt="" />
+                <p className="text-xs text-[#777] mt-[10px]">paypal in 4</p>
               </div>
             </div>
             <div className="md:hidden">
