@@ -594,7 +594,7 @@ const DetailsSlider = ({
               </div>
             </div>
             <div className="md:hidden">
-              <div className="border mt-4 p-4">
+              {/* <div className="border mt-4 p-4">
                 <div className="mb-1 flex items-center">
                   <input type="radio" id="radio-2" className="radio text-xs mr-2" />
                   <label htmlFor="radio-2" className="text-black font-semibold cursor-pointer">Installation Services</label>
@@ -603,7 +603,7 @@ const DetailsSlider = ({
                   </div>
                 </div>
 
-              </div>
+              </div> */}
               <div className="border mt-4 mb-4 p-4">
                 <div className="bg-[#EEEEEE] flex  items-stretch">
                   <div className="flex w-1/2 p-2">
@@ -639,13 +639,13 @@ const DetailsSlider = ({
             </div>
             <div className="hidden md:flex w-1/2 border-l border-r p-4 px-24 justify-between">
               <div className="flex-1">
-                <div className="mb-1 flex items-center">
+                {/* <div className="mb-1 flex items-center">
                   <input type="radio" id="radio-1" className="radio text-xs mr-2" />
                   <label htmlFor="radio-1" className="text-black font-semibold cursor-pointer">Installation Services</label>
                 </div>
                 <div className="text-red-400 text-xs pl-8">
                   Installation Coast $A80
-                </div>
+                </div> */}
               </div>
               <div className="flex-1">
                 <div className="text-black font-semibold mb-1 flex items-center gap-2">

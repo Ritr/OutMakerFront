@@ -1075,12 +1075,12 @@ const CheckoutInfo = () => {
                         : "Enter shipping address"}
                     </span>
                   </div>
-                  <div className="flex justify-between">
+                  {/* <div className="flex justify-between">
                     <span>Installation</span>
                     <span>
                       {installationCost}
                     </span>
-                  </div>
+                  </div> */}
                   <div className="flex justify-between">
                     <span className="flex items-center cursor-pointer">
                       Estimated Tax
