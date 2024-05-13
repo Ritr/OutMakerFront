@@ -122,32 +122,37 @@ const CheckoutInfo = () => {
       const regexStatus = /<payment_status>(.*?)<\/payment_status>/;
       const regeStatus = data.match(regexStatus);
       if (regeStatus) {
-        console.log('支付状态识别',regeStatus);
+        console.log('支付状态识别', regeStatus);
         if (regeStatus.length >= 2) {
           const regex = /<pay_url>(.*?)<\/pay_url>/;
           const match = data.match(regex);
-          console.log('支付跳转url识别',match);
-          switch (parseInt(regeStatus[1])) {
+          console.log('支付跳转url识别', match);
+          switch (regeStatus[1]) {
             //支付成功
-            case 1:
-              if (match) {
-                fetchClear(window.oceanWin, {
-                  onSuccess: () => {
-                    setIsBtnLoading(false);
-                    window.location.href = match[1];
-                  },
-                  onError: (error) => {
-                    setIsBtnLoading(false);
-                    window.location.href = match[1];
-                  },
-                });
-              }else{
-                  window.location.href =window.location.origin+"/pay/statusOrder/" + window.oceanWin.order_no;
-              }
+            case '1':
+              fetchClear(window.oceanWin, {
+                onSuccess: () => {
+                  window.location.href = window.location.origin + "/pay/statusOrder/" + window.oceanWin.order_no;
+                },
+                onError: (error) => {
+                  window.location.href = window.location.origin + "/pay/statusOrder/" + window.oceanWin.order_no;
+                },
+              });
+      
+              break;
+            case '-1':
+              //3d
+              fetchClear(window.oceanWin, {
+                onSuccess: () => {
+                  window.location.href = match[1];
+                },
+                onError: (error) => {
+                  window.location.href = match[1];
+                },
+              });
               break;
             default:
             //其他默认失败
-
           }
         }
       }
