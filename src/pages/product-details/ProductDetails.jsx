@@ -136,7 +136,7 @@ const ProductDetails = () => {
       {/* <Furniture /> */}
       {/* <Buyer /> */}
       {/* <ImageSlider images={Secondary_Images} /> */}
-      {showCartBar && <CartBar product={Product} cost={Product_Cost} />}
+      {showCartBar && <CartBar product={Product} cost={Product_Cost} productMaterials={Product_Materials}/>}
       {Product_Materials.length > 0 && (
         <Materials productMaterials={Product_Materials} />
       )}

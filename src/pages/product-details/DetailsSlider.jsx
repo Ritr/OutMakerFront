@@ -57,7 +57,7 @@ const DetailsSlider = ({
 }) => {
   const find24 = () => {
     let res = productMaterials.find(item => {
-      return item.material_id == 24;
+      return item.material.material_id == 24;
     });
     if (res) {
       return 10;
@@ -473,12 +473,12 @@ const DetailsSlider = ({
               <img src={zip} className="h-8 w-auto mx-auto" alt="" />
               <p className="text-sm text-[#777] mt-2">From $10/week</p>
             </div> */}
-            
+
             <div className="text-center cursor-pointer pt-2">
               <img src={bPaypal} className="h-5 w-auto mx-auto" alt="" />
               <p className="text-sm text-[#777] mt-2">paypal in 4 </p>
             </div>
-            
+
           </div>
           <div className="md:hidden">
             <div className="flex justify-between p-3 w-full">
@@ -607,7 +607,7 @@ const DetailsSlider = ({
               <div className="border mt-4 mb-4 p-4">
                 <div className="bg-[#EEEEEE] flex  items-stretch">
                   <div className="flex w-1/2 p-2">
-                    <input type="text" className="h-full w-full inline-block" onChange={(e) => {postCodeChange(e.target.value)}} />
+                    <input type="text" className="h-full w-full inline-block" onChange={(e) => { postCodeChange(e.target.value) }} />
                   </div>
                   <button className="btn btn-primary rounded-none">Postage</button>
                   <div className="text-red-400 font-semibold pl-2 flex items-center">A${postCost}</div>

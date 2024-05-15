@@ -7,7 +7,17 @@ import { CartContext } from "../../Provider/CartProvider";
 
 import { useAddToCart } from "../../Hooks/api/useAddToCart";
 
-const CartBar = ({ product, cost }) => {
+  const CartBar = ({ product, cost,productMaterials = [] }) => {
+  const find24 = () => {
+    let res = productMaterials.find(item => {
+      return item.material.material_id == 24;
+    });
+    if (res) {
+      return 10;
+    } else {
+      return 5;
+    }
+  }
   const userCode = localStorage.getItem("usercode");
   const { fetchCartData } = useContext(CartContext);
   const { mutate: addToCart } = useAddToCart(userCode);
@@ -90,7 +100,7 @@ const CartBar = ({ product, cost }) => {
             data-page-type="product"
             data-amount="350400"
           >
-            and 10 Year Warranty
+            and {find24()} Year Warranty
           </p>
         </div>
 
