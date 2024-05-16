@@ -908,7 +908,7 @@ const CheckoutInfo = () => {
                         </>
                       )}
                     </div>
-                    <div className="form-control hidden">
+                    <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "payZip"
                           ? "paymentMethodselected"

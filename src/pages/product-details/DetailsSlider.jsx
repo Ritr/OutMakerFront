@@ -462,17 +462,17 @@ const DetailsSlider = ({
               </button>
             </div>
           </div>
-          <div className="hidden md:flex gap-4 pt-4">
+          <div className="hidden md:flex gap-8 pt-4 justify-center">
             <div className="text-center cursor-pointer">
               <div className="h-8 w-24 mx-auto  bg-[#b2fce5] px-6 rounded-full overflow-hidden">
                 <img src={afterPay} className="h-8 w-auto mx-auto scale-150" alt="" />
               </div>
               <p className="text-sm text-[#777] mt-2">pay in 4 up to $2000</p>
             </div>
-            {/* <div className="text-center cursor-pointer">
+            <div className="text-center cursor-pointer">
               <img src={zip} className="h-8 w-auto mx-auto" alt="" />
               <p className="text-sm text-[#777] mt-2">From $10/week</p>
-            </div> */}
+            </div>
 
             <div className="text-center cursor-pointer pt-2">
               <img src={bPaypal} className="h-5 w-auto mx-auto" alt="" />
@@ -584,10 +584,10 @@ const DetailsSlider = ({
                 </div>
                 <p className="text-xs text-[#777] mt-2">pay in 4 up to $2000</p>
               </div>
-              {/* <div className="text-center cursor-pointer">
+              <div className="text-center cursor-pointer">
                 <img src={zip} className="h-6 w-auto mx-auto" alt="" />
                 <p className="text-xs text-[#777] mt-2">From $10/week</p>
-              </div> */}
+              </div>
               <div className="text-center cursor-pointer pt-1">
                 <img src={bPaypal} className="h-4 w-auto mx-auto" alt="" />
                 <p className="text-xs text-[#777] mt-[10px]">paypal in 4</p>
