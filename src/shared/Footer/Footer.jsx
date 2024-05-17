@@ -263,7 +263,10 @@ const Footer = () => {
                     <Link to="/FAQ">Frequently Asked Questions</Link>
                   </li>
                   <li className="">
-                    <Link to="/Intellectual">INTELLECTUAL Property Rights</Link>
+                    <Link to="/Intellectual">Intellectual Property Rights</Link>
+                  </li>
+                  <li className="">
+                    <Link to="/Payment">Payment Method</Link>
                   </li>
                 </ul>
               </div>
@@ -332,6 +335,9 @@ const Footer = () => {
                     </li>
                     <li className="">
                       <Link to="/Intellectual">Intellectual Property Rights</Link>
+                    </li>
+                    <li className="">
+                      <Link to="/Payment">Payment Method</Link>
                     </li>
                   </ul>
                 </div>

@@ -20,7 +20,7 @@ const Privacypolicy = () => {
         >
           <a name="_pc3pi6uqaz5b"></a>
           <span className="text-2xl">
-          INTELLECTUAL Property Rights
+          Intellectual Property Rights
           </span>
         </h1>
 

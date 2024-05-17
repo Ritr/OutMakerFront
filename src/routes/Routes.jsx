@@ -45,6 +45,7 @@ import WhyUs from "../pages/policy/WhyUs";
 import ContactUs from "../pages/policy/ContactUs";
 import ReturnPolicy from "../pages/policy/ReturnPolicy";
 import ShippingPolicy from "../pages/policy/ShippingPolicy";
+import Payment from "../pages/policy/Payment";
 import Brand from "../pages/Brand/Brand";
 import Care from "../pages/Care/Care";
 
@@ -209,6 +210,10 @@ const router = createBrowserRouter([
       {
         path: "/ShippingPolicy",
         element: <ShippingPolicy />,
+      },
+      {
+        path: "/Payment",
+        element: <Payment />,
       },
       {
         path: "/Brand",
