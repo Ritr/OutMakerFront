@@ -74,6 +74,7 @@ const ProductDetails = () => {
     Comments_Replies,
     Product_Colors,
     Product_Materials,
+    Parcel_weight
   } = receivedData;
   useEffect(() => {
     if (collections.length && Product) {
@@ -101,6 +102,7 @@ const ProductDetails = () => {
         productMaterials={Product_Materials}
         colorId={colorId}
         colorName={colorName}
+        Parcel_weight={Parcel_weight}
       />
       {/* <Info
         category={category}

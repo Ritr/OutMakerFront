@@ -53,7 +53,8 @@ const DetailsSlider = ({
   poster,
   cost,
   imagesInfo,
-  productMaterials = []
+  productMaterials = [],
+  Parcel_weight
 }) => {
   const find24 = () => {
     let res = productMaterials.find(item => {
@@ -189,7 +190,7 @@ const DetailsSlider = ({
 
         if (logistics) {
           const totalWeight = calculateWeight(
-            [product]
+            [{ product: product, parcel_weight: Parcel_weight }]
           ); // 计算总重量
           console.log("计算总重量", totalWeight);
           // todo
@@ -197,21 +198,17 @@ const DetailsSlider = ({
             logistics.基础费用,
             logistics.续重费,
             logistics.最低单费,
-            80
+            totalWeight
           );
           console.log("logistics", logistics);
           const additionalCharges = calculateAdditionalCharges(
-            [{ product }]
+            [{ product: product, parcel_weight: Parcel_weight }]
           ); // 计算附加费用
           const FuelSurchargeAndGST = calculateFuelSurchargeAndGST(
             baseCharge,
             additionalCharges
           ); // 包括燃油附加费、GST和保险费
-
-          // console.log("Base Charge: ", baseCharge);
-          // console.log("Additional Charges: ", additionalCharges);
-          // console.log("FuelSurchargeAndGST: ", FuelSurchargeAndGST);
-          setPostCost(FuelSurchargeAndGST.toFixed(2));
+          setPostCost((FuelSurchargeAndGST*0.23).toFixed(2));
         }
       }
     }
