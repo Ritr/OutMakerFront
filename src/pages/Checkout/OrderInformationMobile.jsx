@@ -67,9 +67,9 @@ const OrderStatusSteps = ({ step }) => {
           refund, which we will process promptly. Once the refund is completed,
           the transaction will be closed.
         </p>
-        <p className="text-sm text-blue-600 mt-2 cursor-pointer">
+        {/* <p className="text-sm text-blue-600 mt-2 cursor-pointer">
           3. Add a note
-        </p>
+        </p> */}
       </div>
     </div>
   );
@@ -163,8 +163,8 @@ const OrderInformation = ({ orders }) => {
     let totalShippingCost = 0;
 
     for (const order of orders) {
-      totalCost += order.total_order_cost.total_cost;
-      totalShippingCost += order.total_order_cost.total_shipping_cost;
+      totalCost = order.total_order_cost.total_cost;
+      totalShippingCost = order.total_order_cost.total_shipping_cost;
     }
 
     const freight = totalShippingCost; // Freight is the total shipping cost
@@ -308,9 +308,9 @@ const TotalCost = ({ freight, actualPayment }) => {
         {/* <p className="text-lg font-bold text-black pr-1">
           30 days no reason to return
         </p> */}
-        <Link to="/ShippingPolicy">
+        {/* <Link to="/ShippingPolicy">
           <p className="text-lg font-bold text-[#002B5B]">shipping delivey </p>
-        </Link>
+        </Link> */}
       </div>
       <div className="flex justify-between items-center mb-4">
         <p className="text-lg font-bold text-[#002B5B]">Total Cost</p>

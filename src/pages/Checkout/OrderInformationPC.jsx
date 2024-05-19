@@ -147,9 +147,9 @@ const CustomOrderInformationPC = () => {
     let ActualPayment = 0;
 
     for (const order of filteredData) {
-      totalCost += order.item_cost.product_cost * order.item_cost.quantity;
-      ActualPayment += order.total_order_cost.total_cost;
-      totalShippingCost += order.total_order_cost.total_shipping_cost;
+      totalCost = order.item_cost.product_cost * order.item_cost.quantity;
+      ActualPayment = order.total_order_cost.total_cost;
+      totalShippingCost = order.total_order_cost.total_shipping_cost;
     }
 
     const freight = totalShippingCost; // Freight is the total shipping cost
@@ -218,9 +218,9 @@ const CustomOrderInformationPC = () => {
             refund, which we will process promptly. Once the refund is
             completed, the transaction will be closed.
           </p>
-          <p className="text-sm text-blue-600 mt-2 cursor-pointer">
+          {/* <p className="text-sm text-blue-600 mt-2 cursor-pointer">
             3. Add a note
-          </p>
+          </p> */}
         </div>
       </div>
     );
@@ -502,9 +502,9 @@ const CustomOrderInformationPC = () => {
           {/* <p className="text-lg font-bold text-black pr-1">
             30 days no reason to return
           </p> */}
-          <Link to="/ShippingPolicy">
+          {/* <Link to="/ShippingPolicy">
             <p className="text-lg font-bold text-[#002B5B]">shipping delivey</p>
-          </Link>
+          </Link> */}
         </div>
         <div className="flex justify-between items-center mb-4">
           <p className="text-lg font-bold text-[#002B5B]">Total Cost</p>
@@ -891,7 +891,7 @@ const CustomOrderInformationPC = () => {
         max={actualPayment}
         id={filteredData[0]?.order.order_id}
       />
-      <Notes order={filteredData[0]?.order}></Notes>
+      {/* <Notes order={filteredData[0]?.order}></Notes> */}
     </div>
   );
 };

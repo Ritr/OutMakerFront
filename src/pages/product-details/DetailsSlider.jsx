@@ -188,10 +188,11 @@ const DetailsSlider = ({
         );
 
         if (logistics) {
-          // const totalWeight = calculateWeight(
-          //   [product]
-          // ); // 计算总重量
-          // console.log("计算总重量", totalWeight);
+          const totalWeight = calculateWeight(
+            [product]
+          ); // 计算总重量
+          console.log("计算总重量", totalWeight);
+          // todo
           const baseCharge = calculateBaseCharge(
             logistics.基础费用,
             logistics.续重费,

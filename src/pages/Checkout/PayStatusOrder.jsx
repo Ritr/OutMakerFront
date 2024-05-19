@@ -103,24 +103,25 @@ const PaymentSuccess = () => {
   };
   function gtag_report_conversion(url) {
     var callback = function () {
-      if (typeof(url) != 'undefined') {
+      if (typeof (url) != 'undefined') {
         window.location = url;
       }
     };
     window.gtag('event', 'conversion', {
-        'send_to': 'AW-16450861599/GI_ACIz25pcZEJ_0sKQ9',
-        'value': details.paymentAmount,
-        'currency': 'USD',
-        'transaction_id': details.orderId,
-        'event_callback': undefined
+      'send_to': 'AW-16450861599/GI_ACIz25pcZEJ_0sKQ9',
+      'value': details.paymentAmount,
+      'currency': 'USD',
+      'transaction_id': details.orderId,
+      'event_callback': undefined
     });
     return false;
   }
-  useEffect(()=>{
-    if(status == "PS"){
+  useEffect(() => {
+    if (status == "PS") {
+      fetch("https://www.feishu.cn/flow/api/trigger-webhook/1d37063ed3ed75081c51af80cab7a175?orderId=" + details.orderId + "&paymentAmount=" + details.paymentAmount);
       gtag_report_conversion();
     }
-  },[status]);
+  }, [status]);
   return (
     <div className="flex items-center justify-center h-4/5 bg-gray-100">
       {status == "loading" ? (
