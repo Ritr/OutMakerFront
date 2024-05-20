@@ -85,7 +85,7 @@ const Footer = () => {
 
     try {
       const response = await fetch(
-        "https://theoutmaker.com/public/api/newsletter/subscription/store",
+        "https://theoutmaker.com.au/public/api/newsletter/subscription/store",
         {
           method: "POST",
           body: formData,

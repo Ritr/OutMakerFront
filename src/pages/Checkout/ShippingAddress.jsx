@@ -88,6 +88,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
   const handleStateChange = (abbreviation) => {
     console.log("state", abbreviation);
     setSelectedStateAbbrev(abbreviation);
+    setSelectedOption(null);
     setSelectedCity("");
     setTotalCharge(0); // 重置费用为0，因为州选择改变了
     onTotalChargeChange(0);
@@ -101,7 +102,6 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
   };
 
   const handleChange = (selectedOption) => {
-    console.log(selectedOption);
     setSelectedOption(selectedOption);
     handleCityChange(selectedOption.value);
 
@@ -125,7 +125,6 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
         const logistics = logisticsInfo?.find(
           (info) => info.物流分区 === cityInfo.物流分区
         );
-
         if (logistics) {
           const totalWeight = calculateWeight(
             objectOnlyData ? objectOnlyData : []
