@@ -12,9 +12,12 @@ import JCB from "../../assets/icons/JCB.svg";
 import toast from "react-hot-toast";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { sendDiscountEmail } from "../../Hooks/api/sendDiscountEmail";
 
 const Footer = () => {
   const location = useLocation();
+  const [email,setEmail] = useState("");
+  const sendDiscountEmailMutation = sendDiscountEmail(email);
   const [hidden, setHidden] = useState(false);
   const [isChecked1, setIsChecked1] = useState(false);
   const [isChecked2, setIsChecked2] = useState(false);
@@ -80,32 +83,7 @@ const Footer = () => {
       toast.error("Please agree to the terms and conditions.");
       return; // 提前返回，不提交表单
     }
-
-    const formData = new FormData(event.target); // 创建 FormData 对象
-
-    try {
-      const response = await fetch(
-        "https://theoutmaker.com.au/public/api/newsletter/subscription/store",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-
-      if (response.ok) {
-        const result = await response.json();
-        // 显示成功提示
-        toast.success("Subscribed successfully!");
-        console.log(result); // 处理响应数据
-      } else {
-        // 如果响应状态码不是 2xx, 显示错误提示
-        toast.error("Failed to subscribe. Please try again.");
-      }
-    } catch (error) {
-      // 捕获到异常时显示错误提示
-      toast.error("An error occurred. Please try again later.");
-      console.error("An error occurred", error);
-    }
+    sendDiscountEmailMutation.mutate();
   };
   return hidden ? null : (
     <footer className=" bg-[#262F3C] text-white">
@@ -192,6 +170,7 @@ const Footer = () => {
                   name="ns_email"
                   placeholder="Your email address"
                   className="pl-2 pr-8 py-2 w-full rounded-md text-gray-700 text-left text-sm md:text-base"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
 
                 <label className="inline-flex items-center my-3">
