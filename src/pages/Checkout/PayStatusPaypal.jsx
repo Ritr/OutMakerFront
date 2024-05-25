@@ -16,7 +16,7 @@ const PaymentSuccess = () => {
   const [details, setDetails] = useState({});
 
   const capturePayment = () => {
-    fetch(`https://www.theoutmaker.com/public/api/paypal/capturePayment`, {
+    fetch(`https://admin.theoutmaker.com/api/paypal/capturePayment`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const PaymentSuccess = () => {
   const getOrderDetails = (OrderID) => {
     setIsLoading(true);
     fetch(
-      `https://www.theoutmaker.com/public/api/paypal/order/${OrderID}/details`
+      `https://admin.theoutmaker.com/api/paypal/order/${OrderID}/details`
     )
       .then((response) => response.json())
       .then((result) => {

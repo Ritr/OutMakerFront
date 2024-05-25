@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 const useSubCategories = () => {
 
   const { data } = useQuery(["subcategory"], () =>
-    fetch("https://www.theoutmaker.com/api/get/subcategory/all").then(
+    fetch("https://admin.theoutmaker.com/api/get/subcategory/all").then(
       (res) => res.json(),
     ),
     {
