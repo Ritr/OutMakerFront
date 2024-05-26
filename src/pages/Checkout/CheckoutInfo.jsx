@@ -100,9 +100,9 @@ const CheckoutInfo = () => {
   );
 
   const totalEstimatedPrice = objectOnlyData?.reduce(
-    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0) * (confirm ? 90 : 100) / 100),
+    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0)),
     0
-  );
+  ) * (confirm ? 90 : 100) / 100;
 
   // Calculate the shipping cost
   const shippingCost = objectOnlyData?.reduce(
@@ -138,7 +138,7 @@ const CheckoutInfo = () => {
                   window.location.href = window.location.origin + "/pay/statusOrder/" + window.oceanWin.order_no;
                 },
               });
-      
+
               break;
             case '-1':
               //3d
