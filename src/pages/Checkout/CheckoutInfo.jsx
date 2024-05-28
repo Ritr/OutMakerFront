@@ -370,7 +370,8 @@ const CheckoutInfo = () => {
         {
           onSuccess: (result) => {
             if (result.code == 1) {
-              // setAfterpay(result.sign);
+              setAfterpay(result.sign);
+              setIsBtnLoading(false);
               // fetchClear(
               //   { userId: userId, order_no: result.order_number },
               //   {
@@ -421,6 +422,7 @@ const CheckoutInfo = () => {
           onSuccess: (result) => {
             if (result.code == 1) {
               setPayzippay(result.sign);
+              setIsBtnLoading(false);
               // fetchClear(
               //   { userId: userId, order_no: result.order_number },
               //   {
