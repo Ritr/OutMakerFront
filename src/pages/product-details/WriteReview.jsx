@@ -47,7 +47,7 @@ const WriteReview = ({ isReviw, id }) => {
 
   const uploadReview = (data, e) => {
     setIsLoading(true);
-    let url = `https://www.theoutmaker.com/api/product/single/comment/store`;
+    let url = `https://api.theoutmaker.com/api/product/single/comment/store`;
 
     fetch(url, {
       method: "POST",

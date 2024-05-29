@@ -93,7 +93,7 @@ const CheckoutInfo = () => {
   const fetch_order_paypal = async (data) => {
     try {
       const response = await fetch(
-        "https://www.theoutmaker.com/public/api/shopping/cart/paypal",
+        "https://api.theoutmaker.com/api/shopping/cart/paypal",
         {
           method: "POST",
           headers: {
@@ -121,7 +121,7 @@ const CheckoutInfo = () => {
   const createOrder = async (data) => {
     try {
       const response = await fetch(
-        "https://www.theoutmaker.com/public/api/paypal/createOrder",
+        "https://api.theoutmaker.com/api/paypal/createOrder",
         {
           method: "POST",
           body: JSON.stringify(data),

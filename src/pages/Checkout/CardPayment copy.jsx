@@ -139,7 +139,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
     try {
       // const data = await post("/public/api/lianlian/pay", param);
       const res = await axios.post(
-        "https://www.theoutmaker.com/public/api/lianlian/pay",
+        "https://api.theoutmaker.com/api/lianlian/pay",
         // "http://127.0.0.1:8000/api/lianlian/pay",
         param,
         {
