@@ -15,7 +15,7 @@ const useCategories = () => {
       }
     }
 
-    !flag && fetch("https://theoutmaker.com/api/get/category/all")
+    !flag && fetch("https://api.theoutmaker.com.au/api/get/category/all")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data.Categories)

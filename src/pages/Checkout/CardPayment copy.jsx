@@ -39,7 +39,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
   const fetchOrder = async (data, order_no) => {
     try {
       const response = await fetch(
-        `https://theoutmaker.com/public/api/user/order/draft/${userId}`,
+        `https://api.theoutmaker.com.au/api/user/order/draft/${userId}`,
         {
           method: "POST",
           headers: {
@@ -65,7 +65,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
   const fetchClear = async (order_no) => {
     try {
       const response = await fetch(
-        `https://theoutmaker.com/public/api/user/order/payment/clear/${userId}/${order_no}`,
+        `https://api.theoutmaker.com.au/api/user/order/payment/clear/${userId}/${order_no}`,
         {
           method: "POST",
         }

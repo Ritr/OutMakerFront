@@ -19,7 +19,7 @@ const AllBlogs = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     // Use useEffect to handle data retrieval
-    fetch(`https://theoutmaker.com/api/get/frontend/blogs/all`, {
+    fetch(`https://api.theoutmaker.com.au/api/get/frontend/blogs/all`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

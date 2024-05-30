@@ -48,7 +48,7 @@ const Checkout = () => {
   // handle increase the quantity
   const handleIncreaseQuantity = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/add_to/cart/${userCode}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/add_to/cart/${userCode}/${id}`,
       {
         method: "POST",
         headers: {
@@ -82,7 +82,7 @@ const Checkout = () => {
   // handle decrease the quantity
   const handleDecreaseQuantity = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/delete_from/cart/${userCode}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/delete_from/cart/${userCode}/${id}`,
       {
         method: "POST",
         headers: {

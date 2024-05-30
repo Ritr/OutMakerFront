@@ -2,9 +2,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { getApiBaseUrl } from '../../utils/api/index';
 
-// 1.https://theoutmaker.com/public/api/get/product/seat/types/all 
-// 2. https://theoutmaker.com/public/api/get/product/combination/types/all
-// 3. https://theoutmaker.com/public/api/get/product/frame/types/all
+// 1.https://api.theoutmaker.com.au/api/get/product/seat/types/all 
+// 2. https://api.theoutmaker.com.au/api/get/product/combination/types/all
+// 3. https://api.theoutmaker.com.au/api/get/product/frame/types/all
 // // Hook for clearing order
 export const useFetchSeat = () => {
     const baseUrl = getApiBaseUrl();

@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 export const sendDiscountEmail = (email) => {
-    let url = "https://theoutmaker.com/api/activity/discount/send";
+    let url = "https://api.theoutmaker.com.au/api/activity/discount/send";
     return useMutation({
         mutationFn: async () => {
             const response = await fetch(url, {

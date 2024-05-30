@@ -21,7 +21,7 @@ const CategoryAllProducts = ({ category }) => {
   const [products, setProducts] = useState([]);
   const [oldProducts, setOldProducts] = useState([]);
   useEffect(() => {
-    fetch(`https://theoutmaker.com/api/get/category/product/all/${id}`)
+    fetch(`https://api.theoutmaker.com.au/api/get/category/product/all/${id}`)
       .then((res) => res.json())
       .then((data) => {
         let products = data;

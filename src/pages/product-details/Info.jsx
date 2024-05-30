@@ -58,7 +58,7 @@ const Info = ({
   // 处理添加到购物车
   // const handleAddToCart = () => {
   //   fetch(
-  //     `https://theoutmaker.com/public/api/user/product/add_to/cart/${userCode}/${product?.p_id}`,
+  //     `https://api.theoutmaker.com.au/api/user/product/add_to/cart/${userCode}/${product?.p_id}`,
   //     {
   //       method: "POST",
   //       headers: {

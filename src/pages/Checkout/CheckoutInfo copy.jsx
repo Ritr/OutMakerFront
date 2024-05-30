@@ -150,7 +150,7 @@ const CheckoutInfo = () => {
   const fetchOrder = async (data, order_no) => {
     try {
       const response = await fetch(
-        `https://theoutmaker.com/public/api/user/order/draft/${userId}`,
+        `https://api.theoutmaker.com.au/api/user/order/draft/${userId}`,
         {
           method: "POST",
           headers: {
@@ -176,7 +176,7 @@ const CheckoutInfo = () => {
   const fetchClear = async (order_no) => {
     try {
       const response = await fetch(
-        `https://theoutmaker.com/public/api/user/order/payment/clear/${userId}/${order_no}`,
+        `https://api.theoutmaker.com.au/api/user/order/payment/clear/${userId}/${order_no}`,
         {
           method: "POST",
         }
@@ -311,7 +311,7 @@ const CheckoutInfo = () => {
   // handle increase the quantity
   const handleIncreaseQuantity = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/add_to/cart/${userId}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/add_to/cart/${userId}/${id}`,
       {
         method: "POST",
         headers: {
@@ -345,7 +345,7 @@ const CheckoutInfo = () => {
   // handle decrease the quantity
   const handleDecreaseQuantity = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/delete_from/cart/${userId}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/delete_from/cart/${userId}/${id}`,
       {
         method: "POST",
         headers: {

@@ -22,7 +22,7 @@ const CollectionAllProducts = ({ category }) => {
   const [products, setProducts] = useState([]);
   const [oldProducts, setOldProducts] = useState([]);
   useEffect(() => {
-    fetch(`https://theoutmaker.com/api/get/collection/product/all/${id}`)
+    fetch(`https://api.theoutmaker.com.au/api/get/collection/product/all/${id}`)
       .then((res) => res.json())
       .then((data) => {
         let products = data;

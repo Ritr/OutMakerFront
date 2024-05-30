@@ -71,4 +71,4 @@ const SingleBlog = ({
 
 export default SingleBlog;
 
-// https://theoutmaker.com/api/get/category/single/
+// https://api.theoutmaker.com.au/api/get/category/single/

@@ -55,7 +55,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
   // handle increase the quantity
   const handleIncreaseQuantity = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/add_to/cart/${userCode}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/add_to/cart/${userCode}/${id}`,
       {
         method: "POST",
         headers: {
@@ -89,7 +89,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
   // handle decrease the quantity
   const handleDecreaseQuantity = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/delete_from/cart/${userCode}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/delete_from/cart/${userCode}/${id}`,
       {
         method: "POST",
         headers: {
@@ -147,7 +147,7 @@ const SidebarCart = ({ isOpen, toggleSidebar }) => {
 
   const delete_product_from_cart = (id) => {
     fetch(
-      `https://theoutmaker.com/public/api/user/product/delete_product_from_cart/cart/${userCode}/${id}`,
+      `https://api.theoutmaker.com.au/api/user/product/delete_product_from_cart/cart/${userCode}/${id}`,
       {
         method: "POST",
         headers: {

@@ -39,7 +39,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
     try {
       const response = await fetch(
-        "https://theoutmaker.com/public/api/user/auth",
+        "https://api.theoutmaker.com.au/api/user/auth",
         // "http://127.0.0.1:8000/api/user/auth",
         {
           method: "POST",
@@ -92,7 +92,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     try {
       
       const response = await fetch(
-        "https://theoutmaker.com/public/api/user/store",
+        "https://api.theoutmaker.com.au/api/user/store",
         // "http://127.0.0.1:8000/api/user/store",
         {
           method: "POST",
@@ -142,7 +142,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     try {
       
       const response = await fetch(
-        "https://theoutmaker.com/public/api/user/auth",
+        "https://api.theoutmaker.com.au/api/user/auth",
         // "http://127.0.0.1:8000/api/user/auth",
         {
           method: "POST",
