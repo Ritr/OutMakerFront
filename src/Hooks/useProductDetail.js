@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useProductDetail = (id) => {
     const { data } = useQuery([id], () =>
-        fetch(`https://theoutmaker.com/api/get/product/single/${id}`).then(
+        fetch(`https://api.theoutmaker.com/api/get/product/single/${id}`).then(
             (res) => res.json(),
         ),
         {

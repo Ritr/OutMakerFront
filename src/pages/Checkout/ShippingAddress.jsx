@@ -69,7 +69,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
     const loadedStates = Array.from(new Set(map.map((item) => item.州)));
     setStates(loadedStates);
     calculateWeight(objectOnlyData ? objectOnlyData : []);
-  }, []);
+  }, [objectOnlyData]);
   // 当州selectedStateAbbrev改变时，更新城市列表setCities
   useEffect(() => {
     const loadedCities = map
@@ -169,6 +169,11 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
       }
     }
   }, [selectedCity]);
+  useEffect(() => {
+    if(objectOnlyData){
+      handleCityChange(selectedCity);
+    }
+  }, [objectOnlyData]);
   return (
     <div className="grid md:grid-cols-2 gap-4">
       <select

@@ -100,9 +100,9 @@ const CheckoutInfo = () => {
   );
 
   const totalEstimatedPrice = objectOnlyData?.reduce(
-    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0) * (confirm ? 90 : 100) / 100),
+    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0)),
     0
-  );
+  ) * (confirm ? 90 : 100) / 100;
 
   // Calculate the shipping cost
   const shippingCost = objectOnlyData?.reduce(
@@ -138,7 +138,7 @@ const CheckoutInfo = () => {
                   window.location.href = window.location.origin + "/pay/statusOrder/" + window.oceanWin.order_no;
                 },
               });
-      
+
               break;
             case '-1':
               //3d
@@ -232,27 +232,27 @@ const CheckoutInfo = () => {
         {
           onSuccess: (result) => {
             if (result.code == 1) {
-              fetchClear(
-                { userId: userId, order_no: result.order_number },
-                {
-                  onSuccess: () => {
-                    // Handle the success scenario for order clear
-                    //toast.success("Order cleared successfully");
-                    // Additional success logic here...
-                    if (result.sign.link) {
-                      window.location.href = result.sign.link;
-                    } else {
-                      toast.error("Error order: " + result.msg);
-                    }
-                    setIsBtnLoading(false);
-                  },
-                  onError: (error) => {
-                    // Handle the error scenario for order clear
-                    //    toast.error("Error clearing order: " + error.message);
-                    setIsBtnLoading(false);
-                  },
-                }
-              );
+              // fetchClear(
+              //   { userId: userId, order_no: result.order_number },
+              //   {
+              //     onSuccess: () => {
+              //       // Handle the success scenario for order clear
+              //       //toast.success("Order cleared successfully");
+              //       // Additional success logic here...
+              if (result.sign.link) {
+                window.location.href = result.sign.link;
+              } else {
+                toast.error("Error order: " + result.msg);
+              }
+              //       setIsBtnLoading(false);
+              //     },
+              //     onError: (error) => {
+              //       // Handle the error scenario for order clear
+              //       //    toast.error("Error clearing order: " + error.message);
+              //       setIsBtnLoading(false);
+              //     },
+              //   }
+              // );
             } else {
               setIsBtnLoading(false);
               toast.error(result.msg);
@@ -371,21 +371,22 @@ const CheckoutInfo = () => {
           onSuccess: (result) => {
             if (result.code == 1) {
               setAfterpay(result.sign);
-              fetchClear(
-                { userId: userId, order_no: result.order_number },
-                {
-                  onSuccess: () => {
-                    // Handle the success scenario for order clear
-                    //toast.success("Order cleared successfully");
-                    // Additional success logic here...
-                    setIsBtnLoading(false);
-                  },
-                  onError: (error) => {
-                    // Handle the error scenario for order clear
-                    setIsBtnLoading(false);
-                  },
-                }
-              );
+              setIsBtnLoading(false);
+              // fetchClear(
+              //   { userId: userId, order_no: result.order_number },
+              //   {
+              //     onSuccess: () => {
+              //       // Handle the success scenario for order clear
+              //       //toast.success("Order cleared successfully");
+              //       // Additional success logic here...
+              //       setIsBtnLoading(false);
+              //     },
+              //     onError: (error) => {
+              //       // Handle the error scenario for order clear
+              //       setIsBtnLoading(false);
+              //     },
+              //   }
+              // );
             } else {
               setIsBtnLoading(false);
               toast.error(result.msg);
@@ -421,22 +422,23 @@ const CheckoutInfo = () => {
           onSuccess: (result) => {
             if (result.code == 1) {
               setPayzippay(result.sign);
-              fetchClear(
-                { userId: userId, order_no: result.order_number },
-                {
-                  onSuccess: () => {
-                    // Handle the success scenario for order clear
-                    //toast.success("Order cleared successfully");
-                    // Additional success logic here...
-                    setIsBtnLoading(false);
-                  },
-                  onError: (error) => {
-                    // Handle the error scenario for order clear
-                    toast.error("Error clearing order: " + error.message);
-                    setIsBtnLoading(false);
-                  },
-                }
-              );
+              setIsBtnLoading(false);
+              // fetchClear(
+              //   { userId: userId, order_no: result.order_number },
+              //   {
+              //     onSuccess: () => {
+              //       // Handle the success scenario for order clear
+              //       //toast.success("Order cleared successfully");
+              //       // Additional success logic here...
+              //       setIsBtnLoading(false);
+              //     },
+              //     onError: (error) => {
+              //       // Handle the error scenario for order clear
+              //       toast.error("Error clearing order: " + error.message);
+              //       setIsBtnLoading(false);
+              //     },
+              //   }
+              // );
             } else {
               setIsBtnLoading(false);
               toast.error(result.msg);
@@ -501,22 +503,22 @@ const CheckoutInfo = () => {
             return;
           }
           // After order draft, execute order clear
-          fetchClear(
-            { userId, order_no },
-            {
-              onSuccess: () => {
-                // Handle the success scenario for order clear
-                //toast.success("Order cleared successfully");
-                // Additional success logic here...
-                setIsBtnLoading(false);
-              },
-              onError: (error) => {
-                // Handle the error scenario for order clear
-                //  toast.error("Error clearing order: " + error.message);
-                setIsBtnLoading(false);
-              },
-            }
-          );
+          // fetchClear(
+          //   { userId, order_no },
+          //   {
+          //     onSuccess: () => {
+          //       // Handle the success scenario for order clear
+          //       //toast.success("Order cleared successfully");
+          //       // Additional success logic here...
+          //       setIsBtnLoading(false);
+          //     },
+          //     onError: (error) => {
+          //       // Handle the error scenario for order clear
+          //       //  toast.error("Error clearing order: " + error.message);
+          //       setIsBtnLoading(false);
+          //     },
+          //   }
+          // );
         },
         onError: (error) => {
           // Handle the error scenario for order draft

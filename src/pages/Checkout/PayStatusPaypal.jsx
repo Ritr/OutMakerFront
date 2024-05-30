@@ -37,7 +37,11 @@ const PaymentSuccess = () => {
   const getOrderDetails = (OrderID) => {
     setIsLoading(true);
     fetch(
+<<<<<<< HEAD
       `https://api.theoutmaker.com/api/paypal/order/${OrderID}/details`
+=======
+      `https://api.theoutmaker.com/api/paypal/order/${OrderID}/details`
+>>>>>>> dev
     )
       .then((response) => response.json())
       .then((result) => {

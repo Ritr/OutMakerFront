@@ -23,7 +23,7 @@ const Refund = ({ id, visible, onSubmit, onCancel, max }) => {
             amount: amount
         }
         const response = await fetch(
-            "https://theoutmaker.com/public/api/pay/orders/refund",
+            "https://api.theoutmaker.com/api/pay/orders/refund",
             {
                 method: "POST",
                 headers: {

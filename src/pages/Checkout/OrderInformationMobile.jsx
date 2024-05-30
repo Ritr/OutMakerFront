@@ -338,7 +338,7 @@ const CustomOrderInformationMobile = () => {
   const fetchOrders = async () => {
     try {
       const response = await fetch(
-        `https://theoutmaker.com/public/api/user/single/order/${number}`
+        `https://api.theoutmaker.com/api/user/single/order/${number}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");

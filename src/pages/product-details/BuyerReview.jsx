@@ -21,7 +21,7 @@ const BuyerReview = ({ reviews, product }) => {
   };
 
   useEffect(() => {
-    fetch(`https://theoutmaker.com/api/get/product/single/${id}`)
+    fetch(`https://api.theoutmaker.com/api/get/product/single/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProductMaterials(data.Product_Materials);

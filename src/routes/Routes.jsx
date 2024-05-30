@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         element: <CategoryBlogs />,
         loader: ({ params }) =>
           fetch(
-            `https://theoutmaker.com/api/get/frontend/category-blogs/${params.id}`
+            `https://api.theoutmaker.com/api/get/frontend/category-blogs/${params.id}`
           ),
       },
       {
@@ -89,20 +89,20 @@ const router = createBrowserRouter([
         element: <Blog />,
         loader: ({ params }) =>
           fetch(
-            `https://theoutmaker.com/api/get/frontend/single-post/details/${params.id}`
+            `https://api.theoutmaker.com/api/get/frontend/single-post/details/${params.id}`
           ),
       },
       {
         path: "/products/:id/:purl",
         element: <Product />,
         loader: ({ params }) =>
-          fetch(`https://theoutmaker.com/api/get/category/single/${params.id}`),
+          fetch(`https://api.theoutmaker.com/api/get/category/single/${params.id}`),
       },
       {
         path: "/category-product/:id/:cateogry_url",
         element: <ProductCategory />,
         loader: ({ params }) =>
-          fetch(`https://theoutmaker.com/api/get/category/single/${params.id}`),
+          fetch(`https://api.theoutmaker.com/api/get/category/single/${params.id}`),
       },
 
       {
@@ -110,14 +110,14 @@ const router = createBrowserRouter([
         element: <ProductCollection />,
         loader: ({ params }) =>
           fetch(
-            `https://theoutmaker.com/api/get/collection/single/${params.id}`
+            `https://api.theoutmaker.com/api/get/collection/single/${params.id}`
           ),
       },
       {
         path: "/product-details/:id/:purl",
         element: <ProductDetails />,
         loader: ({ params }) =>
-          fetch(`https://theoutmaker.com/api/get/product/single/${params.id}`),
+          fetch(`https://api.theoutmaker.com/api/get/product/single/${params.id}`),
       },
       {
         path: "/contact",

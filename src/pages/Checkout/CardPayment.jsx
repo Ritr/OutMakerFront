@@ -70,7 +70,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
       token: token,
       style: "", // Define your styles here
       apiType: "", // Set the API type if needed
-      merchantUrl: "https://www.theoutmaker.com.au",
+      merchantUrl: "https://api.theoutmaker.com",
     });
 
     card.mount("#llpay-card-element");
