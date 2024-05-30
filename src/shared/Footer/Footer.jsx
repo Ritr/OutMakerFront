@@ -115,7 +115,7 @@ const Footer = () => {
                 </a>
                 <a
                   rel="noopener noreferrer"
-                  href="https://www.pinterest.com.au/outmakerau/"
+                  href="https://www.pinterest.com/outmakerau/"
                   title="Pinterest"
                   className="flex items-center p-1"
                 >
@@ -352,7 +352,7 @@ const Footer = () => {
 
               <a
                 rel="noopener noreferrer"
-                href="https://www.pinterest.com.au/outmakerau/"
+                href="https://www.pinterest.com/outmakerau/"
                 title="Pinterest"
               >
                 <img src={x} className="w-6" alt="" />

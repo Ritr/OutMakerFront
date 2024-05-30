@@ -212,7 +212,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
       window.location.href = paymentUrl;
     } else {
       // 其他逻辑，例如直接完成支付流程
-      window.location.href = `http://theoutmaker.com.au/checkout-info/status/${order_no}`;
+      window.location.href = `http://theoutmaker.com/checkout-info/status/${order_no}`;
     }
   };
 
@@ -225,7 +225,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
         product_price: item.cost.product_sale_price.toString(),
         product_quantity: item.qunatity.toString(),
         product_url:
-          "https://theoutmaker.com.au/product-details/" +
+          "https://theoutmaker.com/product-details/" +
           product.p_id.toString(),
       };
     });
@@ -310,7 +310,7 @@ const CardPayment = ({ info, amount, onTotalChargeChange }) => {
                   htmlFor="my-modal"
                   className="btn"
                   onClick={() => {
-                    window.location.href = `http://theoutmaker.com.au/checkout-info/status/${errorMsg?.merchant_transaction_id}`;
+                    window.location.href = `http://theoutmaker.com/checkout-info/status/${errorMsg?.merchant_transaction_id}`;
                     setIsDialogOpen(false);
                   }}
                 >
