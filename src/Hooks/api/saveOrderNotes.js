@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { getApiBaseUrl } from '../../utils/api/index'; // 确保路径正确
 
 export const saveNotes = (orderNumber, notes) => {
-    let url = `https://api.theoutmaker.com/api/user/order/save_notes/${orderNumber}`;
+    let url = `https://api.theoutmaker.com.au/api/user/order/save_notes/${orderNumber}`;
     const formData = new URLSearchParams();
     formData.append('notes', notes);
     return useMutation({
@@ -23,7 +23,7 @@ export const saveNotes = (orderNumber, notes) => {
 };
 export const saveCartNotes = (notes) => {
     const userId = localStorage.getItem("usercode");
-    let url = `https://api.theoutmaker.com/api/user/product/save_notes/cart/${userId}`;
+    let url = `https://api.theoutmaker.com.au/api/user/product/save_notes/cart/${userId}`;
     const formData = new URLSearchParams();
     formData.append('notes', notes);
     return useMutation({

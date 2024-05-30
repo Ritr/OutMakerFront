@@ -44,7 +44,7 @@ const CheckoutInfo = () => {
     const amount = "100";
 
     // Perform the fetch request
-    fetch("https://api.theoutmaker.com/api/shopping/cart/paypal", {
+    fetch("https://api.theoutmaker.com.au/api/shopping/cart/paypal", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
