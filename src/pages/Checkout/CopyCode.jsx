@@ -42,7 +42,7 @@ const [affirm, setAffirm] = useState(false);
 
   // POST form data
   useEffect(() => {
-    fetch("https://admin.theoutmaker.com/api/shopping/cart/paypal", {
+    fetch("https://api.theoutmaker.com/api/shopping/cart/paypal", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

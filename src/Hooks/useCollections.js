@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useCollections = () => {
   const { data } = useQuery(["collections"], () =>
-    fetch("https://admin.theoutmaker.com/api/get/collection/all").then(
+    fetch("https://api.theoutmaker.com/api/get/collection/all").then(
       (res) => res.json(),
     ),
     {
