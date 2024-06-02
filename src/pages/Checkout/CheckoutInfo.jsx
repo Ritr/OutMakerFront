@@ -486,7 +486,7 @@ const CheckoutInfo = () => {
       paypal_order_no: "",
       payment_method: "2",
       discount: confirm ? discount : '',
-      shipping_cost: totalChargeFromShipping,
+      shipping_cost: totalChargeFromShipping.toFixed(2),
       total_cost: paymentAmount,
     };
     // Execute order draft mutation
