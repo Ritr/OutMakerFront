@@ -75,7 +75,8 @@ const ProductDetails = () => {
     Product_Colors,
     Product_Materials,
     Parcel_weight,
-    Product_Recommends
+    Product_Recommends,
+    Product_Multi_Colors
   } = receivedData;
   useEffect(() => {
     if (collections.length && Product) {
@@ -104,6 +105,7 @@ const ProductDetails = () => {
         colorName={colorName}
         Parcel_weight={Parcel_weight}
         Product_Recommends={Product_Recommends}
+        Product_Multi_Colors={Product_Multi_Colors}
       />
       {/* <Info
         category={category}

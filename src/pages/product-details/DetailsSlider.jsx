@@ -56,7 +56,8 @@ const DetailsSlider = ({
   imagesInfo,
   productMaterials = [],
   Parcel_weight,
-  Product_Recommends
+  Product_Recommends,
+  Product_Multi_Colors
 }) => {
   const find24 = () => {
     let res = productMaterials.find(item => {
@@ -86,19 +87,13 @@ const DetailsSlider = ({
 
   }
   const filterColor = (color) => {
-    console.log(images);
-
     const res = images.filter((item) => {
       if (!color.color_name) {
         return item;
       }
       return item.image_color === color.color_name;
     })
-    console.log(color);
-
-    console.log(res);
-    setImages([{ image_url: product.p_pic }, ...res])
-    // return [{ image_url: product.p_pic }, ...res]
+    setImages([{ image_url: product.p_pic }, ...res]);
   };
   // handler for image change
   const handleImageClick = (image) => {
@@ -134,9 +129,7 @@ const DetailsSlider = ({
     window.scrollTo(0, 0);
   }, []);
 
-
-
-
+  const [allColors, setAllColors] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [isSidebarCartOpen, setIsSidebarCartOpen] = useState(false);
   const { fetchCartData } = useContext(CartContext);
@@ -148,6 +141,31 @@ const DetailsSlider = ({
   const [afterPayVisible, setAfterPayVisible] = useState(false);
   const [zipPayVisible, setZipPayVisible] = useState(false);
   const [postCost, setPostCost] = useState(0);
+  const [currentProduct, setCurrentProduct] = useState({ Product: product });
+  // 初始化颜色列表
+  useEffect(() => {
+    if (Product_Multi_Colors && Product_Multi_Colors.length) {
+      let colors = Product_Multi_Colors.map((item) => {
+        return item.Product_Colors[0];
+      });
+      setAllColors(colors);
+    }
+  }, [Product_Multi_Colors]);
+  // 切换颜色时，更新产品、主图、副图列表
+  useEffect(() => {
+    if (productColor.color_name) {
+      let res = Product_Multi_Colors[0];
+      res = Product_Multi_Colors.find((item) => {
+        return item.Product_Colors[0].color.color_name === productColor.color_name;
+      });
+      console.log(productColor);
+      console.log("res", res);
+      // setProductColor(res.Product_Colors[0]);
+      setCurrentProduct(res);
+      let images = res.Images;
+      setImages(images);
+    }
+  }, [productColor.color_name]);
   useEffect(() => {
     if (addToCartMutation.isSuccess) {
       toast.success("Successfully Added to your cart.");
@@ -167,8 +185,8 @@ const DetailsSlider = ({
     );
   };
   const handleAddToCart = () => {
-    addToCartMutation.mutate({ productId: product?.p_id });
-    setCartProduct({ product: product, cost: cost });
+    addToCartMutation.mutate({ productId: currentProduct.Product?.p_id });
+    setCartProduct({ product:  currentProduct.Product, cost:  currentProduct.Product_Cost });
   };
 
   const handleAddToCart2 = (p_id, product, cost) => {
@@ -249,11 +267,12 @@ const DetailsSlider = ({
         <div>
           <div className="block md:flex items-center justify-center">
             <h4 className="uppercase text-xl md:text-3xl font-medium">
-              {product?.p_name}
+              {currentProduct.Product?.p_name}
             </h4>
           </div>
         </div>
         <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] ">
+          {currentProduct.Product?.p_pic}
           {headerImage?.endsWith(".mp4") ? (
             <div className="h-full md:w-[50vw] mx-auto">
               <VideoPlayer url={ImgBaseUrl(headerImage)}></VideoPlayer>
@@ -263,7 +282,7 @@ const DetailsSlider = ({
               src={
                 headerImage
                   ? ImgBaseUrl(headerImage)
-                  : ImgBaseUrl(product?.p_pic)
+                  : ImgBaseUrl(currentProduct.Product?.p_pic)
               }
               alt="Product Image"
               className="h-full  object-contain"
@@ -326,11 +345,11 @@ const DetailsSlider = ({
             ))}
           </SwiperWrapper>
         </div>
-        {Product_Colors.length ?
+        {allColors.length ?
           <div className="hidden mb-2 justify-center  md:flex">
             <div className="flex gap-4 items-center p-3 rounded-full bg-white border  md:absolute md:top-[500px]">
               Color: <span className="text-left">{productColor.color_name}</span>
-              {Product_Colors.map(({ color }) => (
+              {allColors.map(({ color }) => (
                 <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                   <div
                     style={{ backgroundColor: color.color_code }}
@@ -554,12 +573,12 @@ const DetailsSlider = ({
                 </button>
               </div>
             </div>
-            {Product_Colors.length ?
+            {allColors.length ?
               <div className="p-1 my-2">
                 <div className="p-4  rounded-md bg-white border">
                   Color: <span className="text-left">{productColor.color_name}</span>
                   <div className="flex gap-2 items-center mt-4">
-                    {Product_Colors.map(({ color }) => (
+                    {allColors.map(({ color }) => (
                       <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                         <div
                           style={{ backgroundColor: color.color_code }}

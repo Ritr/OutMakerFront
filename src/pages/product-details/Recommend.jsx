@@ -59,41 +59,42 @@ const ProductCard = ({ product, onAdd }) => {
 }
 const Recommend = ({ Product_Recommends, onAdd }) => {
     return (
-        <div className="mb-4 px-4 md:px-0">
-            <div className="flex justify-center items-center gap-4 mb-4">
-                <div className="flex-1 border-b bordered"></div>
-                <span>We also Recommend</span>
-                <div className="flex-1 border-b bordered"></div>
-            </div>
-            <SwiperWrapper swiperProps={{
-                loop: false,
-                breakpoints: {
-                    375: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 10,
-                    },
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 20,
+        Product_Recommends.length > 0 ?
+            <div className="mb-4 px-4 md:px-0">
+                <div className="flex justify-center items-center gap-4 mb-4">
+                    <div className="flex-1 border-b bordered"></div>
+                    <span>We also Recommend</span>
+                    <div className="flex-1 border-b bordered"></div>
+                </div>
+                <SwiperWrapper swiperProps={{
+                    loop: false,
+                    breakpoints: {
+                        375: {
+                            slidesPerView: 1,
+                        },
+                        768: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                        },
+                        1024: {
+                            slidesPerView: 4,
+                            spaceBetween: 20,
 
+                        },
                     },
-                },
-            }}>
-                {
-                    Product_Recommends.map(item => {
-                        return (
-                            <SwiperSlide key={item.p_id} >
-                                <ProductCard product={item} onAdd={onAdd}></ProductCard>
-                            </SwiperSlide>
+                }}>
+                    {
+                        Product_Recommends.map(item => {
+                            return (
+                                <SwiperSlide key={item.p_id} >
+                                    <ProductCard product={item} onAdd={onAdd}></ProductCard>
+                                </SwiperSlide>
+                            )
+                        }
                         )
                     }
-                    )
-                }
-            </SwiperWrapper>
-        </div>
+                </SwiperWrapper>
+            </div> : null
     )
 };
 export default Recommend;
