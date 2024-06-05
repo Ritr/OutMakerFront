@@ -40,6 +40,7 @@ import {
   calculateAdditionalCharges,
   calculateFuelSurchargeAndGST,
 } from "../Checkout/LargeCalculations";
+import Recommend from "./recommend.jsx";
 const DetailsSlider = ({
   product,
   images,
@@ -54,7 +55,8 @@ const DetailsSlider = ({
   cost,
   imagesInfo,
   productMaterials = [],
-  Parcel_weight
+  Parcel_weight,
+  Product_Recommends
 }) => {
   const find24 = () => {
     let res = productMaterials.find(item => {
@@ -66,6 +68,7 @@ const DetailsSlider = ({
       return 5;
     }
   }
+  const [cartProduct, setCartProduct] = useState({ product: product, cost: cost });
   const [headerImage, setHeaderImage] = useState(null);
   const [images2, setImages] = useState([
     { image_url: product.p_pic },
@@ -164,10 +167,15 @@ const DetailsSlider = ({
     );
   };
   const handleAddToCart = () => {
-    const color_id = productColor.color_id;
-    const color_name = productColor.color_name;
-    addToCartMutation.mutate({ productId: product?.p_id, quantity, colorId: color_id, colorName: color_name, colorCode: productColor.color_code });
+    addToCartMutation.mutate({ productId: product?.p_id });
+    setCartProduct({ product: product, cost: cost });
   };
+
+  const handleAddToCart2 = (p_id, product, cost) => {
+    addToCartMutation.mutate({ productId: p_id });
+    setCartProduct({ product: product, cost: cost });
+  };
+
   const viewCart = () => {
     const modal = document.getElementById("my_modal_3");
     if (modal) {
@@ -208,7 +216,7 @@ const DetailsSlider = ({
             baseCharge,
             additionalCharges
           ); // 包括燃油附加费、GST和保险费
-          setPostCost((FuelSurchargeAndGST*0.23).toFixed(2));
+          setPostCost((FuelSurchargeAndGST * 0.23).toFixed(2));
         }
       }
     }
@@ -356,13 +364,13 @@ const DetailsSlider = ({
                 <div className="flex items-center justify-around gap-5 border-t-2 border-b-2 py-5">
                   <figure className="w-[100px]">
                     <img
-                      src={ImgBaseUrl(product?.p_pic)}
+                      src={ImgBaseUrl(cartProduct.product?.p_pic)}
                       alt=""
                       className="object-cover w-full h-full border"
                     />
                   </figure>
-                  <h3>{product?.p_name}</h3>
-                  <p>A${cost?.product_sale_price}</p>
+                  <h3>{cartProduct.product?.p_name}</h3>
+                  <p>A${cartProduct.cost?.product_sale_price}</p>
                 </div>
                 <div className="mt-5">
                   <button
@@ -388,7 +396,6 @@ const DetailsSlider = ({
               </div>
             </dialog>
           </div>
-
           <div className="hidden mt-4 cart-bar md:pl-12 md:p-3 md:border-gray-300 md:flex items-center justify-between md:rounded-full md:border">
             <div className=" items-center md:flex">
               <div className="">
@@ -558,14 +565,12 @@ const DetailsSlider = ({
                           style={{ backgroundColor: color.color_code }}
                           className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border border-[#002B5B]  " : ""}`}
                         ></div>
-                        {/* <p className="text-xs text-[#666666] font-normal">
-                  {color.color_name}
-                </p> */}
                       </div>
                     ))}
                   </div>
                 </div>
               </div> : null}
+            <Recommend Product_Recommends={Product_Recommends} onAdd={handleAddToCart2}></Recommend>
             <button
               onClick={handleAddToCart}
               className="bg-primary md:hidden  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  text-sm "
@@ -673,7 +678,9 @@ const DetailsSlider = ({
               </div>
             </div>
           </div>
-
+          <div className="hidden md:block mt-4">
+            <Recommend Product_Recommends={Product_Recommends} onAdd={handleAddToCart2}></Recommend>
+          </div>
           <div className="py-6 text-center">
             <h4 className="text-2xl font-font leading-loose">Meet {product.collection_name}</h4>
             <p className="text-sm font-light">{product?.p_s_description}</p>
