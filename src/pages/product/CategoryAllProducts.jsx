@@ -178,6 +178,7 @@ const CategoryAllProducts = ({ category }) => {
               discountMessage={`Save A$${price[0].product_regular_price - price[0].product_sale_price
                 } `} // Calculate discount
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
+              product_multi_colors={product.product_multi_colors}
             ></OutdoorDiningChairCard>
           ))}
         </div>

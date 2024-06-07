@@ -450,6 +450,7 @@ const Blogs = () => {
                 } `} // Calculate discount
               categoryId={product.p_category}
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
+              product_multi_colors={product.product_multi_colors}
             />
           ))}
         </div>

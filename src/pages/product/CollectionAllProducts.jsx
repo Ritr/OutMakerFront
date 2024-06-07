@@ -180,6 +180,7 @@ const CollectionAllProducts = ({ category }) => {
                   product?.price[0].product_sale_price
                   } `} // Calculate discount
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
+                product_multi_colors={product.product.product_multi_colors}
               />
             ))}
           </div>
@@ -205,6 +206,7 @@ const CollectionAllProducts = ({ category }) => {
                   product?.price[0].product_sale_price
                   } `} // Calculate discount
                 colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
+                product_multi_colors={product.product.product_multi_colors}
               />
             ))}
           </div>
