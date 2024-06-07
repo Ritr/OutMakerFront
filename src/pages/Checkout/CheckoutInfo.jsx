@@ -232,6 +232,7 @@ const CheckoutInfo = () => {
         {
           onSuccess: (result) => {
             if (result.code == 1) {
+              setIsBtnLoading(false);
               // fetchClear(
               //   { userId: userId, order_no: result.order_number },
               //   {
@@ -332,12 +333,12 @@ const CheckoutInfo = () => {
         },
         {
           onSuccess: (result) => {
+            setIsBtnLoading(false);
             if (result.code == 1) {
               window.oceanWin.userId = userId;
               window.oceanWin.order_no = result.sign.order_number;
               Oceanpayment.checkout(result.sign);
             } else {
-              setIsBtnLoading(false);
               toast.error("Error in ocean process:" + result.msg);
             }
           },
@@ -369,9 +370,9 @@ const CheckoutInfo = () => {
         },
         {
           onSuccess: (result) => {
+            setIsBtnLoading(false);
             if (result.code == 1) {
               setAfterpay(result.sign);
-              setIsBtnLoading(false);
               // fetchClear(
               //   { userId: userId, order_no: result.order_number },
               //   {
@@ -388,7 +389,6 @@ const CheckoutInfo = () => {
               //   }
               // );
             } else {
-              setIsBtnLoading(false);
               toast.error(result.msg);
             }
           },
@@ -419,10 +419,10 @@ const CheckoutInfo = () => {
           discount: confirm ? discount : '',
         },
         {
-          onSuccess: (result) => {
+          onSuccess: (result) => {            
+            setIsBtnLoading(false);
             if (result.code == 1) {
               setPayzippay(result.sign);
-              setIsBtnLoading(false);
               // fetchClear(
               //   { userId: userId, order_no: result.order_number },
               //   {

@@ -146,7 +146,7 @@ const DetailsSlider = ({
   useEffect(() => {
     if (Product_Multi_Colors && Product_Multi_Colors.length) {
       let colors = Product_Multi_Colors.map((item) => {
-        return item.Product_Colors[0];
+        return item.Color_info;
       });
       setAllColors(colors);
     }
@@ -156,7 +156,7 @@ const DetailsSlider = ({
     if (productColor.color_name) {
       let res = Product_Multi_Colors[0];
       res = Product_Multi_Colors.find((item) => {
-        return item.Product_Colors[0].color.color_name === productColor.color_name;
+        return item.Color_info.color_name === productColor.color_name;
       });
       console.log(productColor);
       console.log("res", res);
@@ -186,7 +186,7 @@ const DetailsSlider = ({
   };
   const handleAddToCart = () => {
     addToCartMutation.mutate({ productId: currentProduct.Product?.p_id });
-    setCartProduct({ product:  currentProduct.Product, cost:  currentProduct.Product_Cost });
+    setCartProduct({ product: currentProduct.Product, cost: currentProduct.Product_Cost });
   };
 
   const handleAddToCart2 = (p_id, product, cost) => {
@@ -271,7 +271,7 @@ const DetailsSlider = ({
             </h4>
           </div>
         </div>
-        <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] ">
+        <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] overflow-hidden">
           {currentProduct.Product?.p_pic}
           {headerImage?.endsWith(".mp4") ? (
             <div className="h-full md:w-[50vw] mx-auto">
@@ -349,7 +349,7 @@ const DetailsSlider = ({
           <div className="hidden mb-2 justify-center  md:flex">
             <div className="flex gap-4 items-center p-3 rounded-full bg-white border  md:absolute md:top-[500px]">
               Color: <span className="text-left">{productColor.color_name}</span>
-              {allColors.map(({ color }) => (
+              {allColors.map((color) => (
                 <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                   <div
                     style={{ backgroundColor: color.color_code }}
@@ -578,7 +578,7 @@ const DetailsSlider = ({
                 <div className="p-4  rounded-md bg-white border">
                   Color: <span className="text-left">{productColor.color_name}</span>
                   <div className="flex gap-2 items-center mt-4">
-                    {allColors.map(({ color }) => (
+                    {allColors.map((color) => (
                       <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                         <div
                           style={{ backgroundColor: color.color_code }}
