@@ -330,7 +330,7 @@ const Blogs = () => {
             >
               {seat.map((item) => {
                 return (
-                  <div className="flex items-center">
+                  <div className="flex items-center" key={item.type_id}>
                     <input
                       id={"seat" + item.type_id}
                       type="radio"

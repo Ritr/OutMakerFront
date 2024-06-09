@@ -77,14 +77,8 @@ const DetailsSlider = ({
   ]);
   const [productColor, setProductColor] = useState({});
   const toggleColor = (color) => {
-    if (productColor.color_name === color.color_name) {
-      setProductColor({});
-      filterColor({});
-    } else {
-      setProductColor(color);
-      filterColor(color);
-    }
-
+    setProductColor(color);
+    // filterColor(color);
   }
   const filterColor = (color) => {
     const res = images.filter((item) => {
@@ -101,7 +95,6 @@ const DetailsSlider = ({
   };
 
   const handleNext = () => {
-    console.log(headerImage);
     let index = images2.findIndex((item) => {
       return item.image_url === (headerImage || product.p_pic);
     });
@@ -110,7 +103,6 @@ const DetailsSlider = ({
     }
 
     let image = images2[index + 1];
-    console.log(image.image_url);
     setHeaderImage(image.image_url);
   };
 
@@ -158,12 +150,12 @@ const DetailsSlider = ({
       res = Product_Multi_Colors.find((item) => {
         return item.Color_info.color_name === productColor.color_name;
       });
-      console.log(productColor);
-      console.log("res", res);
       // setProductColor(res.Product_Colors[0]);
       setCurrentProduct(res);
       let images = res.Images;
       setImages(images);
+      setHeaderImage(images[0].image_url);
+      // setImages([{ image_url: product.p_pic }, ...images]);
     }
   }, [productColor.color_name]);
   useEffect(() => {

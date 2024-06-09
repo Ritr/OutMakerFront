@@ -34,23 +34,23 @@ const ProductCard = ({ product, onAdd }) => {
             {productDetail ?
                 <div className="bordered border round-sm p-4 ">
                     <div className="flex gap-4">
-                        <div>
-                            <img src={ImgBaseUrl(productDetail.Product.p_pic)} alt="" className="w-20 h-16 object-cover" />
+                        <div className="w-2/3 ">
+                            <img src={ImgBaseUrl(productDetail.Product.p_pic)} alt="" className="w-full h-24 object-cover" />
                         </div>
                         <div>
                             <div className="font-medium">
                                 {productDetail.Product.p_name}
                             </div>
-                            <div></div>
+                            <div className="flex gap-4 mt-4">
+                                <GoPlusCircle onClick={() => {
+                                    onAdd(productDetail.Product.p_id, productDetail.Product, productDetail.Product_Cost)
+                                }} className="text-primary text-2xl font-semibold cursor-pointer"></GoPlusCircle>
+                                <span className="text-[#DC2626] font-medium">A${productDetail.Product_Cost.product_sale_price}</span>
+                                <del className="text-[#ADACAC]">A${productDetail.Product_Cost.product_regular_price}</del>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex gap-4 mt-4">
-                        <GoPlusCircle onClick={() => {
-                            onAdd(productDetail.Product.p_id, productDetail.Product, productDetail.Product_Cost)
-                        }} className="text-primary text-2xl font-semibold cursor-pointer"></GoPlusCircle>
-                        <span className="text-[#DC2626] font-medium">A${productDetail.Product_Cost.product_sale_price}</span>
-                        <del className="text-[#ADACAC]">A${productDetail.Product_Cost.product_regular_price}</del>
-                    </div>
+
                 </div> : null
             }
         </div>
@@ -77,7 +77,7 @@ const Recommend = ({ Product_Recommends, onAdd }) => {
                             spaceBetween: 10,
                         },
                         1024: {
-                            slidesPerView: 4,
+                            slidesPerView: 3,
                             spaceBetween: 20,
 
                         },
