@@ -282,19 +282,19 @@ const OrderDetails = ({ orders }) => {
             </div>
           </div>
           {/* Price and Shipping */}
-          <div className="flex justify-between items-center mt-4 border-t pt-4">
+          {/* <div className="flex justify-between items-center mt-4 border-t pt-4">
             <div className="text-gray-600">Freight</div>
             <div className="text-gray-800">
               {order.item_cost.shipping_cost === 0
                 ? "Free shipping"
                 : `$${order.item_cost.shipping_cost}`}
             </div>
-          </div>
+          </div> */}
           {/* Total Amount */}
-          <div className="flex justify-between items-center mt-2">
+          {/* <div className="flex justify-between items-center mt-2">
             <div className="text-gray-600">Total 1 pc amount:</div>
             <div className="text-gray-800">${order.item_cost.total_cost}</div>
-          </div>
+          </div> */}
         </div>
       ))}
     </div>

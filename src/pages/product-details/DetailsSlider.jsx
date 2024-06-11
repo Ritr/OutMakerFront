@@ -153,8 +153,8 @@ const DetailsSlider = ({
       // setProductColor(res.Product_Colors[0]);
       setCurrentProduct(res);
       let images = res.Images;
-      setImages(images);
-      setHeaderImage(images[0].image_url);
+      setImages([{ image_url: res.Product.p_pic }, ...images]);
+      setHeaderImage(res.Product.p_pic);
       // setImages([{ image_url: product.p_pic }, ...images]);
     }
   }, [productColor.color_name]);
@@ -340,7 +340,7 @@ const DetailsSlider = ({
         {allColors.length ?
           <div className="hidden mb-2 justify-center  md:flex">
             <div className="flex gap-4 items-center p-3 rounded-full bg-white border  md:absolute md:top-[500px]">
-              Color: <span className="text-left">{productColor.color_name}</span>
+              {/* Color: <span className="text-left">{productColor.color_name}</span> */}
               {allColors.map((color) => (
                 <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                   <div
@@ -568,7 +568,7 @@ const DetailsSlider = ({
             {allColors.length ?
               <div className="p-1 my-2">
                 <div className="p-4  rounded-md bg-white border">
-                  Color: <span className="text-left">{productColor.color_name}</span>
+                  {/* Color: <span className="text-left">{productColor.color_name}</span> */}
                   <div className="flex gap-2 items-center mt-4">
                     {allColors.map((color) => (
                       <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">

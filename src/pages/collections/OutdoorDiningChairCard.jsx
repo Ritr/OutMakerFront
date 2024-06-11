@@ -33,14 +33,7 @@ const OutdoorDiningChairCard = ({
   const [image, setImage] = useState(imageUrl);
   const [productColor, setProductColor] = useState({});
   const toggleColor = (color) => {
-    if (productColor.color_name === color.color_name) {
-      setProductColor({});
-      setImage(imageUrl);
-    } else {
-      setProductColor(color);
-      // filterColor(color);
-    }
-
+    setProductColor(color);
   }
   const find24 = () => {
     let res = materials.find(item => {
