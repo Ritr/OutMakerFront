@@ -125,7 +125,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
         const logistics = logisticsInfo?.find(
           (info) => info.物流分区 === cityInfo.物流分区
         );
-        if (logistics) {
+        if (logistics && objectOnlyData.length > 0) {
           const totalWeight = calculateWeight(
             objectOnlyData ? objectOnlyData : []
           ); // 计算总重量
@@ -149,7 +149,9 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
 
           const totalCharges = FuelSurchargeAndGST; // 计算总费用
           setTotalCharge(totalCharges); // 更新总费用状态
-          onTotalChargeChange(totalCharge);
+          // onTotalChargeChange(totalCharge);
+        } else {
+          setTotalCharge(0);
         }
       }
     }
@@ -170,7 +172,7 @@ const ShippingAddress = ({ objectOnlyData, onTotalChargeChange }) => {
     }
   }, [selectedCity]);
   useEffect(() => {
-    if(objectOnlyData){
+    if (objectOnlyData) {
       handleCityChange(selectedCity);
     }
   }, [objectOnlyData]);

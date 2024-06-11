@@ -22,8 +22,8 @@ import SwiperWrapper from "../../components/SwiperWrapper";
 import { SwiperSlide } from "swiper/react";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 const ProductDetails = () => {
-  const [colorId,setColorId] = useState();
-  const [colorName,setColorName] = useState();
+  const [colorId, setColorId] = useState();
+  const [colorName, setColorName] = useState();
   const [category, setCategory] = useState("dimension");
   const changeCategory = (payload) => setCategory(payload);
   const [showCartBar, setShowCartBar] = useState(false);
@@ -74,7 +74,9 @@ const ProductDetails = () => {
     Comments_Replies,
     Product_Colors,
     Product_Materials,
-    Parcel_weight
+    Parcel_weight,
+    Product_Recommends,
+    Product_Multi_Colors
   } = receivedData;
   useEffect(() => {
     if (collections.length && Product) {
@@ -95,14 +97,15 @@ const ProductDetails = () => {
         collectionName={collectionName}
         category={category}
         changeCategory={changeCategory}
-        video={Single_Video[0]?.video_url}
-        poster={Single_Video[0]?.video_cover}
+        video={Single_Video ? Single_Video[0]?.video_url : null}
         cost={Product_Cost}
         imagesInfo={Secondary_Images}
         productMaterials={Product_Materials}
         colorId={colorId}
         colorName={colorName}
         Parcel_weight={Parcel_weight}
+        Product_Recommends={Product_Recommends}
+        Product_Multi_Colors={Product_Multi_Colors}
       />
       {/* <Info
         category={category}
@@ -114,7 +117,7 @@ const ProductDetails = () => {
         images={Secondary_Images}
       /> */}
 
-      {category === "dimension" && data.length > 0 && (
+      {category === "dimension" && data && data.length > 0 && (
         <Dimensions
           tpye={Product?.p_type}
           id={Product?.p_id}
@@ -138,8 +141,8 @@ const ProductDetails = () => {
       {/* <Furniture /> */}
       {/* <Buyer /> */}
       {/* <ImageSlider images={Secondary_Images} /> */}
-      {showCartBar && <CartBar product={Product} cost={Product_Cost} productMaterials={Product_Materials}/>}
-      {Product_Materials.length > 0 && (
+      {showCartBar && <CartBar product={Product} cost={Product_Cost} productMaterials={Product_Materials} />}
+      {Product_Materials && Product_Materials.length > 0 && (
         <Materials productMaterials={Product_Materials} />
       )}
       <NetWork />
@@ -203,7 +206,7 @@ const ProductDetails = () => {
       </div> */}
       <Faq />
       {/* to generate a rnadom number when user will land on this page */}
-      
+
     </main>
   );
 };

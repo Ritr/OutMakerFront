@@ -40,6 +40,7 @@ import {
   calculateAdditionalCharges,
   calculateFuelSurchargeAndGST,
 } from "../Checkout/LargeCalculations";
+import Recommend from "./recommend.jsx";
 const DetailsSlider = ({
   product,
   images,
@@ -54,7 +55,9 @@ const DetailsSlider = ({
   cost,
   imagesInfo,
   productMaterials = [],
-  Parcel_weight
+  Parcel_weight,
+  Product_Recommends,
+  Product_Multi_Colors
 }) => {
   const find24 = () => {
     let res = productMaterials.find(item => {
@@ -66,6 +69,7 @@ const DetailsSlider = ({
       return 5;
     }
   }
+  const [cartProduct, setCartProduct] = useState({ product: product, cost: cost });
   const [headerImage, setHeaderImage] = useState(null);
   const [images2, setImages] = useState([
     { image_url: product.p_pic },
@@ -73,29 +77,17 @@ const DetailsSlider = ({
   ]);
   const [productColor, setProductColor] = useState({});
   const toggleColor = (color) => {
-    if (productColor.color_name === color.color_name) {
-      setProductColor({});
-      filterColor({});
-    } else {
-      setProductColor(color);
-      filterColor(color);
-    }
-
+    setProductColor(color);
+    // filterColor(color);
   }
   const filterColor = (color) => {
-    console.log(images);
-
     const res = images.filter((item) => {
       if (!color.color_name) {
         return item;
       }
       return item.image_color === color.color_name;
     })
-    console.log(color);
-
-    console.log(res);
-    setImages([{ image_url: product.p_pic }, ...res])
-    // return [{ image_url: product.p_pic }, ...res]
+    setImages([{ image_url: product.p_pic }, ...res]);
   };
   // handler for image change
   const handleImageClick = (image) => {
@@ -103,7 +95,6 @@ const DetailsSlider = ({
   };
 
   const handleNext = () => {
-    console.log(headerImage);
     let index = images2.findIndex((item) => {
       return item.image_url === (headerImage || product.p_pic);
     });
@@ -112,7 +103,6 @@ const DetailsSlider = ({
     }
 
     let image = images2[index + 1];
-    console.log(image.image_url);
     setHeaderImage(image.image_url);
   };
 
@@ -131,9 +121,7 @@ const DetailsSlider = ({
     window.scrollTo(0, 0);
   }, []);
 
-
-
-
+  const [allColors, setAllColors] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [isSidebarCartOpen, setIsSidebarCartOpen] = useState(false);
   const { fetchCartData } = useContext(CartContext);
@@ -145,6 +133,31 @@ const DetailsSlider = ({
   const [afterPayVisible, setAfterPayVisible] = useState(false);
   const [zipPayVisible, setZipPayVisible] = useState(false);
   const [postCost, setPostCost] = useState(0);
+  const [currentProduct, setCurrentProduct] = useState({ Product: product });
+  // 初始化颜色列表
+  useEffect(() => {
+    if (Product_Multi_Colors && Product_Multi_Colors.length) {
+      let colors = Product_Multi_Colors.map((item) => {
+        return item.Color_info;
+      });
+      setAllColors(colors);
+    }
+  }, [Product_Multi_Colors]);
+  // 切换颜色时，更新产品、主图、副图列表
+  useEffect(() => {
+    if (productColor.color_name) {
+      let res = Product_Multi_Colors[0];
+      res = Product_Multi_Colors.find((item) => {
+        return item.Color_info.color_name === productColor.color_name;
+      });
+      // setProductColor(res.Product_Colors[0]);
+      setCurrentProduct(res);
+      let images = res.Images;
+      setImages([{ image_url: res.Product.p_pic }, ...images]);
+      setHeaderImage(res.Product.p_pic);
+      // setImages([{ image_url: product.p_pic }, ...images]);
+    }
+  }, [productColor.color_name]);
   useEffect(() => {
     if (addToCartMutation.isSuccess) {
       toast.success("Successfully Added to your cart.");
@@ -164,10 +177,15 @@ const DetailsSlider = ({
     );
   };
   const handleAddToCart = () => {
-    const color_id = productColor.color_id;
-    const color_name = productColor.color_name;
-    addToCartMutation.mutate({ productId: product?.p_id, quantity, colorId: color_id, colorName: color_name, colorCode: productColor.color_code });
+    addToCartMutation.mutate({ productId: currentProduct.Product?.p_id });
+    setCartProduct({ product: currentProduct.Product, cost: currentProduct.Product_Cost });
   };
+
+  const handleAddToCart2 = (p_id, product, cost) => {
+    addToCartMutation.mutate({ productId: p_id });
+    setCartProduct({ product: product, cost: cost });
+  };
+
   const viewCart = () => {
     const modal = document.getElementById("my_modal_3");
     if (modal) {
@@ -208,7 +226,7 @@ const DetailsSlider = ({
             baseCharge,
             additionalCharges
           ); // 包括燃油附加费、GST和保险费
-          setPostCost((FuelSurchargeAndGST*0.23).toFixed(2));
+          setPostCost((FuelSurchargeAndGST * 0.23).toFixed(2));
         }
       }
     }
@@ -241,11 +259,12 @@ const DetailsSlider = ({
         <div>
           <div className="block md:flex items-center justify-center">
             <h4 className="uppercase text-xl md:text-3xl font-medium">
-              {product?.p_name}
+              {currentProduct.Product?.p_name}
             </h4>
           </div>
         </div>
-        <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] ">
+        <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] overflow-hidden">
+          {currentProduct.Product?.p_pic}
           {headerImage?.endsWith(".mp4") ? (
             <div className="h-full md:w-[50vw] mx-auto">
               <VideoPlayer url={ImgBaseUrl(headerImage)}></VideoPlayer>
@@ -255,7 +274,7 @@ const DetailsSlider = ({
               src={
                 headerImage
                   ? ImgBaseUrl(headerImage)
-                  : ImgBaseUrl(product?.p_pic)
+                  : ImgBaseUrl(currentProduct.Product?.p_pic)
               }
               alt="Product Image"
               className="h-full  object-contain"
@@ -318,11 +337,11 @@ const DetailsSlider = ({
             ))}
           </SwiperWrapper>
         </div>
-        {Product_Colors.length ?
+        {allColors.length ?
           <div className="hidden mb-2 justify-center  md:flex">
             <div className="flex gap-4 items-center p-3 rounded-full bg-white border  md:absolute md:top-[500px]">
-              Color: <span className="text-left">{productColor.color_name}</span>
-              {Product_Colors.map(({ color }) => (
+              {/* Color: <span className="text-left">{productColor.color_name}</span> */}
+              {allColors.map((color) => (
                 <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                   <div
                     style={{ backgroundColor: color.color_code }}
@@ -356,13 +375,13 @@ const DetailsSlider = ({
                 <div className="flex items-center justify-around gap-5 border-t-2 border-b-2 py-5">
                   <figure className="w-[100px]">
                     <img
-                      src={ImgBaseUrl(product?.p_pic)}
+                      src={ImgBaseUrl(cartProduct.product?.p_pic)}
                       alt=""
                       className="object-cover w-full h-full border"
                     />
                   </figure>
-                  <h3>{product?.p_name}</h3>
-                  <p>A${cost?.product_sale_price}</p>
+                  <h3>{cartProduct.product?.p_name}</h3>
+                  <p>A${cartProduct.cost?.product_sale_price}</p>
                 </div>
                 <div className="mt-5">
                   <button
@@ -388,7 +407,6 @@ const DetailsSlider = ({
               </div>
             </dialog>
           </div>
-
           <div className="hidden mt-4 cart-bar md:pl-12 md:p-3 md:border-gray-300 md:flex items-center justify-between md:rounded-full md:border">
             <div className=" items-center md:flex">
               <div className="">
@@ -547,25 +565,23 @@ const DetailsSlider = ({
                 </button>
               </div>
             </div>
-            {Product_Colors.length ?
+            {allColors.length ?
               <div className="p-1 my-2">
                 <div className="p-4  rounded-md bg-white border">
-                  Color: <span className="text-left">{productColor.color_name}</span>
+                  {/* Color: <span className="text-left">{productColor.color_name}</span> */}
                   <div className="flex gap-2 items-center mt-4">
-                    {Product_Colors.map(({ color }) => (
+                    {allColors.map((color) => (
                       <div onClick={() => { toggleColor(color) }} key={color.color_id} className="text-center cursor-pointer">
                         <div
                           style={{ backgroundColor: color.color_code }}
                           className={`h-6 w-6 rounded-full mx-auto ${color.color_name === productColor.color_name ? " border border-[#002B5B]  " : ""}`}
                         ></div>
-                        {/* <p className="text-xs text-[#666666] font-normal">
-                  {color.color_name}
-                </p> */}
                       </div>
                     ))}
                   </div>
                 </div>
               </div> : null}
+            <Recommend Product_Recommends={Product_Recommends} onAdd={handleAddToCart2}></Recommend>
             <button
               onClick={handleAddToCart}
               className="bg-primary md:hidden  h-[50px] w-full hover:bg-white text-white text-center hover:text-primary rounded-full btn btn-outline p-2  text-sm "
@@ -673,7 +689,9 @@ const DetailsSlider = ({
               </div>
             </div>
           </div>
-
+          <div className="hidden md:block mt-4">
+            <Recommend Product_Recommends={Product_Recommends} onAdd={handleAddToCart2}></Recommend>
+          </div>
           <div className="py-6 text-center">
             <h4 className="text-2xl font-font leading-loose">Meet {product.collection_name}</h4>
             <p className="text-sm font-light">{product?.p_s_description}</p>

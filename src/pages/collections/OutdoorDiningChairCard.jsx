@@ -24,19 +24,16 @@ const OutdoorDiningChairCard = ({
   discountMessage,
   colorOptions,
   categoryId,
-  isNew, // assuming this is a new prop to indicate if the item is new                <Link to={`/product-details/${p_id}`}></Link>
+  isNew,
+  product_multi_colors // assuming this is a new prop to indicate if the item is new                <Link to={`/product-details/${p_id}`}></Link>
 }) => {
+  const colors = product_multi_colors.map((item) => {
+    return item.color_info;
+  });
   const [image, setImage] = useState(imageUrl);
   const [productColor, setProductColor] = useState({});
   const toggleColor = (color) => {
-    if (productColor.color_name === color.color_name) {
-      setProductColor({});
-      setImage(imageUrl);
-    } else {
-      setProductColor(color);
-      // filterColor(color);
-    }
-
+    setProductColor(color);
   }
   const find24 = () => {
     let res = materials.find(item => {
@@ -50,12 +47,11 @@ const OutdoorDiningChairCard = ({
   }
   useEffect(() => {
     if (productColor.color_name) {
-      const currentImage = images.find(item => {
-        return item.image_color.color_name === productColor.color_name;
+      const currentImage = product_multi_colors.find(item => {
+        return item.color_info.color_name === productColor.color_name;
       });
-      console.log(currentImage);
       if (currentImage) {
-        setImage(ImgBaseUrl(currentImage.image_url));
+        setImage(ImgBaseUrl(currentImage.p_pic));
       }
     }
   }, [productColor]);
@@ -89,7 +85,7 @@ const OutdoorDiningChairCard = ({
         </div>
         <div className="flex mb-2 justify-center absolute top-44 md:top-[240px] left-[50%] -translate-x-[50%]">
           <div className="flex gap-2 items-center">
-            {Product_Colors.map(({ color }) => (
+            {colors.map((color) => (
               <div onClick={(e) => { toggleColor(color) }} key={color.color_id} className={`text-center rounded-full cursor-pointer p-1  ${color.color_name === productColor.color_name ? " border-2" : ""}`}>
                 <div
                   style={{ backgroundColor: color.color_code }}

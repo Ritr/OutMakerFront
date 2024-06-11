@@ -330,7 +330,7 @@ const Blogs = () => {
             >
               {seat.map((item) => {
                 return (
-                  <div className="flex items-center">
+                  <div className="flex items-center" key={item.type_id}>
                     <input
                       id={"seat" + item.type_id}
                       type="radio"
@@ -450,6 +450,7 @@ const Blogs = () => {
                 } `} // Calculate discount
               categoryId={product.p_category}
               colorOptions={["#222222", "#0453AA"]} // Set default or derive from category data
+              product_multi_colors={product.product_multi_colors}
             />
           ))}
         </div>
