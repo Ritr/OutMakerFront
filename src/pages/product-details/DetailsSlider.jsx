@@ -264,7 +264,6 @@ const DetailsSlider = ({
           </div>
         </div>
         <div className="mt-5 md:mb-3 h-56   md:h-[430px] lg:h-[500px] overflow-hidden">
-          {currentProduct.Product?.p_pic}
           {headerImage?.endsWith(".mp4") ? (
             <div className="h-full md:w-[50vw] mx-auto">
               <VideoPlayer url={ImgBaseUrl(headerImage)}></VideoPlayer>
