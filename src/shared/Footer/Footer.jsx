@@ -85,6 +85,11 @@ const Footer = () => {
     }
     sendDiscountEmailMutation.mutate();
   };
+  useEffect(() => {
+    if (sendDiscountEmailMutation.isSuccess) {
+      toast.success("You have successfully subscribed to our newsletter!");
+    }
+  }, [sendDiscountEmailMutation.isSuccess,sendDiscountEmailMutation.data]);
   return hidden ? null : (
     <footer className=" bg-[#262F3C] text-white">
       <div className="container mx-auto px-8 pt-10 md:px-10 md:pt-20">
