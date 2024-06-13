@@ -28,7 +28,9 @@ import {
 import OceanPayment from "../../Hooks/useOceanpayment";
 import { useCreateOceanpayment } from "../../Hooks/api/useOceanpayment";
 import FormDataAfter from "../../components/Oceanpayment/formDataAfter";
-
+//googlepay
+import OceanGoogle from "../../Hooks/useOceanGoogle";
+import FormDataGoogle from "../../components/Oceanpayment/formDataGoogle";
 
 import { v4 as uuidv4 } from "uuid";
 import afterPay from "../../assets/Afterpay.png";
@@ -71,15 +73,15 @@ const CheckoutInfo = () => {
   const { mutate: getLianlianTokenMutate } = useGetLianlianToken();
   const { mutate: lianlianPay, isLoading: isPaying } = useLianlianPay();
 
-  const { mutate: createOrder } = useCreatePaypalOrder();
-  const { mutate: fetchOrderPaypal } = useFetchOrderPaypal();
   const { mutate: fetchOrder } = useFetchOrder();
   const { mutate: fetchClear } = useFetchClear();
   //oceanpayment
   const { mutate: useFetchOceanCreate } = useCreateOceanpayment();
+  
   const [afterpay, setAfterpay] = useState({ pay_url: "", data: {} });
   const [payzippay, setPayzippay] = useState({ pay_url: "", data: {} });
-
+  const [googlepay, setGooglepay] = useState({ pay_url: "", data: {} });
+  
   const handleTotalCharge = (totalCharge, formData) => {
     setFormDataFromShipping(formData);
 
@@ -350,7 +352,44 @@ const CheckoutInfo = () => {
           },
         }
       );
-    } else if (paymentMethod == "afterpay") {
+    }
+    else if (paymentMethod == "googlepay") {
+      useFetchOceanCreate(
+        {
+          user_code: userId,
+          send_type: "googlepay",
+          billing_country: "AU",
+          billing_state: state,
+          billing_city: city,
+          billing_address: address,
+          billing_zip: zip,
+          billing_firstName: firstName,
+          billing_lastName: lastName,
+          billing_email: formDataemail,
+          billing_phone: phone,
+          billing_tip: totalChargeFromShipping.toFixed(2),
+          baseUrl: window.location.origin,
+          discount: confirm ? discount : ''
+        },
+        {
+          onSuccess: (result) => {
+            setIsBtnLoading(false);
+            if (result.code == 1) {
+              setGooglepay(result.sign);
+            } else {
+              toast.error(result.msg);
+            }
+          },
+          onError: (error) => {
+            // Handle the error scenario
+            console.error("Error in ocean process:", error);
+            toast.error("Error in ocean process:" + error.message);
+            setIsBtnLoading(false);
+          },
+        }
+      );
+    }
+    else if (paymentMethod == "afterpay") {
       useFetchOceanCreate(
         {
           user_code: userId,
@@ -869,6 +908,36 @@ const CheckoutInfo = () => {
                         </>
                       )}
                     </div> */}
+                       <div className="form-control">
+                      <label
+                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "googlepay"
+                          ? "paymentMethodselected"
+                          : ""
+                          }`}
+                      >
+                        <div className="flex items-center">
+                          <input
+                            type="radio"
+                            name="payment"
+                            className="radio checked:bg-blue-500"
+                            checked={paymentMethod === "googlepay"}
+                            onChange={() => setPaymentMethod("googlepay")}
+                          />
+                          <span className="label-text ml-2">GooglePay</span>
+                        </div>
+                      </label>
+                      {paymentMethod === "googlepay" && (
+                        <>
+                          <FormDataGoogle
+                            payUrl={googlepay.pay_url}
+                            formData={googlepay.data}
+                          ></FormDataGoogle>
+                          <p className="text-xs p-1 text-gray-500 mt-1">
+                            Payment with Google 
+                          </p>
+                        </>
+                      )}
+                    </div>
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "afterpay"
