@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import UserInitialization from "../../components/UserInitialization/UserInitialization";
 import { CartContext } from "../../Provider/CartProvider";
 import ImgBaseUrl from "../../components/ImgBaseUrl/ImgBaseUrl";
 import bPaypal from "../../assets/icons/bPaypal.svg";
@@ -28,11 +27,9 @@ import {
 import OceanPayment from "../../Hooks/useOceanpayment";
 import { useCreateOceanpayment } from "../../Hooks/api/useOceanpayment";
 import FormDataAfter from "../../components/Oceanpayment/formDataAfter";
-//googlepay
-import OceanGoogle from "../../Hooks/useOceanGoogle";
-import FormDataGoogle from "../../components/Oceanpayment/formDataGoogle";
+import GooglePayButton from '@google-pay/button-react';
+import ApplePayButton from "../../Hooks/useApplePay";
 
-import { v4 as uuidv4 } from "uuid";
 import afterPay from "../../assets/Afterpay.png";
 import { applyDiscount } from "../../Hooks/api/applyDiscount";
 const CheckoutInfo = () => {
@@ -73,15 +70,18 @@ const CheckoutInfo = () => {
   const { mutate: getLianlianTokenMutate } = useGetLianlianToken();
   const { mutate: lianlianPay, isLoading: isPaying } = useLianlianPay();
 
+  const { mutate: createOrder } = useCreatePaypalOrder();
+  const { mutate: fetchOrderPaypal } = useFetchOrderPaypal();
   const { mutate: fetchOrder } = useFetchOrder();
   const { mutate: fetchClear } = useFetchClear();
   //oceanpayment
   const { mutate: useFetchOceanCreate } = useCreateOceanpayment();
-  
   const [afterpay, setAfterpay] = useState({ pay_url: "", data: {} });
   const [payzippay, setPayzippay] = useState({ pay_url: "", data: {} });
-  const [googlepay, setGooglepay] = useState({ pay_url: "", data: {} });
-  
+  const [googlepay, setGooglepay] = useState({
+
+
+  });
   const handleTotalCharge = (totalCharge, formData) => {
     setFormDataFromShipping(formData);
 
@@ -95,6 +95,7 @@ const CheckoutInfo = () => {
     setTotalChargeFromShipping(discountedTotalCharge);
   };
 
+
   // Calculate the tax price
   const tax = objectOnlyData?.reduce(
     (total, item) => total + (item?.cost?.tax || 0),
@@ -102,9 +103,9 @@ const CheckoutInfo = () => {
   );
 
   const totalEstimatedPrice = objectOnlyData?.reduce(
-    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0)),
+    (total, item) => total + (item?.cost?.total_cost * (item?.qunatity || 0) * (confirm ? 90 : 100) / 100),
     0
-  ) * (confirm ? 90 : 100) / 100;
+  );
 
   // Calculate the shipping cost
   const shippingCost = objectOnlyData?.reduce(
@@ -119,48 +120,40 @@ const CheckoutInfo = () => {
     0
   );
   //ocean回调
-  window.oceanpaymentCallBack = function (data) {
-    if (!data.msg) {
-      const regexStatus = /<payment_status>(.*?)<\/payment_status>/;
-      const regeStatus = data.match(regexStatus);
-      if (regeStatus) {
-        console.log('支付状态识别', regeStatus);
-        if (regeStatus.length >= 2) {
-          const regex = /<pay_url>(.*?)<\/pay_url>/;
-          const match = data.match(regex);
-          console.log('支付跳转url识别', match);
-          switch (regeStatus[1]) {
-            //支付成功
-            case '1':
-              fetchClear(window.oceanWin, {
-                onSuccess: () => {
-                  window.location.href = window.location.origin + "/pay/statusOrder/" + window.oceanWin.order_no;
-                },
-                onError: (error) => {
-                  window.location.href = window.location.origin + "/pay/statusOrder/" + window.oceanWin.order_no;
-                },
-              });
+  window.oceanpaymentCallBack = function (res) {
+    if (res.msg) {
+      setIsBtnLoading(false);
+    } else {
+      //3d直接跳走
+      if (res.indexOf("pay_url") > -1) {
+        const regex = /<pay_url>(.*?)<\/pay_url>/;
+        const match = res.match(regex);
+        if (match) {
+          //先清购物车,再跳转
 
-              break;
-            case '-1':
-              //3d
-              fetchClear(window.oceanWin, {
-                onSuccess: () => {
-                  window.location.href = match[1];
-                },
-                onError: (error) => {
-                  window.location.href = match[1];
-                },
-              });
-              break;
-            default:
-            //其他默认失败
-          }
+          fetchClear(window.oceanWin, {
+            onSuccess: () => {
+              setIsBtnLoading(false);
+              window.location.href = match[1];
+            },
+            onError: (error) => {
+              setIsBtnLoading(false);
+              window.location.href = match[1];
+            },
+          });
+        } else {
+          setIsBtnLoading(false);
         }
+        //支付成功
+      } else {
+        //会异步通知
+        // window.location.href =
+        // "http://theoutmaker.com.au/pay/statusOrder/" +
+        //window.oceanWin.order_no;
+        setIsBtnLoading(false);
       }
+      console.log("调用成功", res);
     }
-    setIsBtnLoading(false);
-    console.log("调用成功", data);
   };
 
   const amount =
@@ -218,7 +211,7 @@ const CheckoutInfo = () => {
         {
           user_code: userId,
           send_type: "paypal",
-          billing_country: "AU",
+          billing_country: "US",
           billing_state: state,
           billing_city: city,
           billing_address: address,
@@ -234,28 +227,27 @@ const CheckoutInfo = () => {
         {
           onSuccess: (result) => {
             if (result.code == 1) {
-              setIsBtnLoading(false);
-              // fetchClear(
-              //   { userId: userId, order_no: result.order_number },
-              //   {
-              //     onSuccess: () => {
-              //       // Handle the success scenario for order clear
-              //       //toast.success("Order cleared successfully");
-              //       // Additional success logic here...
-              if (result.sign.link) {
-                window.location.href = result.sign.link;
-              } else {
-                toast.error("Error order: " + result.msg);
-              }
-              //       setIsBtnLoading(false);
-              //     },
-              //     onError: (error) => {
-              //       // Handle the error scenario for order clear
-              //       //    toast.error("Error clearing order: " + error.message);
-              //       setIsBtnLoading(false);
-              //     },
-              //   }
-              // );
+              fetchClear(
+                { userId: userId, order_no: result.order_number },
+                {
+                  onSuccess: () => {
+                    // Handle the success scenario for order clear
+                    //toast.success("Order cleared successfully");
+                    // Additional success logic here...
+                    if (result.sign.link) {
+                      window.location.href = result.sign.link;
+                    } else {
+                      toast.error("Error order: " + result.msg);
+                    }
+                    setIsBtnLoading(false);
+                  },
+                  onError: (error) => {
+                    // Handle the error scenario for order clear
+                    //    toast.error("Error clearing order: " + error.message);
+                    setIsBtnLoading(false);
+                  },
+                }
+              );
             } else {
               setIsBtnLoading(false);
               toast.error(result.msg);
@@ -281,14 +273,14 @@ const CheckoutInfo = () => {
           product_price: item.cost.product_sale_price.toString(),
           product_quantity: item.qunatity.toString(),
           product_url:
-            "https://theoutmaker.com/product-details/" +
+            "https://theoutmaker.com.au/product-details/" +
             product.p_id.toString(),
         };
       });
       const orderData = {
         user_id: userId,
         city: city,
-        country: "AU",
+        country: "US",
         firstName: firstName,
         lastName: lastName,
         line1: address,
@@ -298,7 +290,7 @@ const CheckoutInfo = () => {
         shipping_phone: phone,
         order_amount: amount,
         // order_amount: "1",
-        order_currency_code: "AUD",
+        order_currency_code: "USD",
         productList: productList,
         cycle: "48h",
         card_token: cardToken,
@@ -320,7 +312,7 @@ const CheckoutInfo = () => {
         {
           user_code: userId,
           send_type: "ocean",
-          billing_country: "AU",
+          billing_country: "US",
           billing_state: state,
           billing_city: city,
           billing_address: address,
@@ -335,12 +327,12 @@ const CheckoutInfo = () => {
         },
         {
           onSuccess: (result) => {
-            setIsBtnLoading(false);
             if (result.code == 1) {
               window.oceanWin.userId = userId;
               window.oceanWin.order_no = result.sign.order_number;
               Oceanpayment.checkout(result.sign);
             } else {
+              setIsBtnLoading(false);
               toast.error("Error in ocean process:" + result.msg);
             }
           },
@@ -352,49 +344,12 @@ const CheckoutInfo = () => {
           },
         }
       );
-    }
-    else if (paymentMethod == "googlepay") {
-      useFetchOceanCreate(
-        {
-          user_code: userId,
-          send_type: "googlepay",
-          billing_country: "AU",
-          billing_state: state,
-          billing_city: city,
-          billing_address: address,
-          billing_zip: zip,
-          billing_firstName: firstName,
-          billing_lastName: lastName,
-          billing_email: formDataemail,
-          billing_phone: phone,
-          billing_tip: totalChargeFromShipping.toFixed(2),
-          baseUrl: window.location.origin,
-          discount: confirm ? discount : ''
-        },
-        {
-          onSuccess: (result) => {
-            setIsBtnLoading(false);
-            if (result.code == 1) {
-              setGooglepay(result.sign);
-            } else {
-              toast.error(result.msg);
-            }
-          },
-          onError: (error) => {
-            // Handle the error scenario
-            console.error("Error in ocean process:", error);
-            toast.error("Error in ocean process:" + error.message);
-            setIsBtnLoading(false);
-          },
-        }
-      );
-    }
-    else if (paymentMethod == "afterpay") {
+    } else if (paymentMethod == "afterpay") {
       useFetchOceanCreate(
         {
           user_code: userId,
           send_type: "afterpay",
-          billing_country: "AU",
+          billing_country: "US",
           billing_state: state,
           billing_city: city,
           billing_address: address,
@@ -409,25 +364,25 @@ const CheckoutInfo = () => {
         },
         {
           onSuccess: (result) => {
-            setIsBtnLoading(false);
             if (result.code == 1) {
               setAfterpay(result.sign);
-              // fetchClear(
-              //   { userId: userId, order_no: result.order_number },
-              //   {
-              //     onSuccess: () => {
-              //       // Handle the success scenario for order clear
-              //       //toast.success("Order cleared successfully");
-              //       // Additional success logic here...
-              //       setIsBtnLoading(false);
-              //     },
-              //     onError: (error) => {
-              //       // Handle the error scenario for order clear
-              //       setIsBtnLoading(false);
-              //     },
-              //   }
-              // );
+              fetchClear(
+                { userId: userId, order_no: result.order_number },
+                {
+                  onSuccess: () => {
+                    // Handle the success scenario for order clear
+                    //toast.success("Order cleared successfully");
+                    // Additional success logic here...
+                    setIsBtnLoading(false);
+                  },
+                  onError: (error) => {
+                    // Handle the error scenario for order clear
+                    setIsBtnLoading(false);
+                  },
+                }
+              );
             } else {
+              setIsBtnLoading(false);
               toast.error(result.msg);
             }
           },
@@ -444,7 +399,7 @@ const CheckoutInfo = () => {
         {
           user_code: userId,
           send_type: "zip",
-          billing_country: "AU",
+          billing_country: "US",
           billing_state: state,
           billing_city: city,
           billing_address: address,
@@ -458,26 +413,25 @@ const CheckoutInfo = () => {
           discount: confirm ? discount : '',
         },
         {
-          onSuccess: (result) => {            
-            setIsBtnLoading(false);
+          onSuccess: (result) => {
             if (result.code == 1) {
               setPayzippay(result.sign);
-              // fetchClear(
-              //   { userId: userId, order_no: result.order_number },
-              //   {
-              //     onSuccess: () => {
-              //       // Handle the success scenario for order clear
-              //       //toast.success("Order cleared successfully");
-              //       // Additional success logic here...
-              //       setIsBtnLoading(false);
-              //     },
-              //     onError: (error) => {
-              //       // Handle the error scenario for order clear
-              //       toast.error("Error clearing order: " + error.message);
-              //       setIsBtnLoading(false);
-              //     },
-              //   }
-              // );
+              fetchClear(
+                { userId: userId, order_no: result.order_number },
+                {
+                  onSuccess: () => {
+                    // Handle the success scenario for order clear
+                    //toast.success("Order cleared successfully");
+                    // Additional success logic here...
+                    setIsBtnLoading(false);
+                  },
+                  onError: (error) => {
+                    // Handle the error scenario for order clear
+                    toast.error("Error clearing order: " + error.message);
+                    setIsBtnLoading(false);
+                  },
+                }
+              );
             } else {
               setIsBtnLoading(false);
               toast.error(result.msg);
@@ -525,7 +479,7 @@ const CheckoutInfo = () => {
       paypal_order_no: "",
       payment_method: "2",
       discount: confirm ? discount : '',
-      shipping_cost: totalChargeFromShipping.toFixed(2),
+      shipping_cost: totalChargeFromShipping,
       total_cost: paymentAmount,
     };
     // Execute order draft mutation
@@ -542,22 +496,22 @@ const CheckoutInfo = () => {
             return;
           }
           // After order draft, execute order clear
-          // fetchClear(
-          //   { userId, order_no },
-          //   {
-          //     onSuccess: () => {
-          //       // Handle the success scenario for order clear
-          //       //toast.success("Order cleared successfully");
-          //       // Additional success logic here...
-          //       setIsBtnLoading(false);
-          //     },
-          //     onError: (error) => {
-          //       // Handle the error scenario for order clear
-          //       //  toast.error("Error clearing order: " + error.message);
-          //       setIsBtnLoading(false);
-          //     },
-          //   }
-          // );
+          fetchClear(
+            { userId, order_no },
+            {
+              onSuccess: () => {
+                // Handle the success scenario for order clear
+                //toast.success("Order cleared successfully");
+                // Additional success logic here...
+                setIsBtnLoading(false);
+              },
+              onError: (error) => {
+                // Handle the error scenario for order clear
+                //  toast.error("Error clearing order: " + error.message);
+                setIsBtnLoading(false);
+              },
+            }
+          );
         },
         onError: (error) => {
           // Handle the error scenario for order draft
@@ -615,7 +569,7 @@ const CheckoutInfo = () => {
       token: token,
       style: "", // Define your styles here
       apiType: "", // Set the API type if needed
-      // merchantUrl: "https://www.theoutmaker.com",
+      // merchantUrl: "https://www.theoutmaker.com.au",
       merchantUrl: location.href,
     });
 
@@ -634,6 +588,110 @@ const CheckoutInfo = () => {
       },
     });
   };
+  //苹果支付按钮
+  const applePayCall = () => {
+    if (!window.ApplePaySession || !ApplePaySession.canMakePayments()) {
+      toast.error("Apple setup installation required");
+      return;
+    }
+    const paymentRequest = new PaymentRequest(
+      [
+        { supportedMethods: 'https://apple.com/apple-pay' },
+      ],
+      {
+        countryCode: 'US',
+        currencyCode: 'USD',
+        total: {
+          label: 'Example Inc.',
+          amount: { value: amount, currency: 'USD' },
+        },
+        merchantIdentifier: 'YOUR_MERCHANT_ID_HERE',
+      }
+    );
+    try {
+      // 开始Apple Pay会话
+      const applePaySession = new ApplePaySession(1, paymentRequest);
+
+      applePaySession.onvalidatemerchant = async (event) => {
+        // 这里需要与您的服务器交互，获取session标识符并设置到ApplePaySession
+        const merchantSession = await fetch('/your-server/apple-pay-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ validationURL: event.validationURL }),
+        }).then(response => response.json());
+        applePaySession.completeMerchantValidation(merchantSession);
+      };
+
+      applePaySession.onpaymentmethodselected = (event) => {
+        // 处理支付方式选择
+        event.completePaymentMethodSelection(ApplePaySession.STATUS_SUCCESS);
+      };
+
+      applePaySession.onpaymentauthorized = (event) => {
+        // 接收用户授权的支付信息，这里应发送给您的服务器处理
+        const { payment } = event;
+
+
+
+        
+        // 假设支付处理成功
+        event.complete(ApplePaySession.STATUS_SUCCESS);
+
+        return { status: ApplePaySession.STATUS_SUCCESS };
+      };
+      applePaySession.begin();
+    } catch (error) {
+      console.error('Error setting up Apple Pay:', error);
+    }
+
+  }
+  //谷歌支付回调
+  const googleCallBack = (paymentRequest) => {
+    const {
+      paymentMethodData: { description, info, tokenizationData },
+    } = paymentRequest;
+    if (tokenizationData?.token) {
+      useFetchOceanCreate(
+        {
+          user_code: userId,
+          send_type: "googlepay",
+          billing_country: "US",
+          pay_accountNumber: tokenizationData.token,
+          card_number: info.cardDetails,
+          card_year: '',
+          card_month: '',
+          card_secureCode: '',
+          billing_state: info.billingAddress.state || '',
+          billing_city: info.billingAddress.city || '',
+          billing_address: info.billingAddress.address || '',
+          billing_zip: info.billingAddress.postalCode || '',
+          billing_firstName: '',
+          billing_lastName: '',
+          billing_email: formDataemail,
+          billing_phone: '',
+          billing_tip: totalChargeFromShipping.toFixed(2),
+          baseUrl: window.location.origin,
+          discount: confirm ? discount : '',
+        },
+        {
+          onSuccess: (result) => {
+            if (result.code == 1) {
+              window.location.href = `http://theoutmaker.com/checkout-info/status/${result.order_no}`;
+            }
+          },
+          onError: (error) => {
+            // Handle the error scenario
+            console.error("Error in ocean process:", error);
+            toast.error("Error in ocean process:" + error.message);
+
+          },
+        }
+      );
+
+    }
+  }
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -644,6 +702,7 @@ const CheckoutInfo = () => {
   return (
     <>
       <section className="w-full h-full bg-[#F7F7F7]">
+
         <div className="bg-primary py-6">
           <div className="lg:max-w-[1600px] mx-auto flex justify-between">
             <div className="flex-1 flex justify-center">
@@ -709,7 +768,7 @@ const CheckoutInfo = () => {
                       {isOpen ? <FaChevronUp /> : <FaChevronDown />}
                     </div>
 
-                    <p>A$ {totalEstimatedPrice}</p>
+                    <p>$ {totalEstimatedPrice}</p>
                   </div>
                 </button>
                 <div className={isOpen ? "pb-4 bg-white" : "hidden"}>
@@ -739,7 +798,7 @@ const CheckoutInfo = () => {
                             </div>
                             <div className="w-16 text-left flex flex-col justify-center items-center">
                               <span className="text-sm text-gray-500">
-                                A${item?.cost?.product_sale_price * item.qunatity}
+                                ${item?.cost?.product_sale_price * item.qunatity}
                               </span>
                             </div>
                           </div>
@@ -779,13 +838,13 @@ const CheckoutInfo = () => {
                     <div className="space-y-4 mb-6 mt-4">
                       <div className="flex justify-between">
                         <span>Subtotal</span>
-                        <span>A${totalEstimatedPrice}</span>
+                        <span>${totalEstimatedPrice}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Shipping</span>
                         <span>
                           {totalChargeFromShipping
-                            ? `A$${totalChargeFromShipping.toFixed(2)}`
+                            ? `$${totalChargeFromShipping.toFixed(2)}`
                             : "Enter shipping address"}
                         </span>
                       </div>
@@ -799,7 +858,7 @@ const CheckoutInfo = () => {
                             <FaQuestionCircle></FaQuestionCircle>
                           </div>
                         </span>
-                        <span>A${tax}</span>
+                        <span>${tax}</span>
                       </div>
                     </div>
                   </div>
@@ -810,6 +869,48 @@ const CheckoutInfo = () => {
             {/* Left Column for Forms */}
             <div className="col-span-1 lg:col-span-5  p-3 pt-10 md:pt-10 md:pr-10 md:pb-0  md:overflow-auto">
               <div className="md:w-2/3 ml-auto">
+                <div className="flex  flex-row">
+                  {window?.ApplePaySession?( <div className=""> <ApplePayButton></ApplePayButton> </div>):''}
+                 
+                  <div className="">
+                    <GooglePayButton
+                      environment="TEST"
+                      paymentRequest={{
+                        apiVersion: 2,
+                        apiVersionMinor: 0,
+                        allowedPaymentMethods: [
+                          {
+                            type: 'CARD',
+                            parameters: {
+                              allowedAuthMethods: ['PAN_ONLY', 'CRYPTOGRAM_3DS'],
+                              allowedCardNetworks: ['MASTERCARD', 'VISA'],
+                            },
+                            tokenizationSpecification: {
+                              type: 'PAYMENT_GATEWAY',
+                              parameters: {
+                                gateway: 'oceanpayment',
+                                gatewayMerchantId: '04057502692718931213',
+                              },
+                            },
+                          },
+                        ],
+                        merchantInfo: {
+                          merchantId: '12345678901234567890',
+                          merchantName: 'Demo Merchant',
+                        },
+                        transactionInfo: {
+                          totalPriceStatus: 'FINAL',
+                          totalPriceLabel: 'Total',
+                          totalPrice: `${amount}`,
+                          currencyCode: 'USD',
+                          countryCode: 'US',
+                        },
+                      }}
+                      onLoadPaymentData={googleCallBack}
+                    />
+                  </div>
+                </div>
+
                 <h2 className="text-2xl font-medium mb-4 text-gray-700">
                   Contact
                 </h2>
@@ -908,36 +1009,6 @@ const CheckoutInfo = () => {
                         </>
                       )}
                     </div> */}
-                       <div className="form-control">
-                      <label
-                        className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "googlepay"
-                          ? "paymentMethodselected"
-                          : ""
-                          }`}
-                      >
-                        <div className="flex items-center">
-                          <input
-                            type="radio"
-                            name="payment"
-                            className="radio checked:bg-blue-500"
-                            checked={paymentMethod === "googlepay"}
-                            onChange={() => setPaymentMethod("googlepay")}
-                          />
-                          <span className="label-text ml-2">GooglePay</span>
-                        </div>
-                      </label>
-                      {paymentMethod === "googlepay" && (
-                        <>
-                          <FormDataGoogle
-                            payUrl={googlepay.pay_url}
-                            formData={googlepay.data}
-                          ></FormDataGoogle>
-                          <p className="text-xs p-1 text-gray-500 mt-1">
-                            Payment with Google 
-                          </p>
-                        </>
-                      )}
-                    </div>
                     <div className="form-control">
                       <label
                         className={`label p-4 cursor-pointer flex justify-between items-center mb-2 transition-all duration-300 ${paymentMethod === "afterpay"
@@ -974,7 +1045,7 @@ const CheckoutInfo = () => {
                             formData={afterpay.data}
                           ></FormDataAfter>
                           <p className="text-xs p-1 text-gray-500 mt-1">
-                            Payment with AfterPay will be limited by 2000 AUD
+                            Payment with AfterPay will be limited by 3000 USD
                           </p>
                         </>
                       )}
@@ -1009,7 +1080,7 @@ const CheckoutInfo = () => {
                             formData={payzippay.data}
                           ></FormDataAfter>
                           {/* <p className="text-xs p-1 text-gray-500 mt-1">
-                            Payment with Zip will be limited by 2000 AUD
+                            Payment with Zip will be limited by 2000 USD
                           </p> */}
                         </>
                       )}
@@ -1117,7 +1188,7 @@ const CheckoutInfo = () => {
                           </div>
                           <div className="w-16 text-left flex flex-col justify-center items-center">
                             <span className="text-sm text-gray-500">
-                              A${item?.cost?.product_sale_price * item.qunatity}
+                              ${item?.cost?.product_sale_price * item.qunatity}
                             </span>
                           </div>
                         </div>
@@ -1144,22 +1215,22 @@ const CheckoutInfo = () => {
                 <div className="space-y-4 mb-6 mt-4">
                   <div className="flex justify-between">
                     <span>Subtotal</span>
-                    <span>A${totalEstimatedPrice}</span>
+                    <span>${totalEstimatedPrice}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>Shipping</span>
                     <span>
                       {totalChargeFromShipping
-                        ? `A$${totalChargeFromShipping.toFixed(2)}`
+                        ? `$${totalChargeFromShipping.toFixed(2)}`
                         : "Enter shipping address"}
                     </span>
                   </div>
-                  {/* <div className="flex justify-between">
+                  <div className="flex justify-between">
                     <span>Installation</span>
                     <span>
-                      {installationCost}
+                      {installationCost}-
                     </span>
-                  </div> */}
+                  </div>
                   <div className="flex justify-between">
                     <span className="flex items-center cursor-pointer">
                       Estimated Tax
@@ -1170,7 +1241,7 @@ const CheckoutInfo = () => {
                         <FaQuestionCircle className="ml-1"></FaQuestionCircle>
                       </div>
                     </span>
-                    <span>A${tax}</span>
+                    <span>${tax}</span>
                   </div>
                 </div>
               </div>

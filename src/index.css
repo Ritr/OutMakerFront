@@ -319,3 +319,10 @@ img {
   display: none;
   width: 0 !important;
 }
+apple-wallet-button {
+  --apple-wallet-button-border-radius: 5px;
+  --apple-wallet-button-height: 40px;
+  --apple-wallet-button-width: 180px;
+  --apple-wallet-button-padding: 0px 0px;
+  --apple-wallet-button-box-sizing: content-box;
+}
